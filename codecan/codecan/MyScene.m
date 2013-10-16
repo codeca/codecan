@@ -6,6 +6,8 @@
 //  Copyright (c) 2013 Codeca. All rights reserved.
 //
 
+
+
 #import "MyScene.h"
 
 @implementation MyScene
@@ -27,6 +29,8 @@
     }
     return self;
 }
+
+//alterei aqui
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     /* Called when a touch begins */

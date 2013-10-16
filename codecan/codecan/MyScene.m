@@ -30,7 +30,7 @@
     return self;
 }
 
-//alterei aqui
+//alterei aqui duas vezes
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     /* Called when a touch begins */

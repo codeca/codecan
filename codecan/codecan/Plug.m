@@ -95,7 +95,7 @@
 	} else if (eventCode & NSStreamEventEndEncountered || eventCode & NSStreamEventErrorOccurred) {
 		// Stream closed
 		self.readyState = PLUGSTATE_CLOSED;
-		[self.delegate plug:self hasClosedWithError:eventCode & NSStreamEventErrorOccurred];
+		[self.delegate plug:self hasClosedWithError:!!(eventCode & NSStreamEventErrorOccurred)];
 	} else if (aStream == self.outputStream && eventCode & NSStreamEventHasSpaceAvailable) {
 		// The client can send more data
 		if (self.writeBuffer.length)

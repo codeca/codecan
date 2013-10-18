@@ -38,7 +38,7 @@
 }
 
 - (void)plug:(Plug *)plug hasClosedWithError:(BOOL)error {
-	NSLog(@"closed %d", error);
+	NSLog(@"closed %hhd", error);
 }
 
 @end

@@ -24,6 +24,8 @@
 		98B4D277180EFB7A00537145 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98B4D252180EFB7900537145 /* UIKit.framework */; };
 		98B4D27F180EFB7A00537145 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 98B4D27D180EFB7A00537145 /* InfoPlist.strings */; };
 		98B4D281180EFB7A00537145 /* codecanTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 98B4D280180EFB7A00537145 /* codecanTests.m */; };
+		98DF30881811B0410092E8A7 /* Plug.m in Sources */ = {isa = PBXBuildFile; fileRef = 98DF30871811B0410092E8A7 /* Plug.m */; };
+		98DF308B1811B0D10092E8A7 /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 98DF308A1811B0D10092E8A7 /* TestViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +62,10 @@
 		98B4D27C180EFB7A00537145 /* codecanTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "codecanTests-Info.plist"; sourceTree = "<group>"; };
 		98B4D27E180EFB7A00537145 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		98B4D280180EFB7A00537145 /* codecanTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = codecanTests.m; sourceTree = "<group>"; };
+		98DF30861811B0410092E8A7 /* Plug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Plug.h; sourceTree = "<group>"; };
+		98DF30871811B0410092E8A7 /* Plug.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Plug.m; sourceTree = "<group>"; };
+		98DF30891811B0D10092E8A7 /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
+		98DF308A1811B0D10092E8A7 /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +127,8 @@
 		98B4D256180EFB7900537145 /* codecan */ = {
 			isa = PBXGroup;
 			children = (
+				98DF30861811B0410092E8A7 /* Plug.h */,
+				98DF30871811B0410092E8A7 /* Plug.m */,
 				98B4D25F180EFB7900537145 /* AppDelegate.h */,
 				98B4D260180EFB7900537145 /* AppDelegate.m */,
 				98B4D262180EFB7900537145 /* Main.storyboard */,
@@ -131,6 +139,8 @@
 				98B4D26B180EFB7900537145 /* Spaceship.png */,
 				98B4D26D180EFB7900537145 /* Images.xcassets */,
 				98B4D257180EFB7900537145 /* Supporting Files */,
+				98DF30891811B0D10092E8A7 /* TestViewController.h */,
+				98DF308A1811B0D10092E8A7 /* TestViewController.m */,
 			);
 			path = codecan;
 			sourceTree = "<group>";
@@ -262,6 +272,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				98DF308B1811B0D10092E8A7 /* TestViewController.m in Sources */,
+				98DF30881811B0410092E8A7 /* Plug.m in Sources */,
 				98B4D26A180EFB7900537145 /* MyScene.m in Sources */,
 				98B4D267180EFB7900537145 /* ViewController.m in Sources */,
 				98B4D261180EFB7900537145 /* AppDelegate.m in Sources */,
@@ -478,6 +490,7 @@
 				98B4D286180EFB7A00537145 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		98B4D287180EFB7A00537145 /* Build configuration list for PBXNativeTarget "codecanTests" */ = {
 			isa = XCConfigurationList;
@@ -486,6 +499,7 @@
 				98B4D289180EFB7A00537145 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

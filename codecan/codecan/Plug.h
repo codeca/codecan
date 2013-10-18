@@ -11,8 +11,13 @@
 
 @protocol PlugDelegate <NSObject>
 
+// Called whenever the server sends a message
 - (void)plug:(Plug*)plug receivedMessage:(NSString*)name data:(id)data;
+
+// Called when the connection is open and ready
 - (void)plugHasConnected:(Plug*)plug;
+
+// Called when the connection has closed or could not connect
 - (void)plug:(Plug*)plug hasClosedWithError:(BOOL)error;
 
 @end

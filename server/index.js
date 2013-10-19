@@ -6,6 +6,12 @@ var Game = require("./Game.js")
 var playersWaiting3 = []
 var playersWaiting4 = []
 
+// Message type constants
+var MSG_MATCH = -4
+var MSG_MATCH_PROGRESS = -3
+var MSG_MATCH_DONE = -2
+var MSG_PLAYER_DISCONNECTED = -1
+
 // Return the union of two arrays
 function unite(a, b) {
 	return a.concat(b.filter(function (x) {
@@ -35,7 +41,7 @@ function matchPlayers(newPlayer) {
 		playersWaiting4.push(newPlayer)
 		if (playersWaiting4.length == 4) {
 			// Match with 4 found
-			games.push(new Game(playersWaiting4))
+			createRoom(playersWaiting4)
 			playersWaiting3 = getDifference(playersWaiting3, playersWaiting4)
 			playersWaiting4 = []
 			return
@@ -47,7 +53,7 @@ function matchPlayers(newPlayer) {
 		playersWaiting3.push(newPlayer)
 		if (playersWaiting3.length == 3) {
 			// Match with 3 found
-			games.push(new Game(playersWaiting3))
+			createRoom(playersWaiting3)
 			playersWaiting4 = getDifference(playersWaiting4, playersWaiting3)
 			playersWaiting3 = []
 			return
@@ -55,18 +61,42 @@ function matchPlayers(newPlayer) {
 	}
 }
 
+// Send the given message to all the players in the array
+// ignoreThis is a player to whon the message won't be sent (optional)
+function broadcast(players, type, data, ignoreThis) {
+	players.forEach(function (p) {
+		if (p != ignoreThis)
+			p.sendMessage(type, data)
+	})
+}
+
+// Create a room with the given players
+function createRoom(players) {
+	var game, data
+
+	// Create the game
+	game = new Game(players)
+
+	// Inform them the game has begun
+	data = []
+	players.forEach(function (p) {
+		data.push({ id: p.id, name: p.name })
+	})
+	broadcast(players, MSG_MATCH_DONE, data)
+}
+
 // Tell all the current players waiting the current number of players in each ground
 function informMatchingProgress() {
-	var data = [playersWaiting3.length, playersWaiting4.length]
-	Player.broadcast(unite(playersWaiting3, playersWaiting4), "matchStatus", data)
+	var data = { waitingFor3: playersWaiting3.length, waitingFor4: playersWaiting4.length }
+	broadcast(unite(playersWaiting3, playersWaiting4), MSG_MATCH_PROGRESS, data)
 }
 
 // Treat each client message
-function onmessage(name, data) {
+function onmessage(type, data) {
 	if (this.game) {
 		// Broadcast the message
-		Player.broadcast(this.game.players, name, data, this)
-	} else {
+		broadcast(this.game.players, name, data, this)
+	} else if (type == MSG_MATCH) {
 		// Add the current player to the matching list
 		this.want3 = Boolean(data.want3)
 		this.want4 = Boolean(data.want4)
@@ -82,7 +112,7 @@ function onclose() {
 	if (this.game) {
 		// Inform all the players in the game the player has disconnected
 		removeFromArray(this.game.players, this)
-		Player.broadcast(this.game.players, "disconnected", this.id)
+		broadcast(this.game.players, MSG_PLAYER_DISCONNECTED, this.id)
 	} else {
 		// Remove from the queue
 		removeFromArray(playersWaiting3, this)

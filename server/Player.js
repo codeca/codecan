@@ -21,20 +21,11 @@ var events = require("events")
 var util = require("util")
 util.inherits(Player, events.EventEmitter)
 
-// Send the given message to all the players in the array
-// ignore is a player to not send the message to (optional)
-Player.broadcast = function (players, name, data, ignore) {
-	players.forEach(function (p) {
-		if (p != ignore)
-			p.sendMessage(name, data)
-	})
-}
-
 // Send the given named message to the client
-// name is string and data is anything that can be transformed into JSON
-Player.prototype.sendMessage = function (name, data) {
+// type is an int and data is anything that can be transformed into JSON
+Player.prototype.sendMessage = function (type, data) {
 	var buffer, len, lenBuffer
-	buffer = new Buffer(JSON.stringify([name, data]))
+	buffer = new Buffer(JSON.stringify([type, data]))
 	len = buffer.length
 	lenBuffer = new Buffer([len>>16, (len>>8)%256, len%256])
 	this._conn.write(lenBuffer)
@@ -53,9 +44,6 @@ Player.prototype._getOnreadable = function () {
 	return function () {
 		var buffer, len, messageBuffer, message
 		
-		if (!that.connected)
-			return
-		
 		// Read the data
 		buffer = that._conn.read()
 		if (buffer) {
@@ -69,6 +57,9 @@ Player.prototype._getOnreadable = function () {
 Player.prototype._processMessages = function () {
 	// Go on extracting all messages
 	while (true) {
+		if (!this.connected)
+			return
+
 		if (this._readBuffer.length < 3)
 			return
 		

@@ -53,9 +53,9 @@
 	return self;
 }
 
-- (void)sendMessage:(NSString *)name data:(id)data {
+- (void)sendMessage:(PlugMsgType)type data:(id)data {
 	NSError* error = NULL;
-	NSArray* message = @[name, data];
+	NSArray* message = @[[NSNumber numberWithInt:type], data];
 	NSData* bufferData = [NSJSONSerialization dataWithJSONObject:message options:0 error:&error];
 	int len = bufferData.length;
 	uint8_t bytes[3];
@@ -158,6 +158,9 @@
 	NSError* error = NULL;
 	
 	while (true) {
+		if (self.readyState != PLUGSTATE_OPEN)
+			return;
+		
 		// Read the message byte length
 		if (self.readBuffer.length < 3)
 			return;
@@ -170,13 +173,14 @@
 		NSData* data = [self.readBuffer subdataWithRange:NSMakeRange(3, len)];
 		[self.readBuffer setData:[self.readBuffer subdataWithRange:NSMakeRange(len+3, self.readBuffer.length-len-3)]];
 		
-		// Inflate the JSON for [name data]
+		// Inflate the JSON for [type data]
 		NSArray* msg = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
 		if (error) {
 			[self closeWithError];
 			return;
 		}
-		[self.delegate plug:self receivedMessage:msg[0] data:msg[1]];
+		NSNumber* type = msg[0];
+		[self.delegate plug:self receivedMessage:[type intValue] data:msg[1]];
 	}
 }
 

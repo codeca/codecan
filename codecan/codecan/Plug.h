@@ -7,12 +7,19 @@
 
 #import <Foundation/Foundation.h>
 
+typedef enum {
+	MSG_MATCH = -4,
+	MSG_MATCH_PROGRESS,
+	MSG_MATCH_DONE,
+	MSG_PLAYER_DISCONNECTED
+} PlugMsgType;
+
 @class Plug;
 
 @protocol PlugDelegate <NSObject>
 
 // Called whenever the server sends a message
-- (void)plug:(Plug*)plug receivedMessage:(NSString*)name data:(id)data;
+- (void)plug:(Plug*)plug receivedMessage:(PlugMsgType)type data:(id)data;
 
 // Called when the connection is open and ready
 - (void)plugHasConnected:(Plug*)plug;
@@ -36,9 +43,9 @@ typedef enum {
 // Create a new Plug and start connecting
 - (id)init;
 
-// Send the given named message to the server
+// Send a given message to the server
 // data is anything that can be transformed into JSON
-- (void)sendMessage:(NSString*)name data:(id)data;
+- (void)sendMessage:(PlugMsgType)type data:(id)data;
 
 // Close the given connection and prevent future messages to be processed
 - (void)close;

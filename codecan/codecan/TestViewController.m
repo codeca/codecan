@@ -29,8 +29,8 @@
 	[self.plug close];
 }
 
-- (void)plug:(Plug *)plug receivedMessage:(NSString *)name data:(id)data {
-	NSLog(@"received %@ %@", name, data);
+- (void)plug:(Plug *)plug receivedMessage:(PlugMsgType)type data:(id)data {
+	NSLog(@"received %d %@", type, data);
 }
 
 - (void)plugHasConnected:(Plug *)plug {

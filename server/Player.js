@@ -5,6 +5,7 @@
 function Player(conn) {
 	// Indicate whether the connection is open
 	this.connected = true
+	this.game = null
 	
 	// Internal data
 	this._conn = conn
@@ -19,6 +20,15 @@ module.exports = Player
 var events = require("events")
 var util = require("util")
 util.inherits(Player, events.EventEmitter)
+
+// Send the given message to all the players in the array
+// ignore is a player to not send the message to (optional)
+Player.broadcast = function (players, name, data, ignore) {
+	players.forEach(function (p) {
+		if (p != ignore)
+			p.sendMessage(name, data)
+	})
+}
 
 // Send the given named message to the client
 // name is string and data is anything that can be transformed into JSON
@@ -83,6 +93,7 @@ Player.prototype._getOnclose = function () {
 	return function () {
 		that.connected = false
 		that.emit("close")
+		that._conn = null
 	}
 }
 

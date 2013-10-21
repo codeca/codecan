@@ -23,7 +23,7 @@
 }
 
 - (IBAction)sayHiButton:(id)sender {
-	[self.plug sendMessage:@"hi" data:@"Hi, from iOS"];
+	[self.plug sendMessage:1 data:@"Hi, from iOS"];
 }
 - (IBAction)closeButton:(id)sender {
 	[self.plug close];

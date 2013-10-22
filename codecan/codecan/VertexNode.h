@@ -25,4 +25,6 @@ enum vertexType {
 
 @property (nonatomic,strong) NSArray* edges;
 
+@property (nonatomic, strong) Port* port;
+
 @end

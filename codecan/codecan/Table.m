@@ -38,6 +38,10 @@
 				[self.hexes addObject:newhex];
 		}
 		
+		for(int i =0; i < 54; i++){
+			
+		}
+		
 		for(HexModel *hex in self.hexes){
 			
 			for(int i =0; i<6;i++){

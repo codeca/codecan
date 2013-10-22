@@ -14,7 +14,7 @@
 
 /**  */
 
-@property(nonatomic,strong) NSArray* vortexes;
+@property(nonatomic,strong) NSArray* vertexes;
 
 @property(nonatomic, strong) Player* owner;
 

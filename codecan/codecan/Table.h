@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import "HexModel.h"
+#import "VertexNode.h"
+#import "EdgeNode.h"
 
 @interface Table : NSObject
 

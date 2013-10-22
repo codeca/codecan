@@ -39,7 +39,8 @@
 		}
 		
 		for(int i =0; i < 54; i++){
-			
+			VertexNode * newVertex = [VertexNode spriteNodeWithImageNamed:@"emptyVertex"];
+			[self.vertex addObject:newVertex];
 		}
 		
 		for(HexModel *hex in self.hexes){

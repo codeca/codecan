@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 Codeca. All rights reserved.
 //
 
-#import "HexagonNode.h"
+#import "HexModel.h"
 
-@implementation HexagonNode
+@implementation HexModel
 
 -(id)init{
 	self = [super init];

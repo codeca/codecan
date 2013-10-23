@@ -7,26 +7,23 @@
 //
 
 #import <SpriteKit/SpriteKit.h>
-#import "Port.h"
 
-typedef enum {
+enum vertexType {
 	
 	village = 1,
 	city = 2
 	
-} VertexType;
+};
 
 @interface VertexNode : SKSpriteNode
 
-<<<<<<< HEAD
 //@property (nonatomic, strong) Player* owner;
-=======
-@property (nonatomic, weak) Player* owner;
->>>>>>> e156045a996fb242f026b548ab07c620b87cf235
 
-@property (nonatomic) VertexType type;
+@property (nonatomic) enum vertexType type;
 
-@property (nonatomic,strong) NSMutableArray* edges;
+@property (nonatomic, strong) NSArray* hexagons;
+
+@property (nonatomic,strong) NSArray* edges;
 
 //@property (nonatomic, strong) Port* port;
 

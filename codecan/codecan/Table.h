@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "HexagonNode.h"
+#import "HexModel.h"
 
 @interface Table : NSObject
 

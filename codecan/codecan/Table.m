@@ -38,7 +38,15 @@
 				[self.hexes addObject:newhex];
 		}
 		
+<<<<<<< HEAD
 		for(HexagonNode *hex in self.hexes){
+=======
+		for(int i =0; i < 54; i++){
+			
+		}
+		
+		for(HexModel *hex in self.hexes){
+>>>>>>> 53bb2c89aa3144c3e96176a315ca8642ddf420be
 			
 			for(int i =0; i<6;i++){
 				

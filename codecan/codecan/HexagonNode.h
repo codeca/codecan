@@ -11,11 +11,11 @@
 
 typedef enum {
 	
-		CLAY = 1,
-		SHEEP,
-		STONE,
-		WHEAT,
-		WOOD,
+		BRICK = 1,
+		WOOL,
+		ORE,
+		GRAIN,
+		LUMBER,
 		DESERT
 
 } Resource;

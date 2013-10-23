@@ -7,14 +7,14 @@
 //
 
 #import <SpriteKit/SpriteKit.h>
-
+#import "Player.h"
 
 @interface EdgeNode : SKSpriteNode
 
 
 @property(nonatomic,strong) NSMutableArray* vertexes;
 
-//@property(nonatomic, weak) Player* owner;
+@property(nonatomic, weak) Player* owner;
 
 @end
 

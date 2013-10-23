@@ -8,6 +8,7 @@
 
 #import <SpriteKit/SpriteKit.h>
 #import "Port.h"
+#import "Player.h"
 
 typedef enum  {
 	
@@ -18,7 +19,7 @@ typedef enum  {
 
 @interface VertexNode : SKSpriteNode
 
-//@property (nonatomic, weak) Player* owner;
+@property (nonatomic, weak) Player* owner;
 
 @property (nonatomic) VertexType type;
 

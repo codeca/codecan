@@ -57,15 +57,14 @@
     for (UITouch *touch in touches) {
         CGPoint location = [touch locationInNode:self];
         
-        SKSpriteNode *sprite = [SKSpriteNode spriteNodeWithImageNamed:@"Spaceship"];
-        
-        sprite.position = location;
-        
-        SKAction *action = [SKAction rotateByAngle:M_PI duration:1];
-        
-        [sprite runAction:[SKAction repeatActionForever:action]];
-        
-        [self addChild:sprite];
+		
+		//TEMPORARIO
+        HexagonNode* aux = [self nodeAtPoint:location];
+		
+		NSLog([NSString stringWithFormat:@"%i", aux.number]);
+		//END OF TEMPORARIO
+		
+		
     }
 }
 

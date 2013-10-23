@@ -16,6 +16,7 @@
 		81E352E01816B2A400FD7323 /* tile.png in Resources */ = {isa = PBXBuildFile; fileRef = 81E352DF1816B2A400FD7323 /* tile.png */; };
 		81E352E218182F3200FD7323 /* vertex.png in Resources */ = {isa = PBXBuildFile; fileRef = 81E352E118182F3200FD7323 /* vertex.png */; };
 		81E352E418182F4100FD7323 /* edge.png in Resources */ = {isa = PBXBuildFile; fileRef = 81E352E318182F4100FD7323 /* edge.png */; };
+		81E352E718184D1700FD7323 /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E352E618184D1700FD7323 /* Player.m */; };
 		98B4D24F180EFB7900537145 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98B4D24E180EFB7900537145 /* Foundation.framework */; };
 		98B4D251180EFB7900537145 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98B4D250180EFB7900537145 /* CoreGraphics.framework */; };
 		98B4D253180EFB7900537145 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98B4D252180EFB7900537145 /* UIKit.framework */; };
@@ -66,6 +67,8 @@
 		81E352DF1816B2A400FD7323 /* tile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tile.png; sourceTree = "<group>"; };
 		81E352E118182F3200FD7323 /* vertex.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vertex.png; sourceTree = "<group>"; };
 		81E352E318182F4100FD7323 /* edge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = edge.png; sourceTree = "<group>"; };
+		81E352E518184D1700FD7323 /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
+		81E352E618184D1700FD7323 /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Player.m; sourceTree = "<group>"; };
 		98B4D24B180EFB7900537145 /* codecan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = codecan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		98B4D24E180EFB7900537145 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		98B4D250180EFB7900537145 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -222,6 +225,8 @@
 		C45688971817FC8E008A0CB8 /* Mechanics */ = {
 			isa = PBXGroup;
 			children = (
+				81E352E518184D1700FD7323 /* Player.h */,
+				81E352E618184D1700FD7323 /* Player.m */,
 				81E352DC1816A3CD00FD7323 /* Table.h */,
 				81E352DD1816A3CD00FD7323 /* Table.m */,
 				0B03E07E1817FA3300EBF10D /* Port.h */,
@@ -403,6 +408,7 @@
 				C4A8D8B41817E2560043AA4B /* FileReader.m in Sources */,
 				98B4D25D180EFB7900537145 /* main.m in Sources */,
 				81E352DB18168FAA00FD7323 /* HexagonNode.m in Sources */,
+				81E352E718184D1700FD7323 /* Player.m in Sources */,
 				0BE9470E1816B52300379436 /* VertexNode.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

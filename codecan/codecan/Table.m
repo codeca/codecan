@@ -18,6 +18,39 @@
 	self.vertexes = [[NSMutableArray alloc] init];
 	self.edges = [[NSMutableArray alloc] init];
 	
+	NSMutableArray * resources = [[NSMutableArray alloc] init];
+	NSArray *numbers = @[@5, @2, @6, @3, @8, @10, @9, @12, @11, @4, @8, @10, @9, @4, @5, @6, @3, @11];
+	
+	for(Resource i =1 ; i<7; i++){
+		switch (i) {
+			case DESERT:
+				[resources addObject:[NSNumber numberWithInt:DESERT]];
+				break;
+			case WOOL:
+				[resources addObjectsFromArray:[NSArray arrayWithObjects:[NSNumber numberWithInt:WOOL], [NSNumber numberWithInt:WOOL], [NSNumber numberWithInt:WOOL],[NSNumber numberWithInt:WOOL],nil]];
+				break;
+			case BRICK:
+				[resources addObjectsFromArray:[NSArray arrayWithObjects:[NSNumber numberWithInt:BRICK], [NSNumber numberWithInt:BRICK], [NSNumber numberWithInt:BRICK],nil]];
+				break;
+			case GRAIN:
+				[resources addObjectsFromArray:[NSArray arrayWithObjects:[NSNumber numberWithInt:GRAIN], [NSNumber numberWithInt:GRAIN], [NSNumber numberWithInt:GRAIN],[NSNumber numberWithInt:GRAIN],nil]];
+				break;
+			case ORE:
+				[resources addObjectsFromArray:[NSArray arrayWithObjects:[NSNumber numberWithInt:ORE], [NSNumber numberWithInt:ORE], [NSNumber numberWithInt:ORE],nil]];
+				break;
+			case LUMBER:
+				[resources addObjectsFromArray:[NSArray arrayWithObjects:[NSNumber numberWithInt:LUMBER], [NSNumber numberWithInt:LUMBER], [NSNumber numberWithInt:LUMBER], [NSNumber numberWithInt:LUMBER],nil]];
+				break;
+			default:
+				break;
+		}
+	}
+	
+	for(int i=0;i<resources.count;i++){
+		[resources exchangeObjectAtIndex:i withObjectAtIndex:arc4random_uniform(19)];
+	}
+	
+	
 	if(self){
 		
 		
@@ -29,6 +62,39 @@
 			
 			aux.name = [NSString stringWithFormat:@"Hex%i", i];
 			
+			aux.resource = [[resources lastObject] integerValue];
+			[resources removeLastObject];
+			
+			//TEMPORARIO
+			
+			SKLabelNode * res = [SKLabelNode labelNodeWithFontNamed:@"Chalkdust"];
+			
+			switch (aux.resource) {
+				case DESERT:
+					res.text = @"Desert";
+					break;
+				case WOOL:
+					res.text = @"Wool";
+					break;
+				case BRICK:
+					res.text = @"Brick";
+					break;
+				case GRAIN:
+					res.text = @"Grain";
+					break;
+				case ORE:
+					res.text = @"Ore";
+					break;
+				case LUMBER:
+					res.text = @"Lumber";
+					break;
+				default:
+					break;
+			}
+			
+			[aux addChild:res];
+			
+			//TEMPORARIO END
 			if(i<1)
 				aux.position = CGPointMake(0, 0);
 			if(i>=1 && i<7)
@@ -46,9 +112,40 @@
 		}
 		
 		
+		
+		int counter = 0;
+		
+		
+		for(int i = 7;i<19;i++){
+			if([(HexagonNode *)[self.hexes objectAtIndex:i] resource] != DESERT){
+				((HexagonNode *)[self.hexes objectAtIndex:i]).number = [(NSNumber*)[numbers objectAtIndex:counter] integerValue];
+				counter++;
+			}
+			else
+				((HexagonNode *)[self.hexes objectAtIndex:i]).number = 7;
+		}
+		
+		for(int i=1; i<7 ; i++){
+			if([(HexagonNode *)[self.hexes objectAtIndex:i] resource] != DESERT){
+				((HexagonNode *)[self.hexes objectAtIndex:i]).number = [(NSNumber*)[numbers objectAtIndex:counter] integerValue];
+				counter++;
+			}
+			else
+				((HexagonNode *)[self.hexes objectAtIndex:i]).number = 7;
+		}
+		
+		if([(HexagonNode *)[self.hexes objectAtIndex:0] resource] != DESERT)
+			((HexagonNode *)[self.hexes objectAtIndex:0]).number = 11;
+		else
+			((HexagonNode *)[self.hexes objectAtIndex:0]).number = 7;
+
+			
+		
+		
 		//Declaracao dos Vertex
 		for(int i=0; i<54; i++){
 			VertexNode * newVertex = [[VertexNode alloc] init];
+			newVertex.name = [[NSString alloc] initWithFormat:@"vertex%d",i];
 			[self.vertexes addObject:newVertex];
 			
 		}
@@ -56,6 +153,7 @@
 		//Declaracao dos Edges
 		for(int i=0; i<72; i++){
 			EdgeNode * newEdge = [[EdgeNode alloc] init];
+			newEdge.name = [[NSString alloc] initWithFormat:@"edge%d",i];
 			[self.edges addObject:newEdge];
 		}
 		

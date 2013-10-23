@@ -10,20 +10,27 @@
 #import <SpriteKit/SpriteKit.h>
 
 typedef enum {
-	HILL = 1,
-	PASTURE,
-	MOUNTAINS,
-	FIELDS,
-	FOREST,
+	
+	CLAY = 1,
+	SHEEP,
+	STONE,
+	WHEAT,
+	WOOD,
 	DESERT
+	
 } Resource;
 
-@interface HexModel : SKSpriteNode
+@interface HexagonNode : SKSpriteNode
 
 @property (nonatomic) Resource resource;
+
 @property (nonatomic) NSUInteger number;
+
 @property (nonatomic) NSUInteger diceValue;
-@property (nonatomic, strong) NSMutableArray * vertex;
+
+@property (nonatomic, strong) NSMutableArray * vertexes;
+
+@property (nonatomic, strong) NSMutableArray * edges;
 
 
 @end

@@ -154,35 +154,19 @@
 		98B4D256180EFB7900537145 /* codecan */ = {
 			isa = PBXGroup;
 			children = (
+				C456889C1817FD0C008A0CB8 /* Images */,
+				C456889B1817FCFF008A0CB8 /* Scenes */,
+				C456889A1817FCE8008A0CB8 /* Controllers */,
+				C45688991817FCC6008A0CB8 /* Data Handler */,
+				C45688981817FCAA008A0CB8 /* Server Comms */,
+				C45688971817FC8E008A0CB8 /* Mechanics */,
+				C45688961817FC40008A0CB8 /* Nodes */,
 				C4A8D8BB1817E5D10043AA4B /* CSVFiles */,
-				C4A8D8B21817E2560043AA4B /* FileReader.h */,
-				C4A8D8B31817E2560043AA4B /* FileReader.m */,
-				0BE947091816B52300379436 /* EdgeNode.h */,
-				0BE9470A1816B52300379436 /* EdgeNode.m */,
-				0BE9470B1816B52300379436 /* VertexNode.h */,
-				0BE9470C1816B52300379436 /* VertexNode.m */,
-				98DF30861811B0410092E8A7 /* Plug.h */,
-				98DF30871811B0410092E8A7 /* Plug.m */,
-				81E352D918168FAA00FD7323 /* HexagonNode.h */,
-				81E352DA18168FAA00FD7323 /* HexagonNode.m */,
-				81E352DC1816A3CD00FD7323 /* Table.h */,
-				81E352DD1816A3CD00FD7323 /* Table.m */,
 				98B4D25F180EFB7900537145 /* AppDelegate.h */,
 				98B4D260180EFB7900537145 /* AppDelegate.m */,
 				98B4D262180EFB7900537145 /* Main.storyboard */,
-				98B4D265180EFB7900537145 /* ViewController.h */,
-				98B4D266180EFB7900537145 /* ViewController.m */,
-				98B4D268180EFB7900537145 /* MyScene.h */,
-				98B4D269180EFB7900537145 /* MyScene.m */,
-				81E352DF1816B2A400FD7323 /* tile.png */,
 				98B4D26D180EFB7900537145 /* Images.xcassets */,
 				98B4D257180EFB7900537145 /* Supporting Files */,
-				98DF30891811B0D10092E8A7 /* TestViewController.h */,
-				98DF308A1811B0D10092E8A7 /* TestViewController.m */,
-				0B03E07E1817FA3300EBF10D /* Port.h */,
-				0B03E07F1817FA3300EBF10D /* Port.m */,
-				0B03E0811817FA9000EBF10D /* ThiefNode.h */,
-				0B03E0821817FA9000EBF10D /* ThiefNode.m */,
 			);
 			path = codecan;
 			sourceTree = "<group>";
@@ -214,6 +198,78 @@
 				98B4D27D180EFB7A00537145 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C45688961817FC40008A0CB8 /* Nodes */ = {
+			isa = PBXGroup;
+			children = (
+				0BE947091816B52300379436 /* EdgeNode.h */,
+				0BE9470A1816B52300379436 /* EdgeNode.m */,
+				0BE9470B1816B52300379436 /* VertexNode.h */,
+				0BE9470C1816B52300379436 /* VertexNode.m */,
+				81E352D918168FAA00FD7323 /* HexagonNode.h */,
+				81E352DA18168FAA00FD7323 /* HexagonNode.m */,
+				0B03E0811817FA9000EBF10D /* ThiefNode.h */,
+				0B03E0821817FA9000EBF10D /* ThiefNode.m */,
+			);
+			name = Nodes;
+			sourceTree = "<group>";
+		};
+		C45688971817FC8E008A0CB8 /* Mechanics */ = {
+			isa = PBXGroup;
+			children = (
+				81E352DC1816A3CD00FD7323 /* Table.h */,
+				81E352DD1816A3CD00FD7323 /* Table.m */,
+				0B03E07E1817FA3300EBF10D /* Port.h */,
+				0B03E07F1817FA3300EBF10D /* Port.m */,
+			);
+			name = Mechanics;
+			sourceTree = "<group>";
+		};
+		C45688981817FCAA008A0CB8 /* Server Comms */ = {
+			isa = PBXGroup;
+			children = (
+				98DF30861811B0410092E8A7 /* Plug.h */,
+				98DF30871811B0410092E8A7 /* Plug.m */,
+			);
+			name = "Server Comms";
+			sourceTree = "<group>";
+		};
+		C45688991817FCC6008A0CB8 /* Data Handler */ = {
+			isa = PBXGroup;
+			children = (
+				C4A8D8B21817E2560043AA4B /* FileReader.h */,
+				C4A8D8B31817E2560043AA4B /* FileReader.m */,
+			);
+			name = "Data Handler";
+			sourceTree = "<group>";
+		};
+		C456889A1817FCE8008A0CB8 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				98B4D265180EFB7900537145 /* ViewController.h */,
+				98B4D266180EFB7900537145 /* ViewController.m */,
+				98DF30891811B0D10092E8A7 /* TestViewController.h */,
+				98DF308A1811B0D10092E8A7 /* TestViewController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		C456889B1817FCFF008A0CB8 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				98B4D268180EFB7900537145 /* MyScene.h */,
+				98B4D269180EFB7900537145 /* MyScene.m */,
+			);
+			name = Scenes;
+			sourceTree = "<group>";
+		};
+		C456889C1817FD0C008A0CB8 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				81E352DF1816B2A400FD7323 /* tile.png */,
+			);
+			name = Images;
 			sourceTree = "<group>";
 		};
 		C4A8D8BB1817E5D10043AA4B /* CSVFiles */ = {

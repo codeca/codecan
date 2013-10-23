@@ -30,6 +30,10 @@
 		98B4D281180EFB7A00537145 /* codecanTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 98B4D280180EFB7A00537145 /* codecanTests.m */; };
 		98DF30881811B0410092E8A7 /* Plug.m in Sources */ = {isa = PBXBuildFile; fileRef = 98DF30871811B0410092E8A7 /* Plug.m */; };
 		98DF308B1811B0D10092E8A7 /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 98DF308A1811B0D10092E8A7 /* TestViewController.m */; };
+		C4A8D8B41817E2560043AA4B /* FileReader.m in Sources */ = {isa = PBXBuildFile; fileRef = C4A8D8B31817E2560043AA4B /* FileReader.m */; };
+		C4A8D8B81817E5C40043AA4B /* hexCSV.csv in Resources */ = {isa = PBXBuildFile; fileRef = C4A8D8B51817E5C40043AA4B /* hexCSV.csv */; };
+		C4A8D8B91817E5C40043AA4B /* About-CSV.txt in Resources */ = {isa = PBXBuildFile; fileRef = C4A8D8B61817E5C40043AA4B /* About-CSV.txt */; };
+		C4A8D8BA1817E5C40043AA4B /* verticeCSV.csv in Resources */ = {isa = PBXBuildFile; fileRef = C4A8D8B71817E5C40043AA4B /* verticeCSV.csv */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +82,11 @@
 		98DF30871811B0410092E8A7 /* Plug.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Plug.m; sourceTree = "<group>"; };
 		98DF30891811B0D10092E8A7 /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
 		98DF308A1811B0D10092E8A7 /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
+		C4A8D8B21817E2560043AA4B /* FileReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileReader.h; sourceTree = "<group>"; };
+		C4A8D8B31817E2560043AA4B /* FileReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileReader.m; sourceTree = "<group>"; };
+		C4A8D8B51817E5C40043AA4B /* hexCSV.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = hexCSV.csv; sourceTree = "<group>"; };
+		C4A8D8B61817E5C40043AA4B /* About-CSV.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "About-CSV.txt"; sourceTree = "<group>"; };
+		C4A8D8B71817E5C40043AA4B /* verticeCSV.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = verticeCSV.csv; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +148,9 @@
 		98B4D256180EFB7900537145 /* codecan */ = {
 			isa = PBXGroup;
 			children = (
+				C4A8D8BB1817E5D10043AA4B /* CSVFiles */,
+				C4A8D8B21817E2560043AA4B /* FileReader.h */,
+				C4A8D8B31817E2560043AA4B /* FileReader.m */,
 				0BE947091816B52300379436 /* EdgeNode.h */,
 				0BE9470A1816B52300379436 /* EdgeNode.m */,
 				0BE9470B1816B52300379436 /* VertexNode.h */,
@@ -192,6 +204,16 @@
 				98B4D27D180EFB7A00537145 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C4A8D8BB1817E5D10043AA4B /* CSVFiles */ = {
+			isa = PBXGroup;
+			children = (
+				C4A8D8B51817E5C40043AA4B /* hexCSV.csv */,
+				C4A8D8B61817E5C40043AA4B /* About-CSV.txt */,
+				C4A8D8B71817E5C40043AA4B /* verticeCSV.csv */,
+			);
+			name = CSVFiles;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -271,9 +293,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				98B4D25B180EFB7900537145 /* InfoPlist.strings in Resources */,
+				C4A8D8B81817E5C40043AA4B /* hexCSV.csv in Resources */,
 				81E352E01816B2A400FD7323 /* tile.png in Resources */,
 				98B4D26E180EFB7900537145 /* Images.xcassets in Resources */,
 				98B4D264180EFB7900537145 /* Main.storyboard in Resources */,
+				C4A8D8B91817E5C40043AA4B /* About-CSV.txt in Resources */,
+				C4A8D8BA1817E5C40043AA4B /* verticeCSV.csv in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -299,6 +324,7 @@
 				0BE9470D1816B52300379436 /* EdgeNode.m in Sources */,
 				98B4D267180EFB7900537145 /* ViewController.m in Sources */,
 				98B4D261180EFB7900537145 /* AppDelegate.m in Sources */,
+				C4A8D8B41817E2560043AA4B /* FileReader.m in Sources */,
 				98B4D25D180EFB7900537145 /* main.m in Sources */,
 				81E352DB18168FAA00FD7323 /* HexModel.m in Sources */,
 				0BE9470E1816B52300379436 /* VertexNode.m in Sources */,

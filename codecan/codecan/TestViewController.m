@@ -7,6 +7,7 @@
 //
 
 #import "TestViewController.h"
+#import "FileReader.h"
 
 @interface TestViewController ()
 
@@ -20,6 +21,8 @@
     [super viewDidLoad];
 	self.plug = [[Plug alloc] init];
 	self.plug.delegate = self;
+	
+	[FileReader createTableFromFile:[[NSBundle mainBundle] pathForResource:@"verticeCSV" ofType:@".csv"]];
 }
 
 - (IBAction)sayHiButton:(id)sender {

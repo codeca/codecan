@@ -16,6 +16,6 @@
 
 @property(nonatomic,strong) NSArray* vertexes;
 
-@property(nonatomic, strong) Player* owner;
+//@property(nonatomic, strong) Player* owner;
 
 @end

@@ -18,7 +18,7 @@ typedef enum {
 	DESERT
 } Resource;
 
-@interface HexModel : SKSpriteNode
+@interface HexagonNode : SKSpriteNode
 
 @property (nonatomic) Resource resource;
 @property (nonatomic) NSUInteger number;

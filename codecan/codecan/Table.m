@@ -17,7 +17,7 @@
 	if(self){
 	
 		for(int i =0; i < 19; i ++){
-			HexModel * newhex = [HexModel spriteNodeWithImageNamed:@"tile"];
+			HexagonNode * newhex = [HexagonNode spriteNodeWithImageNamed:@"tile"];
 			newhex.number = i;
 			
 			
@@ -38,7 +38,7 @@
 				[self.hexes addObject:newhex];
 		}
 		
-		for(HexModel *hex in self.hexes){
+		for(HexagonNode *hex in self.hexes){
 			
 			for(int i =0; i<6;i++){
 				

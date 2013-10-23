@@ -51,17 +51,11 @@
 			
 		}
 		
-<<<<<<< HEAD
-		for(int i =0; i < 54; i++){
-			VertexNode * newVertex = [VertexNode spriteNodeWithImageNamed:@"emptyVertex"];
-			[self.vertex addObject:newVertex];
-=======
 		
 		//Declaracao dos Vertex
 		for(int i=0; i<54; i++){
 			[self.vertexes addObject:[[VertexNode alloc] init]];
 			
->>>>>>> a805980b3f53b8c339660e71a8b3fe55034565b3
 		}
 		
 		//Declaracao dos Edges
@@ -72,7 +66,7 @@
 		
 		
 		//Leitura do CSV dos Hexagonos
-		NSString *path =[[NSBundle mainBundle] pathForResource:@"verticeCSV" ofType:@".csv"];
+		NSString *path =[[NSBundle mainBundle] pathForResource:@"hexCSV" ofType:@".csv"];
 		NSArray *csvHex = [FileReader createTableFromFile:path];
 		
 		
@@ -83,7 +77,7 @@
 			
 			NSDictionary* dictio = csvHex[i];
 			
-			NSArray* indexesVertices = [dictio objectForKey:@"Vertices"];
+			NSArray* indexesVertices = [dictio objectForKey:@"Vertex"];
 			
 			for(NSString* stringIndex in indexesVertices){
 				int index = [stringIndex intValue];
@@ -91,7 +85,7 @@
 			}
 			
 			
-			NSArray* indexesEdges = [dictio objectForKey:@"Arestas"];
+			NSArray* indexesEdges = [dictio objectForKey:@"Edge"];
 			
 			for(NSString* stringIndex in indexesEdges){
 				int index = [stringIndex intValue];
@@ -105,8 +99,29 @@
 		path =[[NSBundle mainBundle] pathForResource:@"verticeCSV" ofType:@".csv"];
 		NSArray *csvVertex = [FileReader createTableFromFile:path];
 		
-		
 		//Relacionar os Edges com os vertex
+		
+		for(int i=0; i<self.vertexes.count; i++){
+			VertexNode* vertex= self.vertexes[i];
+			
+			NSDictionary* dictio = csvVertex[i];
+			
+			NSArray* indexEdges = [dictio objectForKey:@"Edge"];
+			
+			for(NSString* stringIndex in indexEdges){
+				int index = [stringIndex intValue];
+				if(index>=0)
+					[vertex.edges addObject:[self.edges objectAtIndex:index]];
+			}
+			
+		}
+		
+		for(VertexNode *vertex in self.vertexes){
+			for(EdgeNode *edge in vertex.edges){
+				[edge.vertexes addObject:vertex];
+			}
+		}
+		
 		
 	}
 	

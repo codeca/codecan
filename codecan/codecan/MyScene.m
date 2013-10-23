@@ -25,6 +25,8 @@
         myLabel.position = CGPointMake(CGRectGetMidX(self.frame),
                                        CGRectGetMidY(self.frame));
         
+		Table * table = [[Table alloc] init];
+		
         [self addChild:myLabel];
     }
 

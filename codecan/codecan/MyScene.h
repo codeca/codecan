@@ -7,6 +7,7 @@
 //
 
 #import <SpriteKit/SpriteKit.h>
+#import "Table.h"
 
 @interface MyScene : SKScene
 

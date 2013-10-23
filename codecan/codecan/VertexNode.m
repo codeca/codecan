@@ -10,4 +10,14 @@
 
 @implementation VertexNode
 
+-(id)init{
+	
+	self=[super init];
+	
+	if(self){
+		_edges = [[NSMutableArray alloc] init];
+	}
+	return self;
+}
+
 @end

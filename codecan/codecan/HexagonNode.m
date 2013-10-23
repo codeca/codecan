@@ -14,6 +14,8 @@
 	self = [super init];
 	if(self){
 	
+		_vertexes = [[NSMutableArray alloc] init];
+		_edges = [[NSMutableArray alloc] init];
 		
 		
 	}

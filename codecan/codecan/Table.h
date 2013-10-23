@@ -7,16 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
-<<<<<<< HEAD
-#import "HexModel.h"
+#import "HexagonNode.h"
 #import "VertexNode.h"
 #import "EdgeNode.h"
-=======
 #import "HexagonNode.h"
 #import "VertexNode.h"
 #import "EdgeNode.h"
 #import "FileReader.h"
->>>>>>> a805980b3f53b8c339660e71a8b3fe55034565b3
 
 @interface Table : NSObject
 

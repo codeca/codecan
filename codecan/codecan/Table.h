@@ -8,11 +8,14 @@
 
 #import <Foundation/Foundation.h>
 #import "HexagonNode.h"
+#import "VertexNode.h"
+#import "EdgeNode.h"
+#import "FileReader.h"
 
 @interface Table : NSObject
 
 @property (nonatomic, strong) NSMutableArray * hexes;
-@property (nonatomic, strong) NSMutableArray * vertex;
+@property (nonatomic, strong) NSMutableArray * vertexes;
 @property (nonatomic, strong) NSMutableArray * edges;
 
 @end

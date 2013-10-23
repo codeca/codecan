@@ -7,9 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B03E0801817FA3300EBF10D /* Port.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B03E07F1817FA3300EBF10D /* Port.m */; };
+		0B03E0831817FA9000EBF10D /* ThiefNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B03E0821817FA9000EBF10D /* ThiefNode.m */; };
 		0BE9470D1816B52300379436 /* EdgeNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BE9470A1816B52300379436 /* EdgeNode.m */; };
 		0BE9470E1816B52300379436 /* VertexNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BE9470C1816B52300379436 /* VertexNode.m */; };
-		81E352DB18168FAA00FD7323 /* HexModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E352DA18168FAA00FD7323 /* HexModel.m */; };
+		81E352DB18168FAA00FD7323 /* HexagonNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E352DA18168FAA00FD7323 /* HexagonNode.m */; };
 		81E352DE1816A3CD00FD7323 /* Table.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E352DD1816A3CD00FD7323 /* Table.m */; };
 		81E352E01816B2A400FD7323 /* tile.png in Resources */ = {isa = PBXBuildFile; fileRef = 81E352DF1816B2A400FD7323 /* tile.png */; };
 		98B4D24F180EFB7900537145 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98B4D24E180EFB7900537145 /* Foundation.framework */; };
@@ -47,12 +49,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0B03E07E1817FA3300EBF10D /* Port.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Port.h; sourceTree = "<group>"; };
+		0B03E07F1817FA3300EBF10D /* Port.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Port.m; sourceTree = "<group>"; };
+		0B03E0811817FA9000EBF10D /* ThiefNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThiefNode.h; sourceTree = "<group>"; };
+		0B03E0821817FA9000EBF10D /* ThiefNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThiefNode.m; sourceTree = "<group>"; };
 		0BE947091816B52300379436 /* EdgeNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EdgeNode.h; sourceTree = "<group>"; };
 		0BE9470A1816B52300379436 /* EdgeNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EdgeNode.m; sourceTree = "<group>"; };
 		0BE9470B1816B52300379436 /* VertexNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VertexNode.h; sourceTree = "<group>"; };
 		0BE9470C1816B52300379436 /* VertexNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VertexNode.m; sourceTree = "<group>"; };
-		81E352D918168FAA00FD7323 /* HexModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HexModel.h; sourceTree = "<group>"; };
-		81E352DA18168FAA00FD7323 /* HexModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HexModel.m; sourceTree = "<group>"; };
+		81E352D918168FAA00FD7323 /* HexagonNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HexagonNode.h; sourceTree = "<group>"; };
+		81E352DA18168FAA00FD7323 /* HexagonNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HexagonNode.m; sourceTree = "<group>"; };
 		81E352DC1816A3CD00FD7323 /* Table.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Table.h; sourceTree = "<group>"; };
 		81E352DD1816A3CD00FD7323 /* Table.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Table.m; sourceTree = "<group>"; };
 		81E352DF1816B2A400FD7323 /* tile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tile.png; sourceTree = "<group>"; };
@@ -157,10 +163,10 @@
 				0BE9470C1816B52300379436 /* VertexNode.m */,
 				98DF30861811B0410092E8A7 /* Plug.h */,
 				98DF30871811B0410092E8A7 /* Plug.m */,
-				81E352D918168FAA00FD7323 /* HexModel.h */,
+				81E352D918168FAA00FD7323 /* HexagonNode.h */,
+				81E352DA18168FAA00FD7323 /* HexagonNode.m */,
 				81E352DC1816A3CD00FD7323 /* Table.h */,
 				81E352DD1816A3CD00FD7323 /* Table.m */,
-				81E352DA18168FAA00FD7323 /* HexModel.m */,
 				98B4D25F180EFB7900537145 /* AppDelegate.h */,
 				98B4D260180EFB7900537145 /* AppDelegate.m */,
 				98B4D262180EFB7900537145 /* Main.storyboard */,
@@ -173,6 +179,10 @@
 				98B4D257180EFB7900537145 /* Supporting Files */,
 				98DF30891811B0D10092E8A7 /* TestViewController.h */,
 				98DF308A1811B0D10092E8A7 /* TestViewController.m */,
+				0B03E07E1817FA3300EBF10D /* Port.h */,
+				0B03E07F1817FA3300EBF10D /* Port.m */,
+				0B03E0811817FA9000EBF10D /* ThiefNode.h */,
+				0B03E0821817FA9000EBF10D /* ThiefNode.m */,
 			);
 			path = codecan;
 			sourceTree = "<group>";
@@ -318,15 +328,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				98DF308B1811B0D10092E8A7 /* TestViewController.m in Sources */,
+				0B03E0831817FA9000EBF10D /* ThiefNode.m in Sources */,
 				98DF30881811B0410092E8A7 /* Plug.m in Sources */,
 				81E352DE1816A3CD00FD7323 /* Table.m in Sources */,
 				98B4D26A180EFB7900537145 /* MyScene.m in Sources */,
 				0BE9470D1816B52300379436 /* EdgeNode.m in Sources */,
 				98B4D267180EFB7900537145 /* ViewController.m in Sources */,
+				0B03E0801817FA3300EBF10D /* Port.m in Sources */,
 				98B4D261180EFB7900537145 /* AppDelegate.m in Sources */,
 				C4A8D8B41817E2560043AA4B /* FileReader.m in Sources */,
 				98B4D25D180EFB7900537145 /* main.m in Sources */,
-				81E352DB18168FAA00FD7323 /* HexModel.m in Sources */,
+				81E352DB18168FAA00FD7323 /* HexagonNode.m in Sources */,
 				0BE9470E1816B52300379436 /* VertexNode.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -17,13 +17,11 @@ enum vertexType {
 
 @interface VertexNode : SKSpriteNode
 
-//@property (nonatomic, strong) Player* owner;
+//@property (nonatomic, weak) Player* owner;
 
 @property (nonatomic) enum vertexType type;
 
-@property (nonatomic, strong) NSArray* hexagons;
-
-@property (nonatomic,strong) NSArray* edges;
+@property (nonatomic,strong) NSMutableArray* edges;
 
 //@property (nonatomic, strong) Port* port;
 

@@ -4,4 +4,132 @@
    <FileRef
       location = "self:codecan.xcodeproj">
    </FileRef>
+   <FileRef
+      location = "group:About-CSV.txt">
+   </FileRef>
+   <FileRef
+      location = "group:AppDelegate.h">
+   </FileRef>
+   <FileRef
+      location = "group:AppDelegate.m">
+   </FileRef>
+   <Group
+      location = "group:Base.lproj"
+      name = "Base.lproj">
+      <FileRef
+         location = "group:Main.storyboard">
+      </FileRef>
+   </Group>
+   <FileRef
+      location = "group:codecan-Info.plist">
+   </FileRef>
+   <FileRef
+      location = "group:codecan-Prefix.pch">
+   </FileRef>
+   <FileRef
+      location = "group:EdgeNode.h">
+   </FileRef>
+   <FileRef
+      location = "group:EdgeNode.m">
+   </FileRef>
+   <Group
+      location = "group:en.lproj"
+      name = "en.lproj">
+      <FileRef
+         location = "group:InfoPlist.strings">
+      </FileRef>
+   </Group>
+   <FileRef
+      location = "group:FileReader.h">
+   </FileRef>
+   <FileRef
+      location = "group:FileReader.m">
+   </FileRef>
+   <FileRef
+      location = "group:HexagonNode.h">
+   </FileRef>
+   <FileRef
+      location = "group:HexagonNode.m">
+   </FileRef>
+   <FileRef
+      location = "group:hexCSV.csv">
+   </FileRef>
+   <Group
+      location = "group:Images.xcassets"
+      name = "Images.xcassets">
+      <Group
+         location = "group:AppIcon.appiconset"
+         name = "AppIcon.appiconset">
+         <FileRef
+            location = "group:Contents.json">
+         </FileRef>
+      </Group>
+      <Group
+         location = "group:LaunchImage.launchimage"
+         name = "LaunchImage.launchimage">
+         <FileRef
+            location = "group:Contents.json">
+         </FileRef>
+      </Group>
+   </Group>
+   <FileRef
+      location = "group:main.m">
+   </FileRef>
+   <FileRef
+      location = "group:MyScene.h">
+   </FileRef>
+   <FileRef
+      location = "group:MyScene.m">
+   </FileRef>
+   <FileRef
+      location = "group:Plug.h">
+   </FileRef>
+   <FileRef
+      location = "group:Plug.m">
+   </FileRef>
+   <FileRef
+      location = "group:Port.h">
+   </FileRef>
+   <FileRef
+      location = "group:Port.m">
+   </FileRef>
+   <FileRef
+      location = "group:Spaceship.png">
+   </FileRef>
+   <FileRef
+      location = "group:Table.h">
+   </FileRef>
+   <FileRef
+      location = "group:Table.m">
+   </FileRef>
+   <FileRef
+      location = "group:TestViewController.h">
+   </FileRef>
+   <FileRef
+      location = "group:TestViewController.m">
+   </FileRef>
+   <FileRef
+      location = "group:ThiefNode.h">
+   </FileRef>
+   <FileRef
+      location = "group:ThiefNode.m">
+   </FileRef>
+   <FileRef
+      location = "group:tile.png">
+   </FileRef>
+   <FileRef
+      location = "group:VertexNode.h">
+   </FileRef>
+   <FileRef
+      location = "group:VertexNode.m">
+   </FileRef>
+   <FileRef
+      location = "group:verticeCSV.csv">
+   </FileRef>
+   <FileRef
+      location = "group:ViewController.h">
+   </FileRef>
+   <FileRef
+      location = "group:ViewController.m">
+   </FileRef>
 </Workspace>

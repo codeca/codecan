@@ -11,15 +11,19 @@
 @implementation HexagonNode
 
 -(id)init{
-	self = [super init];
+	self = [HexagonNode spriteNodeWithImageNamed:@"tile"];
 	if(self){
 	
 		_vertexes = [[NSMutableArray alloc] init];
 		_edges = [[NSMutableArray alloc] init];
-		
+		self.zPosition = 1;
 		
 	}
 	return self;
+	
 }
+
+
+
 
 @end

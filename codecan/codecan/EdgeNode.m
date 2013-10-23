@@ -12,10 +12,11 @@
 
 -(id)init{
 
-	self=[super init];
+	self = [EdgeNode spriteNodeWithImageNamed:@"edge"];
 	
 	if(self){
 		_vertexes = [[NSMutableArray alloc] init];
+		self.zPosition = 2;
 	}
 	return self;
 }

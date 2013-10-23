@@ -18,20 +18,35 @@
         
         self.backgroundColor = [SKColor colorWithRed:0.15 green:0.15 blue:0.3 alpha:1.0];
         
-        SKLabelNode *myLabel = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
-        
-        myLabel.text = @"Hello, World teste!";
-        myLabel.fontSize = 30;
-        myLabel.position = CGPointMake(CGRectGetMidX(self.frame),
-                                       CGRectGetMidY(self.frame));
-        
-		Table * table = [[Table alloc] init];
+		self.table = [[Table alloc] init];
+		self.map = [[SKSpriteNode alloc] init];
+		self. map.position = CGPointMake(self.size.width/2, self.size.height/2+44);
+		[self buildMap];
 		
-        [self addChild:myLabel];
+        [self addChild:self.map];
+		
+		
+		
     }
 
 	
     return self;
+}
+
+- (void) buildMap{
+
+	for(HexagonNode * hex in self.table.hexes){
+		[self.map addChild:hex];
+	}
+	
+	for(VertexNode * vertex in self.table.vertexes){
+		[self.map addChild:vertex];
+	}
+	
+	for(EdgeNode * edge in self.table.edges){
+		[self.map addChild:edge];
+	}
+
 }
 
 //alterei aqui duas vezes

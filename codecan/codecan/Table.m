@@ -19,10 +19,6 @@
 	self.edges = [[NSMutableArray alloc] init];
 	
 	if(self){
-		//da orientacao que usaremos, temos os valores de x0 e y0;
-		
-		int x0=768/2;
-		int y0 = 1024/2+44;
 		
 		
 		// Declaracao dos HEX
@@ -34,18 +30,16 @@
 			aux.name = [NSString stringWithFormat:@"Hex%i", i];
 			
 			if(i<1)
-				aux.position = CGPointMake(x0, y0);
+				aux.position = CGPointMake(0, 0);
 			if(i>=1 && i<7)
-				aux.position = CGPointMake(x0+133*cos((i-1)*M_PI/3), y0+133*sin((i-1)*M_PI/3));
+				aux.position = CGPointMake(0+133*cos((i-1)*M_PI/3), 0+133*sin((i-1)*M_PI/3));
 			if(i>=7 && !(i%2))
-				aux.position = CGPointMake(x0+230*cos((i-7)*M_PI/6), y0+230*sin((i-7)*M_PI/6));
+				aux.position = CGPointMake(0+230*cos((i-7)*M_PI/6), 0+230*sin((i-7)*M_PI/6));
 			else if(i>=7)
-				aux.position = CGPointMake(x0+266*cos((i-7)*M_PI/6), y0+266*sin((i-7)*M_PI/6));
+				aux.position = CGPointMake(0+266*cos((i-7)*M_PI/6), 0+266*sin((i-7)*M_PI/6));
 			
 			//Coloca uma skin nos Hex
 			//Mudar esse codigo para colocar as tiles certas depois!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-			aux.texture = [SKTexture textureWithImageNamed:@"tile"];
-			
 			
 			[self.hexes addObject:aux];
 			
@@ -54,13 +48,15 @@
 		
 		//Declaracao dos Vertex
 		for(int i=0; i<54; i++){
-			[self.vertexes addObject:[[VertexNode alloc] init]];
+			VertexNode * newVertex = [[VertexNode alloc] init];
+			[self.vertexes addObject:newVertex];
 			
 		}
 		
 		//Declaracao dos Edges
 		for(int i=0; i<72; i++){
-			[self.edges addObject:[[EdgeNode alloc] init]];
+			EdgeNode * newEdge = [[EdgeNode alloc] init];
+			[self.edges addObject:newEdge];
 		}
 		
 		
@@ -122,6 +118,17 @@
 			}
 		}
 		
+		for(HexagonNode *hex in self.hexes){
+		
+			for(int i = 0 ; i < 6 ; i++){
+				// verificar esse cast
+				((VertexNode *)[hex.vertexes objectAtIndex:i]).position =CGPointMake(hex.position.x+77*cos(M_PI/6+i*M_PI/3), hex.position.y+77*sin(M_PI/6+i*M_PI/3));
+				
+				((EdgeNode *)[hex.edges objectAtIndex:i]).position =CGPointMake(hex.position.x+77*pow(3, 0.5)/2*cos(i*M_PI/3), hex.position.y+77*pow(3, 0.5)/2*sin(i*M_PI/3));
+				((EdgeNode *)[hex.edges objectAtIndex:i]).zRotation = i*M_PI/3;
+			}
+			
+		}
 		
 	}
 	

@@ -10,4 +10,14 @@
 
 @implementation EdgeNode
 
+-(id)init{
+
+	self=[super init];
+	
+	if(self){
+		_vertexes = [[NSMutableArray alloc] init];
+	}
+	return self;
+}
+
 @end

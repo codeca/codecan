@@ -1,0 +1,10 @@
+CSV
+
+hexCSV:
+
+Relaciona hexágonos com 6 arestas e 6 vértices conforme figuras HEXNUM, ARESTANUM e VERTICENUM.
+
+
+verticeCSV:
+relaciona cara vértice com 3 arestas conforme figuras ARESTANUM e VERTICENUM.
+Caso o vertice possua apenas 2 arestas, a terceira está enumerada como -01

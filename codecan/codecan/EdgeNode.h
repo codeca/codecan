@@ -8,14 +8,13 @@
 
 #import <SpriteKit/SpriteKit.h>
 
-/**  */
 
 @interface EdgeNode : SKSpriteNode
 
-/**  */
 
-@property(nonatomic,strong) NSArray* vertexes;
+@property(nonatomic,strong) NSMutableArray* vertexes;
 
-@property(nonatomic, strong) Player* owner;
+//@property(nonatomic, weak) Player* owner;
 
 @end
+

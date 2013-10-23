@@ -21,9 +21,14 @@ typedef enum {
 @interface HexagonNode : SKSpriteNode
 
 @property (nonatomic) Resource resource;
+
 @property (nonatomic) NSUInteger number;
+
 @property (nonatomic) NSUInteger diceValue;
-@property (nonatomic, strong) NSMutableArray * vertex;
+
+@property (nonatomic, strong) NSMutableArray * vertexes;
+
+@property (nonatomic, strong) NSMutableArray * edges;
 
 
 @end

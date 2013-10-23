@@ -8,11 +8,8 @@
 
 #import <SpriteKit/SpriteKit.h>
 
-/**  */
 
 @interface EdgeNode : SKSpriteNode
-
-/**  */
 
 @property(nonatomic,weak) NSMutableArray* vertexes;
 

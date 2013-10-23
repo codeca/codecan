@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		0BE9470D1816B52300379436 /* EdgeNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BE9470A1816B52300379436 /* EdgeNode.m */; };
 		0BE9470E1816B52300379436 /* VertexNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BE9470C1816B52300379436 /* VertexNode.m */; };
+		0BE947111817E5B600379436 /* Port.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BE947101817E5B600379436 /* Port.m */; };
+		0BE947141817EAAA00379436 /* ThiefNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BE947131817EAAA00379436 /* ThiefNode.m */; };
 		81E352DB18168FAA00FD7323 /* HexagonNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E352DA18168FAA00FD7323 /* HexagonNode.m */; };
 		81E352DE1816A3CD00FD7323 /* Table.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E352DD1816A3CD00FD7323 /* Table.m */; };
 		81E352E01816B2A400FD7323 /* tile.png in Resources */ = {isa = PBXBuildFile; fileRef = 81E352DF1816B2A400FD7323 /* tile.png */; };
@@ -47,6 +49,10 @@
 		0BE9470A1816B52300379436 /* EdgeNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EdgeNode.m; sourceTree = "<group>"; };
 		0BE9470B1816B52300379436 /* VertexNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VertexNode.h; sourceTree = "<group>"; };
 		0BE9470C1816B52300379436 /* VertexNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VertexNode.m; sourceTree = "<group>"; };
+		0BE9470F1817E5B600379436 /* Port.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Port.h; sourceTree = "<group>"; };
+		0BE947101817E5B600379436 /* Port.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Port.m; sourceTree = "<group>"; };
+		0BE947121817EAAA00379436 /* ThiefNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThiefNode.h; sourceTree = "<group>"; };
+		0BE947131817EAAA00379436 /* ThiefNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThiefNode.m; sourceTree = "<group>"; };
 		81E352D918168FAA00FD7323 /* HexagonNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HexagonNode.h; sourceTree = "<group>"; };
 		81E352DA18168FAA00FD7323 /* HexagonNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HexagonNode.m; sourceTree = "<group>"; };
 		81E352DC1816A3CD00FD7323 /* Table.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Table.h; sourceTree = "<group>"; };
@@ -146,9 +152,9 @@
 				98DF30861811B0410092E8A7 /* Plug.h */,
 				98DF30871811B0410092E8A7 /* Plug.m */,
 				81E352D918168FAA00FD7323 /* HexagonNode.h */,
+				81E352DA18168FAA00FD7323 /* HexagonNode.m */,
 				81E352DC1816A3CD00FD7323 /* Table.h */,
 				81E352DD1816A3CD00FD7323 /* Table.m */,
-				81E352DA18168FAA00FD7323 /* HexagonNode.m */,
 				98B4D25F180EFB7900537145 /* AppDelegate.h */,
 				98B4D260180EFB7900537145 /* AppDelegate.m */,
 				98B4D262180EFB7900537145 /* Main.storyboard */,
@@ -161,6 +167,10 @@
 				98B4D257180EFB7900537145 /* Supporting Files */,
 				98DF30891811B0D10092E8A7 /* TestViewController.h */,
 				98DF308A1811B0D10092E8A7 /* TestViewController.m */,
+				0BE9470F1817E5B600379436 /* Port.h */,
+				0BE947101817E5B600379436 /* Port.m */,
+				0BE947121817EAAA00379436 /* ThiefNode.h */,
+				0BE947131817EAAA00379436 /* ThiefNode.m */,
 			);
 			path = codecan;
 			sourceTree = "<group>";
@@ -298,7 +308,9 @@
 				98B4D26A180EFB7900537145 /* MyScene.m in Sources */,
 				0BE9470D1816B52300379436 /* EdgeNode.m in Sources */,
 				98B4D267180EFB7900537145 /* ViewController.m in Sources */,
+				0BE947111817E5B600379436 /* Port.m in Sources */,
 				98B4D261180EFB7900537145 /* AppDelegate.m in Sources */,
+				0BE947141817EAAA00379436 /* ThiefNode.m in Sources */,
 				98B4D25D180EFB7900537145 /* main.m in Sources */,
 				81E352DB18168FAA00FD7323 /* HexagonNode.m in Sources */,
 				0BE9470E1816B52300379436 /* VertexNode.m in Sources */,

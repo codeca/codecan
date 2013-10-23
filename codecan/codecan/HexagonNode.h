@@ -10,12 +10,14 @@
 #import <SpriteKit/SpriteKit.h>
 
 typedef enum {
-	HILL = 1,
-	PASTURE,
-	MOUNTAINS,
-	FIELDS,
-	FOREST,
+	
+	CLAY = 1,
+	SHEEP,
+	STONE,
+	WHEAT,
+	WOOD,
 	DESERT
+	
 } Resource;
 
 @interface HexagonNode : SKSpriteNode

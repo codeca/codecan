@@ -11,10 +11,11 @@
 #import "HexagonNode.h"
 #import "VertexNode.h"
 #import "EdgeNode.h"
-
+#import "Game.h"
 @interface MyScene : SKScene
 
 @property (nonatomic, strong) SKSpriteNode * map;
-@property (nonatomic, strong) Table * table;
+@property (nonatomic, strong) Game * game;
 
++(instancetype)sceneWithSize:(CGSize)size andGame:(Game *) game;
 @end

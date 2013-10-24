@@ -21,4 +21,11 @@
 	return self;
 }
 
+
+-(void)receiveOwner:(Player *)player{
+	self.owner = player;
+	self.color = self.owner.color;
+	self.colorBlendFactor= 1.0;
+}
+
 @end

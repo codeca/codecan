@@ -7,8 +7,10 @@
 //
 
 #import <SpriteKit/SpriteKit.h>
-#import "Port.h"
 #import "Player.h"
+
+
+@class Port;
 
 typedef enum  {
 	
@@ -26,5 +28,9 @@ typedef enum  {
 @property (nonatomic,strong) NSMutableArray* edges;
 
 @property (nonatomic, strong) Port* port;
+
+
+-(void)becomeVillageFor: (Player*) player;
+-(void)becomeCity ;
 
 @end

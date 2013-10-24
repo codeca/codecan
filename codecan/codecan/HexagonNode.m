@@ -24,7 +24,34 @@
 	
 }
 
-
+-(void)giveResourceForDices:(NSInteger)dicesValue{
+	if(dicesValue != self.number)
+		return;
+	
+	for(VertexNode * vertex in self.vertexes){
+		if(vertex.owner == nil)
+			continue;
+		switch (self.resource) {
+			case WOOL:
+				vertex.owner.wool++;
+				break;
+			case BRICK:
+				vertex.owner.brick++;
+				break;
+			case GRAIN:
+				vertex.owner.grain++;
+				break;
+			case LUMBER:
+				vertex.owner.lumber++;
+				break;
+			case ORE:
+				vertex.owner.ore++;
+				break;
+		}
+		
+	}
+	
+}
 
 
 @end

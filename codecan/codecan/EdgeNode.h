@@ -16,5 +16,8 @@
 
 @property(nonatomic, weak) Player* owner;
 
+
+-(void)receiveOwner: (Player*) player;
+
 @end
 

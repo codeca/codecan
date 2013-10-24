@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <SpriteKit/SpriteKit.h>
+#import "VertexNode.h"
 
 typedef enum {
 	
@@ -28,5 +29,6 @@ typedef enum {
 @property (nonatomic, strong) NSMutableArray * vertexes;
 @property (nonatomic, strong) NSMutableArray * edges;
 
+-(void)giveResourceForDices: (NSInteger)dicesValue;
 
 @end

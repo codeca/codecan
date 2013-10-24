@@ -14,14 +14,18 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+	
+	//self.plug = [[Plug alloc] init];
 
-    // Configure the view.
+	self.game = [[Game alloc] initWithNumberOfPLayers:1];
+	self.game.phase = INITIALIZATIONCITY;
+	// Configure the view.
     SKView * skView = (SKView *)self.view;
     skView.showsFPS = YES;
     skView.showsNodeCount = YES;
     
     // Create and configure the scene.
-    SKScene * scene = [MyScene sceneWithSize:skView.bounds.size];
+    SKScene * scene = [MyScene sceneWithSize:skView.bounds.size andGame:self.game];
     scene.scaleMode = SKSceneScaleModeAspectFill;
     
     // Present the scene.
@@ -46,6 +50,21 @@
 {
     [super didReceiveMemoryWarning];
     // Release any cached data, images, etc that aren't in use.
+}
+
+-(void)plug:(Plug *)plug hasClosedWithError:(BOOL)error{
+
+}
+
+-(void)plug:(Plug *)plug receivedMessage:(PlugMsgType)type data:(id)data{
+
+	// treat match message to start scene
+	
+	
+}
+
+-(void)plugHasConnected:(Plug *)plug{
+
 }
 
 @end

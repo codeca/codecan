@@ -8,9 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import <SpriteKit/SpriteKit.h>
+#import "Game.h"
+#import "Plug.h"
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController <PlugDelegate>
 
-//
+@property (nonatomic, strong) Game * game;
+@property (nonatomic, strong) Plug * plug;
 
 @end

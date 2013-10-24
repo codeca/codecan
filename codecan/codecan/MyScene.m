@@ -59,9 +59,15 @@
         
 		
 		//TEMPORARIO
-        HexagonNode* aux = [self nodeAtPoint:location];
+        SKNode* aux = [self nodeAtPoint:location];
 		
-		NSLog([NSString stringWithFormat:@"%i", aux.number]);
+		
+		if(aux.class == HexagonNode.class){
+			HexagonNode* hn = aux;
+			NSLog(@"%i",hn.number);
+		}
+			
+		
 		//END OF TEMPORARIO
 		
 		

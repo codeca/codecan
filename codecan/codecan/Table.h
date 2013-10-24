@@ -20,5 +20,6 @@
 @property (nonatomic, strong) NSMutableArray * hexes;
 @property (nonatomic, strong) NSMutableArray * vertexes;
 @property (nonatomic, strong) NSMutableArray * edges;
+@property (nonatomic, weak) HexagonNode * thief;
 
 @end

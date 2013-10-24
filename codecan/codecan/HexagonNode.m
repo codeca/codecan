@@ -18,6 +18,7 @@
 		_edges = [[NSMutableArray alloc] init];
 		self.zPosition = 1;
 		
+		
 	}
 	return self;
 	

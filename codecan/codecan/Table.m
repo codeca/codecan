@@ -93,7 +93,7 @@
 			else{
 				((HexagonNode *)[self.hexes objectAtIndex:i]).number = 7;
 			}
-			SKLabelNode * numberLabel = [SKLabelNode labelNodeWithFontNamed:@"ChalkDust"];
+			SKLabelNode * numberLabel = [SKLabelNode labelNodeWithFontNamed:@"ChalkDuster"];
 			numberLabel.fontSize = 30;
 			numberLabel.text = [[NSString alloc] initWithFormat:@"%d", ((HexagonNode *)[self.hexes objectAtIndex:i]).number];
 			[(HexagonNode *)[self.hexes objectAtIndex:i] addChild:numberLabel];
@@ -107,17 +107,22 @@
 			else{
 				((HexagonNode *)[self.hexes objectAtIndex:i]).number = 7;
 			}
-			SKLabelNode * numberLabel = [SKLabelNode labelNodeWithFontNamed:@"ChalkDust"];
+			SKLabelNode * numberLabel = [SKLabelNode labelNodeWithFontNamed:@"ChalkDuster"];
 			numberLabel.fontSize = 30;
 			numberLabel.text = [[NSString alloc] initWithFormat:@"%d", ((HexagonNode *)[self.hexes objectAtIndex:i]).number];
 			[(HexagonNode *)[self.hexes objectAtIndex:i] addChild:numberLabel];
 		}
 		
-		if([(HexagonNode *)[self.hexes objectAtIndex:0] resource] != DESERT)
+		if([(HexagonNode *)[self.hexes objectAtIndex:0] resource] != DESERT){
 			((HexagonNode *)[self.hexes objectAtIndex:0]).number = 11;
-		else
+		}else{
 			((HexagonNode *)[self.hexes objectAtIndex:0]).number = 7;
+		}
 
+		SKLabelNode * numberLabel = [SKLabelNode labelNodeWithFontNamed:@"ChalkDuster"];
+		numberLabel.fontSize = 30;
+		numberLabel.text = [[NSString alloc] initWithFormat:@"%d", ((HexagonNode *)[self.hexes objectAtIndex:0]).number];
+		[(HexagonNode *)[self.hexes objectAtIndex:0] addChild:numberLabel];
 			
 		
 		

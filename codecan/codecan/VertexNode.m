@@ -12,7 +12,7 @@
 
 -(id)init{
 	
-	self = [VertexNode spriteNodeWithImageNamed:@"vertex"];
+	self = [VertexNode spriteNodeWithImageNamed:@"vertex2"];
 	
 	if(self){
 		_edges = [[NSMutableArray alloc] init];
@@ -23,16 +23,27 @@
 
 -(void)becomeVillageFor: (Player *)player{
 	
-	self.owner = player;
-	self.type =  VILLAGE;
-	self.color = self.owner.color;
-	self.colorBlendFactor = 1.0;
+	if(self.owner==nil){
+		self.owner = player;
+		self.type =  VILLAGE;
+		self.color = self.owner.color;
+		self.colorBlendFactor = 1.0;
+		self.texture = [SKTexture textureWithImageNamed:@"villageHouse"];
+		self.size = self.texture.size;
+		self.xScale = 0.20;
+		self.yScale = 0.20;
+	}
 	
 }
 
 -(void)becomeCity{
 	
 	self.type = CITY;
+	
+	self.texture = [SKTexture textureWithImageNamed:@"city"];
+	self.size = self.texture.size;
+	self.xScale = 0.02;
+	self.yScale = 0.02;
 	
 }
 

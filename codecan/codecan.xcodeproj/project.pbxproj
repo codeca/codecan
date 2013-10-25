@@ -16,7 +16,6 @@
 		81E352E01816B2A400FD7323 /* tile.png in Resources */ = {isa = PBXBuildFile; fileRef = 81E352DF1816B2A400FD7323 /* tile.png */; };
 		81E352E718184D1700FD7323 /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E352E618184D1700FD7323 /* Player.m */; };
 		81E352EA181976B000FD7323 /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E352E9181976B000FD7323 /* Game.m */; };
-		81E352EE1819950200FD7323 /* vertex.png in Resources */ = {isa = PBXBuildFile; fileRef = 81E352EC1819950200FD7323 /* vertex.png */; };
 		81F1289B181AA06E0002832D /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 81F12895181AA06E0002832D /* 1.png */; };
 		81F1289C181AA06E0002832D /* 6.png in Resources */ = {isa = PBXBuildFile; fileRef = 81F12896181AA06E0002832D /* 6.png */; };
 		81F1289D181AA06E0002832D /* 4.png in Resources */ = {isa = PBXBuildFile; fileRef = 81F12897181AA06E0002832D /* 4.png */; };
@@ -24,6 +23,10 @@
 		81F1289F181AA06E0002832D /* 3.png in Resources */ = {isa = PBXBuildFile; fileRef = 81F12899181AA06E0002832D /* 3.png */; };
 		81F128A0181AA06E0002832D /* 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 81F1289A181AA06E0002832D /* 2.png */; };
 		81F128A4181AA2B90002832D /* road.png in Resources */ = {isa = PBXBuildFile; fileRef = 81F128A3181AA2B90002832D /* road.png */; };
+		81F128A8181AC9680002832D /* Flag.png in Resources */ = {isa = PBXBuildFile; fileRef = 81F128A5181AC9680002832D /* Flag.png */; };
+		81F128A9181AC9680002832D /* city.png in Resources */ = {isa = PBXBuildFile; fileRef = 81F128A6181AC9680002832D /* city.png */; };
+		81F128AA181AC9680002832D /* villageHouse.png in Resources */ = {isa = PBXBuildFile; fileRef = 81F128A7181AC9680002832D /* villageHouse.png */; };
+		81F128AC181ACAFC0002832D /* vertex2.png in Resources */ = {isa = PBXBuildFile; fileRef = 81F128AB181ACAFC0002832D /* vertex2.png */; };
 		98B4D24F180EFB7900537145 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98B4D24E180EFB7900537145 /* Foundation.framework */; };
 		98B4D251180EFB7900537145 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98B4D250180EFB7900537145 /* CoreGraphics.framework */; };
 		98B4D253180EFB7900537145 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98B4D252180EFB7900537145 /* UIKit.framework */; };
@@ -76,7 +79,6 @@
 		81E352E618184D1700FD7323 /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Player.m; sourceTree = "<group>"; };
 		81E352E8181976B000FD7323 /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
 		81E352E9181976B000FD7323 /* Game.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Game.m; sourceTree = "<group>"; };
-		81E352EC1819950200FD7323 /* vertex.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vertex.png; sourceTree = "<group>"; };
 		81F12895181AA06E0002832D /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
 		81F12896181AA06E0002832D /* 6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 6.png; sourceTree = "<group>"; };
 		81F12897181AA06E0002832D /* 4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 4.png; sourceTree = "<group>"; };
@@ -84,6 +86,10 @@
 		81F12899181AA06E0002832D /* 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3.png; sourceTree = "<group>"; };
 		81F1289A181AA06E0002832D /* 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2.png; sourceTree = "<group>"; };
 		81F128A3181AA2B90002832D /* road.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = road.png; sourceTree = "<group>"; };
+		81F128A5181AC9680002832D /* Flag.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Flag.png; path = Images/Flag.png; sourceTree = "<group>"; };
+		81F128A6181AC9680002832D /* city.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = city.png; path = Images/city.png; sourceTree = "<group>"; };
+		81F128A7181AC9680002832D /* villageHouse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = villageHouse.png; path = Images/villageHouse.png; sourceTree = "<group>"; };
+		81F128AB181ACAFC0002832D /* vertex2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = vertex2.png; path = Images/vertex2.png; sourceTree = "<group>"; };
 		98B4D24B180EFB7900537145 /* codecan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = codecan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		98B4D24E180EFB7900537145 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		98B4D250180EFB7900537145 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -308,8 +314,11 @@
 			children = (
 				81E352DF1816B2A400FD7323 /* tile.png */,
 				81F12894181AA06E0002832D /* resourcesPNG */,
-				81E352EC1819950200FD7323 /* vertex.png */,
+				81F128A5181AC9680002832D /* Flag.png */,
+				81F128A6181AC9680002832D /* city.png */,
+				81F128A7181AC9680002832D /* villageHouse.png */,
 				81F128A3181AA2B90002832D /* road.png */,
+				81F128AB181ACAFC0002832D /* vertex2.png */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -403,9 +412,11 @@
 				81F1289F181AA06E0002832D /* 3.png in Resources */,
 				98B4D25B180EFB7900537145 /* InfoPlist.strings in Resources */,
 				81F1289C181AA06E0002832D /* 6.png in Resources */,
-				81E352EE1819950200FD7323 /* vertex.png in Resources */,
 				81F1289E181AA06E0002832D /* 5.png in Resources */,
+				81F128A8181AC9680002832D /* Flag.png in Resources */,
 				C4A8D8B81817E5C40043AA4B /* hexCSV.csv in Resources */,
+				81F128AA181AC9680002832D /* villageHouse.png in Resources */,
+				81F128A9181AC9680002832D /* city.png in Resources */,
 				81F1289D181AA06E0002832D /* 4.png in Resources */,
 				81E352E01816B2A400FD7323 /* tile.png in Resources */,
 				81F128A0181AA06E0002832D /* 2.png in Resources */,
@@ -413,6 +424,7 @@
 				98B4D264180EFB7900537145 /* Main.storyboard in Resources */,
 				81F128A4181AA2B90002832D /* road.png in Resources */,
 				C4A8D8B91817E5C40043AA4B /* About-CSV.txt in Resources */,
+				81F128AC181ACAFC0002832D /* vertex2.png in Resources */,
 				C4A8D8BA1817E5C40043AA4B /* verticeCSV.csv in Resources */,
 				81F1289B181AA06E0002832D /* 1.png in Resources */,
 			);

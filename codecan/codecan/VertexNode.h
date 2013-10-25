@@ -10,6 +10,7 @@
 #import "Player.h"
 
 
+@class EdgeNode;
 @class Port;
 
 typedef enum  {

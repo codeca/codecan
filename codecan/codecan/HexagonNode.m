@@ -49,6 +49,7 @@
 	
 	if(self){
 		
+		self.resource = resource;
 		_vertexes = [[NSMutableArray alloc] init];
 		_edges = [[NSMutableArray alloc] init];
 		self.zPosition = 1;

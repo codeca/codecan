@@ -24,6 +24,7 @@
 	newScene.game = game;
 	[newScene buildMap];
 	[newScene buildMenu];
+	[newScene buildTabs];
 	return newScene;
 }
 
@@ -39,8 +40,19 @@
 		self.menu = [[SKNode alloc] init];
 		self. menu.position = CGPointMake(self.size.width/2, self.size.height*0.1);
 				
+		self.tabs = [[SKNode alloc] init];
+		self.tabs.position = CGPointMake(self.size.width/2, self.menu.position.y+self.size.height/11);
+		
+		SKLabelNode *pass = [SKLabelNode labelNodeWithFontNamed:@"ChalkDuster"];
+		pass.text = @"End Turn";
+		pass.name = @"pass";
+		pass.fontSize = 30;
+		pass.position = CGPointMake(self.size.width*7/8, self.size.height*0.22);
+		[self addChild:pass];
+		
         [self addChild:self.map];
 		[self addChild:self.menu];
+		[self addChild:self.tabs];
 		
     }
 
@@ -64,6 +76,35 @@
 		[self.map addChild:edge];
 	}
 
+}
+
+-(void) buildTabs{
+	
+	SKSpriteNode * background = [[SKSpriteNode alloc] initWithColor:[SKColor blackColor] size:CGSizeMake(self.size.width, 50)];
+	[self.tabs addChild:background];
+	
+	SKLabelNode * buildTab = [SKLabelNode labelNodeWithFontNamed:@"ChalkDuster"];
+	buildTab.text = @"Build";
+	buildTab.fontSize = 20;
+	buildTab.name=@"buildtab";
+	buildTab.position = CGPointMake(-self.size.width/4, 0);
+	
+	SKLabelNode * handTab = [SKLabelNode labelNodeWithFontNamed:@"ChalkDuster"];
+	handTab.text = @"Hand";
+	handTab.fontSize = 20;
+	handTab.name=@"handtab";
+	handTab.position = CGPointMake(0, 0);
+	
+	SKLabelNode * tradeTab = [SKLabelNode labelNodeWithFontNamed:@"ChalkDuster"];
+	tradeTab.text = @"Trade";
+	tradeTab.fontSize = 20;
+	tradeTab.name=@"tradetab";
+	tradeTab.position = CGPointMake(self.size.width/4, 0);
+	
+	[self.tabs addChild:buildTab];
+	[self.tabs addChild:handTab];
+	[self.tabs addChild:tradeTab];
+	
 }
 
 -(void) selectItem:(SKNode*) item{
@@ -122,13 +163,6 @@
 	cardLabel.name = @"card";
 	cardLabel.fontSize = 30;
 	[self.menu addChild:cardLabel];
-	
-	SKLabelNode *pass = [SKLabelNode labelNodeWithFontNamed:@"ChalkDuster"];
-	pass.text = @"End Turn";
-	pass.name = @"pass";
-	pass.fontSize = 30;
-	pass.position = CGPointMake(self.size.width*7/8, self.size.height*1/5);
-	[self addChild:pass];
 	
 }
 

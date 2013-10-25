@@ -58,43 +58,12 @@
 		for(int i=0; i<19; i++){
 			
 			//inicializa os HEx e os coloca na posicao que serao mostrados.
-			HexagonNode *aux = [[HexagonNode alloc] init];
+			
+			HexagonNode *aux = [[HexagonNode alloc] initWithResource:[[resources lastObject] integerValue]];
+			[resources removeLastObject];
 			
 			aux.name = [NSString stringWithFormat:@"Hex%i", i];
 			
-			aux.resource = [[resources lastObject] integerValue];
-			[resources removeLastObject];
-			
-			//TEMPORARIO
-			
-			SKLabelNode * res = [SKLabelNode labelNodeWithFontNamed:@"Chalkdust"];
-			
-			switch (aux.resource) {
-				case DESERT:
-					res.text = @"Desert";
-					break;
-				case WOOL:
-					res.text = @"Wool";
-					break;
-				case BRICK:
-					res.text = @"Brick";
-					break;
-				case GRAIN:
-					res.text = @"Grain";
-					break;
-				case ORE:
-					res.text = @"Ore";
-					break;
-				case LUMBER:
-					res.text = @"Lumber";
-					break;
-				default:
-					break;
-			}
-			
-			[aux addChild:res];
-			
-			//TEMPORARIO END
 			if(i<1)
 				aux.position = CGPointMake(0, 0);
 			if(i>=1 && i<7)
@@ -121,8 +90,13 @@
 				((HexagonNode *)[self.hexes objectAtIndex:i]).number = [(NSNumber*)[numbers objectAtIndex:counter] integerValue];
 				counter++;
 			}
-			else
+			else{
 				((HexagonNode *)[self.hexes objectAtIndex:i]).number = 7;
+			}
+			SKLabelNode * numberLabel = [SKLabelNode labelNodeWithFontNamed:@"ChalkDust"];
+			numberLabel.fontSize = 30;
+			numberLabel.text = [[NSString alloc] initWithFormat:@"%d", ((HexagonNode *)[self.hexes objectAtIndex:i]).number];
+			[(HexagonNode *)[self.hexes objectAtIndex:i] addChild:numberLabel];
 		}
 		
 		for(int i=1; i<7 ; i++){
@@ -130,8 +104,13 @@
 				((HexagonNode *)[self.hexes objectAtIndex:i]).number = [(NSNumber*)[numbers objectAtIndex:counter] integerValue];
 				counter++;
 			}
-			else
+			else{
 				((HexagonNode *)[self.hexes objectAtIndex:i]).number = 7;
+			}
+			SKLabelNode * numberLabel = [SKLabelNode labelNodeWithFontNamed:@"ChalkDust"];
+			numberLabel.fontSize = 30;
+			numberLabel.text = [[NSString alloc] initWithFormat:@"%d", ((HexagonNode *)[self.hexes objectAtIndex:i]).number];
+			[(HexagonNode *)[self.hexes objectAtIndex:i] addChild:numberLabel];
 		}
 		
 		if([(HexagonNode *)[self.hexes objectAtIndex:0] resource] != DESERT)

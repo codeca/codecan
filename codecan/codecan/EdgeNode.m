@@ -23,9 +23,28 @@
 
 
 -(void)receiveOwner:(Player *)player{
-	self.owner = player;
-	self.color = self.owner.color;
-	self.colorBlendFactor= 1.0;
+	
+	BOOL valid = NO;
+	
+	for(VertexNode * vertex in self.vertexes){
+		if(vertex.owner == player){
+			valid = YES;
+			break;
+		}else{
+			for(EdgeNode * edge in vertex.edges){
+				if(edge.owner==player){
+					valid=YES;
+					break;
+				}
+			}
+		}
+	}
+	
+	if(valid){
+		self.owner = player;
+		self.color = self.owner.color;
+		self.colorBlendFactor= 1.0;
+	}
 }
 
 @end

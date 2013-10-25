@@ -30,5 +30,6 @@ typedef enum {
 @property (nonatomic, strong) NSMutableArray * edges;
 
 -(void)giveResourceForDices: (NSInteger)dicesValue;
+-(HexagonNode *) initWithResource:(Resource) resource;
 
 @end

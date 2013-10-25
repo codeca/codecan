@@ -12,12 +12,23 @@
 #import "VertexNode.h"
 #import "EdgeNode.h"
 #import "Game.h"
+
+typedef enum{
+	
+	ROADSEL=1,
+	VILLAGESEL,
+	CITYSEL,
+	CARDSEL,
+
+} Selection;
+
 @interface MyScene : SKScene
 
 @property (nonatomic, strong) SKNode * map;
 @property (nonatomic, strong) SKNode *menu;
 @property (nonatomic, strong) SKNode *properties;
 @property (nonatomic, strong) Game * game;
+@property (nonatomic) Selection selection;
 
 +(instancetype)sceneWithSize:(CGSize)size andGame:(Game *) game;
 @end

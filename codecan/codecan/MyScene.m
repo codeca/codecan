@@ -10,6 +10,13 @@
 
 #import "MyScene.h"
 
+@interface MyScene()
+
+-(void) selectItem:(SKNode*) item;
+-(void) stopAnimationsInView:(SKNode *) parent;
+
+@end
+
 @implementation MyScene
 
 +(instancetype)sceneWithSize:(CGSize)size andGame:(Game *) game{
@@ -59,6 +66,29 @@
 
 }
 
+-(void) selectItem:(SKNode*) item{
+
+	SKAction * fadeIn = [SKAction fadeInWithDuration:0.4];
+	SKAction * fadeOut = [SKAction fadeOutWithDuration:0.4];
+	
+	SKAction * sequence = [SKAction sequence:@[fadeOut, fadeIn]];
+	SKAction * repeat = [SKAction repeatActionForever:sequence];
+	[item runAction:repeat];
+
+	
+}
+
+-(void) stopAnimationsInView:(SKNode *) parent{
+
+	
+	
+	for(SKNode * child in parent.children){
+		[child removeAllActions];
+		child.alpha=1.0;
+	}
+
+}
+
 -(void) buildMenu{
 	
 	SKSpriteNode* downMenu = [[SKSpriteNode alloc] initWithColor:[SKColor brownColor] size:CGSizeMake(self.size.width, self.size.height*0.2)];
@@ -72,11 +102,33 @@
 	roadLabel.fontSize = 30;
 	[self.menu addChild:roadLabel];
 	
+	SKLabelNode *villageLabel = [SKLabelNode labelNodeWithFontNamed:@"ChalkDuster"];
+	villageLabel.text = @"Village";
+	villageLabel.position = CGPointMake(-downMenu.size.width*1/10, 0);
+	villageLabel.name = @"village";
+	villageLabel.fontSize = 30;
+	[self.menu addChild:villageLabel];
+	
+	SKLabelNode *cityLabel = [SKLabelNode labelNodeWithFontNamed:@"ChalkDuster"];
+	cityLabel.text = @"City";
+	cityLabel.position = CGPointMake(downMenu.size.width*1/10, 0);
+	cityLabel.name = @"city";
+	cityLabel.fontSize = 30;
+	[self.menu addChild:cityLabel];
+	
+	SKLabelNode *cardLabel = [SKLabelNode labelNodeWithFontNamed:@"ChalkDuster"];
+	cardLabel.text = @"Card";
+	cardLabel.position = CGPointMake(downMenu.size.width*3/10, 0);
+	cardLabel.name = @"card";
+	cardLabel.fontSize = 30;
+	[self.menu addChild:cardLabel];
+	
 	SKLabelNode *pass = [SKLabelNode labelNodeWithFontNamed:@"ChalkDuster"];
-	pass.text = @"->";
+	pass.text = @"End Turn";
 	pass.name = @"pass";
 	pass.fontSize = 30;
-	[self.menu addChild:pass];
+	pass.position = CGPointMake(self.size.width*7/8, self.size.height*1/5);
+	[self addChild:pass];
 	
 }
 
@@ -148,12 +200,47 @@
 				break;
 				
 			case RUNNING:
-				if([clicked.name compare:@"pass"]){
+				if(![clicked.name compare:@"pass"]){
 					self.game.phase = WAITTURN;
-				}
-				if([clicked.name compare:@"road"]){
+				}else if(![clicked.name compare:@"road"]){
 				
+					self.selection = ROADSEL;
+					[self stopAnimationsInView:self.menu];
+					[self selectItem:clicked];
 					
+				}else if(![clicked.name compare:@"village"]){
+					
+					self.selection = VILLAGESEL;
+					[self stopAnimationsInView:self.menu];
+					[self selectItem:clicked];
+					
+				}else if(![clicked.name compare:@"city"]){
+					
+					self.selection = CITYSEL;
+					[self stopAnimationsInView:self.menu];
+					[self selectItem:clicked];
+					
+				}else if(![clicked.name compare:@"card"]){
+					
+					self.selection = CARDSEL;
+					[self stopAnimationsInView:self.menu];
+					[self selectItem:clicked];
+					
+				}
+				
+				if(clicked.class == EdgeNode.class && self.selection==ROADSEL && self.game.currentPlayer.lumber>0 && self.game.currentPlayer.brick>0){
+					EdgeNode * edge = (EdgeNode *)clicked;
+					[edge receiveOwner:self.game.currentPlayer];
+					self.game.currentPlayer.lumber--;
+					self.game.currentPlayer.brick--;
+				}else if(clicked.class == VertexNode.class && self.selection==VILLAGESEL && self.game.currentPlayer.brick>0 && self.game
+						 .currentPlayer.lumber>0 && self.game.currentPlayer.grain>0 && self.game.currentPlayer.wool>0){
+					VertexNode * vertex = (VertexNode*) clicked;
+					[vertex becomeVillageFor:self.game.currentPlayer];
+					self.game.currentPlayer.lumber--;
+					self.game.currentPlayer.brick--;
+					self.game.currentPlayer.grain--;
+					self.game.currentPlayer.wool--;
 				}
 				
 				break;
@@ -202,7 +289,7 @@
 			break;
 			
 		case ROBBER:
-			
+			self.game.phase = RUNNING;
 			break;
 			
 		case WAITDISCARD:

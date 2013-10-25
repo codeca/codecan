@@ -16,6 +16,7 @@
 	MyScene* newScene = [super sceneWithSize:size];
 	newScene.game = game;
 	[newScene buildMap];
+	[newScene buildMenu];
 	return newScene;
 }
 
@@ -25,11 +26,14 @@
         
         self.backgroundColor = [SKColor colorWithRed:0.15 green:0.15 blue:0.3 alpha:1.0];
 		
-		self.map = [[SKSpriteNode alloc] init];
+		self.map = [[SKNode alloc] init];
 		self. map.position = CGPointMake(self.size.width/2, self.size.height/2+44);
 		
-		
+		self.menu = [[SKNode alloc] init];
+		self. menu.position = CGPointMake(self.size.width/2, self.size.height*0.1);
+				
         [self addChild:self.map];
+		[self addChild:self.menu];
 		
     }
 
@@ -55,6 +59,27 @@
 
 }
 
+-(void) buildMenu{
+	
+	SKSpriteNode* downMenu = [[SKSpriteNode alloc] initWithColor:[SKColor brownColor] size:CGSizeMake(self.size.width, self.size.height*0.2)];
+	downMenu.position = CGPointMake(0, 0);
+	[self.menu addChild:downMenu];
+	
+	SKLabelNode *roadLabel = [SKLabelNode labelNodeWithFontNamed:@"ChalkDuster"];
+	roadLabel.text = @"Road";
+	roadLabel.position = CGPointMake(-downMenu.size.width*3/10, 0);
+	roadLabel.name = @"road";
+	roadLabel.fontSize = 30;
+	[self.menu addChild:roadLabel];
+	
+	SKLabelNode *pass = [SKLabelNode labelNodeWithFontNamed:@"ChalkDuster"];
+	pass.text = @"->";
+	pass.name = @"pass";
+	pass.fontSize = 30;
+	[self.menu addChild:pass];
+	
+}
+
 //alterei aqui duas vezes
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -69,7 +94,7 @@
 			case INITIALIZATIONCITY:
 				
 				if(clicked.class == VertexNode.class){
-					VertexNode* vertex = clicked;
+					VertexNode* vertex = (VertexNode*)clicked;
 					bool canConstruct= YES;
 					
 					for(EdgeNode* edge in vertex.edges)
@@ -89,7 +114,7 @@
 				
 			case INITIALIZATIONROAD:
 				if(clicked.class == EdgeNode.class){
-					EdgeNode* edge = clicked;
+					EdgeNode* edge = (EdgeNode*)clicked;
 					bool canConstruct= NO;
 					
 					for(VertexNode* vertex in edge.vertexes)
@@ -123,6 +148,13 @@
 				break;
 				
 			case RUNNING:
+				if([clicked.name compare:@"pass"]){
+					self.game.phase = WAITTURN;
+				}
+				if([clicked.name compare:@"road"]){
+				
+					
+				}
 				
 				break;
 				
@@ -156,6 +188,7 @@
 		case RESOURCES:
 			if(!self.game.diceWasRolled){
 				NSInteger diceValue = arc4random_uniform(6)+arc4random_uniform(6)+2;
+				NSLog(@"%i", diceValue);
 				if(diceValue == 7){
 					self.game.phase=ROBBER;
 					break;
@@ -190,10 +223,20 @@
 			
 		case WAITTURN:
 			{
+				if(self.game.turn ==1){
+					for(int i=2; i<13; i++)
+						for(HexagonNode *hex in self.game.table.hexes)
+							[hex giveResourceForDices:i];
+					self.game.turn++;
+				}
+				
+				
 				self.game.diceWasRolled = NO;
 				NSUInteger index = [self.game.players indexOfObject:self.game.currentPlayer];
-				if(index == self.game.players.count-1)
+				if(index == self.game.players.count-1){
 					index = 0;
+					self.game.turn ++;
+				}
 				else
 					index++;
 			

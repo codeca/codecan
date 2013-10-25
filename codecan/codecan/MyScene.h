@@ -14,7 +14,9 @@
 #import "Game.h"
 @interface MyScene : SKScene
 
-@property (nonatomic, strong) SKSpriteNode * map;
+@property (nonatomic, strong) SKNode * map;
+@property (nonatomic, strong) SKNode *menu;
+@property (nonatomic, strong) SKNode *properties;
 @property (nonatomic, strong) Game * game;
 
 +(instancetype)sceneWithSize:(CGSize)size andGame:(Game *) game;

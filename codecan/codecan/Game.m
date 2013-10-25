@@ -53,7 +53,7 @@
 		
 		// ask to server for first player
 		self.currentPlayer = self.me;
-		
+		self.turn = 1;
 		if(self.currentPlayer == self.me){
 			self.table = [[Table alloc] init];
 			//broadcast table

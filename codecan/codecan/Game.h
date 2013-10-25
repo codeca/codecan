@@ -35,6 +35,7 @@ typedef enum{
 
 @property (nonatomic) bool endInitialization;
 @property (nonatomic) bool diceWasRolled;
+@property (nonatomic) NSInteger turn;
 
 -(id)initWithNumberOfPLayers:(NSUInteger) players;
 

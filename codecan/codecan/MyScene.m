@@ -273,6 +273,9 @@
 					self.game.currentPlayer.brick--;
 				}else if(clicked.class == VertexNode.class && self.selection==VILLAGESEL && self.game.currentPlayer.brick>0 && self.game
 						 .currentPlayer.lumber>0 && self.game.currentPlayer.grain>0 && self.game.currentPlayer.wool>0){
+					
+					BOOL valid = NO;
+					
 					VertexNode * vertex = (VertexNode*) clicked;
 					[vertex becomeVillageFor:self.game.currentPlayer];
 					self.game.currentPlayer.lumber--;

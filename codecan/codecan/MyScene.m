@@ -278,9 +278,22 @@
 					VertexNode * vertex = (VertexNode*) clicked;
 					
 					for(EdgeNode * edge in vertex.edges){
+						
 						if(edge.owner==self.game.currentPlayer){
+							
 							valid=YES;
+							
 						}
+						
+						for (VertexNode* neighbor in edge.vertexes) {
+							
+							if (neighbor.owner) {
+								NSLog(@"regra da distancia");
+								valid = NO;
+								return;
+							}
+						}
+						
 					}
 					
 					if(valid){

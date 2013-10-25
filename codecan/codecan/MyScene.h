@@ -29,6 +29,8 @@ typedef enum{
 @property (nonatomic, strong) SKNode *resourcesList;
 @property (nonatomic, strong) SKNode *tabs;
 @property (nonatomic, strong) SKNode *properties;
+
+
 @property (nonatomic, strong) Game * game;
 @property (nonatomic) Selection selection;
 

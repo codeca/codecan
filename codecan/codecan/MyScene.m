@@ -23,7 +23,7 @@
 	MyScene* newScene = [super sceneWithSize:size];
 	newScene.game = game;
 	[newScene buildMap];
-	[newScene buildMenu];
+	[newScene buildBuildInterface];
 	[newScene buildTabs];
 	return newScene;
 }
@@ -131,41 +131,6 @@
 
 }
 
--(void) buildMenu{
-	
-	SKSpriteNode* downMenu = [[SKSpriteNode alloc] initWithColor:[SKColor brownColor] size:CGSizeMake(self.size.width, self.size.height*0.2)];
-	downMenu.position = CGPointMake(0, 0);
-	[self.menu addChild:downMenu];
-	
-	SKLabelNode *roadLabel = [SKLabelNode labelNodeWithFontNamed:@"ChalkDuster"];
-	roadLabel.text = @"Road";
-	roadLabel.position = CGPointMake(-downMenu.size.width*3/10, 0);
-	roadLabel.name = @"road";
-	roadLabel.fontSize = 30;
-	[self.menu addChild:roadLabel];
-	
-	SKLabelNode *villageLabel = [SKLabelNode labelNodeWithFontNamed:@"ChalkDuster"];
-	villageLabel.text = @"Village";
-	villageLabel.position = CGPointMake(-downMenu.size.width*1/10, 0);
-	villageLabel.name = @"village";
-	villageLabel.fontSize = 30;
-	[self.menu addChild:villageLabel];
-	
-	SKLabelNode *cityLabel = [SKLabelNode labelNodeWithFontNamed:@"ChalkDuster"];
-	cityLabel.text = @"City";
-	cityLabel.position = CGPointMake(downMenu.size.width*1/10, 0);
-	cityLabel.name = @"city";
-	cityLabel.fontSize = 30;
-	[self.menu addChild:cityLabel];
-	
-	SKLabelNode *cardLabel = [SKLabelNode labelNodeWithFontNamed:@"ChalkDuster"];
-	cardLabel.text = @"Card";
-	cardLabel.position = CGPointMake(downMenu.size.width*3/10, 0);
-	cardLabel.name = @"card";
-	cardLabel.fontSize = 30;
-	[self.menu addChild:cardLabel];
-	
-}
 
 //alterei aqui duas vezes
 
@@ -263,6 +228,12 @@
 					self.selection = CARDSEL;
 					[self stopAnimationsInView:self.menu];
 					[self selectItem:clicked];
+					
+				}else if(![clicked.name compare:@"tradetab"]){
+					[self buildTradeInterface];
+					
+				}else if(![clicked.name compare:@"buildtab"]){
+					[self buildBuildInterface];
 					
 				}
 				
@@ -404,6 +375,79 @@
 			}
 			break;
 	}
+	
+}
+
+
+-(void)buildTradeInterface{
+	[self.menu removeAllChildren];
+	
+	SKSpriteNode *downMenu = [[SKSpriteNode alloc] initWithColor:[SKColor brownColor] size:CGSizeMake(self.size.width, self.size.height*0.2)];
+	downMenu.position = CGPointMake(0, 0);
+	[self.menu addChild:downMenu];
+	
+	float offset = -20;
+	
+	SKLabelNode *bankLabel = [SKLabelNode labelNodeWithFontNamed:@"ChalkDuster"];
+	bankLabel.text = @"Bank Trade";
+	bankLabel.position = CGPointMake(-downMenu.size.width/2 + 5, -40+offset);
+	bankLabel.name = @"bank";
+	bankLabel.fontSize = 20;
+	[self.menu addChild:bankLabel];
+	
+	SKLabelNode *portLabel = [SKLabelNode labelNodeWithFontNamed:@"ChalkDuster"];
+	portLabel.text = @"Port Trade";
+	portLabel.position = CGPointMake(-downMenu.size.width/2+ 5, 0+offset);
+	portLabel.name = @"port";
+	portLabel.fontSize = 20;
+	[self.menu addChild:portLabel];
+	
+	SKLabelNode *friendLabel = [SKLabelNode labelNodeWithFontNamed:@"ChalkDuster"];
+	friendLabel.text = @"Friends Trade";
+	friendLabel.position = CGPointMake(-downMenu.size.width/2 + 5, 40+ offset);
+	friendLabel.name = @"friend";
+	friendLabel.fontSize = 20;
+	[self.menu addChild:friendLabel];
+	
+}
+
+
+-(void)buildBuildInterface{
+	
+	[self.menu removeAllChildren];
+	
+	SKSpriteNode *downMenu = [[SKSpriteNode alloc] initWithColor:[SKColor brownColor] size:CGSizeMake(self.size.width, self.size.height*0.2)];
+	downMenu.position = CGPointMake(0, 0);
+	[self.menu addChild:downMenu];
+	
+	
+	SKLabelNode *roadLabel = [SKLabelNode labelNodeWithFontNamed:@"ChalkDuster"];
+	roadLabel.text = @"Road";
+	roadLabel.position = CGPointMake(-downMenu.size.width*3/10, 0);
+	roadLabel.name = @"road";
+	roadLabel.fontSize = 30;
+	[self.menu addChild:roadLabel];
+	
+	SKLabelNode *villageLabel = [SKLabelNode labelNodeWithFontNamed:@"ChalkDuster"];
+	villageLabel.text = @"Village";
+	villageLabel.position = CGPointMake(-downMenu.size.width*1/10, 0);
+	villageLabel.name = @"village";
+	villageLabel.fontSize = 30;
+	[self.menu addChild:villageLabel];
+	
+	SKLabelNode *cityLabel = [SKLabelNode labelNodeWithFontNamed:@"ChalkDuster"];
+	cityLabel.text = @"City";
+	cityLabel.position = CGPointMake(downMenu.size.width*1/10, 0);
+	cityLabel.name = @"city";
+	cityLabel.fontSize = 30;
+	[self.menu addChild:cityLabel];
+	
+	SKLabelNode *cardLabel = [SKLabelNode labelNodeWithFontNamed:@"ChalkDuster"];
+	cardLabel.text = @"Card";
+	cardLabel.position = CGPointMake(downMenu.size.width*3/10, 0);
+	cardLabel.name = @"card";
+	cardLabel.fontSize = 30;
+	[self.menu addChild:cardLabel];
 	
 }
 

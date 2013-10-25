@@ -226,9 +226,9 @@
 -(void) moveThiefToHexagon:(HexagonNode *)hex{
 	
 	if (hex !=self.thief) {
-		
-	self.thief = hex;
-	self.thiefHasBeenMoved = YES;
+		self.thief = hex;
+		self.thiefHasBeenMoved = YES;
+		NSLog(@"thief moveu para:%f %f", self.thief.position.x, self.thief.position.y);
 	}
 	
 }

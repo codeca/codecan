@@ -33,5 +33,6 @@ typedef enum  {
 
 -(void)becomeVillageFor: (Player*) player;
 -(void)becomeCity ;
+-(void)verifyNearRoads;
 
 @end

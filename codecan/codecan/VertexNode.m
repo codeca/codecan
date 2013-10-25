@@ -7,6 +7,7 @@
 //
 
 #import "VertexNode.h"
+#import "EdgeNode.h"
 
 @implementation VertexNode
 
@@ -45,6 +46,15 @@
 	self.xScale = 0.02;
 	self.yScale = 0.02;
 	
+}
+
+-(void)verifyNearRoads{
+	for(EdgeNode* edge in self.edges){
+		if(self.owner != edge.owner){
+			edge.owner = nil;
+			edge.color = [SKColor whiteColor];
+		}
+	}
 }
 
 @end

@@ -31,8 +31,6 @@
 -(id)initWithSize:(CGSize)size {    
     if (self = [super initWithSize:size]) {
         /* Setup your scene here */
-        
-		self.theThiefHasBeenMoved = NO;
 		
         self.backgroundColor = [SKColor colorWithRed:0.15 green:0.15 blue:0.3 alpha:1.0];
 		
@@ -44,8 +42,14 @@
 				
 		self.tabs = [[SKNode alloc] init];
 		self.tabs.position = CGPointMake(self.size.width/2, self.menu.position.y+self.size.height/11);
+	
+		self.resourcesLabel = [SKLabelNode labelNodeWithFontNamed:@"ChalkDuster"];
+		self.resourcesLabel.text = @"Lumber=0 Brick=0 Ore=0 Wool=0 Grain=0";
+		self.resourcesLabel.position = CGPointMake(0, self.size.height*9/10);
+		self.resourcesLabel.fontSize = 20;
+		self.resourcesLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeLeft;
 		
-				
+		[self addChild:self.resourcesLabel];
         [self addChild:self.map];
 		[self addChild:self.menu];
 		[self addChild:self.tabs];
@@ -71,7 +75,11 @@
 	for(EdgeNode * edge in self.game.table.edges){
 		[self.map addChild:edge];
 	}
-
+	
+	self.thief = [SKSpriteNode spriteNodeWithColor:[SKColor blackColor] size:CGSizeMake(40, 40)];
+	self.thief.position = self.game.table.thief.position;
+	self.thief.zPosition = 5;
+	[self.map addChild:self.thief];
 }
 
 -(void) buildTabs{
@@ -194,6 +202,21 @@
 				break;
 				
 			case ROBBER:
+				if(clicked.class == HexagonNode.class){
+					
+					HexagonNode * hex = (HexagonNode*) clicked;
+					
+					[self.game.table moveThiefToHexagon:hex];
+					self.thief.position = self.game.table.thief.position;
+					NSLog(@"click no hexagono BITCH!");
+					
+				}else if(clicked.class == SKLabelNode.class){
+					SKLabelNode * label = (SKLabelNode*) clicked;
+					if(label.parent.class==HexagonNode.class){
+						[self.game.table moveThiefToHexagon:(HexagonNode*)label.parent];
+						self.thief.position = self.game.table.thief.position;
+					}
+				}
 				
 				break;
 				
@@ -270,6 +293,7 @@
 					
 					if(valid){
 						[vertex becomeVillageFor:self.game.currentPlayer];
+						[vertex verifyNearRoads];
 						self.game.currentPlayer.lumber--;
 						self.game.currentPlayer.brick--;
 						self.game.currentPlayer.grain--;
@@ -287,7 +311,6 @@
 					}
 					
 				}
-				
 				break;
 				
 			case WAITTRADES:
@@ -326,23 +349,23 @@
 					break;
 				}
 				for(HexagonNode * hex in self.game.table.hexes){
-					[hex giveResourceForDices:diceValue];
+					if(hex!=self.game.table.thief)
+						[hex giveResourceForDices:diceValue];
 				}
 				self.game.phase = RUNNING;
+				self.resourcesLabel.text = self.resourcesLabel.text =[NSString stringWithFormat:@"Lumber=%d Brick=%d Ore=%d Wool=%d Grain=%d",self.game.me.lumber,self.game.me.brick,self.game.me.ore,self.game.me.wool,self.game.me.grain] ;
 			}
 				
 			break;
 			
 		case ROBBER:
-<<<<<<< HEAD
 			// wait the current player to chose another hexagon to place the thief
 			
+			if(self.game.table.thiefHasBeenMoved){
+				self.game.phase = RUNNING;
+				self.game.table.thiefHasBeenMoved = NO;
+			}
 			
-			
-=======
-			
-			self.game.phase = RUNNING;
->>>>>>> d4a2212c6bbe06a937ee1ff3d85744db7fed417e
 			break;
 			
 		case WAITDISCARD:
@@ -368,6 +391,7 @@
 						for(HexagonNode *hex in self.game.table.hexes)
 							[hex giveResourceForDices:i];
 					self.game.turn++;
+					self.resourcesLabel.text = self.resourcesLabel.text =[NSString stringWithFormat:@"Lumber=%d Brick=%d Ore=%d Wool=%d Grain=%d",self.game.me.lumber,self.game.me.brick,self.game.me.ore,self.game.me.wool,self.game.me.grain] ;
 				}
 				
 				
@@ -402,6 +426,7 @@
 	bankLabel.position = CGPointMake(-downMenu.size.width/2 + 5, -40+offset);
 	bankLabel.name = @"bank";
 	bankLabel.fontSize = 20;
+	bankLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeLeft;
 	[self.menu addChild:bankLabel];
 	
 	SKLabelNode *portLabel = [SKLabelNode labelNodeWithFontNamed:@"ChalkDuster"];
@@ -409,6 +434,7 @@
 	portLabel.position = CGPointMake(-downMenu.size.width/2+ 5, 0+offset);
 	portLabel.name = @"port";
 	portLabel.fontSize = 20;
+	portLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeLeft;
 	[self.menu addChild:portLabel];
 	
 	SKLabelNode *friendLabel = [SKLabelNode labelNodeWithFontNamed:@"ChalkDuster"];
@@ -416,6 +442,7 @@
 	friendLabel.position = CGPointMake(-downMenu.size.width/2 + 5, 40+ offset);
 	friendLabel.name = @"friend";
 	friendLabel.fontSize = 20;
+	friendLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeLeft;
 	[self.menu addChild:friendLabel];
 	
 }

@@ -220,4 +220,10 @@
 
 }
 
+-(void) moveThiefToHexagon:(HexagonNode *)hex{
+	
+	self.thief = hex;
+	
+}
+
 @end

@@ -22,4 +22,6 @@
 @property (nonatomic, strong) NSMutableArray * edges;
 @property (nonatomic, weak) HexagonNode * thief;
 
+-(void) moveThiefToHexagon: (HexagonNode*) hex;
+
 @end

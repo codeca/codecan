@@ -288,7 +288,6 @@
 						for (VertexNode* neighbor in edge.vertexes) {
 							
 							if (neighbor.owner) {
-								NSLog(@"regra da distancia");
 								valid = NO;
 								return;
 							}

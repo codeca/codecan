@@ -32,5 +32,6 @@ typedef enum{
 @property (nonatomic, strong) Game * game;
 @property (nonatomic) Selection selection;
 
+
 +(instancetype)sceneWithSize:(CGSize)size andGame:(Game *) game;
 @end

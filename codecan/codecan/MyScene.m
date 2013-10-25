@@ -32,6 +32,8 @@
     if (self = [super initWithSize:size]) {
         /* Setup your scene here */
         
+		self.theThiefHasBeenMoved = NO;
+		
         self.backgroundColor = [SKColor colorWithRed:0.15 green:0.15 blue:0.3 alpha:1.0];
 		
 		self.map = [[SKNode alloc] init];
@@ -349,7 +351,10 @@
 			break;
 			
 		case ROBBER:
-			self.game.phase = RUNNING;
+			// wait the current player to chose another hexagon to place the thief
+			
+			
+			
 			break;
 			
 		case WAITDISCARD:

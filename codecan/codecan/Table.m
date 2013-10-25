@@ -92,6 +92,7 @@
 			}
 			else{
 				((HexagonNode *)[self.hexes objectAtIndex:i]).number = 7;
+				self.thief = ((HexagonNode *)[self.hexes objectAtIndex:i]);
 			}
 			SKLabelNode * numberLabel = [SKLabelNode labelNodeWithFontNamed:@"ChalkDuster"];
 			numberLabel.fontSize = 30;
@@ -106,6 +107,7 @@
 			}
 			else{
 				((HexagonNode *)[self.hexes objectAtIndex:i]).number = 7;
+				self.thief = ((HexagonNode *)[self.hexes objectAtIndex:i]);
 			}
 			SKLabelNode * numberLabel = [SKLabelNode labelNodeWithFontNamed:@"ChalkDuster"];
 			numberLabel.fontSize = 30;
@@ -117,6 +119,7 @@
 			((HexagonNode *)[self.hexes objectAtIndex:0]).number = 11;
 		}else{
 			((HexagonNode *)[self.hexes objectAtIndex:0]).number = 7;
+			self.thief = ((HexagonNode *)[self.hexes objectAtIndex:0]);
 		}
 
 		SKLabelNode * numberLabel = [SKLabelNode labelNodeWithFontNamed:@"ChalkDuster"];

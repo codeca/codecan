@@ -275,13 +275,21 @@
 						 .currentPlayer.lumber>0 && self.game.currentPlayer.grain>0 && self.game.currentPlayer.wool>0){
 					
 					BOOL valid = NO;
-					
 					VertexNode * vertex = (VertexNode*) clicked;
-					[vertex becomeVillageFor:self.game.currentPlayer];
-					self.game.currentPlayer.lumber--;
-					self.game.currentPlayer.brick--;
-					self.game.currentPlayer.grain--;
-					self.game.currentPlayer.wool--;
+					
+					for(EdgeNode * edge in vertex.edges){
+						if(edge.owner==self.game.currentPlayer){
+							valid=YES;
+						}
+					}
+					
+					if(valid){
+						[vertex becomeVillageFor:self.game.currentPlayer];
+						self.game.currentPlayer.lumber--;
+						self.game.currentPlayer.brick--;
+						self.game.currentPlayer.grain--;
+						self.game.currentPlayer.wool--;
+					}
 				}else if(clicked.class == VertexNode.class && self.selection==CITYSEL && self.game.currentPlayer.ore>2 && self.game
 						 .currentPlayer.grain>1){
 					VertexNode * vertex = (VertexNode*) clicked;

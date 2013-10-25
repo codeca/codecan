@@ -222,7 +222,11 @@
 
 -(void) moveThiefToHexagon:(HexagonNode *)hex{
 	
+	if (hex !=self.thief) {
+		
 	self.thief = hex;
+	self.thiefHasBeenMoved = YES;
+	}
 	
 }
 

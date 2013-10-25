@@ -361,6 +361,7 @@
 			break;
 			
 		case ROBBER:
+			
 			self.game.phase = RUNNING;
 			break;
 			

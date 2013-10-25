@@ -21,6 +21,7 @@
 @property (nonatomic, strong) NSMutableArray * vertexes;
 @property (nonatomic, strong) NSMutableArray * edges;
 @property (nonatomic, weak) HexagonNode * thief;
+@property (nonatomic, getter = hasThiefMoved) BOOL thiefHasBeenMoved;
 
 -(void) moveThiefToHexagon: (HexagonNode*) hex;
 

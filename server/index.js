@@ -2,7 +2,7 @@ var Player = require("./Player.js")
 var net = require("net")
 var Game = require("./Game.js")
 
-require("setIp.js")
+require("./setIp.js")
 
 // Store player in the matching room
 var playersWaiting3 = []
@@ -97,7 +97,7 @@ function informMatchingProgress() {
 function onmessage(type, data) {
 	if (this.game) {
 		// Broadcast the message
-		broadcast(this.game.players, name, data, this)
+		broadcast(this.game.players, type, data, this)
 	} else if (type == MSG_MATCH) {
 		// Add the current player to the matching list
 		this.want3 = Boolean(data.want3)

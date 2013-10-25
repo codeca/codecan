@@ -43,13 +43,7 @@
 		self.tabs = [[SKNode alloc] init];
 		self.tabs.position = CGPointMake(self.size.width/2, self.menu.position.y+self.size.height/11);
 		
-		SKLabelNode *pass = [SKLabelNode labelNodeWithFontNamed:@"ChalkDuster"];
-		pass.text = @"End Turn";
-		pass.name = @"pass";
-		pass.fontSize = 30;
-		pass.position = CGPointMake(self.size.width*7/8, self.size.height*0.22);
-		[self addChild:pass];
-		
+				
         [self addChild:self.map];
 		[self addChild:self.menu];
 		[self addChild:self.tabs];
@@ -101,6 +95,13 @@
 	tradeTab.name=@"tradetab";
 	tradeTab.position = CGPointMake(self.size.width/4, 0);
 	
+	SKLabelNode *pass = [SKLabelNode labelNodeWithFontNamed:@"ChalkDuster"];
+	pass.text = @"End Turn";
+	pass.name = @"pass";
+	pass.fontSize = 30;
+	pass.position = CGPointMake(self.size.width*7/8, self.size.height*0.22);
+
+	[self addChild:pass];
 	[self.tabs addChild:buildTab];
 	[self.tabs addChild:handTab];
 	[self.tabs addChild:tradeTab];
@@ -234,7 +235,10 @@
 				break;
 				
 			case RUNNING:
-				if(![clicked.name compare:@"pass"]){
+				if(clicked.name == nil){
+					
+				}
+				else if(![clicked.name compare:@"pass"]){
 					self.game.phase = WAITTURN;
 				}else if(![clicked.name compare:@"road"]){
 				

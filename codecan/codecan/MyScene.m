@@ -241,6 +241,12 @@
 					self.game.currentPlayer.brick--;
 					self.game.currentPlayer.grain--;
 					self.game.currentPlayer.wool--;
+				}else if(clicked.class == VertexNode.class && self.selection==CITYSEL && self.game.currentPlayer.ore>2 && self.game
+						 .currentPlayer.grain>1){
+					VertexNode * vertex = (VertexNode*) clicked;
+					[vertex becomeCity];
+					self.game.currentPlayer.ore-=3;
+					self.game.currentPlayer.grain-=2;
 				}
 				
 				break;

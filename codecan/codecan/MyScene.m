@@ -260,6 +260,8 @@
 				}else if(![clicked.name compare:@"buildtab"]){
 					[self buildBuildInterface];
 					
+				}else if(![clicked.name compare:@"bank"]){
+					[self buildBankTraderInterface];
 				}
 				
 				if(clicked.class == EdgeNode.class && self.selection==ROADSEL && self.game.currentPlayer.lumber>0 && self.game.currentPlayer.brick>0){
@@ -484,6 +486,18 @@
 	cardLabel.name = @"card";
 	cardLabel.fontSize = 30;
 	[self.menu addChild:cardLabel];
+	
+}
+
+- (void) buildBankTraderInterface{
+	
+	if(!self.bankTrader){
+		self.bankTrader = [[BankTrader alloc] init];
+		self.bankTrader.position = CGPointMake(self.size.width/2, self.size.height/2);
+	}
+	
+	[self addChild:self.bankTrader];
+	
 	
 }
 

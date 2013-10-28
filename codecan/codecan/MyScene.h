@@ -12,6 +12,7 @@
 #import "VertexNode.h"
 #import "EdgeNode.h"
 #import "Game.h"
+#import "BankTrader.h"
 
 typedef enum{
 	
@@ -31,7 +32,7 @@ typedef enum{
 @property (nonatomic, strong) SKNode *properties;
 @property (nonatomic, strong) SKSpriteNode * thief;
 @property (nonatomic, strong) SKLabelNode * resourcesLabel;
-
+@property (nonatomic, strong) BankTrader * bankTrader;
 
 @property (nonatomic, strong) Game * game;
 @property (nonatomic) Selection selection;

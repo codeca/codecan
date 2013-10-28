@@ -18,6 +18,8 @@
 		
 		Player* auxPlayer = players[i];
 		
+		NSLog(@"%@", auxPlayer.name);
+		
 		if(![auxPlayer.ID compare:Id]){
 			self.me = auxPlayer;
 			self.me.color = [SKColor greenColor];

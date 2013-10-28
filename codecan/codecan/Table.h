@@ -25,4 +25,6 @@
 
 -(void) moveThiefToHexagon: (HexagonNode*) hex;
 
+-(id) initWithTable:(NSDictionary*) table;
+
 @end

@@ -406,7 +406,7 @@
 				else
 					index++;
 			
-				self.game.phase = RESOURCES;
+			//	self.game.phase = RESOURCES;
 			}
 			break;
 	}

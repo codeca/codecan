@@ -79,7 +79,7 @@
 -(void)plug:(Plug *)plug receivedMessage:(PlugMsgType)type data:(id)data{
 
 	if(type == MSG_TABLEREADY){
-		self.game.table = [[Table alloc] initWithTable:data]];
+		self.game.table = [[Table alloc] initWithTable:data];
 	}
 	
 	

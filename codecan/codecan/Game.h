@@ -28,7 +28,7 @@ typedef enum{
 @property (nonatomic, strong) Table * table;
 @property (nonatomic, strong) Player * currentPlayer;
 @property (nonatomic, strong) Player * me;
-@property (nonatomic, strong) NSMutableArray * players;
+@property (nonatomic, strong) NSArray * players;
 @property (nonatomic) Phase phase;
 @property (nonatomic, strong) Plug * plug;
 @property (nonatomic, weak) VertexNode* cityCreated;
@@ -37,6 +37,6 @@ typedef enum{
 @property (nonatomic) bool diceWasRolled;
 @property (nonatomic) NSInteger turn;
 
--(id)initWithNumberOfPLayers:(NSUInteger) players;
+-(id) initWithPlayers: (NSArray*) players Id:(NSString*) Id;
 
 @end

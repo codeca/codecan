@@ -17,5 +17,7 @@
 @property (nonatomic, strong) Plug * plug;
 @property (nonatomic, strong) NSArray * players;
 @property (nonatomic, strong) NSString * myId;
+@property (nonatomic, strong) SKScene * scene;
+@property (nonatomic) NSInteger tableReceived;
 
 @end

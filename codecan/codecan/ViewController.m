@@ -15,21 +15,41 @@
 {
     [super viewDidLoad];
 	
-	//self.plug = [[Plug alloc] init];
-
-	self.game = [[Game alloc] initWithNumberOfPLayers:1];
-	self.game.phase = INITIALIZATIONCITY;
+	self.plug.delegate = self;
+	self.game = [[Game alloc] initWithPlayers:self.players Id:self.myId];
+	
+	if(self.game.currentPlayer == self.game.me){
+		// mount table to send
+		
+		NSMutableArray * resources = [[NSMutableArray alloc] init];
+		
+		NSMutableArray * numbers = [[NSMutableArray alloc] init];
+		
+		NSDictionary * data;
+		
+		for(HexagonNode * hex in self.game.table.hexes){
+			[resources addObject: [NSNumber numberWithInt:hex.resource]];
+			[numbers addObject:[NSNumber numberWithInt:hex.number]];
+		}
+		
+		data = [NSDictionary dictionaryWithObjects:@[resources, numbers] forKeys:@[@"resources",@"numbers"]];
+		
+		[self.plug sendMessage:MSG_TABLEREADY data:data];
+	}
+	
 	// Configure the view.
     SKView * skView = (SKView *)self.view;
     skView.showsFPS = YES;
     skView.showsNodeCount = YES;
     
     // Create and configure the scene.
-    SKScene * scene = [MyScene sceneWithSize:skView.bounds.size andGame:self.game];
-    scene.scaleMode = SKSceneScaleModeAspectFill;
+    self.scene = [MyScene sceneWithSize:skView.bounds.size andGame:self.game];
+    self.scene.scaleMode = SKSceneScaleModeAspectFill;
     
     // Present the scene.
-    [skView presentScene:scene];
+	if(self.game.currentPlayer == self.game.me){
+		[skView presentScene:self.scene];
+	}
 }
 
 - (BOOL)shouldAutorotate
@@ -58,10 +78,14 @@
 
 -(void)plug:(Plug *)plug receivedMessage:(PlugMsgType)type data:(id)data{
 
-	// treat match message to start scene
+	if(type == MSG_TABLEREADY){
+		self.game.table = [[Table alloc] initWithTable:data]];
+	}
 	
 	
 }
+
+
 
 -(void)plugHasConnected:(Plug *)plug{
 

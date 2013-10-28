@@ -98,6 +98,7 @@ typedef enum {
 		
 		destination.players = self.players;
 		destination.myId = self.myId;
+		destination.plug = self.plug;
 		
 	}
 	

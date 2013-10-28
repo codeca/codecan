@@ -38,7 +38,7 @@ typedef enum {
 @interface Plug : NSObject <NSStreamDelegate>
 
 @property (nonatomic) PlugState readyState;
-@property (nonatomic) id<PlugDelegate> delegate;
+@property (nonatomic, weak) id<PlugDelegate> delegate;
 
 // Create a new Plug and start connecting
 - (id)init;

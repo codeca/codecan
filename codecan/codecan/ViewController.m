@@ -42,12 +42,14 @@
     skView.showsFPS = YES;
     skView.showsNodeCount = YES;
     
-    // Create and configure the scene.
-    self.scene = [MyScene sceneWithSize:skView.bounds.size andGame:self.game];
-    self.scene.scaleMode = SKSceneScaleModeAspectFill;
+    
+   
     
     // Present the scene.
 	if(self.game.currentPlayer == self.game.me){
+		// Create and configure the scene.
+		self.scene = [MyScene sceneWithSize:skView.bounds.size andGame:self.game];
+		self.scene.scaleMode = SKSceneScaleModeAspectFill;
 		[skView presentScene:self.scene];
 	}
 }
@@ -80,6 +82,8 @@
 
 	if(type == MSG_TABLEREADY){
 		self.game.table = [[Table alloc] initWithTable:data];
+		self.scene = [MyScene sceneWithSize:self.view.bounds.size andGame:self.game];
+		self.scene.scaleMode = SKSceneScaleModeAspectFill;
 		[(SKView*)self.view presentScene:self.scene];
 	}
 	

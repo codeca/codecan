@@ -18,7 +18,7 @@
 		
 		Player* auxPlayer = players[i];
 		
-		if(auxPlayer.ID == Id){
+		if(![auxPlayer.ID compare:Id]){
 			self.me = auxPlayer;
 			self.me.color = [SKColor greenColor];
 		}else{

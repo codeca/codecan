@@ -7,6 +7,8 @@
 //
 
 #import "StartViewController.h"
+#import "ViewController.h"
+#import "Player.h"
 
 @interface StartViewController ()
 
@@ -21,6 +23,8 @@ typedef enum {
 @property (weak, nonatomic) IBOutlet UITextField *name;
 @property (nonatomic) waitingFor waiting;
 @property (nonatomic, strong) NSString* myId;
+@property (nonatomic, weak) ViewController * nextView;
+@property (nonatomic, strong) NSMutableArray * players;
 
 @end
 
@@ -37,7 +41,7 @@ typedef enum {
 
 
 - (IBAction)startWith4Players:(id)sender {
-	NSDictionary *serverData = [NSDictionary dictionaryWithObjects:@[@0, @1, self.name.text, [[NSUUID UUID] UUIDString]] forKeys:@[@"want3", @"want4", @"name", @"id"]];
+	NSDictionary *serverData = [NSDictionary dictionaryWithObjects:@[@0, @1, self.name.text, self.myId] forKeys:@[@"want3", @"want4", @"name", @"id"]];
 	
 	self.waiting = WAITING_4;
 	[self.plug sendMessage:MSG_MATCH data:serverData];
@@ -69,10 +73,34 @@ typedef enum {
 	
 	else if(type == MSG_MATCH_DONE){
 		
+		Player * newPlayer = [[Player alloc] init];
+		
+		self.players = [[NSMutableArray alloc] init];
+		
+		NSArray * players = data;
+		
+		for(NSDictionary * player in players){
+			newPlayer.name = [player objectForKey:@"name"];
+			newPlayer.ID = [player objectForKey:@"id"];
+			[self.players addObject:newPlayer];
+		}
+		[self performSegueWithIdentifier:@"GoToGame" sender:self];
 		
 	}
 
 
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+	
+	if([segue.identifier isEqualToString:@"GoToGame"]){
+		ViewController * destination = [segue destinationViewController];
+		
+		destination.players = self.players;
+		destination.myId = self.myId;
+		
+	}
+	
 }
 
 - (void)plugHasConnected:(Plug *)plug {

@@ -15,5 +15,7 @@
 
 @property (nonatomic, strong) Game * game;
 @property (nonatomic, strong) Plug * plug;
+@property (nonatomic, strong) NSArray * players;
+@property (nonatomic, strong) NSString * myId;
 
 @end

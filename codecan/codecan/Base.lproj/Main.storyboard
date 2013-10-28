@@ -95,6 +95,7 @@
                     <connections>
                         <outlet property="name" destination="fT0-83-cpj" id="aR9-57-1AK"/>
                         <outlet property="progressText" destination="kUP-KM-iZG" id="jQL-hW-ALp"/>
+                        <segue destination="BV1-FR-VrT" kind="modal" identifier="GoToGame" id="Zre-qg-kbX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rD5-iP-JyE" userLabel="First Responder" sceneMemberID="firstResponder"/>

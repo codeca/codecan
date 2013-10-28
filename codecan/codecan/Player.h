@@ -12,6 +12,7 @@
 @interface Player : NSObject
 
 @property (nonatomic, strong) NSString* name;
+@property (nonatomic, strong) NSString * ID;
 @property (nonatomic, strong) SKColor* color;
 
 @property (nonatomic)NSInteger wool;

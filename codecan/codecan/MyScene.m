@@ -32,6 +32,8 @@
     if (self = [super initWithSize:size]) {
         /* Setup your scene here */
 		
+		self.plug.delegate = self;
+		
         self.backgroundColor = [SKColor colorWithRed:0.15 green:0.15 blue:0.3 alpha:1.0];
 		
 		self.map = [[SKNode alloc] init];
@@ -229,6 +231,7 @@
 					
 				}
 				else if(![clicked.name compare:@"pass"]){
+					[self.plug sendMessage:MSG_EOT data:nil];
 					self.game.phase = WAITTURN;
 				}else if(![clicked.name compare:@"road"]){
 				
@@ -497,6 +500,43 @@
 	}
 	
 	[self addChild:self.bankTrader];
+	
+	
+}
+
+-(Player *) nextPlayer{
+	
+	NSInteger index = [self.game.players indexOfObject:self.game.currentPlayer];
+	if(index == self.game.players.count-1){
+		index = 0;
+		self.game.turn++;
+	}else{
+		index++;
+	}
+	
+	return [self.game.players objectAtIndex:index];
+
+}
+
+- (void)plug:(Plug *)plug receivedMessage:(PlugMsgType)type data:(id)data {
+	
+	if(type == MSG_EOT){
+		self.game.currentPlayer = [self nextPlayer];
+		if(self.game.currentPlayer == self.game.me){
+			self.game.phase = RESOURCES;
+		}
+	}
+	
+	
+}
+- (void)plugHasConnected:(Plug *)plug {
+	NSLog(@"connected");
+	
+	
+}
+
+- (void)plug:(Plug *)plug hasClosedWithError:(BOOL)error {
+	NSLog(@"closed %hhd", error);
 	
 	
 }

@@ -13,6 +13,7 @@
 #import "EdgeNode.h"
 #import "Game.h"
 #import "BankTrader.h"
+#import "Plug.h"
 
 typedef enum{
 	
@@ -23,7 +24,7 @@ typedef enum{
 
 } Selection;
 
-@interface MyScene : SKScene
+@interface MyScene : SKScene <PlugDelegate>
 
 @property (nonatomic, strong) SKNode * map;
 @property (nonatomic, strong) SKNode *menu;
@@ -33,6 +34,7 @@ typedef enum{
 @property (nonatomic, strong) SKSpriteNode * thief;
 @property (nonatomic, strong) SKLabelNode * resourcesLabel;
 @property (nonatomic, strong) BankTrader * bankTrader;
+@property (nonatomic, strong) Plug * plug;
 
 @property (nonatomic, strong) Game * game;
 @property (nonatomic) Selection selection;

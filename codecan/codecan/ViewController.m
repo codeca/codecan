@@ -80,6 +80,7 @@
 
 	if(type == MSG_TABLEREADY){
 		self.game.table = [[Table alloc] initWithTable:data];
+		[(SKView*)self.view presentScene:self.scene];
 	}
 	
 	

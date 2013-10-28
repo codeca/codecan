@@ -71,4 +71,58 @@
 	return self;
 }
 
+
+-(id) initWithPlayers: (NSMutableArray*) players Id:(NSString*) Id{
+	
+	self.players = players;
+	
+	for(int i=0;i<self.players.count;i++){
+		
+		Player* auxPlayer = players[i];
+		
+		if(auxPlayer.ID == Id){
+			self.me = auxPlayer;
+			self.me.color = [SKColor greenColor];
+		}else{
+			switch(i){
+				case 1:
+					auxPlayer.color = [SKColor blueColor];
+					break;
+				case 2:
+					auxPlayer.color = [SKColor redColor];
+					break;
+				case 3:
+					auxPlayer.color = [SKColor yellowColor];
+					break;
+					
+			}
+		}
+	}
+	
+	
+	
+	// MUDAR DAQUI PRA BAIXO
+	// ask to server for first player
+	self.currentPlayer = self.me;
+	self.turn = 1;
+	if(self.currentPlayer == self.me){
+		self.table = [[Table alloc] init];
+		//broadcast table
+	}else{
+		// receive table from server
+	}
+	if(self.currentPlayer == self.me){
+		self.phase = INITIALIZATIONCITY;
+		self.endInitialization = NO;
+	}else{
+		self.phase = WAITTURN;
+	}
+	
+	
+	return self;
+
+
+}
+
+
 @end

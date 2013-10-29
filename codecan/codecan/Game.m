@@ -21,6 +21,7 @@
 		switch(i){
 			case 0:
 				auxPlayer.color =[SKColor greenColor];
+				break;
 			case 1:
 				auxPlayer.color = [SKColor blueColor];
 				break;

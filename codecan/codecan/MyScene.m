@@ -525,7 +525,7 @@
 		self.bankTrader.position = CGPointMake(self.size.width/2, self.size.height/2);
 	}
 	
-	[self addChild:self.bankTrader];
+	[self.bankTrader bankTraderForPlayer:self.game.currentPlayer andScene:self];
 	
 	
 }

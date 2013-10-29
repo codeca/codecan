@@ -16,6 +16,14 @@ typedef enum{
 	
 } SideSelector;
 
+typedef enum{
+	LUMBER=1,
+	BRICK,
+	ORE,
+	WOOL,
+	GRAIN
+} Selection;
+
 @interface BankTrader : SKNode
 
 @property (nonatomic, strong) SKSpriteNode * back;
@@ -35,10 +43,15 @@ typedef enum{
 @property (nonatomic, strong) SKLabelNode * oreQuantity;
 @property (nonatomic, strong) SKLabelNode * grainQuantity;
 @property (nonatomic, strong) SKLabelNode * woolQuantity;
+@property (nonatomic, strong) SKLabelNode * tradeButton;
+
 
 @property (nonatomic, weak) Player * player;
 
 @property (nonatomic) SideSelector side;
+
+@property (nonatomic) Selection selectionOffer;
+@property (nonatomic) Selection selectionDemand;
 
 -(void) bankTraderForPlayer:(Player*) player andScene:(SKScene*) scene;
 

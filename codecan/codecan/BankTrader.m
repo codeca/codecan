@@ -35,10 +35,21 @@
 		self.myOffer.name = @"myoffer";
 		[self addChild:self.myOffer];
 		
+		for(int i = 0; i < 2; i++){
+			for(int j = 0; j < 2; j++){
+				SKSpriteNode * offerN = [[SKSpriteNode alloc] init];
+				offerN.position = CGPointMake(i*self.myOffer.size.width-self.myOffer.size.width/2, j*self.myOffer.size.height-self.myOffer.size.height/2);
+				[self.myOffer addChild:offerN];
+			}
+		}
+		
 		self.myDemand = [SKSpriteNode spriteNodeWithColor:[SKColor whiteColor] size:CGSizeMake(self.back.size.width/3, self.back.size.height/4)];
 		self.myDemand.position = CGPointMake(self.back.size.width*2/7, self.back.size.height/6);
 		self.myDemand.name = @"mydemand";
 		[self addChild:self.myDemand];
+		
+		SKSpriteNode * offerN = [[SKSpriteNode alloc] init];
+		[self.myDemand addChild:offerN];
 		
 		self.options = [SKSpriteNode spriteNodeWithColor:[SKColor whiteColor] size:CGSizeMake(self.back.size.width*4/5, self.back.size.height/4)];
 		self.options.position = CGPointMake(0, -self.back.size.height/6);
@@ -111,7 +122,12 @@
 		self.grainQuantity.position = CGPointMake(self.options.size.width/6, -20);
 		[self.options addChild:self.grainQuantity];
 		
-		
+		self.tradeButton = [SKLabelNode labelNodeWithFontNamed:@"ChalkDuster"];
+		self.tradeButton.name = @"trade";
+		self.tradeButton.fontSize = 30;
+		self.tradeButton.text = @"Trade";
+		self.tradeButton.position = CGPointMake(0, -40);
+		[self addChild:self.tradeButton];
 	}
 	return self;
 }
@@ -136,8 +152,143 @@
 		
 		}else if([clicked.name isEqualToString:@"fader"]){
 			[self removeFromParent];
+		}else if([clicked.name isEqualToString:@"lumber"]){
+			
+			if(self.player.lumber >= 4){
+				if(self.side == OFFERSIDE){
+					self.selectionOffer = LUMBER;
+				}
+			}
+			if(self.side == DEMANDSIDE){
+				self.selectionDemand = LUMBER;
+			}
+			
+		}else if([clicked.name isEqualToString:@"ore"]){
+			
+			if(self.player.ore >= 4){
+				if(self.side == OFFERSIDE){
+					self.selectionOffer = ORE;
+				}
+			}
+			if(self.side == DEMANDSIDE){
+				self.selectionDemand = ORE;
+			}
+			
+		}else if([clicked.name isEqualToString:@"grain"]){
+			
+			if(self.player.grain >= 4){
+				if(self.side == OFFERSIDE){
+					self.selectionOffer = GRAIN;
+				}
+			}
+			if(self.side == DEMANDSIDE){
+				self.selectionDemand = GRAIN;
+			}
+			
+		}else if([clicked.name isEqualToString:@"wool"]){
+			
+			if(self.player.wool >= 4){
+				if(self.side == OFFERSIDE){
+					self.selectionOffer = WOOL;
+				}
+			}
+			if(self.side == DEMANDSIDE){
+				self.selectionDemand = WOOL;
+			}
+			
+		}else if([clicked.name isEqualToString:@"brick"]){
+			
+			if(self.player.brick >= 4){
+				if(self.side == OFFERSIDE){
+					self.selectionOffer = BRICK;
+				}
+			}
+			if(self.side == DEMANDSIDE){
+				self.selectionDemand = BRICK;
+			}
+		}else if([clicked.name isEqualToString:@"trade"]){
+			if(self.selectionDemand != 0 && self.selectionOffer != 0){
+				if(self.selectionOffer == BRICK){
+					self.player.brick-=4;
+				}else if(self.selectionOffer == GRAIN){
+					self.player.grain-=4;
+				}else if(self.selectionOffer == ORE){
+					self.player.ore-=4;
+				}else if(self.selectionOffer == WOOL){
+					self.player.wool-=4;
+				}else if(self.selectionOffer == LUMBER){
+					self.player.lumber-=4;
+				}
+				
+				if(self.selectionDemand == BRICK){
+					self.player.brick++;
+				}else if(self.selectionDemand == GRAIN){
+					self.player.grain++;
+				}else if(self.selectionDemand == ORE){
+					self.player.ore++;
+				}else if(self.selectionDemand == WOOL){
+					self.player.wool++;
+				}else if(self.selectionDemand == LUMBER){
+					self.player.lumber++;
+				}
+				[self updateView];
+			}
 		}
 		
+		
+	}
+}
+
+-(void) updateView{
+	
+	self.grainQuantity.text = [NSString stringWithFormat:@"%d", self.player.grain];
+	self.brickQuantity.text = [NSString stringWithFormat:@"%d", self.player.brick];
+	self.oreQuantity.text = [NSString stringWithFormat:@"%d", self.player.ore];
+	self.lumberQuantity.text = [NSString stringWithFormat:@"%d", self.player.lumber];
+	self.woolQuantity.text = [NSString stringWithFormat:@"%d", self.player.wool];
+	
+	if(self.selectionOffer == BRICK && self.player.brick < 4){
+		[self setOfferTo:BRICK];
+	}else if(self.selectionOffer == ORE && self.player.ore < 4){
+		[self setOfferTo:ORE];
+	}else if(self.selectionOffer == GRAIN && self.player.grain < 4){
+		[self setOfferTo:GRAIN];
+	}else if(self.selectionOffer == WOOL && self.player.wool < 4){
+		[self setOfferTo:WOOL];
+	}else if(self.selectionOffer == LUMBER && self.player.lumber < 4){
+		[self setOfferTo:LUMBER];
+	}
+
+}
+
+-(void) setOfferTo:(Selection) selection{
+	for(SKSpriteNode * child in self.myOffer.children){
+		if(selection == BRICK){
+			child.texture = [SKTexture textureWithImageNamed:@"brick"];
+			child.size = child.texture.size;
+			child.xScale = 0.1;
+			child.yScale = 0.1;
+		}else if(selection == ORE){
+			child.texture = [SKTexture textureWithImageNamed:@"ore"];
+			child.size = child.texture.size;
+			child.xScale = 0.1;
+			child.yScale = 0.1;
+		}else if(selection == WOOL){
+			child.texture = [SKTexture textureWithImageNamed:@"wool"];
+			child.size = child.texture.size;
+			child.xScale = 0.1;
+			child.yScale = 0.1;
+		}else if(selection == GRAIN){
+			child.texture = [SKTexture textureWithImageNamed:@"grain"];
+			child.size = child.texture.size;
+			child.xScale = 0.1;
+			child.yScale = 0.1;
+		}else if(selection == LUMBER){
+			child.texture = [SKTexture textureWithImageNamed:@"lumber"];
+			child.size = child.texture.size;
+			child.xScale = 0.1;
+			child.yScale = 0.1;
+		}
 	}
 }
 

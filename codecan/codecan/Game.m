@@ -18,6 +18,9 @@
 		
 		Player* auxPlayer = players[i];
 		
+		if(auxPlayer.ID == Id)
+			self.me = auxPlayer;
+		
 		switch(i){
 			case 0:
 				auxPlayer.color =[SKColor greenColor];

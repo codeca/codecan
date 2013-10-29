@@ -170,7 +170,16 @@
 						[vertex becomeVillageFor: self.game.currentPlayer];
 						self.game.phase = INITIALIZATIONROAD;
 						self.game.cityCreated = vertex;
+						
+						
+						NSNumber *cityNumber = [NSNumber numberWithInt:[self.game.table.vertexes indexOfObject:vertex]];
+						
+						NSDictionary *data  = [NSDictionary dictionaryWithObject:@[@-1, cityNumber] forKey:@[@"road", @"city"]];
+						
+						[self.plug sendMessage:MSG_BUILD data:data];
+						
 					}
+					
 					
 				}
 				
@@ -192,11 +201,25 @@
 							self.game.endInitialization = YES;
 						}
 						else{
-							self.game.phase = WAITTURN;
+							self.game.phase = INITIALIZATIONWAIT;
 						}
+						
+						NSNumber *roadNumber = [NSNumber numberWithInt:[self.game.table.edges indexOfObject:edge]];
+						
+						NSDictionary *data  = [NSDictionary dictionaryWithObject:@[roadNumber, @-1] forKey:@[@"road", @"city"]];
+						
+						[self.plug sendMessage:MSG_BUILD data:data];
+						
 					}
 					
+					
+					
 				}
+				
+				break;
+				
+			case INITIALIZATIONWAIT:
+				
 				
 				break;
 			case RESOURCES:
@@ -343,6 +366,9 @@
 			
 			break;
 		case INITIALIZATIONROAD:
+			
+			break;
+		case INITIALIZATIONWAIT:
 			
 			break;
 		case RESOURCES:
@@ -519,12 +545,35 @@
 }
 
 - (void)plug:(Plug *)plug receivedMessage:(PlugMsgType)type data:(id)data {
+	NSDictionary* build;
 	
-	if(type == MSG_EOT){
-		self.game.currentPlayer = [self nextPlayer];
-		if(self.game.currentPlayer == self.game.me){
-			self.game.phase = RESOURCES;
-		}
+	switch(type){
+		case MSG_EOT:
+			self.game.currentPlayer = [self nextPlayer];
+			if(self.game.currentPlayer == self.game.me){
+				self.game.phase = RESOURCES;
+			}
+			break;
+			
+		case MSG_BUILD:
+			build = data;
+			NSInteger roadAtIndex = [(NSNumber*)[build objectForKey:@"road"] integerValue];
+			NSInteger cityAtIndex = [(NSNumber*)[build objectForKey:@"city"] integerValue];
+
+			if(roadAtIndex>=0){
+				[(EdgeNode*)[self.game.table.edges objectAtIndex:roadAtIndex] receiveOwner: self.game.currentPlayer];
+			}else{
+			
+				VertexNode *city = [self.game.table.vertexes objectAtIndex:cityAtIndex];
+				if(city.owner == nil){
+					[city becomeVillageFor:self.game.currentPlayer];
+				}else{
+					[city becomeCity];
+				}
+			}
+			
+			break;
+			
 	}
 	
 	

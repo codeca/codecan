@@ -174,7 +174,7 @@
 						
 						NSNumber *cityNumber = [NSNumber numberWithInt:[self.game.table.vertexes indexOfObject:vertex]];
 						
-						NSDictionary *data  = [NSDictionary dictionaryWithObject:@[@-1, cityNumber] forKey:@[@"road", @"city"]];
+						NSDictionary *data  = [NSDictionary dictionaryWithObject:@[@(-1), cityNumber] forKey:@[@"road", @"city"]];
 						
 						[self.plug sendMessage:MSG_BUILD data:data];
 						
@@ -206,7 +206,7 @@
 						
 						NSNumber *roadNumber = [NSNumber numberWithInt:[self.game.table.edges indexOfObject:edge]];
 						
-						NSDictionary *data  = [NSDictionary dictionaryWithObject:@[roadNumber, @-1] forKey:@[@"road", @"city"]];
+						NSDictionary *data  = [NSDictionary dictionaryWithObject:@[roadNumber, @(-1)] forKey:@[@"road", @"city"]];
 						
 						[self.plug sendMessage:MSG_BUILD data:data];
 						

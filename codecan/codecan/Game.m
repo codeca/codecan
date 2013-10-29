@@ -18,23 +18,21 @@
 		
 		Player* auxPlayer = players[i];
 		
-		if(![auxPlayer.ID compare:Id]){
-			self.me = auxPlayer;
-			self.me.color = [SKColor greenColor];
-		}else{
-			switch(i){
-				case 1:
-					auxPlayer.color = [SKColor blueColor];
-					break;
-				case 2:
-					auxPlayer.color = [SKColor redColor];
-					break;
-				case 3:
-					auxPlayer.color = [SKColor yellowColor];
-					break;
-					
-			}
+		switch(i){
+			case 0:
+				auxPlayer.color =[SKColor greenColor];
+			case 1:
+				auxPlayer.color = [SKColor blueColor];
+				break;
+			case 2:
+				auxPlayer.color = [SKColor redColor];
+				break;
+			case 3:
+				auxPlayer.color = [SKColor yellowColor];
+				break;
+			
 		}
+		
 	}
 	
 	// ask to server for first player

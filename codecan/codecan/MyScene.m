@@ -545,7 +545,9 @@
 }
 
 - (void)plug:(Plug *)plug receivedMessage:(PlugMsgType)type data:(id)data {
-	NSDictionary* build;
+	
+	NSLog(@"message received, type = %i",type);
+	NSLog(@"message - complete = %@",data);
 	
 	switch(type){
 		case MSG_EOT:
@@ -555,8 +557,8 @@
 			}
 			break;
 			
-		case MSG_BUILD:
-			build = data;
+		case MSG_BUILD:{
+			NSDictionary* build = data;
 			NSInteger roadAtIndex = [(NSNumber*)[build objectForKey:@"road"] integerValue];
 			NSInteger cityAtIndex = [(NSNumber*)[build objectForKey:@"city"] integerValue];
 
@@ -573,6 +575,7 @@
 			}
 			
 			break;
+		}
 			
 	}
 	

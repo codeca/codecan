@@ -82,13 +82,14 @@ typedef enum {
 	
 	else if(type == MSG_MATCH_DONE){
 		
-		Player * newPlayer = [[Player alloc] init];
+		Player * newPlayer;
 		
 		self.players = [[NSMutableArray alloc] init];
 		
 		NSArray * players = data;
 		
 		for(NSDictionary * player in players){
+			newPlayer = [[Player alloc] init];
 			newPlayer.name = [player objectForKey:@"name"];
 			newPlayer.ID = [player objectForKey:@"id"];
 			[self.players addObject:newPlayer];

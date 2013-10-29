@@ -156,79 +156,79 @@
 			
 			if(self.player.lumber >= 4){
 				if(self.side == OFFERSIDE){
-					self.selectionOffer = LUMBER;
+					self.selectionOffer = BANKLUMBER;
 				}
 			}
 			if(self.side == DEMANDSIDE){
-				self.selectionDemand = LUMBER;
+				self.selectionDemand = BANKLUMBER;
 			}
 			
 		}else if([clicked.name isEqualToString:@"ore"]){
 			
 			if(self.player.ore >= 4){
 				if(self.side == OFFERSIDE){
-					self.selectionOffer = ORE;
+					self.selectionOffer = BANKORE;
 				}
 			}
 			if(self.side == DEMANDSIDE){
-				self.selectionDemand = ORE;
+				self.selectionDemand = BANKORE;
 			}
 			
 		}else if([clicked.name isEqualToString:@"grain"]){
 			
 			if(self.player.grain >= 4){
 				if(self.side == OFFERSIDE){
-					self.selectionOffer = GRAIN;
+					self.selectionOffer = BANKGRAIN;
 				}
 			}
 			if(self.side == DEMANDSIDE){
-				self.selectionDemand = GRAIN;
+				self.selectionDemand = BANKGRAIN;
 			}
 			
 		}else if([clicked.name isEqualToString:@"wool"]){
 			
 			if(self.player.wool >= 4){
 				if(self.side == OFFERSIDE){
-					self.selectionOffer = WOOL;
+					self.selectionOffer = BANKWOOL;
 				}
 			}
 			if(self.side == DEMANDSIDE){
-				self.selectionDemand = WOOL;
+				self.selectionDemand = BANKWOOL;
 			}
 			
 		}else if([clicked.name isEqualToString:@"brick"]){
 			
 			if(self.player.brick >= 4){
 				if(self.side == OFFERSIDE){
-					self.selectionOffer = BRICK;
+					self.selectionOffer = BANKBRICK;
 				}
 			}
 			if(self.side == DEMANDSIDE){
-				self.selectionDemand = BRICK;
+				self.selectionDemand = BANKBRICK;
 			}
 		}else if([clicked.name isEqualToString:@"trade"]){
 			if(self.selectionDemand != 0 && self.selectionOffer != 0){
-				if(self.selectionOffer == BRICK){
+				if(self.selectionOffer == BANKBRICK){
 					self.player.brick-=4;
-				}else if(self.selectionOffer == GRAIN){
+				}else if(self.selectionOffer == BANKGRAIN){
 					self.player.grain-=4;
-				}else if(self.selectionOffer == ORE){
+				}else if(self.selectionOffer == BANKORE){
 					self.player.ore-=4;
-				}else if(self.selectionOffer == WOOL){
+				}else if(self.selectionOffer == BANKWOOL){
 					self.player.wool-=4;
-				}else if(self.selectionOffer == LUMBER){
+				}else if(self.selectionOffer == BANKLUMBER){
 					self.player.lumber-=4;
 				}
 				
-				if(self.selectionDemand == BRICK){
+				if(self.selectionDemand == BANKBRICK){
 					self.player.brick++;
-				}else if(self.selectionDemand == GRAIN){
+				}else if(self.selectionDemand == BANKGRAIN){
 					self.player.grain++;
-				}else if(self.selectionDemand == ORE){
+				}else if(self.selectionDemand == BANKORE){
 					self.player.ore++;
-				}else if(self.selectionDemand == WOOL){
+				}else if(self.selectionDemand == BANKWOOL){
 					self.player.wool++;
-				}else if(self.selectionDemand == LUMBER){
+				}else if(self.selectionDemand == BANKLUMBER){
 					self.player.lumber++;
 				}
 				[self updateView];
@@ -247,43 +247,43 @@
 	self.lumberQuantity.text = [NSString stringWithFormat:@"%d", self.player.lumber];
 	self.woolQuantity.text = [NSString stringWithFormat:@"%d", self.player.wool];
 	
-	if(self.selectionOffer == BRICK && self.player.brick < 4){
-		[self setOfferTo:BRICK];
-	}else if(self.selectionOffer == ORE && self.player.ore < 4){
-		[self setOfferTo:ORE];
-	}else if(self.selectionOffer == GRAIN && self.player.grain < 4){
-		[self setOfferTo:GRAIN];
-	}else if(self.selectionOffer == WOOL && self.player.wool < 4){
-		[self setOfferTo:WOOL];
-	}else if(self.selectionOffer == LUMBER && self.player.lumber < 4){
-		[self setOfferTo:LUMBER];
+	if(self.selectionOffer == BANKBRICK && self.player.brick < 4){
+		[self setOfferTo:BANKBRICK];
+	}else if(self.selectionOffer == BANKORE && self.player.ore < 4){
+		[self setOfferTo:BANKORE];
+	}else if(self.selectionOffer == BANKGRAIN && self.player.grain < 4){
+		[self setOfferTo:BANKGRAIN];
+	}else if(self.selectionOffer == BANKWOOL && self.player.wool < 4){
+		[self setOfferTo:BANKWOOL];
+	}else if(self.selectionOffer == BANKLUMBER && self.player.lumber < 4){
+		[self setOfferTo:BANKLUMBER];
 	}
 
 }
 
--(void) setOfferTo:(Selection) selection{
+-(void) setOfferTo:(BankSelection) selection{
 	for(SKSpriteNode * child in self.myOffer.children){
-		if(selection == BRICK){
+		if(selection == BANKBRICK){
 			child.texture = [SKTexture textureWithImageNamed:@"brick"];
 			child.size = child.texture.size;
 			child.xScale = 0.1;
 			child.yScale = 0.1;
-		}else if(selection == ORE){
+		}else if(selection == BANKORE){
 			child.texture = [SKTexture textureWithImageNamed:@"ore"];
 			child.size = child.texture.size;
 			child.xScale = 0.1;
 			child.yScale = 0.1;
-		}else if(selection == WOOL){
+		}else if(selection == BANKWOOL){
 			child.texture = [SKTexture textureWithImageNamed:@"wool"];
 			child.size = child.texture.size;
 			child.xScale = 0.1;
 			child.yScale = 0.1;
-		}else if(selection == GRAIN){
+		}else if(selection == BANKGRAIN){
 			child.texture = [SKTexture textureWithImageNamed:@"grain"];
 			child.size = child.texture.size;
 			child.xScale = 0.1;
 			child.yScale = 0.1;
-		}else if(selection == LUMBER){
+		}else if(selection == BANKLUMBER){
 			child.texture = [SKTexture textureWithImageNamed:@"lumber"];
 			child.size = child.texture.size;
 			child.xScale = 0.1;

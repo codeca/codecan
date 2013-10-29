@@ -200,7 +200,22 @@
 							self.game.phase = INITIALIZATIONCITY;
 							self.game.endInitialization = YES;
 						}
-						else{
+						
+						else if (self.game.currentPlayer == self.game.players.firstObject && self.game.currentPlayer.points == 2){
+							
+							self.game.phase = RESOURCES;
+							if(self.game.turn ==1){
+								for(int i=2; i<13; i++)
+									for(HexagonNode *hex in self.game.table.hexes)
+										[hex giveResourceForDices:i];
+								self.game.turn++;
+								self.resourcesLabel.text = self.resourcesLabel.text =[NSString stringWithFormat:@"Lumber=%d Brick=%d Ore=%d Wool=%d Grain=%d",self.game.me.lumber,self.game.me.brick,self.game.me.ore,self.game.me.wool,self.game.me.grain] ;
+							}
+							
+						}
+						
+						else {
+							
 							self.game.phase = INITIALIZATIONWAIT;
 						}
 						
@@ -365,12 +380,15 @@
 		case INITIALIZATIONCITY:
 			
 			break;
+			
 		case INITIALIZATIONROAD:
 			
 			break;
+			
 		case INITIALIZATIONWAIT:
 			
 			break;
+			
 		case RESOURCES:
 			if(!self.game.diceWasRolled){
 				NSInteger diceValue = arc4random_uniform(6)+arc4random_uniform(6)+2;
@@ -563,7 +581,43 @@
 			NSInteger cityAtIndex = [(NSNumber*)[build objectForKey:@"city"] integerValue];
 
 			if(roadAtIndex>=0){
+				
 				[(EdgeNode*)[self.game.table.edges objectAtIndex:roadAtIndex] receiveOwner: self.game.currentPlayer];
+				
+				if (self.game.phase == INITIALIZATIONWAIT) {
+					
+					if (self.game.currentPlayer != self.game.players.lastObject && self.game.currentPlayer.points == 1) {
+						
+						self.game.currentPlayer = [self.game.players objectAtIndex:([self.game.players indexOfObject:self.game.currentPlayer]+1)];
+						
+						if (self.game.currentPlayer == self.game.me) {
+							
+							self.game.phase = INITIALIZATIONCITY;
+							
+						}
+						
+					}
+					
+					else if (self.game.currentPlayer != self.game.players.firstObject && self.game.currentPlayer.points == 2){
+						
+						self.game.currentPlayer = [self.game.players objectAtIndex:([self.game.players indexOfObject:self.game.currentPlayer]-1)];
+						
+						if (self.game.currentPlayer == self.game.me) {
+							
+							self.game.phase = INITIALIZATIONCITY;
+							
+						}
+						
+					}
+					
+					else if (self.game.currentPlayer == self.game.players.firstObject && self.game.currentPlayer.points == 2){
+						
+						self.game.phase = WAITTURN;
+						
+					}
+					
+				}
+				
 			}else{
 			
 				VertexNode *city = [self.game.table.vertexes objectAtIndex:cityAtIndex];

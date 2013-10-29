@@ -26,6 +26,7 @@
 	
 	if(self.owner==nil){
 		self.owner = player;
+		self.owner.points++;
 		self.type =  VILLAGE;
 		self.color = self.owner.color;
 		self.colorBlendFactor = 1.0;
@@ -40,6 +41,7 @@
 -(void)becomeCity{
 	
 	self.type = CITY;
+	self.owner.points++;
 	
 	self.texture = [SKTexture textureWithImageNamed:@"city"];
 	self.size = self.texture.size;

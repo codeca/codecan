@@ -47,7 +47,7 @@
 		self.phase = INITIALIZATIONCITY;
 		self.endInitialization = NO;
 	}else{
-		self.phase = WAITTURN;
+		self.phase = INITIALIZATIONWAIT;
 	}
 	
 	

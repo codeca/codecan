@@ -284,7 +284,7 @@
 					
 				}
 				else if(![clicked.name compare:@"pass"]){
-					[self.plug sendMessage:MSG_EOT data:nil];
+					[self.plug sendMessage:MSG_EOT data:@[]];
 					self.game.phase = WAITTURN;
 				}else if(![clicked.name compare:@"road"]){
 				

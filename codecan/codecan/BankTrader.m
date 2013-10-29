@@ -99,40 +99,40 @@
 		
 		self.woolQuantity = [SKLabelNode labelNodeWithFontNamed:@"ChalkDuster"];
 		self.woolQuantity.name = @"woolquantity";
-		self.woolQuantity.color = [SKColor blackColor];
-		self.woolQuantity.position = CGPointMake(self.options.size.width*2/6, -20);
+		self.woolQuantity.fontColor = [SKColor blackColor];
+		self.woolQuantity.position = CGPointMake(self.options.size.width*2/6, -40);
 		[self.options addChild:self.woolQuantity];
 		
 		self.brickQuantity = [SKLabelNode labelNodeWithFontNamed:@"ChalkDuster"];
 		self.brickQuantity.name = @"woolquantity";
-		self.brickQuantity.color = [SKColor blackColor];
-		self.brickQuantity.position = CGPointMake(0, -20);
+		self.brickQuantity.fontColor = [SKColor blackColor];
+		self.brickQuantity.position = CGPointMake(0, -40);
 		[self.options addChild:self.brickQuantity];
 		
 		self.lumberQuantity = [SKLabelNode labelNodeWithFontNamed:@"ChalkDuster"];
 		self.lumberQuantity.name = @"woolquantity";
-		self.lumberQuantity.color = [SKColor blackColor];
-		self.lumberQuantity.position = CGPointMake(-self.options.size.width*2/6, -20);
+		self.lumberQuantity.fontColor = [SKColor blackColor];
+		self.lumberQuantity.position = CGPointMake(-self.options.size.width*2/6, -40);
 		[self.options addChild:self.lumberQuantity];
 		
 		self.oreQuantity = [SKLabelNode labelNodeWithFontNamed:@"ChalkDuster"];
 		self.oreQuantity.name = @"woolquantity";
-		self.oreQuantity.color = [SKColor blackColor];
-		self.oreQuantity.position = CGPointMake(-self.options.size.width/6, -20);
+		self.oreQuantity.fontColor = [SKColor blackColor];
+		self.oreQuantity.position = CGPointMake(-self.options.size.width/6, -40);
 		[self.options addChild:self.oreQuantity];
 		
 		self.grainQuantity = [SKLabelNode labelNodeWithFontNamed:@"ChalkDuster"];
 		self.grainQuantity.name = @"woolquantity";
-		self.grainImage.color = [SKColor blackColor];
-		self.grainQuantity.position = CGPointMake(self.options.size.width/6, -20);
+		self.grainQuantity.fontColor = [SKColor blackColor];
+		self.grainQuantity.position = CGPointMake(self.options.size.width/6, -40);
 		[self.options addChild:self.grainQuantity];
 		
 		self.tradeButton = [SKLabelNode labelNodeWithFontNamed:@"ChalkDuster"];
 		self.tradeButton.name = @"trade";
 		self.tradeButton.fontSize = 30;
-		self.tradeButton.color = [SKColor blackColor];
+		self.tradeButton.fontColor = [SKColor blackColor];
 		self.tradeButton.text = @"Trade";
-		self.tradeButton.position = CGPointMake(0, -40);
+		self.tradeButton.position = CGPointMake(0, -10);
 		[self addChild:self.tradeButton];
 	}
 	return self;
@@ -240,7 +240,7 @@
 				[self updateView];
 			}
 		}
-		
+		[self updateView];
 		
 	}
 }
@@ -302,6 +302,7 @@
 
 	self.player = player;
 	[scene addChild:self];
+	[self updateView];
 	
 }
 

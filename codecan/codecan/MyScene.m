@@ -464,10 +464,21 @@
 			
 			break;
 			
-		case EOT:
+		case EOT:{
+			
+			NSUInteger index = [self.game.players indexOfObject:self.game.currentPlayer];
+			if(index == self.game.players.count-1){
+				index = 0;
+				self.game.turn ++;
+			}
+			else{
+				index++;
+			}
+			
+			self.game.currentPlayer = [self.game.players objectAtIndex:index];
 			
 			break;
-			
+		}
 		case WAITTURN:
 			{
 				if(self.game.turn ==1){
@@ -480,19 +491,16 @@
 				
 				
 				self.game.diceWasRolled = NO;
-				NSUInteger index = [self.game.players indexOfObject:self.game.currentPlayer];
-				if(index == self.game.players.count-1){
-					index = 0;
-					self.game.turn ++;
-				}
-				else
-					index++;
-			
-			//	self.game.phase = RESOURCES;
 			}
 			break;
 	}
 	
+}
+
+-(void) broadcastVillage:(NSNumber*) village{
+	//parei aqui
+			//NSDictionary * broadcast = []
+
 }
 
 

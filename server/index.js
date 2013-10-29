@@ -7,6 +7,7 @@ require("./setIp.js")
 // Store player in the matching room
 var playersWaiting3 = []
 var playersWaiting4 = []
+var playersWaiting1 = []
 
 // Message type constants
 var MSG_MATCH = -4
@@ -55,12 +56,24 @@ function matchPlayers(newPlayer) {
 		playersWaiting3.push(newPlayer)
 		if (playersWaiting3.length == 3) {
 			// Match with 3 found
+            console.log("want 3 received")
 			createRoom(playersWaiting3)
 			playersWaiting4 = getDifference(playersWaiting4, playersWaiting3)
 			playersWaiting3 = []
 			return
 		}
 	}
+    
+    if(newPlayer.want1){
+        playersWaiting1.push(newPlayer)
+		if (playersWaiting1.length == 1) {
+			// Match with 3 found
+            console.log("want 1 player received")
+			createRoom(playersWaiting1)
+			playersWaiting1 = []
+			return
+		}
+    }
 }
 
 // Send the given message to all the players in the array
@@ -102,6 +115,7 @@ function onmessage(type, data) {
 		// Add the current player to the matching list
 		this.want3 = Boolean(data.want3)
 		this.want4 = Boolean(data.want4)
+        this.want1 = Boolean(data.want1)
 		this.name = String(data.name)
 		this.id = String(data.id)
 		matchPlayers(this)
@@ -119,6 +133,7 @@ function onclose() {
 		// Remove from the queue
 		removeFromArray(playersWaiting3, this)
 		removeFromArray(playersWaiting4, this)
+        removeFromArray(playersWaiting1, this)
 		informMatchingProgress()
 	}
 }

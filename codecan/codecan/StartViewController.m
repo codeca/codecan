@@ -15,7 +15,8 @@
 typedef enum {
 	WAITING_3 = 0,
 	WAITING_4,
-	WAITING_3_4
+	WAITING_3_4,
+	WAITING_DEBUG
 }waitingFor;
 
 @property (nonatomic, strong) Plug* plug;
@@ -39,6 +40,14 @@ typedef enum {
 	
 }
 
+- (IBAction)debug1Player:(id)sender {
+	
+	NSDictionary *serverData = [NSDictionary dictionaryWithObjects:@[@0, @0, @1, self.name.text, self.myId] forKeys:@[@"want3", @"want4",@"want1", @"name", @"id"]];
+	
+	self.waiting = WAITING_DEBUG;
+	[self.plug sendMessage:MSG_MATCH data:serverData];
+	
+}
 
 - (IBAction)startWith4Players:(id)sender {
 	NSDictionary *serverData = [NSDictionary dictionaryWithObjects:@[@0, @1, self.name.text, self.myId] forKeys:@[@"want3", @"want4", @"name", @"id"]];

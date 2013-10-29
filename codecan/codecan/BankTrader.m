@@ -86,6 +86,31 @@
 		self.woolImage.position = CGPointMake(self.options.size.width*2/6, 0);
 		[self.options addChild:self.woolImage];
 		
+		self.woolQuantity = [SKLabelNode labelNodeWithFontNamed:@"ChalkDuster"];
+		self.woolQuantity.name = @"woolquantity";
+		self.woolQuantity.position = CGPointMake(self.options.size.width*2/6, -20);
+		[self.options addChild:self.woolQuantity];
+		
+		self.brickQuantity = [SKLabelNode labelNodeWithFontNamed:@"ChalkDuster"];
+		self.brickQuantity.name = @"woolquantity";
+		self.brickQuantity.position = CGPointMake(0, -20);
+		[self.options addChild:self.brickQuantity];
+		
+		self.lumberQuantity = [SKLabelNode labelNodeWithFontNamed:@"ChalkDuster"];
+		self.lumberQuantity.name = @"woolquantity";
+		self.lumberQuantity.position = CGPointMake(-self.options.size.width*2/6, -20);
+		[self.options addChild:self.lumberQuantity];
+		
+		self.oreQuantity = [SKLabelNode labelNodeWithFontNamed:@"ChalkDuster"];
+		self.oreQuantity.name = @"woolquantity";
+		self.oreQuantity.position = CGPointMake(-self.options.size.width/6, -20);
+		[self.options addChild:self.oreQuantity];
+		
+		self.grainQuantity = [SKLabelNode labelNodeWithFontNamed:@"ChalkDuster"];
+		self.grainQuantity.name = @"woolquantity";
+		self.grainQuantity.position = CGPointMake(self.options.size.width/6, -20);
+		[self.options addChild:self.grainQuantity];
+		
 		
 	}
 	return self;
@@ -114,9 +139,15 @@
 		}
 		
 	}
-	
-	
+}
+
+-(void)bankTraderForPlayer:(Player *)player andScene:(SKScene *)scene{
+
+	self.player = player;
+	[scene addChild:self];
 	
 }
+
+
 
 @end

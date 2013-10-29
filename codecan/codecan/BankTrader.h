@@ -7,6 +7,7 @@
 //
 
 #import <SpriteKit/SpriteKit.h>
+#import "Player.h"
 
 typedef enum{
 
@@ -29,10 +30,17 @@ typedef enum{
 @property (nonatomic, strong) SKSpriteNode * woolImage;
 @property (nonatomic, strong) SKSpriteNode * options;
 
+@property (nonatomic, strong) SKLabelNode * lumberQuantity;
+@property (nonatomic, strong) SKLabelNode * brickQuantity;
+@property (nonatomic, strong) SKLabelNode * oreQuantity;
+@property (nonatomic, strong) SKLabelNode * grainQuantity;
+@property (nonatomic, strong) SKLabelNode * woolQuantity;
+
+@property (nonatomic, weak) Player * player;
 
 @property (nonatomic) SideSelector side;
 
-
+-(void) bankTraderForPlayer:(Player*) player andScene:(SKScene*) scene;
 
 
 @end

@@ -15,6 +15,8 @@
 -(void) selectItem:(SKNode*) item;
 -(void) stopAnimationsInView:(SKNode *) parent;
 
+@property (nonatomic, strong)SKLabelNode *yourTurn;
+
 @end
 
 @implementation MyScene
@@ -50,6 +52,14 @@
 		self.resourcesLabel.position = CGPointMake(0, self.size.height*9/10);
 		self.resourcesLabel.fontSize = 20;
 		self.resourcesLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeLeft;
+	
+		
+		self.yourTurn = [SKLabelNode labelNodeWithFontNamed:@"ChalkDuster"];
+		self.yourTurn.text = @"Your Turn!";
+		self.yourTurn.position = CGPointMake(650, 900);
+		self.yourTurn.fontSize = 20;
+
+		
 		
 		[self addChild:self.resourcesLabel];
         [self addChild:self.map];
@@ -390,6 +400,16 @@
 
 -(void)update:(CFTimeInterval)currentTime {
     /* Called before each frame is rendered */
+	
+	
+	
+	if(self.game.currentPlayer == self.game.me && self.yourTurn.parent == nil){
+		[self addChild:self.yourTurn];
+	}
+	else  if(self.game.currentPlayer != self.game.me){
+		[self.yourTurn removeFromParent];
+	}
+	
 	
 	switch (self.game.phase){
 		case INITIALIZATIONCITY:

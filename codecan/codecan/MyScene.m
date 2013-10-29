@@ -186,6 +186,7 @@
 				break;
 				
 			case INITIALIZATIONROAD:
+				
 				if(clicked.class == EdgeNode.class){
 					EdgeNode* edge = (EdgeNode*)clicked;
 					bool canConstruct= NO;
@@ -215,6 +216,20 @@
 						}
 						
 						else {
+							
+							if (self.game.currentPlayer != self.game.players.lastObject && self.game.currentPlayer.points == 1) {
+								
+								self.game.currentPlayer = [self.game.players objectAtIndex:([self.game.players indexOfObject:self.game.currentPlayer]+1)];
+								
+								
+							}
+							
+							else if (self.game.currentPlayer != self.game.players.firstObject && self.game.currentPlayer.points == 2){
+								
+								self.game.currentPlayer = [self.game.players objectAtIndex:([self.game.players indexOfObject:self.game.currentPlayer]-1)];
+								
+								
+							}
 							
 							self.game.phase = INITIALIZATIONWAIT;
 						}

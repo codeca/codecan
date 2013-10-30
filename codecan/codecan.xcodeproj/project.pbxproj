@@ -47,6 +47,7 @@
 		98DF30881811B0410092E8A7 /* Plug.m in Sources */ = {isa = PBXBuildFile; fileRef = 98DF30871811B0410092E8A7 /* Plug.m */; };
 		98DF308B1811B0D10092E8A7 /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 98DF308A1811B0D10092E8A7 /* TestViewController.m */; };
 		C4059D5B18212C3A00A4FE37 /* ThiefDiscardScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = C4059D5A18212C3A00A4FE37 /* ThiefDiscardScreen.m */; };
+		C4059D5E18216F1F00A4FE37 /* DevelopmentCards.m in Sources */ = {isa = PBXBuildFile; fileRef = C4059D5D18216F1F00A4FE37 /* DevelopmentCards.m */; };
 		C4099745181EBBD800E60154 /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = C409973F181EBBD800E60154 /* arrow.png */; };
 		C4099746181EBBD800E60154 /* brick.png in Resources */ = {isa = PBXBuildFile; fileRef = C4099740181EBBD800E60154 /* brick.png */; };
 		C4099747181EBBD800E60154 /* grain.png in Resources */ = {isa = PBXBuildFile; fileRef = C4099741181EBBD800E60154 /* grain.png */; };
@@ -130,6 +131,8 @@
 		98DF308A1811B0D10092E8A7 /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
 		C4059D5918212C3A00A4FE37 /* ThiefDiscardScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThiefDiscardScreen.h; sourceTree = "<group>"; };
 		C4059D5A18212C3A00A4FE37 /* ThiefDiscardScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThiefDiscardScreen.m; sourceTree = "<group>"; };
+		C4059D5C18216F1F00A4FE37 /* DevelopmentCards.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DevelopmentCards.h; sourceTree = "<group>"; };
+		C4059D5D18216F1F00A4FE37 /* DevelopmentCards.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DevelopmentCards.m; sourceTree = "<group>"; };
 		C409973F181EBBD800E60154 /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = arrow.png; path = Images/arrow.png; sourceTree = "<group>"; };
 		C4099740181EBBD800E60154 /* brick.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = brick.png; path = Images/brick.png; sourceTree = "<group>"; };
 		C4099741181EBBD800E60154 /* grain.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = grain.png; path = Images/grain.png; sourceTree = "<group>"; };
@@ -280,6 +283,8 @@
 				8159F070182115FD00D1570B /* PortTrader.m */,
 				C4059D5918212C3A00A4FE37 /* ThiefDiscardScreen.h */,
 				C4059D5A18212C3A00A4FE37 /* ThiefDiscardScreen.m */,
+				C4059D5C18216F1F00A4FE37 /* DevelopmentCards.h */,
+				C4059D5D18216F1F00A4FE37 /* DevelopmentCards.m */,
 			);
 			name = Nodes;
 			sourceTree = "<group>";
@@ -502,6 +507,7 @@
 				C4A8D8B41817E2560043AA4B /* FileReader.m in Sources */,
 				98B4D25D180EFB7900537145 /* main.m in Sources */,
 				81E352DB18168FAA00FD7323 /* HexagonNode.m in Sources */,
+				C4059D5E18216F1F00A4FE37 /* DevelopmentCards.m in Sources */,
 				81E352E718184D1700FD7323 /* Player.m in Sources */,
 				0BE9470E1816B52300379436 /* VertexNode.m in Sources */,
 			);

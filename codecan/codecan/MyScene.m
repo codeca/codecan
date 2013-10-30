@@ -489,7 +489,9 @@
 			// wait the current player to chose another hexagon to place the thief
 			
 			if(self.game.table.thiefHasBeenMoved){
-				
+				if(self.thiefScreen.parent == nil){
+					[self buildThiefInterface];
+				}
 				if(self.playersDiscardedForThief == self.game.players.count){
 					self.game.phase = RUNNING;
 					self.game.table.thiefHasBeenMoved = NO;
@@ -723,7 +725,7 @@
 				self.thief.position = self.game.table.thief.position;
 			
 				if(discard){
-					NSLog(@"descartar aqui");
+					[self buildThiefInterface];
 				}
 				
 			}

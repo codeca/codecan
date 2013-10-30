@@ -216,6 +216,8 @@
 	
 	self.discard = [self discardCountForPlayer:player];
 	
+	self.discardList = [[NSMutableArray alloc] init];
+	
 	[self.selections removeAllChildren];
 	
 	for(int i = 0; i < [self discardCountForPlayer:player]; i++){

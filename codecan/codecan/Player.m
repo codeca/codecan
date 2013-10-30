@@ -47,6 +47,8 @@
 
 -(BOOL)didPlayerWin {
 	
+	//Precisa adicionar as cartas de desenvolvimento aqui para ver se tudo funciona
+	
 	if (self.points <= 10) {
 		return 1;
 	}

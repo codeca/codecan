@@ -754,7 +754,55 @@
 			}
 			
 			break;
+
 		}
+			
+			
+		case MSG_HAND_CHANGED:
+		{
+			NSDictionary* changes = data;
+			
+			Player * changed = self.game.players[[[data valueForKey:@"player"] integerValue]];
+			
+			NSArray* added = [data valueForKey:@"add"];
+			
+			NSArray* removed = [data valueForKey:@"remove"];
+			
+			
+			for(NSString* resource in added){
+				if(![resource compare:@"wool"]){
+					changed.wool++;
+				}else if(![resource compare:@"grain"]){
+					changed.grain++;
+				}else if(![resource compare:@"brick"]){
+					changed.brick++;
+				}else if(![resource compare:@"ore"]){
+					changed.ore++;
+				}else if(![resource compare:@"lumber"]){
+					changed.lumber++;
+				}
+				
+			}
+			
+			for(NSString* resource in removed){
+				if(![resource compare:@"wool"]){
+					changed.wool--;
+				}else if(![resource compare:@"grain"]){
+					changed.grain--;
+				}else if(![resource compare:@"brick"]){
+					changed.brick--;
+				}else if(![resource compare:@"ore"]){
+					changed.ore--;
+				}else if(![resource compare:@"lumber"]){
+					changed.lumber--;
+				}
+				
+			}
+			
+			
+			
+		}
+			break;
 			
 	}
 	
@@ -771,6 +819,21 @@
 	
 	
 }
+
+
+//Array com strings dos resources!!!!
+-(void)broadcastResourcesChangeForPlayer: (Player*) player add:(NSArray*)addResources remove:(NSArray*)removeResources{
+	NSDictionary * data;
+	NSNumber* indexPlayer = [NSNumber numberWithInt:[self.game.players indexOfObject:player]];
+	
+	
+	data = [NSDictionary dictionaryWithObjects:@[indexPlayer, addResources, removeResources] forKeys:@[@"player", @"add", @"remove"]];
+	
+	
+	[self.plug sendMessage:MSG_HAND_CHANGED data:data];
+	
+}
+
 
 #pragma mark - temporary
 -(void) tempRes{

@@ -15,6 +15,7 @@
 #import "BankTrader.h"
 #import "Plug.h"
 #import "PortTrader.h"
+#import "ThiefDiscardScreen.h"
 
 typedef enum{
 	
@@ -36,6 +37,7 @@ typedef enum{
 @property (nonatomic, strong) SKLabelNode * resourcesLabel;
 @property (nonatomic, strong) BankTrader * bankTrader;
 @property (nonatomic, strong) PortTrader * portTrader;
+@property (nonatomic,strong)ThiefDiscardScreen * thiefScreen;
 @property (nonatomic, strong) Plug * plug;
 
 @property (nonatomic, strong) Game * game;

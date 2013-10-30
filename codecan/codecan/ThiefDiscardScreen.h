@@ -46,7 +46,7 @@ typedef enum{
 @property (nonatomic) NSInteger discard;
 
 
--(id)initInterfaceForPlayer:(Player *) player;
+-(void) discardScreenForPlayer:(Player*) player;
 
 
 

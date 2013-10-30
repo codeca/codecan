@@ -652,6 +652,18 @@
 	
 }
 
+- (void) buildThiefInterface{
+	
+	if(!self.thiefScreen){
+		self.thiefScreen = [[ThiefDiscardScreen alloc] init];
+		self.thiefScreen.position = CGPointMake(self.size.width/2, self.size.height/2);
+	}
+	
+	[self.thiefScreen discardScreenForPlayer:self.game.currentPlayer];
+	
+	
+}
+
 -(Player *) nextPlayer{
 	
 	NSInteger index = [self.game.players indexOfObject:self.game.currentPlayer];
@@ -694,7 +706,7 @@
 		case MSG_ROBBER:
 			{
 				
-			NSDictionary* robberData = data;
+				NSDictionary* robberData = data;
 				NSInteger hexTo= [(NSNumber*)[robberData objectForKey:@"hexTo"] integerValue];
 				BOOL discard = [[robberData objectForKey:@"discard"] boolValue];
 			

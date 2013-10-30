@@ -269,31 +269,32 @@
 				break;
 				
 			case ROBBER:
-				if(clicked.class == HexagonNode.class){
-					
-					HexagonNode * hex = (HexagonNode*) clicked;
-					
-					[self.game.table moveThiefToHexagon:hex];
-					self.thief.position = self.game.table.thief.position;
-					NSLog(@"click no hexagono BITCH!");
-					
-				}else if(clicked.class == SKLabelNode.class){
-					SKLabelNode * label = (SKLabelNode*) clicked;
-					if(label.parent.class==HexagonNode.class){
-						[self.game.table moveThiefToHexagon:(HexagonNode*)label.parent];
+				if(!self.game.table.thiefHasBeenMoved){
+					if(clicked.class == HexagonNode.class){
+						
+						HexagonNode * hex = (HexagonNode*) clicked;
+						
+						[self.game.table moveThiefToHexagon:hex];
 						self.thief.position = self.game.table.thief.position;
+						
+					}else if(clicked.class == SKLabelNode.class){
+						SKLabelNode * label = (SKLabelNode*) clicked;
+						if(label.parent.class==HexagonNode.class){
+							[self.game.table moveThiefToHexagon:(HexagonNode*)label.parent];
+							self.thief.position = self.game.table.thief.position;
+						}
 					}
-				}
-				
-			
-				{
 					
-				NSNumber* hexTo = [NSNumber numberWithInt:[self.game.table.hexes indexOfObject:self.game.table.thief]];
 				
-				NSDictionary  * robberDictionary = [NSDictionary dictionaryWithObjects:@[@YES, hexTo] forKeys:@[@"discard", @"hexTo"]];
-				
-				[self.plug sendMessage:MSG_ROBBER data:robberDictionary];
+					{
+						
+					NSNumber* hexTo = [NSNumber numberWithInt:[self.game.table.hexes indexOfObject:self.game.table.thief]];
 					
+					NSDictionary  * robberDictionary = [NSDictionary dictionaryWithObjects:@[@YES, hexTo] forKeys:@[@"discard", @"hexTo"]];
+					
+					[self.plug sendMessage:MSG_ROBBER data:robberDictionary];
+						
+					}
 				}
 				break;
 				
@@ -467,8 +468,11 @@
 				
 				if(diceValue == 7){
 					self.game.phase=ROBBER;
+					self.playersDiscardedForThief = 0;
 					break;
 				}
+				
+				
 				for(HexagonNode * hex in self.game.table.hexes){
 					if(hex!=self.game.table.thief)
 						[hex giveResourceForDices:diceValue];
@@ -485,8 +489,12 @@
 			// wait the current player to chose another hexagon to place the thief
 			
 			if(self.game.table.thiefHasBeenMoved){
-				self.game.phase = RUNNING;
-				self.game.table.thiefHasBeenMoved = NO;
+				
+				if(self.playersDiscardedForThief == self.game.players.count){
+					self.game.phase = RUNNING;
+					self.game.table.thiefHasBeenMoved = NO;
+					self.playersDiscardedForThief = 0;
+				}
 			}
 			
 			break;

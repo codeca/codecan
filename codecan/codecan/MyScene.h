@@ -39,6 +39,7 @@ typedef enum{
 @property (nonatomic, strong) PortTrader * portTrader;
 @property (nonatomic,strong)ThiefDiscardScreen * thiefScreen;
 @property (nonatomic, strong) Plug * plug;
+@property (nonatomic) NSInteger playersDiscardedForThief;
 
 @property (nonatomic, strong) Game * game;
 @property (nonatomic) Selection selection;

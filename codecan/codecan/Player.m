@@ -12,7 +12,7 @@
 
 
 
--(void)removeRandomResource{
+-(NSString*)removeRandomResource{
 	
 	NSMutableArray *resource;
 	
@@ -41,5 +41,7 @@
 	else if(![lose compare:@"brick"])
 		self.brick--;
 
+	return lose;
+	
 }
 @end

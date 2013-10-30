@@ -26,6 +26,6 @@
 @property(nonatomic, strong) NSMutableArray* cards;
 
 
--(void) removeRandomResource;
+-(NSString*) removeRandomResource;
 
 @end

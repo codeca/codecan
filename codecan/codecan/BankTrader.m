@@ -8,6 +8,12 @@
 
 #import "BankTrader.h"
 
+@interface BankTrader()
+
+
+
+@end
+
 @implementation BankTrader
 
 
@@ -254,15 +260,15 @@
 	self.woolQuantity.text = [NSString stringWithFormat:@"%d", self.player.wool];
 	
 	if(self.selectionOffer == BANKBRICK && self.player.brick < 4){
-		[self setOfferTo:BANKBRICK];
+		[self setOfferTo:BANKBLANK];
 	}else if(self.selectionOffer == BANKORE && self.player.ore < 4){
-		[self setOfferTo:BANKORE];
+		[self setOfferTo:BANKBLANK];
 	}else if(self.selectionOffer == BANKGRAIN && self.player.grain < 4){
-		[self setOfferTo:BANKGRAIN];
+		[self setOfferTo:BANKBLANK];
 	}else if(self.selectionOffer == BANKWOOL && self.player.wool < 4){
-		[self setOfferTo:BANKWOOL];
+		[self setOfferTo:BANKBLANK];
 	}else if(self.selectionOffer == BANKLUMBER && self.player.lumber < 4){
-		[self setOfferTo:BANKLUMBER];
+		[self setOfferTo:BANKBLANK];
 	}
 
 }
@@ -294,6 +300,8 @@
 			child.size = child.texture.size;
 			child.xScale = 0.1;
 			child.yScale = 0.1;
+		}else if(selection == BANKBLANK){
+			child.texture = nil;
 		}
 	}
 }

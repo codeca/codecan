@@ -328,6 +328,8 @@
 					
 				}else if(![clicked.name compare:@"bank"]){
 					[self buildBankTraderInterface];
+				}else if(![clicked.name compare:@"port"]){
+					[self buildPortTraderInterface];
 				}
 				
 				if(clicked.class == EdgeNode.class && self.selection==ROADSEL && self.game.currentPlayer.lumber>0 && self.game.currentPlayer.brick>0){
@@ -497,10 +499,15 @@
 	
 }
 
--(void) broadcastVillage:(NSNumber*) village{
-	//parei aqui
-			//NSDictionary * broadcast = []
-
+-(void) broadcastBuilding:(NSInteger) building andRoad:(NSInteger) road{
+	
+	NSNumber *roadNumber = [NSNumber numberWithInt:road];
+	
+	NSNumber *buildingNumber = [NSNumber numberWithInt:building];
+	
+	NSDictionary *data = [NSDictionary dictionaryWithObjects:@[roadNumber, buildingNumber] forKeys:@[@"road", @"city"]];
+	
+	[self.plug sendMessage:MSG_BUILD data:data];
 }
 
 
@@ -587,6 +594,18 @@
 	}
 	
 	[self.bankTrader bankTraderForPlayer:self.game.currentPlayer andScene:self];
+	
+	
+}
+
+- (void) buildPortTraderInterface{
+	
+	if(!self.portTrader){
+		self.portTrader = [[PortTrader alloc] init];
+		self.portTrader.position = CGPointMake(self.size.width/2, self.size.height/2);
+	}
+	
+	[self.portTrader portTraderForPlayer:self.game.currentPlayer andScene:self];
 	
 	
 }

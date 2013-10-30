@@ -21,7 +21,8 @@ typedef enum{
 	BANKBRICK,
 	BANKORE,
 	BANKWOOL,
-	BANKGRAIN
+	BANKGRAIN,
+	BANKBLANK
 } BankSelection;
 
 @interface BankTrader : SKNode
@@ -54,6 +55,7 @@ typedef enum{
 @property (nonatomic) BankSelection selectionDemand;
 
 -(void) bankTraderForPlayer:(Player*) player andScene:(SKScene*) scene;
+-(void) setOfferTo:(BankSelection) selection;
 
 
 @end

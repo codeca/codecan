@@ -777,6 +777,27 @@
 			NSArray* removed = [data valueForKey:@"remove"];
 			
 			
+			for(NSString* resource in removed){
+				if(![resource compare:@"wool"]){
+					changed.wool--;
+				}else if(![resource compare:@"grain"]){
+					changed.grain--;
+				}else if(![resource compare:@"brick"]){
+					changed.brick--;
+				}else if(![resource compare:@"ore"]){
+					changed.ore--;
+				}else if(![resource compare:@"lumber"]){
+					changed.lumber--;
+				}else if(![resource compare:@"all"]){
+					changed.lumber = 0;
+					changed.wool = 0;
+					changed.brick = 0;
+					changed.grain = 0;
+					changed.ore = 0;
+				}
+				
+			}
+			
 			for(NSString* resource in added){
 				if(![resource compare:@"wool"]){
 					changed.wool++;
@@ -792,20 +813,7 @@
 				
 			}
 			
-			for(NSString* resource in removed){
-				if(![resource compare:@"wool"]){
-					changed.wool--;
-				}else if(![resource compare:@"grain"]){
-					changed.grain--;
-				}else if(![resource compare:@"brick"]){
-					changed.brick--;
-				}else if(![resource compare:@"ore"]){
-					changed.ore--;
-				}else if(![resource compare:@"lumber"]){
-					changed.lumber--;
-				}
-				
-			}
+			
 			
 			
 			
@@ -830,6 +838,7 @@
 
 
 //Array com strings dos resources!!!!
+//Pode ser enviado @"all" no remove, nesse caso, tudo será removido, e o add precisará conter a mão final do player
 -(void)broadcastResourcesChangeForPlayer: (Player*) player add:(NSArray*)addResources remove:(NSArray*)removeResources{
 	NSDictionary * data;
 	NSNumber* indexPlayer = [NSNumber numberWithInt:[self.game.players indexOfObject:player]];

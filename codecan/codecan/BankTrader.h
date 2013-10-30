@@ -9,6 +9,7 @@
 #import <SpriteKit/SpriteKit.h>
 #import "Player.h"
 
+
 typedef enum{
 
 	OFFERSIDE = 1,
@@ -26,6 +27,7 @@ typedef enum{
 	
 } BankSelection;
 
+@class MyScene;
 @interface BankTrader : SKNode
 
 @property (nonatomic, strong) SKSpriteNode * back;
@@ -50,12 +52,14 @@ typedef enum{
 
 @property (nonatomic, weak) Player * player;
 
+@property (nonatomic,weak) MyScene * myScene;
+
 @property (nonatomic) SideSelector side;
 
 @property (nonatomic) BankSelection selectionOffer;
 @property (nonatomic) BankSelection selectionDemand;
 
--(void) bankTraderForPlayer:(Player*) player andScene:(SKScene*) scene;
+-(void) bankTraderForPlayer:(Player*) player andScene:(MyScene*) scene;
 -(void) setOfferTo:(BankSelection) selection;
 -(void) setDemandTo:(BankSelection) selection;
 

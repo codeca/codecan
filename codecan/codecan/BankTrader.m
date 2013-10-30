@@ -7,6 +7,7 @@
 //
 
 #import "BankTrader.h"
+#import "MyScene.h"
 
 @interface BankTrader()
 
@@ -48,6 +49,7 @@
 				SKSpriteNode * offerN = [[SKSpriteNode alloc] init];
 				offerN.name = @"myoffer";
 				offerN.position = CGPointMake(i*self.myOffer.size.width/2-self.myOffer.size.width/4, j*self.myOffer.size.height/2-self.myOffer.size.height/4);
+				offerN.size = CGSizeMake(50, 50);
 				[self.myOffer addChild:offerN];
 			}
 		}
@@ -247,7 +249,8 @@
 				}else if(self.selectionDemand == BANKLUMBER){
 					self.player.lumber++;
 				}
-				
+			
+				[self.myScene broadcastResourcesChangeForPlayer:self.player add:self.player.mountPlayerHand remove:@[@"all"]];
 			}
 		}
 		[self updateView];
@@ -297,6 +300,7 @@
 -(void) setOfferTo:(BankSelection) selection{
 	NSLog(@"SET OFFER CALLED");
 	for(SKSpriteNode * child in self.myOffer.children){
+		child.texture = nil;
 		if(child.texture == nil){
 			if(selection == BANKBRICK){
 				child.texture = [SKTexture textureWithImageNamed:@"brick"];
@@ -325,6 +329,7 @@
 				child.yScale = 0.1;
 			}else if(selection == BANKBLANK){
 				child.texture = nil;
+				child.size = CGSizeMake(0, 0);
 			}
 		}
 	}
@@ -336,27 +341,27 @@
 	if(child.texture == nil){
 		if(selection == BANKBRICK){
 			child.texture = [SKTexture textureWithImageNamed:@"brick"];
-			child.size = child.texture.size;
+			//child.size = child.texture.size;
 			child.xScale = 0.1;
 			child.yScale = 0.1;
 		}else if(selection == BANKORE){
 			child.texture = [SKTexture textureWithImageNamed:@"ore"];
-			child.size = child.texture.size;
+			//child.size = child.texture.size;
 			child.xScale = 0.1;
 			child.yScale = 0.1;
 		}else if(selection == BANKWOOL){
 			child.texture = [SKTexture textureWithImageNamed:@"wool"];
-			child.size = child.texture.size;
+			//child.size = child.texture.size;
 			child.xScale = 0.1;
 			child.yScale = 0.1;
 		}else if(selection == BANKGRAIN){
 			child.texture = [SKTexture textureWithImageNamed:@"grain"];
-			child.size = child.texture.size;
+			//child.size = child.texture.size;
 			child.xScale = 0.1;
 			child.yScale = 0.1;
 		}else if(selection == BANKLUMBER){
 			child.texture = [SKTexture textureWithImageNamed:@"lumber"];
-			child.size = child.texture.size;
+			//child.size = child.texture.size;
 			child.xScale = 0.1;
 			child.yScale = 0.1;
 		}else if(selection == BANKBLANK){
@@ -365,9 +370,10 @@
 	}
 }
 
--(void)bankTraderForPlayer:(Player *)player andScene:(SKScene *)scene{
+-(void)bankTraderForPlayer:(Player *)player andScene:(MyScene *)scene{
 
 	self.player = player;
+	self.myScene = scene;
 	[scene addChild:self];
 	self.selectionDemand = BANKBLANK;
 	self.selectionOffer = BANKBLANK;

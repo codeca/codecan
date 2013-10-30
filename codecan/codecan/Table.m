@@ -14,6 +14,8 @@
 	
 	self = [super init];
 	
+	self.deck = [[DevelopmentCards alloc] initDeck];
+	
 	self.hexes = [[NSMutableArray alloc] init];
 	self.vertexes = [[NSMutableArray alloc] init];
 	self.edges = [[NSMutableArray alloc] init];

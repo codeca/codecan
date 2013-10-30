@@ -336,9 +336,27 @@
 					
 				}else if(![clicked.name compare:@"card"]){
 					
-					self.selection = CARDSEL;
 					[self stopAnimationsInView:self.menu];
-					[self selectItem:clicked];
+					
+					if(self.game.currentPlayer.ore>0 && self.game.currentPlayer.grain>0 && self.game.currentPlayer.wool>0 && self.game.table.deck.deck.count>0){
+						
+						self.game.currentPlayer.ore--;
+						self.game.currentPlayer.grain--;
+						self.game.currentPlayer.wool--;
+					
+						NSInteger card = [self.game.table.deck getDeckCard];
+					
+						switch(card){
+							case SCORE:
+								self.game.currentPlayer.cardPoints++;
+							default:
+								[self.game.currentPlayer.cards addObject:[NSNumber numberWithInt:card]];
+						}
+					
+						
+						
+					}
+					
 					
 				}else if(![clicked.name compare:@"tradetab"]){
 					[self buildTradeInterface];

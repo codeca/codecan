@@ -22,6 +22,8 @@
 @property (nonatomic)NSInteger lumber;
 
 @property(nonatomic) NSInteger points;
+@property(nonatomic) NSInteger cardPoints;
+
 
 @property(nonatomic, strong) NSMutableArray* cards;
 

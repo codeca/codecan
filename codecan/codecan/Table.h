@@ -14,6 +14,7 @@
 #import "VertexNode.h"
 #import "EdgeNode.h"
 #import "FileReader.h"
+#import "DevelopmentCards.h"
 
 @interface Table : NSObject
 
@@ -22,6 +23,9 @@
 @property (nonatomic, strong) NSMutableArray * edges;
 @property (nonatomic, weak) HexagonNode * thief;
 @property (nonatomic, getter = hasThiefMoved) BOOL thiefHasBeenMoved;
+
+@property (nonatomic, strong) DevelopmentCards* deck;
+
 
 -(void) moveThiefToHexagon: (HexagonNode*) hex;
 

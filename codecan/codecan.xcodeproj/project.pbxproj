@@ -283,8 +283,6 @@
 				8159F070182115FD00D1570B /* PortTrader.m */,
 				C4059D5918212C3A00A4FE37 /* ThiefDiscardScreen.h */,
 				C4059D5A18212C3A00A4FE37 /* ThiefDiscardScreen.m */,
-				C4059D5C18216F1F00A4FE37 /* DevelopmentCards.h */,
-				C4059D5D18216F1F00A4FE37 /* DevelopmentCards.m */,
 			);
 			name = Nodes;
 			sourceTree = "<group>";
@@ -292,6 +290,8 @@
 		C45688971817FC8E008A0CB8 /* Mechanics */ = {
 			isa = PBXGroup;
 			children = (
+				C4059D5C18216F1F00A4FE37 /* DevelopmentCards.h */,
+				C4059D5D18216F1F00A4FE37 /* DevelopmentCards.m */,
 				81E352E518184D1700FD7323 /* Player.h */,
 				81E352E618184D1700FD7323 /* Player.m */,
 				81E352DC1816A3CD00FD7323 /* Table.h */,

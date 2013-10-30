@@ -8,6 +8,21 @@
 
 #import <SpriteKit/SpriteKit.h>
 
-@interface DevelopmentCards : SKNode
+@interface DevelopmentCards : NSObject
+
+typedef enum {
+	ARMY=0,
+	ROADS,
+	MONOPOLY,
+	YEAR_OF_PLENTY,
+	SCORE
+} cardType;
+
+@property (nonatomic, strong) NSMutableArray* deck;
+
+
+-(id)initDeck;
+
+-(NSInteger)getDeckCard;
 
 @end

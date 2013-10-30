@@ -16,6 +16,7 @@
 #import "Plug.h"
 #import "PortTrader.h"
 #import "ThiefDiscardScreen.h"
+#import "DevelopmentCards.h"
 
 typedef enum{
 	

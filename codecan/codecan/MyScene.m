@@ -798,6 +798,11 @@
 		{
 			NSDictionary* changes = data;
 			
+			self.playersDiscardedForThief++;
+
+			if(changes.count ==0)
+				break;
+			
 			Player * changed = self.game.players[[[changes valueForKey:@"player"] integerValue]];
 			
 			NSArray* added = [changes valueForKey:@"add"];
@@ -841,7 +846,6 @@
 				
 			}
 			
-			self.playersDiscardedForThief++;
 			
 		}
 			break;

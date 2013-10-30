@@ -46,4 +46,5 @@ typedef enum{
 
 
 +(instancetype)sceneWithSize:(CGSize)size andGame:(Game *) game;
+-(void)broadcastResourcesChangeForPlayer: (Player*) player add:(NSArray*)addResources remove:(NSArray*)removeResources;
 @end

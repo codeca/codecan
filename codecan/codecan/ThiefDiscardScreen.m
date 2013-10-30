@@ -28,7 +28,7 @@
 		
 		
 		self.selections = [SKSpriteNode spriteNodeWithColor:[SKColor whiteColor] size:CGSizeMake(self.background.size.width*4/5, self.background.size.height/4)];
-		self.selections.position = CGPointMake(self.background.size.width*2/7, self.background.size.height/6);
+		self.selections.position = CGPointMake(0, self.background.size.height/6);
 		self.selections.name = @"selections";
 		[self addChild:self.selections];
 		
@@ -150,7 +150,8 @@
 			}
 		}
 		if(self.discardList.count == self.discard){
-		   [self removeFromParent];
+			[self.scene broadcastResourcesChangeForPlayer:self.player add:self.player.mountPlayerHand remove:@[@"all"]];
+			[self removeFromParent];
 		}
 		[self updateView];
 		
@@ -217,6 +218,7 @@
 	}
 	
 	self.player = player;
+	self.scene = scene;
 	[self updateView];
 	
 	[scene addChild:self];

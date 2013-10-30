@@ -8,6 +8,7 @@
 
 #import <SpriteKit/SpriteKit.h>
 #import "Player.h"
+#import "MyScene.h"
 
 typedef enum{
 	
@@ -45,9 +46,11 @@ typedef enum{
 @property (nonatomic, weak) Player * player;
 @property (nonatomic) NSInteger discard;
 
+@property (nonatomic, weak) MyScene * scene;
+
 
 -(void) discardScreenForPlayer:(Player*) player andScene:(SKScene*) scene;
-
+-(NSInteger) discardCountForPlayer: (Player*) player;
 
 
 @end

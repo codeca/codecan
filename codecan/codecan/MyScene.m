@@ -669,7 +669,11 @@
 		self.thiefScreen.position = CGPointMake(self.size.width/2, self.size.height/2);
 	}
 	
-	[self.thiefScreen discardScreenForPlayer:self.game.currentPlayer andScene:self];
+	if([self.thiefScreen discardCountForPlayer:self.game.me]>=4 ){
+		[self.thiefScreen discardScreenForPlayer:self.game.me andScene:self];
+	}else{
+		[self.plug sendMessage:MSG_HAND_CHANGED data:@[]];
+	}
 	
 	
 }
@@ -725,7 +729,9 @@
 				self.thief.position = self.game.table.thief.position;
 			
 				if(discard){
-					[self buildThiefInterface];
+					if(self.thiefScreen.parent == nil){
+						[self buildThiefInterface];
+					}
 				}
 				
 			}

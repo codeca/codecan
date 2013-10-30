@@ -841,9 +841,7 @@
 				
 			}
 			
-			
-			
-			
+			self.playersDiscardedForThief++;
 			
 		}
 			break;

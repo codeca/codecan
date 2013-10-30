@@ -156,6 +156,8 @@
 
 //alterei aqui duas vezes
 
+#pragma mark - touch events
+
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     /* Called when a touch begins */
     
@@ -283,6 +285,16 @@
 					}
 				}
 				
+			
+				{
+					
+				NSNumber* hexTo = [NSNumber numberWithInt:[self.game.table.hexes indexOfObject:self.game.table.thief]];
+				
+				NSDictionary  * robberDictionary = [NSDictionary dictionaryWithObjects:@[@YES, hexTo] forKeys:@[@"discard", @"hexTo"]];
+				
+				[self.plug sendMessage:MSG_ROBBER data:robberDictionary];
+					
+				}
 				break;
 				
 			case WAITDISCARD:
@@ -296,6 +308,8 @@
 				else if(![clicked.name compare:@"pass"]){
 					[self.plug sendMessage:MSG_EOT data:@[]];
 					self.game.phase = WAITTURN;
+					[self.yourTurn removeFromParent];
+					
 				}else if(![clicked.name compare:@"road"]){
 				
 					self.selection = ROADSEL;
@@ -404,6 +418,8 @@
     }
 }
 
+
+#pragma mark - time based events
 -(void)update:(CFTimeInterval)currentTime {
     /* Called before each frame is rendered */
 	
@@ -433,7 +449,10 @@
 		case RESOURCES:
 			if(!self.game.diceWasRolled){
 				NSInteger diceValue = arc4random_uniform(6)+arc4random_uniform(6)+2;
-				NSLog(@"%i", diceValue);
+				NSLog(@"Dice = %i", diceValue);
+				
+				[self.plug sendMessage:MSG_DICE data:[NSNumber numberWithInt:diceValue]];
+				
 				if(diceValue == 7){
 					self.game.phase=ROBBER;
 					break;
@@ -628,6 +647,8 @@
 
 }
 
+
+#pragma mark - received message treatment
 - (void)plug:(Plug *)plug receivedMessage:(PlugMsgType)type data:(id)data {
 	
 	NSLog(@"message received, type = %i",type);
@@ -641,6 +662,33 @@
 			}
 			break;
 			
+		case MSG_DICE:
+			
+			for(HexagonNode * hex in self.game.table.hexes){
+				if(hex!=self.game.table.thief)
+					[hex giveResourceForDices:[data integerValue]];
+			}
+			
+			break;
+			
+			
+		case MSG_ROBBER:
+			{
+				
+			NSDictionary* robberData = data;
+				NSInteger hexTo= [(NSNumber*)[robberData objectForKey:@"hexTo"] integerValue];
+				BOOL discard = [[robberData objectForKey:@"discard"] boolValue];
+			
+				self.game.table.thief = self.game.table.hexes[hexTo];
+				
+				self.thief.position = self.game.table.thief.position;
+			
+				if(discard){
+					NSLog(@"descartar aqui");
+				}
+				
+			}
+			break;
 		case MSG_BUILD:{
 			NSDictionary* build = data;
 			NSInteger roadAtIndex = [(NSNumber*)[build objectForKey:@"road"] integerValue];

@@ -27,5 +27,6 @@
 
 
 -(NSString*) removeRandomResource;
+-(BOOL) didPlayerWin;
 
 @end

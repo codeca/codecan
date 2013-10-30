@@ -44,4 +44,15 @@
 	return lose;
 	
 }
+
+-(BOOL)didPlayerWin {
+	
+	if (self.points <= 10) {
+		return 1;
+	}
+	
+	return 0;
+	
+}
+
 @end

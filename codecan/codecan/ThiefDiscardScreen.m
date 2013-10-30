@@ -12,6 +12,9 @@
 @interface ThiefDiscardScreen()
 
 @property (nonatomic, weak) MyScene * myScene;
+@property (nonatomic) BOOL canFinish;
+
+-(void) canClose;
 
 @end
 
@@ -20,7 +23,7 @@
 -(id) init{
 	
 	if(self = [super init]){
-		
+		self.canFinish = NO;
 		self.userInteractionEnabled = YES;
 		
 		self.zPosition = 10;
@@ -29,6 +32,13 @@
 		self.fader.alpha = 0.5;
 		self.fader.name = @"fader";
 		[self addChild:self.fader];
+		
+		SKLabelNode * title = [SKLabelNode labelNodeWithFontNamed:@"ChalkDuster"];
+		title.text = @"PERDEU PLAYBOY!";
+		title.fontSize = 50;
+		title.fontColor = [SKColor blackColor];
+		title.position = CGPointMake(0, 300);
+		[self addChild:title];
 		
 		self.background = [SKSpriteNode spriteNodeWithColor:[SKColor grayColor] size:CGSizeMake(550, 500)];
 		[self addChild:self.background];
@@ -120,46 +130,48 @@
         CGPoint location = [touch locationInNode:self];
         
 		SKNode* clicked = [self nodeAtPoint:location];
+		if(self.discardList.count < self.discard){
+			if([clicked.name isEqualToString:@"lumber"]){
+				
+				if(self.player.lumber >= 1){
+					[self.discardList addObject:[NSNumber numberWithInt:DISLUMBER]];
+					self.player.lumber--;
+				}
+				
+			}else if([clicked.name isEqualToString:@"ore"]){
+				
+				if(self.player.ore >= 1){
+					[self.discardList addObject:[NSNumber numberWithInt:DISORE]];
+					self.player.ore--;
+				}
+				
+			}else if([clicked.name isEqualToString:@"grain"]){
+				
+				if(self.player.grain >= 1){
+					[self.discardList addObject:[NSNumber numberWithInt:DISGRAIN]];
+					self.player.grain--;
+				}
+				
+			}else if([clicked.name isEqualToString:@"wool"]){
+				
+				if(self.player.wool >= 1){
+					[self.discardList addObject:[NSNumber numberWithInt:DISWOOL]];
+					self.player.wool--;
+				}
+				
+			}else if([clicked.name isEqualToString:@"brick"]){
+				
+				if(self.player.brick >= 1){
+					[self.discardList addObject:[NSNumber numberWithInt:DISBRICK]];
+					self.player.brick--;
+				}
+			}
+		}
 		
-		if([clicked.name isEqualToString:@"lumber"]){
-			
-			if(self.player.lumber >= 1){
-				[self.discardList addObject:[NSNumber numberWithInt:DISLUMBER]];
-				self.player.lumber--;
-			}
-			
-		}else if([clicked.name isEqualToString:@"ore"]){
-			
-			if(self.player.ore >= 1){
-				[self.discardList addObject:[NSNumber numberWithInt:DISORE]];
-				self.player.ore--;
-			}
-			
-		}else if([clicked.name isEqualToString:@"grain"]){
-			
-			if(self.player.grain >= 1){
-				[self.discardList addObject:[NSNumber numberWithInt:DISGRAIN]];
-				self.player.grain--;
-			}
-			
-		}else if([clicked.name isEqualToString:@"wool"]){
-			
-			if(self.player.wool >= 1){
-				[self.discardList addObject:[NSNumber numberWithInt:DISWOOL]];
-				self.player.wool--;
-			}
-			
-		}else if([clicked.name isEqualToString:@"brick"]){
-			
-			if(self.player.brick >= 1){
-				[self.discardList addObject:[NSNumber numberWithInt:DISBRICK]];
-				self.player.brick--;
-			}
-		}
 		if(self.discardList.count == self.discard){
-			[self.myScene broadcastResourcesChangeForPlayer:self.player add:self.player.mountPlayerHand remove:@[@"all"]];
-			[self removeFromParent];
+			[NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(canClose) userInfo:nil repeats:NO];
 		}
+		
 		[self updateView];
 		
 	}
@@ -174,12 +186,9 @@
 	self.woolQuantity.text = [NSString stringWithFormat:@"%d", self.player.wool];
 	
 	
-	
-	for(NSNumber * resource in self.discardList){
-		
-		DiscardSelection selection = resource.integerValue;
-		NSInteger index = [self.discardList indexOfObject:resource];
-		
+	DiscardSelection selection = [self.discardList.lastObject integerValue];;
+	NSInteger index = self.discardList.count-1;
+	if(index>=0){
 		SKSpriteNode* child = self.selections.children[index];
 		
 		if(child.texture == nil){
@@ -208,11 +217,19 @@
 			child.yScale = 0.1;
 			child.xScale = 0.1;
 		}
-		
 	}
+		
+	
+}
+
+-(void) canClose{
+	[self.myScene broadcastResourcesChangeForPlayer:self.player add:self.player.mountPlayerHand remove:@[@"all"]];
+	[self removeFromParent];
 }
 
 -(void) discardScreenForPlayer:(Player*) player andScene:(MyScene*) scene{
+	
+	self.canFinish = NO;
 	
 	self.discard = [self discardCountForPlayer:player];
 	
@@ -220,9 +237,9 @@
 	
 	[self.selections removeAllChildren];
 	
-	for(int i = 0; i < [self discardCountForPlayer:player]; i++){
+	for(int i = 0; i < self.discard; i++){
 		SKSpriteNode * offerN = [SKSpriteNode spriteNodeWithColor:[SKColor greenColor] size:CGSizeMake(50, 50)];
-		offerN.position = CGPointMake(self.selections.size.width/[self discardCountForPlayer:player]-self.selections.size.width/2, 0);
+		offerN.position = CGPointMake((i+1)*self.selections.size.width/(self.discard+1)-self.selections.size.width/2, 0);
 		[self.selections addChild:offerN];
 	}
 	

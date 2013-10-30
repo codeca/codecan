@@ -792,11 +792,11 @@
 		{
 			NSDictionary* changes = data;
 			
-			Player * changed = self.game.players[[[data valueForKey:@"player"] integerValue]];
+			Player * changed = self.game.players[[[changes valueForKey:@"player"] integerValue]];
 			
-			NSArray* added = [data valueForKey:@"add"];
+			NSArray* added = [changes valueForKey:@"add"];
 			
-			NSArray* removed = [data valueForKey:@"remove"];
+			NSArray* removed = [changes valueForKey:@"remove"];
 			
 			
 			for(NSString* resource in removed){

@@ -35,6 +35,10 @@
 			[cards addObject:[NSNumber numberWithInt:ROADS]];
 		}
 		
+		for(int i=0; i < cards.count;i++){
+			[cards exchangeObjectAtIndex:i withObjectAtIndex:arc4random_uniform(cards.count)];
+		}
+		
 		self.deck=cards;
 	}
 	
@@ -45,11 +49,9 @@
 
 -(NSInteger)getDeckCard{
 	
-	int index = arc4random_uniform(self.deck.count);
+	NSInteger typeOfCard = [[self.deck lastObject] integerValue];;
 	
-	int typeOfCard = [(NSNumber *)self.deck[index] integerValue];
-	
-	[self.deck removeObjectAtIndex:index];
+	[self.deck removeLastObject];
 	
 	return typeOfCard;
 }

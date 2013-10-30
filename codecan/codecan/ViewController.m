@@ -31,7 +31,7 @@
 			[numbers addObject:[NSNumber numberWithInt:hex.number]];
 		}
 		
-		data = [NSDictionary dictionaryWithObjects:@[resources, numbers] forKeys:@[@"resources",@"numbers"]];
+		data = [NSDictionary dictionaryWithObjects:@[resources, numbers, self.game.table.deck.deck] forKeys:@[@"resources",@"numbers",@"deck"]];
 		
 		[self.plug sendMessage:MSG_TABLEREADY data:data];
 	}
@@ -82,7 +82,11 @@
 -(void)plug:(Plug *)plug receivedMessage:(PlugMsgType)type data:(id)data{
 
 	if(type == MSG_TABLEREADY){
+		
+		NSDictionary * received = data;
+		
 		self.game.table = [[Table alloc] initWithTable:data];
+		self.game.table.deck.deck = [received objectForKey:@"deck"];
 		self.scene = [MyScene sceneWithSize:self.view.bounds.size andGame:self.game];
 		self.scene.plug = self.plug;
 		self.scene.plug.delegate = self.scene;

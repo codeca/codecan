@@ -352,6 +352,8 @@
 							default:
 								[self.game.currentPlayer.cards addObject:[NSNumber numberWithInt:card]];
 						}
+						
+						[self.plug sendMessage:MSG_CARD_BUILD data:@[]];
 					
 						
 						
@@ -875,7 +877,24 @@
 			
 		}
 			break;
+		case MSG_CARD_BUILD:
+				
+			self.game.currentPlayer.ore--;
+			self.game.currentPlayer.grain--;
+			self.game.currentPlayer.wool--;
 			
+			NSInteger card = [self.game.table.deck getDeckCard];
+			
+			switch(card){
+				case SCORE:
+					self.game.currentPlayer.cardPoints++;
+				default:
+					[self.game.currentPlayer.cards addObject:[NSNumber numberWithInt:card]];
+			}
+			
+			[self.plug sendMessage:MSG_CARD_BUILD data:@[]];
+			
+			break;
 	}
 	
 	

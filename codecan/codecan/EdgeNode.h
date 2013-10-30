@@ -19,6 +19,8 @@
 
 
 -(void)receiveOwner: (Player*) player;
+-(void)breakRoad;
+
 
 @end
 

@@ -655,7 +655,7 @@
 }
 
 
-#pragma mark - received message treatment
+#pragma mark - server functions
 - (void)plug:(Plug *)plug receivedMessage:(PlugMsgType)type data:(id)data {
 	
 	NSLog(@"message received, type = %i",type);

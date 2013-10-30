@@ -47,4 +47,10 @@
 	}
 }
 
+-(void)breakRoad{
+	self.owner = nil;
+	self.color = [SKColor colorWithRed:0 green:0 blue:0 alpha:0];
+	self.colorBlendFactor = 0;
+	
+}
 @end

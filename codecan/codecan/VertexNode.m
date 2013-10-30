@@ -36,6 +36,13 @@
 		self.yScale = 0.20;
 	}
 	
+	for(EdgeNode *road in self.edges){
+		if(road.owner != player){
+			[road breakRoad];
+		}
+		
+	}
+	
 }
 
 -(void)becomeCity{

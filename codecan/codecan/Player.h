@@ -28,5 +28,6 @@
 
 -(NSString*) removeRandomResource;
 -(BOOL) didPlayerWin;
+-(NSArray*) mountPlayerHand;
 
 @end

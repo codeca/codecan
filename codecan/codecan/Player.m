@@ -57,4 +57,26 @@
 	
 }
 
+
+-(NSArray*) mountPlayerHand{
+	NSMutableArray* hand = [[NSMutableArray alloc] init];
+	
+	for(int i=0; i<self.ore ;i++)
+		[hand addObject:@"ore"];
+	
+	for(int i=0; i<self.wool ;i++)
+		[hand addObject:@"wool"];
+	
+	for(int i=0; i<self.lumber ;i++)
+		[hand addObject:@"lumber"];
+	
+	for(int i=0; i<self.brick ;i++)
+		[hand addObject:@"brick"];
+	
+	for(int i=0; i<self.grain ;i++)
+		[hand addObject:@"grain"];
+	
+	return hand;
+}
+
 @end

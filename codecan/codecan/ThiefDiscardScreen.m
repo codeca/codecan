@@ -10,7 +10,7 @@
 
 @implementation ThiefDiscardScreen
 
--(id) initInterfaceForPlayer:(Player *)player{
+-(id) init{
 	
 	if(self = [super init]){
 		

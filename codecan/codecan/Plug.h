@@ -22,7 +22,8 @@ typedef enum {
 	MSG_BUILD,
 	MSG_EOT,
 	MSG_HAND_CHANGED,
-	MSG_CARD_BUILD
+	MSG_CARD_BUILD,
+	MSG_CARD_USED
 } PlugMsgType;
 
 @class Plug;

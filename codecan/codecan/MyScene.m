@@ -308,7 +308,7 @@
 				else if(![clicked.name compare:@"pass"]){
 					[self.plug sendMessage:MSG_EOT data:@[]];
 					self.game.phase = WAITTURN;
-					[self.yourTurn removeFromParent];
+					self.game.currentPlayer = [self nextPlayer];
 					
 				}else if(![clicked.name compare:@"road"]){
 				
@@ -462,7 +462,9 @@
 						[hex giveResourceForDices:diceValue];
 				}
 				self.game.phase = RUNNING;
-				self.resourcesLabel.text = self.resourcesLabel.text =[NSString stringWithFormat:@"Lumber=%d Brick=%d Ore=%d Wool=%d Grain=%d",self.game.me.lumber,self.game.me.brick,self.game.me.ore,self.game.me.wool,self.game.me.grain] ;
+				
+				
+				[self tempRes];
 			}
 				
 			break;
@@ -482,7 +484,9 @@
 			break;
 			
 		case RUNNING:
-
+			
+			[self tempRes];
+			
 			break;
 			
 		case WAITTRADES:
@@ -511,12 +515,15 @@
 						for(HexagonNode *hex in self.game.table.hexes)
 							[hex giveResourceForDices:i];
 					self.game.turn++;
-					self.resourcesLabel.text = self.resourcesLabel.text =[NSString stringWithFormat:@"Lumber=%d Brick=%d Ore=%d Wool=%d Grain=%d",self.game.me.lumber,self.game.me.brick,self.game.me.ore,self.game.me.wool,self.game.me.grain] ;
+					
+					[self tempRes];
 				}
 				
 				
 				self.game.diceWasRolled = NO;
 			}
+			
+			[self tempRes];
 			break;
 	}
 	
@@ -759,6 +766,11 @@
 	NSLog(@"closed %hhd", error);
 	
 	
+}
+
+#pragma mark - temporary
+-(void) tempRes{
+	self.resourcesLabel.text = self.resourcesLabel.text =[NSString stringWithFormat:@"Lumber=%d Brick=%d Ore=%d Wool=%d Grain=%d",self.game.me.lumber,self.game.me.brick,self.game.me.ore,self.game.me.wool,self.game.me.grain] ;
 }
 
 @end

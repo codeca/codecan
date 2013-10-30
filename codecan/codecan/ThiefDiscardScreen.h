@@ -9,23 +9,41 @@
 #import <SpriteKit/SpriteKit.h>
 #import "Player.h"
 
+typedef enum{
+	
+	DISLUMBER = 1,
+	DISBRICK,
+	DISORE,
+	DISGRAIN,
+	DISWOOL
+
+} DiscardSelection;
+
 @interface ThiefDiscardScreen : SKNode
 
 
-@property(nonatomic, strong) SKSpriteNode* lumber;
-@property(nonatomic, strong) SKSpriteNode* wool;
-@property(nonatomic, strong) SKSpriteNode* grain;
-@property(nonatomic, strong) SKSpriteNode* ore;
-@property(nonatomic, strong) SKSpriteNode* brick;
+@property(nonatomic, strong) SKSpriteNode* lumberImage;
+@property(nonatomic, strong) SKSpriteNode* woolImage;
+@property(nonatomic, strong) SKSpriteNode* grainImage;
+@property(nonatomic, strong) SKSpriteNode* oreImage;
+@property(nonatomic, strong) SKSpriteNode* brickImage;
 
-@property(nonatomic, strong) SKLabelNode* lumberCount;
-@property(nonatomic, strong) SKLabelNode* woolCount;
-@property(nonatomic, strong) SKLabelNode* grainCount;
-@property(nonatomic, strong) SKLabelNode* oreCount;
-@property(nonatomic, strong) SKLabelNode* brickCount;
+@property(nonatomic, strong) SKLabelNode* lumberQuantity;
+@property(nonatomic, strong) SKLabelNode* woolQuantity;
+@property(nonatomic, strong) SKLabelNode* grainQuantity;
+@property(nonatomic, strong) SKLabelNode* oreQuantity;
+@property(nonatomic, strong) SKLabelNode* brickQuantity;
 
 @property(nonatomic, strong) SKSpriteNode* background;
 @property(nonatomic, strong) SKSpriteNode* fader;
+
+@property (nonatomic, strong) SKSpriteNode * selections;
+@property (nonatomic, strong) SKSpriteNode * options;
+
+@property (nonatomic, strong) NSMutableArray * discardList;
+
+@property (nonatomic, weak) Player * player;
+@property (nonatomic) NSInteger discard;
 
 
 -(id)initInterfaceForPlayer:(Player *) player;

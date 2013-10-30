@@ -12,6 +12,8 @@
 
 @interface PortTrader : BankTrader
 
+@property (nonatomic, strong) NSMutableArray * offer;
+
 -(void) portTraderForPlayer:(Player*) player andScene:(SKScene*) scene;
 
 @end

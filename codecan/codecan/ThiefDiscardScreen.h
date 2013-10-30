@@ -47,7 +47,7 @@ typedef enum{
 @property (nonatomic, weak) Player * player;
 @property (nonatomic) NSInteger discard;
 
--(void) discardScreenForPlayer:(Player*) player andScene:(SKScene*) scene;
+-(void) discardScreenForPlayer:(Player*) player andScene:(MyScene*) scene;
 -(NSInteger) discardCountForPlayer: (Player*) player;
 
 

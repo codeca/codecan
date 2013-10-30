@@ -11,7 +11,7 @@
 
 @interface ThiefDiscardScreen()
 
-@property (nonatomic, weak) MyScene * scene;
+@property (nonatomic, weak) MyScene * myScene;
 
 @end
 
@@ -157,7 +157,7 @@
 			}
 		}
 		if(self.discardList.count == self.discard){
-			[self.scene broadcastResourcesChangeForPlayer:self.player add:self.player.mountPlayerHand remove:@[@"all"]];
+			[self.myScene broadcastResourcesChangeForPlayer:self.player add:self.player.mountPlayerHand remove:@[@"all"]];
 			[self removeFromParent];
 		}
 		[self updateView];
@@ -212,7 +212,7 @@
 	}
 }
 
--(void) discardScreenForPlayer:(Player*) player andScene:(SKScene*) scene{
+-(void) discardScreenForPlayer:(Player*) player andScene:(MyScene*) scene{
 	
 	self.discard = [self discardCountForPlayer:player];
 	
@@ -225,10 +225,10 @@
 	}
 	
 	self.player = player;
-	self.scene = scene;
+	self.myScene = scene;
 	[self updateView];
 	
-	[scene addChild:self];
+	[self.myScene addChild:self];
 	
 	
 }

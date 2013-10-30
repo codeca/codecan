@@ -416,10 +416,6 @@
 						self.game.currentPlayer.brick--;
 						self.game.currentPlayer.grain--;
 						self.game.currentPlayer.wool--;
-						if([self.game.currentPlayer didPlayerWin]){
-							
-							//Criar rotina da vitória e colocar aqui
-						}
 						
 					}
 				}else if(clicked.class == VertexNode.class && self.selection==CITYSEL && self.game.currentPlayer.ore>2 && self.game
@@ -432,10 +428,6 @@
 						[self broadcastBuilding:[self.game.table.vertexes indexOfObject:vertex] andRoad:-1];
 						self.game.currentPlayer.ore-=3;
 						self.game.currentPlayer.grain-=2;
-						if([self.game.currentPlayer didPlayerWin]){
-							
-							//Criar rotina da vitória e colocar aqui
-						}
 					}
 					
 				}
@@ -537,6 +529,11 @@
 		case RUNNING:
 			
 			[self tempRes];
+			if ([self.game.currentPlayer didPlayerWin]) {
+				
+				//Condicao de vitoria aqui
+				
+			}
 			
 			break;
 			

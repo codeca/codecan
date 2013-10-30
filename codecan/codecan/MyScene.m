@@ -669,7 +669,7 @@
 		self.thiefScreen.position = CGPointMake(self.size.width/2, self.size.height/2);
 	}
 	
-	[self.thiefScreen discardScreenForPlayer:self.game.currentPlayer];
+	[self.thiefScreen discardScreenForPlayer:self.game.currentPlayer andScene:self];
 	
 	
 }

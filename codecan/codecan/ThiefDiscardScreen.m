@@ -204,7 +204,7 @@
 	}
 }
 
--(void) discardScreenForPlayer:(Player*) player{
+-(void) discardScreenForPlayer:(Player*) player andScene:(SKScene*) scene{
 	
 	self.discard = [self discardCountForPlayer:player];
 	
@@ -218,6 +218,8 @@
 	
 	self.player = player;
 	[self updateView];
+	
+	[scene addChild:self];
 	
 	
 }

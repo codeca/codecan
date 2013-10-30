@@ -50,10 +50,10 @@
 	//Precisa adicionar as cartas de desenvolvimento aqui para ver se tudo funciona
 	
 	if (self.points <= 10) {
-		return 1;
+		return 0;
 	}
 	
-	return 0;
+	return 1;
 	
 }
 

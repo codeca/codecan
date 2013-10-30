@@ -16,6 +16,7 @@
 -(void) stopAnimationsInView:(SKNode *) parent;
 
 @property (nonatomic, strong)SKLabelNode *yourTurn;
+@property (nonatomic) BOOL thiefInterface;
 
 @end
 
@@ -489,12 +490,14 @@
 			// wait the current player to chose another hexagon to place the thief
 			
 			if(self.game.table.thiefHasBeenMoved){
-				if(self.thiefScreen.parent == nil){
+				if(!self.thiefInterface){
 					[self buildThiefInterface];
+					self.thiefInterface = YES;
 				}
 				if(self.playersDiscardedForThief == self.game.players.count){
 					self.game.phase = RUNNING;
 					self.game.table.thiefHasBeenMoved = NO;
+					self.thiefInterface = NO;
 					self.playersDiscardedForThief = 0;
 				}
 			}

@@ -28,6 +28,8 @@
 		
 		self.zPosition = 10;
 		
+		self.side = OFFERSIDE;
+		
 		self.fader = [SKSpriteNode spriteNodeWithColor:[SKColor grayColor] size:[[UIScreen mainScreen] bounds].size];
 		self.fader.alpha = 0.5;
 		self.fader.name = @"fader";
@@ -44,7 +46,8 @@
 		for(int i = 0; i < 2; i++){
 			for(int j = 0; j < 2; j++){
 				SKSpriteNode * offerN = [[SKSpriteNode alloc] init];
-				offerN.position = CGPointMake(i*self.myOffer.size.width-self.myOffer.size.width/2, j*self.myOffer.size.height-self.myOffer.size.height/2);
+				offerN.name = @"myoffer";
+				offerN.position = CGPointMake(i*self.myOffer.size.width/2-self.myOffer.size.width/4, j*self.myOffer.size.height/2-self.myOffer.size.height/4);
 				[self.myOffer addChild:offerN];
 			}
 		}
@@ -55,6 +58,7 @@
 		[self addChild:self.myDemand];
 		
 		SKSpriteNode * offerN = [[SKSpriteNode alloc] init];
+		offerN.name = @"mydemand";
 		[self.myDemand addChild:offerN];
 		
 		self.options = [SKSpriteNode spriteNodeWithColor:[SKColor whiteColor] size:CGSizeMake(self.back.size.width*4/5, self.back.size.height/4)];
@@ -243,7 +247,7 @@
 				}else if(self.selectionDemand == BANKLUMBER){
 					self.player.lumber++;
 				}
-				[self updateView];
+				
 			}
 		}
 		[self updateView];
@@ -259,22 +263,77 @@
 	self.lumberQuantity.text = [NSString stringWithFormat:@"%d", self.player.lumber];
 	self.woolQuantity.text = [NSString stringWithFormat:@"%d", self.player.wool];
 	
-	if(self.selectionOffer == BANKBRICK && self.player.brick < 4){
+	if(self.selectionOffer == BANKBRICK && self.player.brick >= 4){
+		[self setOfferTo:BANKBRICK];
+	}else if(self.selectionOffer == BANKORE && self.player.ore >= 4){
+		[self setOfferTo:BANKORE];
+	}else if(self.selectionOffer == BANKGRAIN && self.player.grain >= 4){
+		[self setOfferTo:BANKGRAIN];
+	}else if(self.selectionOffer == BANKWOOL && self.player.wool >= 4){
+		[self setOfferTo:BANKWOOL];
+	}else if(self.selectionOffer == BANKLUMBER && self.player.lumber >= 4){
+		[self setOfferTo:BANKLUMBER];
+	}else{
 		[self setOfferTo:BANKBLANK];
-	}else if(self.selectionOffer == BANKORE && self.player.ore < 4){
-		[self setOfferTo:BANKBLANK];
-	}else if(self.selectionOffer == BANKGRAIN && self.player.grain < 4){
-		[self setOfferTo:BANKBLANK];
-	}else if(self.selectionOffer == BANKWOOL && self.player.wool < 4){
-		[self setOfferTo:BANKBLANK];
-	}else if(self.selectionOffer == BANKLUMBER && self.player.lumber < 4){
-		[self setOfferTo:BANKBLANK];
+		self.selectionOffer = BANKBLANK;
+	}
+	
+	if(self.selectionDemand == BANKBRICK){
+		[self setDemandTo:BANKBRICK];
+	}else if(self.selectionDemand == BANKORE){
+		[self setDemandTo:BANKORE];
+	}else if(self.selectionDemand == BANKGRAIN){
+		[self setDemandTo:BANKGRAIN];
+	}else if(self.selectionDemand == BANKWOOL){
+		[self setDemandTo:BANKWOOL];
+	}else if(self.selectionDemand == BANKLUMBER){
+		[self setDemandTo:BANKLUMBER];
+	}else {
+		[self setDemandTo:BANKBLANK];
 	}
 
 }
 
 -(void) setOfferTo:(BankSelection) selection{
+	NSLog(@"SET OFFER CALLED");
 	for(SKSpriteNode * child in self.myOffer.children){
+		if(child.texture == nil){
+			if(selection == BANKBRICK){
+				child.texture = [SKTexture textureWithImageNamed:@"brick"];
+				child.size = child.texture.size;
+				child.xScale = 0.1;
+				child.yScale = 0.1;
+			}else if(selection == BANKORE){
+				child.texture = [SKTexture textureWithImageNamed:@"ore"];
+				child.size = child.texture.size;
+				child.xScale = 0.1;
+				child.yScale = 0.1;
+			}else if(selection == BANKWOOL){
+				child.texture = [SKTexture textureWithImageNamed:@"wool"];
+				child.size = child.texture.size;
+				child.xScale = 0.1;
+				child.yScale = 0.1;
+			}else if(selection == BANKGRAIN){
+				child.texture = [SKTexture textureWithImageNamed:@"grain"];
+				child.size = child.texture.size;
+				child.xScale = 0.1;
+				child.yScale = 0.1;
+			}else if(selection == BANKLUMBER){
+				child.texture = [SKTexture textureWithImageNamed:@"lumber"];
+				child.size = child.texture.size;
+				child.xScale = 0.1;
+				child.yScale = 0.1;
+			}else if(selection == BANKBLANK){
+				child.texture = nil;
+			}
+		}
+	}
+}
+
+-(void) setDemandTo:(BankSelection) selection{
+	NSLog(@"SET DEMAND CALLED");
+	SKSpriteNode * child = [[self.myDemand children] objectAtIndex:0];
+	if(child.texture == nil){
 		if(selection == BANKBRICK){
 			child.texture = [SKTexture textureWithImageNamed:@"brick"];
 			child.size = child.texture.size;
@@ -310,6 +369,8 @@
 
 	self.player = player;
 	[scene addChild:self];
+	self.selectionDemand = BANKBLANK;
+	self.selectionOffer = BANKBLANK;
 	[self updateView];
 	
 }

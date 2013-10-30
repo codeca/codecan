@@ -36,6 +36,7 @@ typedef enum {
 	
 	self.plug = [[Plug alloc] init];
 	self.plug.delegate = self;
+	self.name.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"name"];
 	self.myId = [[NSUUID UUID] UUIDString];
 	
 }
@@ -99,6 +100,11 @@ typedef enum {
 	}
 
 
+}
+
+-(void)viewWillDisappear:(BOOL)animated{
+	[[NSUserDefaults standardUserDefaults] setObject:self.name.text forKey:@"name"];
+	[[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{

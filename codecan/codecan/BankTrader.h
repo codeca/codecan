@@ -17,12 +17,13 @@ typedef enum{
 } SideSelector;
 
 typedef enum{
-	BANKLUMBER=1,
+	BANKBLANK = 0,
+	BANKLUMBER,
 	BANKBRICK,
 	BANKORE,
 	BANKWOOL,
 	BANKGRAIN,
-	BANKBLANK
+	
 } BankSelection;
 
 @interface BankTrader : SKNode
@@ -56,6 +57,7 @@ typedef enum{
 
 -(void) bankTraderForPlayer:(Player*) player andScene:(SKScene*) scene;
 -(void) setOfferTo:(BankSelection) selection;
+-(void) setDemandTo:(BankSelection) selection;
 
 
 @end

@@ -42,7 +42,7 @@
 			[self removeFromParent];
 		}else if([clicked.name isEqualToString:@"lumber"]){
 			
-			if(self.player.lumber >= 4){
+			if(self.player.lumber >= 3){
 				if(self.side == OFFERSIDE){
 					self.selectionOffer = BANKLUMBER;
 				}
@@ -53,7 +53,7 @@
 			
 		}else if([clicked.name isEqualToString:@"ore"]){
 			
-			if(self.player.ore >= 4){
+			if(self.player.ore >= 3){
 				if(self.side == OFFERSIDE){
 					self.selectionOffer = BANKORE;
 				}
@@ -64,7 +64,7 @@
 			
 		}else if([clicked.name isEqualToString:@"grain"]){
 			
-			if(self.player.grain >= 4){
+			if(self.player.grain >= 3){
 				if(self.side == OFFERSIDE){
 					self.selectionOffer = BANKGRAIN;
 				}
@@ -75,7 +75,7 @@
 			
 		}else if([clicked.name isEqualToString:@"wool"]){
 			
-			if(self.player.wool >= 4){
+			if(self.player.wool >= 3){
 				if(self.side == OFFERSIDE){
 					self.selectionOffer = BANKWOOL;
 				}
@@ -86,7 +86,7 @@
 			
 		}else if([clicked.name isEqualToString:@"brick"]){
 			
-			if(self.player.brick >= 4){
+			if(self.player.brick >= 3){
 				if(self.side == OFFERSIDE){
 					self.selectionOffer = BANKBRICK;
 				}
@@ -119,7 +119,6 @@
 				}else if(self.selectionDemand == BANKLUMBER){
 					self.player.lumber++;
 				}
-				[self updateView];
 			}
 		}
 		[self updateView];
@@ -135,16 +134,30 @@
 	self.lumberQuantity.text = [NSString stringWithFormat:@"%d", self.player.lumber];
 	self.woolQuantity.text = [NSString stringWithFormat:@"%d", self.player.wool];
 	
-	if(self.selectionOffer == BANKBRICK && self.player.brick < 3){
+	if(self.selectionOffer == BANKBRICK && self.player.brick >= 3){
+		[self setOfferTo:BANKBRICK];
+	}else if(self.selectionOffer == BANKORE && self.player.ore >= 3){
+		[self setOfferTo:BANKORE];
+	}else if(self.selectionOffer == BANKGRAIN && self.player.grain >= 3){
+		[self setOfferTo:BANKGRAIN];
+	}else if(self.selectionOffer == BANKWOOL && self.player.wool >= 3){
+		[self setOfferTo:BANKWOOL];
+	}else if(self.selectionOffer == BANKLUMBER && self.player.lumber >= 3){
+		[self setOfferTo:BANKLUMBER];
+	}else{
 		[self setOfferTo:BANKBLANK];
-	}else if(self.selectionOffer == BANKORE && self.player.ore < 3){
-		[self setOfferTo:BANKBLANK];
-	}else if(self.selectionOffer == BANKGRAIN && self.player.grain < 3){
-		[self setOfferTo:BANKBLANK];
-	}else if(self.selectionOffer == BANKWOOL && self.player.wool < 3){
-		[self setOfferTo:BANKBLANK];
-	}else if(self.selectionOffer == BANKLUMBER && self.player.lumber < 3){
-		[self setOfferTo:BANKBLANK];
+	}
+	
+	if(self.selectionDemand == BANKBRICK){
+		[self setDemandTo:BANKBRICK];
+	}else if(self.selectionDemand == BANKORE){
+		[self setDemandTo:BANKORE];
+	}else if(self.selectionDemand == BANKGRAIN){
+		[self setDemandTo:BANKGRAIN];
+	}else if(self.selectionDemand == BANKWOOL){
+		[self setDemandTo:BANKWOOL];
+	}else if(self.selectionDemand == BANKLUMBER){
+		[self setDemandTo:BANKLUMBER];
 	}
 	
 }
@@ -153,6 +166,8 @@
 	
 	self.player = player;
 	[scene addChild:self];
+	self.selectionOffer = BANKBLANK;
+	self.selectionDemand = BANKBLANK;
 	[self updateView];
 	
 }

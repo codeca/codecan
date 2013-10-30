@@ -310,6 +310,10 @@
 					self.game.phase = WAITTURN;
 					self.game.currentPlayer = [self nextPlayer];
 					
+					if(self.game.players.count == 1){
+						self.game.phase = RESOURCES;
+					}
+					
 				}else if(![clicked.name compare:@"road"]){
 				
 					self.selection = ROADSEL;

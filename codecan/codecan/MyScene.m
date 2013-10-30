@@ -335,6 +335,7 @@
 				if(clicked.class == EdgeNode.class && self.selection==ROADSEL && self.game.currentPlayer.lumber>0 && self.game.currentPlayer.brick>0){
 					EdgeNode * edge = (EdgeNode *)clicked;
 					[edge receiveOwner:self.game.currentPlayer];
+					[self broadcastBuilding:-1 andRoad:[self.game.table.edges indexOfObject:edge]];
 					self.game.currentPlayer.lumber--;
 					self.game.currentPlayer.brick--;
 				}else if(clicked.class == VertexNode.class && self.selection==VILLAGESEL && self.game.currentPlayer.brick>0 && self.game
@@ -364,6 +365,7 @@
 					if(valid){
 						[vertex becomeVillageFor:self.game.currentPlayer];
 						[vertex verifyNearRoads];
+						[self broadcastBuilding:[self.game.table.vertexes indexOfObject:vertex] andRoad:-1];
 						self.game.currentPlayer.lumber--;
 						self.game.currentPlayer.brick--;
 						self.game.currentPlayer.grain--;
@@ -376,8 +378,10 @@
 					if (vertex.owner == self.game.me && vertex.type == VILLAGE) {
 						
 						[vertex becomeCity];
+						[self broadcastBuilding:[self.game.table.vertexes indexOfObject:vertex] andRoad:-1];
 						self.game.currentPlayer.ore-=3;
 						self.game.currentPlayer.grain-=2;
+						
 					}
 					
 				}

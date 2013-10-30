@@ -278,6 +278,8 @@
 				832A1584181CB56200B6FB77 /* BankTrader.m */,
 				8159F06F182115FD00D1570B /* PortTrader.h */,
 				8159F070182115FD00D1570B /* PortTrader.m */,
+				C4059D5918212C3A00A4FE37 /* ThiefDiscardScreen.h */,
+				C4059D5A18212C3A00A4FE37 /* ThiefDiscardScreen.m */,
 			);
 			name = Nodes;
 			sourceTree = "<group>";
@@ -333,8 +335,6 @@
 			children = (
 				98B4D268180EFB7900537145 /* MyScene.h */,
 				98B4D269180EFB7900537145 /* MyScene.m */,
-				C4059D5918212C3A00A4FE37 /* ThiefDiscardScreen.h */,
-				C4059D5A18212C3A00A4FE37 /* ThiefDiscardScreen.m */,
 			);
 			name = Scenes;
 			sourceTree = "<group>";

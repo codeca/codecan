@@ -773,8 +773,7 @@
 			if(roadAtIndex>=0){
 				
 				[(EdgeNode*)[self.game.table.edges objectAtIndex:roadAtIndex] receiveOwner: self.game.currentPlayer];
-				self.game.currentPlayer.brick--;
-				self.game.currentPlayer.lumber--;
+				
 				
 				if (self.game.phase == INITIALIZATIONWAIT) {
 					
@@ -810,22 +809,43 @@
 					
 				}
 				
-			}else{
+				else {
+					
+					self.game.currentPlayer.brick--;
+					self.game.currentPlayer.lumber--;
+					
+				}
+				
+			}
+			
+			else{
 			
 				VertexNode *city = [self.game.table.vertexes objectAtIndex:cityAtIndex];
 				if(city.owner == nil){
 					
 					[city becomeVillageFor:self.game.currentPlayer];
-					self.game.currentPlayer.lumber--;
-					self.game.currentPlayer.brick--;
-					self.game.currentPlayer.wool--;
-					self.game.currentPlayer.grain--;
 					
-				}else{
+					if (self.game.phase != INITIALIZATIONWAIT) {
+				
+						self.game.currentPlayer.lumber--;
+						self.game.currentPlayer.brick--;
+						self.game.currentPlayer.wool--;
+						self.game.currentPlayer.grain--;
+						
+					}
+					
+				}
+				
+				else{
+					
 					[city becomeCity];
-					self.game.currentPlayer.ore-=3;
-					self.game.currentPlayer.grain-=2;
 					
+					if (self.game.phase != INITIALIZATIONWAIT) {
+					
+						self.game.currentPlayer.ore-=3;
+						self.game.currentPlayer.grain-=2;
+						
+					}
 				}
 			}
 			

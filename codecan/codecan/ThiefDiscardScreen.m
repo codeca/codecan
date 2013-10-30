@@ -7,6 +7,13 @@
 //
 
 #import "ThiefDiscardScreen.h"
+#import "MyScene.h"
+
+@interface ThiefDiscardScreen()
+
+@property (nonatomic, weak) MyScene * scene;
+
+@end
 
 @implementation ThiefDiscardScreen
 

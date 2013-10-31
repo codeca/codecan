@@ -60,6 +60,7 @@
 		self.stealInterface = [[SKNode alloc] init];
 		self.stealInterface.position = CGPointMake(self.size.width/2, self.size.height/2);
 		self.stealInterface.zPosition = 7;
+		
 	
 		self.resourcesLabel = [SKLabelNode labelNodeWithFontNamed:@"ChalkDuster"];
 		self.resourcesLabel.text = @"Lumber=0 Brick=0 Ore=0 Wool=0 Grain=0";
@@ -79,6 +80,7 @@
         [self addChild:self.map];
 		[self addChild:self.menu];
 		[self addChild:self.tabs];
+		[self addChild:self.stealInterface];
 		
     }
 

@@ -74,6 +74,20 @@
 		self.arrow.position = CGPointMake(self.myOffer.position.x, self.myDemand.position.y+self.myDemand.size.height/2+self.arrow.size.height/2);
 		[self addChild:self.arrow];
 		
+		SKLabelNode * offerLabel = [SKLabelNode labelNodeWithFontNamed:@"ChalkDuster"];
+		offerLabel.text = @"Offer";
+		offerLabel.fontColor = [SKColor blackColor];
+		offerLabel.fontSize = 30;
+		offerLabel.position = CGPointMake(self.myOffer.position.x, self.arrow.position.y+30);
+		[self.back addChild:offerLabel];
+		
+		SKLabelNode * demandLabel = [SKLabelNode labelNodeWithFontNamed:@"ChalkDuster"];
+		demandLabel.text = @"Demand";
+		demandLabel.fontColor = [SKColor blackColor];
+		demandLabel.fontSize = 30;
+		demandLabel.position = CGPointMake(self.myDemand.position.x, self.arrow.position.y+30);
+		[self.back addChild:demandLabel];
+		
 		self.lumberImage = [SKSpriteNode spriteNodeWithImageNamed:@"lumber"];
 		self.lumberImage.xScale = 0.1;
 		self.lumberImage.yScale = 0.1;
@@ -304,29 +318,19 @@
 		if(child.texture == nil){
 			if(selection == BANKBRICK){
 				child.texture = [SKTexture textureWithImageNamed:@"brick"];
-				child.size = child.texture.size;
-				child.xScale = 0.1;
-				child.yScale = 0.1;
+				child.size = CGSizeMake(child.texture.size.width*0.1,child.texture.size.height*0.1);
 			}else if(selection == BANKORE){
 				child.texture = [SKTexture textureWithImageNamed:@"ore"];
-				child.size = child.texture.size;
-				child.xScale = 0.1;
-				child.yScale = 0.1;
+				child.size = CGSizeMake(child.texture.size.width*0.1,child.texture.size.height*0.1);
 			}else if(selection == BANKWOOL){
 				child.texture = [SKTexture textureWithImageNamed:@"wool"];
-				child.size = child.texture.size;
-				child.xScale = 0.1;
-				child.yScale = 0.1;
+				child.size = CGSizeMake(child.texture.size.width*0.1,child.texture.size.height*0.1);
 			}else if(selection == BANKGRAIN){
 				child.texture = [SKTexture textureWithImageNamed:@"grain"];
-				child.size = child.texture.size;
-				child.xScale = 0.1;
-				child.yScale = 0.1;
+				child.size = CGSizeMake(child.texture.size.width*0.1,child.texture.size.height*0.1);
 			}else if(selection == BANKLUMBER){
 				child.texture = [SKTexture textureWithImageNamed:@"lumber"];
-				child.size = child.texture.size;
-				child.xScale = 0.1;
-				child.yScale = 0.1;
+				child.size = CGSizeMake(child.texture.size.width*0.1,child.texture.size.height*0.1);
 			}else if(selection == BANKBLANK){
 				child.texture = nil;
 				child.size = CGSizeMake(0, 0);
@@ -338,32 +342,23 @@
 -(void) setDemandTo:(BankSelection) selection{
 	NSLog(@"SET DEMAND CALLED");
 	SKSpriteNode * child = [[self.myDemand children] objectAtIndex:0];
+	child.texture = nil;
 	if(child.texture == nil){
 		if(selection == BANKBRICK){
 			child.texture = [SKTexture textureWithImageNamed:@"brick"];
-			//child.size = child.texture.size;
-			child.xScale = 0.1;
-			child.yScale = 0.1;
+			child.size = CGSizeMake(child.texture.size.width*0.1,child.texture.size.height*0.1);
 		}else if(selection == BANKORE){
 			child.texture = [SKTexture textureWithImageNamed:@"ore"];
-			//child.size = child.texture.size;
-			child.xScale = 0.1;
-			child.yScale = 0.1;
+			child.size = CGSizeMake(child.texture.size.width*0.1,child.texture.size.height*0.1);
 		}else if(selection == BANKWOOL){
 			child.texture = [SKTexture textureWithImageNamed:@"wool"];
-			//child.size = child.texture.size;
-			child.xScale = 0.1;
-			child.yScale = 0.1;
+			child.size = CGSizeMake(child.texture.size.width*0.1,child.texture.size.height*0.1);
 		}else if(selection == BANKGRAIN){
 			child.texture = [SKTexture textureWithImageNamed:@"grain"];
-			//child.size = child.texture.size;
-			child.xScale = 0.1;
-			child.yScale = 0.1;
+			child.size = CGSizeMake(child.texture.size.width*0.1,child.texture.size.height*0.1);
 		}else if(selection == BANKLUMBER){
 			child.texture = [SKTexture textureWithImageNamed:@"lumber"];
-			//child.size = child.texture.size;
-			child.xScale = 0.1;
-			child.yScale = 0.1;
+			child.size = CGSizeMake(child.texture.size.width*0.1,child.texture.size.height*0.1);
 		}else if(selection == BANKBLANK){
 			child.texture = nil;
 		}

@@ -15,5 +15,6 @@
 @property (nonatomic, strong) NSMutableArray * offer;
 
 -(void) portTraderForPlayer:(Player*) player andScene:(SKScene*) scene;
+-(void) addResourceToOffer:(BankSelection) resource;
 
 @end

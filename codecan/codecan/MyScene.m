@@ -28,6 +28,7 @@
 	[newScene buildMap];
 	[newScene buildBuildInterface];
 	[newScene buildTabs];
+	[newScene buildTopMenu];
 	
 	if(![newScene.game.me.name compare:@"debug1234"]){
 		newScene.game.me.ore = 1000;
@@ -49,13 +50,17 @@
         self.backgroundColor = [SKColor colorWithRed:0.15 green:0.15 blue:0.3 alpha:1.0];
 		
 		self.map = [[SKNode alloc] init];
-		self. map.position = CGPointMake(self.size.width/2, self.size.height/2+44);
+		self.map.position = CGPointMake(self.size.width/2, self.size.height/2+44);
 		
 		self.menu = [[SKNode alloc] init];
 		self. menu.position = CGPointMake(self.size.width/2, self.size.height*0.1);
 				
 		self.tabs = [[SKNode alloc] init];
 		self.tabs.position = CGPointMake(self.size.width/2, self.menu.position.y+self.size.height/11);
+		
+		self.topMenu = [[SKNode alloc] init];
+		self.topMenu.position = CGPointMake(self.size.width/2, self.size.height-60);
+		
 		
 		self.stealInterface = [[SKNode alloc] init];
 		self.stealInterface.position = CGPointMake(self.size.width/2, self.size.height/2);
@@ -73,7 +78,6 @@
 		self.yourTurn.text = @"Your Turn!";
 		self.yourTurn.position = CGPointMake(650, 900);
 		self.yourTurn.fontSize = 20;
-
 		
 		
 		[self addChild:self.resourcesLabel];
@@ -81,6 +85,7 @@
 		[self addChild:self.menu];
 		[self addChild:self.tabs];
 		[self addChild:self.stealInterface];
+		[self addChild:self.topMenu];
 		
     }
 
@@ -108,6 +113,61 @@
 	self.thief.position = self.game.table.thief.position;
 	self.thief.zPosition = 5;
 	[self.map addChild:self.thief];
+}
+
+-(void) buildTopMenu{
+	
+	self.backgroundTopMenu = [[SKSpriteNode alloc] initWithColor:[SKColor brownColor] size:CGSizeMake(self.size.width, 120)];
+	self.backgroundTopMenu.position = CGPointMake(0, 0);
+	SKSpriteNode *color;
+	SKLabelNode *name;
+	
+	SKLabelNode *res;
+	SKLabelNode *dev;
+	SKLabelNode *points;
+	
+	[self.topMenu addChild:self.backgroundTopMenu];
+	
+	int offset =self.game.players.count;
+	
+	for(int i=0; i<offset; i++){
+		Player * player = self.game.players[i];
+		color = [[SKSpriteNode alloc] initWithColor:player.color size:CGSizeMake(40, 40)];
+		color.position = CGPointMake((i-offset/2)*self.size.width/offset, 20);
+		
+		name = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
+		name.fontSize = 15;
+		name.text = player.name;
+		name.position = CGPointMake((i-offset/2)*self.size.width/offset, -15);
+		name.fontColor = [SKColor whiteColor];
+		
+		res = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
+		res.fontSize = 15;
+		res.text = @"resources:";
+		res.position = CGPointMake((i-offset/2)*self.size.width/offset+75+30, 30);
+		res.fontColor = [SKColor whiteColor];
+		
+		dev = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
+		dev.fontSize = 15;
+		dev.text = @"development:";
+		dev.position = CGPointMake((i-offset/2)*self.size.width/offset+90+30, 10);
+		dev.fontColor = [SKColor whiteColor];
+		
+		points = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
+		points.fontSize = 15;
+		points.text = @"points:";
+		points.position = CGPointMake((i-offset/2)*self.size.width/offset+60+30, -10);
+		points.fontColor = [SKColor whiteColor];
+		
+		
+		[self.topMenu addChild:res];
+		[self.topMenu addChild:dev];
+		[self.topMenu addChild:points];
+		[self.topMenu addChild:name];
+		[self.topMenu addChild:color];
+	}
+	
+	
 }
 
 -(void) buildTabs{

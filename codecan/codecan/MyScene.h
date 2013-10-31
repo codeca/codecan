@@ -35,6 +35,7 @@ typedef enum{
 @property (nonatomic, strong) SKNode *tabs;
 @property (nonatomic, strong) SKNode *properties;
 @property (nonatomic, strong) SKNode *stealInterface;
+@property (nonatomic, strong) SKNode *topMenu;
 
 @property (nonatomic, strong) SKSpriteNode * thief;
 @property (nonatomic, strong) SKLabelNode * resourcesLabel;
@@ -46,6 +47,13 @@ typedef enum{
 
 @property (nonatomic, strong) Game * game;
 @property (nonatomic) Selection selection;
+
+//top menu
+@property (nonatomic, strong) SKSpriteNode* backgroundTopMenu;
+@property (nonatomic, strong) NSMutableArray* spriteResources;
+@property (nonatomic, strong) NSMutableArray* spriteDevelopment;
+@property (nonatomic, strong) NSMutableArray* spritePoints;
+
 
 
 +(instancetype)sceneWithSize:(CGSize)size andGame:(Game *) game;

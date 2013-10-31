@@ -103,12 +103,21 @@
 	
 	for(VertexNode * vertex in self.game.table.vertexes){
 		
-		if (vertex.port.type != 0) {
+		if (vertex.port.type == STANDARD) {
+			
+			//NSLog(@"Porto encontrado");
+			
+			vertex.colorBlendFactor = 1;
+			vertex.color = [SKColor purpleColor];
+			
+		}
+		
+		else if (vertex.port.type == RESOURCE){
 			
 			NSLog(@"Porto encontrado");
 			
 			vertex.colorBlendFactor = 1;
-			vertex.color = [SKColor purpleColor];
+			vertex.color = [SKColor blackColor];
 			
 		}
 		

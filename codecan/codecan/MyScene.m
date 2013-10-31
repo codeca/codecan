@@ -793,7 +793,10 @@
 		
 		label.fontSize=20;
 		
-		label.position = CGPointMake(counterx*downMenu.size.width/offset+15,0);
+		if(offset%2)
+			label.position = CGPointMake(counterx*downMenu.size.width/offset+15,0);
+		else
+			label.position = CGPointMake((counterx+0.5)*downMenu.size.width/offset,0);
 		counterx++;
 		[downMenu addChild:label];
 	}

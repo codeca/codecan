@@ -316,33 +316,33 @@
 				NSScanner * scanner = [[NSScanner alloc] initWithString:clicked.name];
 				int index;
 				[scanner scanInt:&index];
-				
-				Player *robbed = self.game.players[index];
-				Player *robber = self.game.me;
-				
-				NSString *robbedResource = [robbed removeRandomResource];
-				
-				[self broadcastResourcesChangeForPlayer:robbed add:@[] remove:@[robbedResource]];
-				
-				
-				[self broadcastResourcesChangeForPlayer:robber add:@[robbedResource] remove:@[]];
-				
-				if(![robbedResource compare:@"lumber"])
-					robber.lumber++;
-				else if(![robbedResource compare:@"ore"])
-					robber.ore++;
-				else if(![robbedResource compare:@"grain"])
-					robber.grain++;
-				else if(![robbedResource compare:@"wool"])
-					robber.wool++;
-				else if(![robbedResource compare:@"brick"])
-					robber.brick++;
-				
-				
-				self.game.phase = RUNNING;
-				
-				[self.stealInterface removeAllChildren];
-				
+				if(index>=0 && index <self.game.players.count){
+					Player *robbed = self.game.players[index];
+					Player *robber = self.game.me;
+					
+					NSString *robbedResource = [robbed removeRandomResource];
+					
+					[self broadcastResourcesChangeForPlayer:robbed add:@[] remove:@[robbedResource]];
+					
+					
+					[self broadcastResourcesChangeForPlayer:robber add:@[robbedResource] remove:@[]];
+					
+					if(![robbedResource compare:@"lumber"])
+						robber.lumber++;
+					else if(![robbedResource compare:@"ore"])
+						robber.ore++;
+					else if(![robbedResource compare:@"grain"])
+						robber.grain++;
+					else if(![robbedResource compare:@"wool"])
+						robber.wool++;
+					else if(![robbedResource compare:@"brick"])
+						robber.brick++;
+					
+					
+					self.game.phase = RUNNING;
+					
+					[self.stealInterface removeAllChildren];
+				}
 			}
 				break;
 				

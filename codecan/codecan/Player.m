@@ -14,7 +14,7 @@
 
 -(NSString*)removeRandomResource{
 	
-	NSMutableArray *resource;
+	NSMutableArray *resource = [[NSMutableArray alloc] init];
 	
 	if(self.lumber>0)
 		[resource addObject:@"lumber"];

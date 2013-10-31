@@ -581,7 +581,7 @@
 			break;
 			
 		case WAITDISCARD:
-			if(self.stealInterface.children == nil)
+			if(self.stealInterface.children.count==0)
 				[self buildStealInterface];
 			
 			break;
@@ -644,7 +644,6 @@
 
 -(void)buildStealInterface{
 	
-	[self.stealInterface removeAllChildren];
 	SKSpriteNode *background = [[SKSpriteNode alloc] initWithColor:[SKColor brownColor] size:CGSizeMake(400, 400)];
 	
 	int counter=100;

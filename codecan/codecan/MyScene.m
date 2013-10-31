@@ -1063,7 +1063,6 @@
 					[self.game.currentPlayer.cards addObject:[NSNumber numberWithInt:card]];
 			}
 			
-			[self.plug sendMessage:MSG_CARD_BUILD data:@[]];
 			
 			break;
 	}

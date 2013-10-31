@@ -570,7 +570,7 @@
 					[self buildThiefInterface];
 					self.thiefInterface = YES;
 				}
-				if(self.playersDiscardedForThief == self.game.players.count-1){
+				if(self.playersDiscardedForThief == self.game.players.count){
 					self.game.phase = WAITDISCARD;
 					self.game.table.thiefHasBeenMoved = NO;
 					self.thiefInterface = NO;

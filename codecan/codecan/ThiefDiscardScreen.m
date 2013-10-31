@@ -223,6 +223,7 @@
 }
 
 -(void) canClose{
+	self.myScene.playersDiscardedForThief++;
 	[self.myScene broadcastResourcesChangeForPlayer:self.player add:self.player.mountPlayerHand remove:@[@"all"]];
 	[self removeFromParent];
 }

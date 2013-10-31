@@ -581,7 +581,8 @@
 			break;
 			
 		case WAITDISCARD:
-			[self buildStealInterface];
+			if(self.stealInterface.children == nil)
+				[self buildStealInterface];
 			
 			break;
 			

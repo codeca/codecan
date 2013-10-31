@@ -28,6 +28,15 @@
 	[newScene buildMap];
 	[newScene buildBuildInterface];
 	[newScene buildTabs];
+	
+	if(![newScene.game.me.name compare:@"debug1234"]){
+		newScene.game.me.ore = 1000;
+		newScene.game.me.lumber = 1000;
+		newScene.game.me.wool = 1000;
+		newScene.game.me.grain = 1000;
+		newScene.game.me.brick = 1000;
+	}
+	
 	return newScene;
 }
 
@@ -47,6 +56,9 @@
 				
 		self.tabs = [[SKNode alloc] init];
 		self.tabs.position = CGPointMake(self.size.width/2, self.menu.position.y+self.size.height/11);
+		
+		self.stealInterface = [[SKNode alloc] init];
+		self.stealInterface.position = CGPointMake(self.size.width, self.size.height);
 	
 		self.resourcesLabel = [SKLabelNode labelNodeWithFontNamed:@"ChalkDuster"];
 		self.resourcesLabel.text = @"Lumber=0 Brick=0 Ore=0 Wool=0 Grain=0";
@@ -223,7 +235,7 @@
 									for(HexagonNode *hex in self.game.table.hexes)
 										[hex giveResourceForDices:i];
 								self.game.turn++;
-								self.resourcesLabel.text = self.resourcesLabel.text =[NSString stringWithFormat:@"Lumber=%d Brick=%d Ore=%d Wool=%d Grain=%d",self.game.me.lumber,self.game.me.brick,self.game.me.ore,self.game.me.wool,self.game.me.grain] ;
+								self.resourcesLabel.text =[NSString stringWithFormat:@"Lumber=%d Brick=%d Ore=%d Wool=%d Grain=%d",self.game.me.lumber,self.game.me.brick,self.game.me.ore,self.game.me.wool,self.game.me.grain] ;
 							}
 							
 						}
@@ -300,7 +312,38 @@
 				break;
 				
 			case WAITDISCARD:
+			{
+				NSScanner * scanner = [[NSScanner alloc] initWithString:clicked.name];
+				int index;
+				[scanner scanInt:&index];
 				
+				Player *robbed = self.game.players[index];
+				Player *robber = self.game.me;
+				
+				NSString *robbedResource = [robbed removeRandomResource];
+				
+				[self broadcastResourcesChangeForPlayer:robbed add:@[] remove:@[robbedResource]];
+				
+				
+				[self broadcastResourcesChangeForPlayer:robber add:@[robbedResource] remove:@[]];
+				
+				if(![robbedResource compare:@"lumber"])
+					robber.lumber++;
+				else if(![robbedResource compare:@"ore"])
+					robber.ore++;
+				else if(![robbedResource compare:@"grain"])
+					robber.grain++;
+				else if(![robbedResource compare:@"wool"])
+					robber.wool++;
+				else if(![robbedResource compare:@"brick"])
+					robber.brick++;
+				
+				
+				self.game.phase = RUNNING;
+				
+				[self.stealInterface removeAllChildren];
+				
+			}
 				break;
 				
 			case RUNNING:
@@ -370,6 +413,20 @@
 					[self buildBankTraderInterface];
 				}else if(![clicked.name compare:@"port"]){
 					[self buildPortTraderInterface];
+				}else if(![clicked.name compare:@"handtab"]){
+					[self buildHandInteface];
+				}else if(![clicked.name compare:@"army"]){
+					
+					
+				}else if(![clicked.name compare:@"roads"]){
+					
+					
+				}else if(![clicked.name compare:@"monopoly"]){
+					
+					
+				}else if(![clicked.name compare:@"plenty"]){
+					
+					
 				}
 				
 				if(clicked.class == EdgeNode.class && self.selection==ROADSEL && self.game.currentPlayer.lumber>0 && self.game.currentPlayer.brick>0){
@@ -515,7 +572,7 @@
 					self.thiefInterface = YES;
 				}
 				if(self.playersDiscardedForThief == self.game.players.count-1){
-					self.game.phase = RUNNING;
+					self.game.phase = WAITDISCARD;
 					self.game.table.thiefHasBeenMoved = NO;
 					self.thiefInterface = NO;
 					self.playersDiscardedForThief = 0;
@@ -525,6 +582,7 @@
 			break;
 			
 		case WAITDISCARD:
+			[self buildStealInterface];
 			
 			break;
 			
@@ -590,6 +648,45 @@
 	[self.plug sendMessage:MSG_BUILD data:data];
 }
 
+
+-(void)buildStealInterface{
+	
+	[self.stealInterface removeAllChildren];
+	SKSpriteNode *background = [[SKSpriteNode alloc] initWithColor:[SKColor brownColor] size:CGSizeMake(400, 400)];
+	
+	int counter=100;
+	int verifier[4] = {0,0,0,0};
+	for(VertexNode* vertex in self.game.table.thief.vertexes){
+		if(vertex.owner==nil || vertex.owner == self.game.me )
+			continue;
+		
+		int index =[self.game.players indexOfObject:vertex.owner];
+		
+		if(verifier[index])
+			continue;
+		
+		verifier[index]=1;
+		
+		
+		
+		SKLabelNode* label = [SKLabelNode labelNodeWithFontNamed:@"ChalkDuster"];
+		label.name = [NSString stringWithFormat:@"%i",index];
+		label.text = vertex.owner.name;
+		label.position = CGPointMake(0, counter);
+		counter +=100;
+		
+		[background addChild:label];
+	}
+	
+
+	if(background.children.count==0){
+		self.game.phase = RUNNING;
+	}else{
+		[self.thief addChild:background];
+	}
+	
+	
+}
 
 -(void)buildTradeInterface{
 	[self.menu removeAllChildren];
@@ -666,6 +763,52 @@
 	
 }
 
+
+-(void) buildHandInteface{
+	[self.menu removeAllChildren];
+	
+	SKSpriteNode *downMenu = [[SKSpriteNode alloc] initWithColor:[SKColor brownColor] size:CGSizeMake(self.size.width, self.size.height*0.2)];
+	downMenu.position = CGPointMake(0, 0);
+	[self.menu addChild:downMenu];
+	
+	NSInteger offset = self.game.me.cards.count;
+	
+	NSInteger counterx =-offset/2;
+	for(NSNumber *card in self.game.me.cards){
+		SKLabelNode *label = [SKLabelNode labelNodeWithFontNamed:@"ChalkDuster"];
+		switch ([card integerValue]){
+			case ARMY:
+				label.text=@"army";
+				label.name=@"army";
+				break;
+			case ROADS:
+				label.text=@"Roads";
+				label.name=@"roads";
+				break;
+			case MONOPOLY:
+				label.text=@"Monopoly";
+				label.name=@"monopoly";
+				break;
+			case YEAR_OF_PLENTY:
+				label.text=@"Year Of Plenty";
+				label.name=@"plenty";
+				break;
+			case SCORE:
+				label.text=@"Score";
+				label.name=@"score";
+				break;
+		}
+		
+		label.fontSize=20;
+		
+		label.position = CGPointMake(counterx*downMenu.size.width/offset+15,0);
+		counterx++;
+		[downMenu addChild:label];
+	}
+		
+}
+
+
 - (void) buildBankTraderInterface{
 	
 	if(!self.bankTrader){
@@ -705,6 +848,9 @@
 	
 	
 }
+
+
+
 
 -(Player *) nextPlayer{
 	
@@ -906,6 +1052,7 @@
 				
 			}
 			
+			self.resourcesLabel.text =[NSString stringWithFormat:@"Lumber=%d Brick=%d Ore=%d Wool=%d Grain=%d",self.game.me.lumber,self.game.me.brick,self.game.me.ore,self.game.me.wool,self.game.me.grain] ;
 			
 		}
 			break;
@@ -961,7 +1108,7 @@
 
 #pragma mark - temporary
 -(void) tempRes{
-	self.resourcesLabel.text = self.resourcesLabel.text =[NSString stringWithFormat:@"Lumber=%d Brick=%d Ore=%d Wool=%d Grain=%d",self.game.me.lumber,self.game.me.brick,self.game.me.ore,self.game.me.wool,self.game.me.grain] ;
+	self.resourcesLabel.text =[NSString stringWithFormat:@"Lumber=%d Brick=%d Ore=%d Wool=%d Grain=%d",self.game.me.lumber,self.game.me.brick,self.game.me.ore,self.game.me.wool,self.game.me.grain] ;
 }
 
 @end

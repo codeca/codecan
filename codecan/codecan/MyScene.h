@@ -34,6 +34,8 @@ typedef enum{
 @property (nonatomic, strong) SKNode *resourcesList;
 @property (nonatomic, strong) SKNode *tabs;
 @property (nonatomic, strong) SKNode *properties;
+@property (nonatomic, strong) SKNode *stealInterface;
+
 @property (nonatomic, strong) SKSpriteNode * thief;
 @property (nonatomic, strong) SKLabelNode * resourcesLabel;
 @property (nonatomic, strong) BankTrader * bankTrader;

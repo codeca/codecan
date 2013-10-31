@@ -37,6 +37,8 @@
 			
 		}
 		
+		auxPlayer.cards = [[NSMutableArray alloc] init];
+		
 	}
 	
 	// ask to server for first player

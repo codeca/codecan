@@ -10,4 +10,20 @@
 
 @implementation Port
 
+-(id) initWithType: (PortType) type withResource: (Resource) resource{
+	
+	self = [super init];
+	
+	if (self) {
+		
+		self.type = type;
+		self.resource = resource;
+		
+	}
+	
+	return self;
+	
+	
+}
+
 @end

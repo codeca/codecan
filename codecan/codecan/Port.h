@@ -16,8 +16,8 @@
 typedef enum  {
 	
 	
-		STANDARD = 0,
-		RESOURCE = 1
+		STANDARD = 1,
+		RESOURCE = 2
 	
 		} PortType;
 
@@ -25,5 +25,7 @@ typedef enum  {
 @property (nonatomic) PortType type;
 
 @property (nonatomic) Resource resource;
+
+-(id) initWithType: (PortType) type withResource: (Resource) resource;
 
 @end

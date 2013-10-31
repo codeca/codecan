@@ -102,6 +102,16 @@
 	}
 	
 	for(VertexNode * vertex in self.game.table.vertexes){
+		
+		if (vertex.port.type != 0) {
+			
+			NSLog(@"Porto encontrado");
+			
+			vertex.colorBlendFactor = 1;
+			vertex.color = [SKColor purpleColor];
+			
+		}
+		
 		[self.map addChild:vertex];
 	}
 	

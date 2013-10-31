@@ -351,8 +351,7 @@
 					
 				}
 				else if(![clicked.name compare:@"pass"]){
-					[self.plug sendMessage:MSG_EOT data:@[]];
-					self.game.phase = WAITTURN;
+					self.game.phase = EOT;
 					self.game.currentPlayer = [self nextPlayer];
 					
 					if(self.game.players.count == 1){
@@ -603,16 +602,9 @@
 			
 		case EOT:{
 			
-			NSUInteger index = [self.game.players indexOfObject:self.game.currentPlayer];
-			if(index == self.game.players.count-1){
-				index = 0;
-				self.game.turn ++;
-			}
-			else{
-				index++;
-			}
-			
-			self.game.currentPlayer = [self.game.players objectAtIndex:index];
+			[self broadcastResourcesChangeForPlayer:self.game.me add:[self.game.me mountPlayerHand] remove:@[@"all"]];
+			[self.plug sendMessage:MSG_EOT data:@[]];
+			self.game.phase = WAITTURN;
 			
 			break;
 		}

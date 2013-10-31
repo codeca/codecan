@@ -58,7 +58,7 @@
 		self.tabs.position = CGPointMake(self.size.width/2, self.menu.position.y+self.size.height/11);
 		
 		self.stealInterface = [[SKNode alloc] init];
-		self.stealInterface.position = CGPointMake(self.size.width, self.size.height);
+		self.stealInterface.position = CGPointMake(self.size.width/2, self.size.height/2);
 	
 		self.resourcesLabel = [SKLabelNode labelNodeWithFontNamed:@"ChalkDuster"];
 		self.resourcesLabel.text = @"Lumber=0 Brick=0 Ore=0 Wool=0 Grain=0";
@@ -674,7 +674,7 @@
 	if(background.children.count==0){
 		self.game.phase = RUNNING;
 	}else{
-		[self.thief addChild:background];
+		[self.stealInterface addChild:background];
 	}
 	
 	

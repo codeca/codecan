@@ -59,6 +59,7 @@
 		
 		self.stealInterface = [[SKNode alloc] init];
 		self.stealInterface.position = CGPointMake(self.size.width/2, self.size.height/2);
+		self.stealInterface.zPosition = 7;
 	
 		self.resourcesLabel = [SKLabelNode labelNodeWithFontNamed:@"ChalkDuster"];
 		self.resourcesLabel.text = @"Lumber=0 Brick=0 Ore=0 Wool=0 Grain=0";
@@ -838,6 +839,7 @@
 	if([self.thiefScreen discardCountForPlayer:self.game.me]>=4 ){
 		[self.thiefScreen discardScreenForPlayer:self.game.me andScene:self];
 	}else{
+		self.playersDiscardedForThief++;
 		[self.plug sendMessage:MSG_HAND_CHANGED data:@[]];
 	}
 	

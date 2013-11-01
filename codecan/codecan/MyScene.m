@@ -343,6 +343,7 @@
 					
 					if (canConstruct) {
 						[vertex becomeVillageFor: self.game.currentPlayer];
+						
 						self.game.phase = INITIALIZATIONROAD;
 						self.game.cityCreated = vertex;
 						
@@ -692,6 +693,33 @@
 						
 						[vertex becomeVillageFor:self.game.currentPlayer];
 						[vertex verifyNearRoads];
+						
+						int roadsCount=4;
+						int index=0;
+						for(Player* player in self.game.players){
+							if(player.largestRoad && player.roads>roadsCount){
+								roadsCount = player.roads;
+								index = [self.game.players indexOfObject:player];
+								break;
+							} else{
+								player.largestRoad = NO;
+							}
+						}
+						
+						
+						Player* aux;
+						for(Player* player in self.game.players){
+							if(player.roads>roadsCount){
+								roadsCount = player.roads;
+								aux= [self.game.players objectAtIndex:index];
+								aux.largestRoad = NO;
+								player.largestRoad=YES;
+								index = [self.game.players indexOfObject:player];
+								NSLog(@"LargestRoad!!!");
+							}
+						}
+						
+						
 						[self broadcastBuilding:[self.game.table.vertexes indexOfObject:vertex] andRoad:-1];
 						self.game.currentPlayer.lumber--;
 						self.game.currentPlayer.brick--;
@@ -1368,6 +1396,32 @@
 				if(city.owner == nil){
 					
 					[city becomeVillageFor:self.game.currentPlayer];
+					
+					int roadsCount=4;
+					int index=0;
+					for(Player* player in self.game.players){
+						if(player.largestRoad && player.roads>roadsCount){
+							roadsCount = player.roads;
+							index = [self.game.players indexOfObject:player];
+							break;
+						} else{
+							player.largestRoad = NO;
+						}
+					}
+					
+					
+					Player* aux;
+					for(Player* player in self.game.players){
+						if(player.roads>roadsCount){
+							roadsCount = player.roads;
+							aux= [self.game.players objectAtIndex:index];
+							aux.largestRoad = NO;
+							player.largestRoad=YES;
+							index = [self.game.players indexOfObject:player];
+							NSLog(@"LargestRoad!!!");
+						}
+					}
+					
 					self.game.currentPlayer.points++;
 					if (self.game.phase != INITIALIZATIONWAIT) {
 				

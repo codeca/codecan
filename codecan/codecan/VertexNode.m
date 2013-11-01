@@ -40,8 +40,8 @@
 		if(road.owner != player){
 			[road breakRoad];
 		}
-		
 	}
+	
 	
 }
 

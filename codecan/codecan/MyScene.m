@@ -124,7 +124,7 @@
 		
 		else if (vertex.port.type == RESOURCE){
 			
-			NSLog(@"Porto encontrado");
+			//NSLog(@"Porto encontrado");
 			
 			NSString * imageName;
 			
@@ -542,6 +542,7 @@
 				break;
 				
 			case RUNNING:
+				
 				if(clicked.name == nil){
 					
 				}
@@ -1576,6 +1577,7 @@
 			break;
 			
 		case MSG_BUILD:{
+			
 			NSDictionary* build = data;
 			NSInteger roadAtIndex = [(NSNumber*)[build objectForKey:@"road"] integerValue];
 			NSInteger cityAtIndex = [(NSNumber*)[build objectForKey:@"city"] integerValue];

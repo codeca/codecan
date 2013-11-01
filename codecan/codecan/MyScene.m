@@ -141,9 +141,12 @@
 }
 
 -(void) buildTopMenu{
-	
-	self.backgroundTopMenu = [[SKSpriteNode alloc] initWithColor:[SKColor brownColor] size:CGSizeMake(self.size.width, 120)];
+
+	self.backgroundTopMenu = [SKSpriteNode spriteNodeWithImageNamed:@"topMenu"];
+	self.backgroundTopMenu.size =CGSizeMake(self.size.width, 130);
 	self.backgroundTopMenu.position = CGPointMake(0, 0);
+	
+	
 	SKSpriteNode *color;
 	SKLabelNode *name;
 	
@@ -172,25 +175,25 @@
 		name.fontSize = 15;
 		name.text = player.name;
 		name.position = CGPointMake((i+counter-offset/2)*self.size.width/offset-40, -15);
-		name.fontColor = [SKColor whiteColor];
+		name.fontColor = [SKColor blackColor];
 		
 		res = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
 		res.fontSize = 15;
 		res.text = @"resources:";
 		res.position = CGPointMake((i+counter-offset/2)*self.size.width/offset+75+30-40, 30);
-		res.fontColor = [SKColor whiteColor];
+		res.fontColor = [SKColor blackColor];
 		
 		dev = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
 		dev.fontSize = 15;
 		dev.text = @"cards:";
 		dev.position = CGPointMake((i+counter-offset/2)*self.size.width/offset+55+30-40, 10);
-		dev.fontColor = [SKColor whiteColor];
+		dev.fontColor = [SKColor blackColor];
 		
 		points = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
 		points.fontSize = 15;
 		points.text = @"points:";
 		points.position = CGPointMake((i+counter-offset/2)*self.size.width/offset+60+30-40, -10);
-		points.fontColor = [SKColor whiteColor];
+		points.fontColor = [SKColor blackColor];
 		
 		
 		[self.topMenu addChild:res];

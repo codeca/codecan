@@ -57,6 +57,7 @@
 		C409974D181EBCAE00E60154 /* StartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C409974C181EBCAE00E60154 /* StartViewController.m */; };
 		C49590451823BDC4006F790C /* water.png in Resources */ = {isa = PBXBuildFile; fileRef = C49590441823BDC4006F790C /* water.png */; };
 		C49590471823C145006F790C /* botMenu.png in Resources */ = {isa = PBXBuildFile; fileRef = C49590461823C145006F790C /* botMenu.png */; };
+		C49590491823C8A3006F790C /* topMenu.png in Resources */ = {isa = PBXBuildFile; fileRef = C49590481823C8A3006F790C /* topMenu.png */; };
 		C4A8D8B41817E2560043AA4B /* FileReader.m in Sources */ = {isa = PBXBuildFile; fileRef = C4A8D8B31817E2560043AA4B /* FileReader.m */; };
 		C4A8D8B81817E5C40043AA4B /* hexCSV.csv in Resources */ = {isa = PBXBuildFile; fileRef = C4A8D8B51817E5C40043AA4B /* hexCSV.csv */; };
 		C4A8D8B91817E5C40043AA4B /* About-CSV.txt in Resources */ = {isa = PBXBuildFile; fileRef = C4A8D8B61817E5C40043AA4B /* About-CSV.txt */; };
@@ -145,6 +146,7 @@
 		C409974C181EBCAE00E60154 /* StartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartViewController.m; sourceTree = "<group>"; };
 		C49590441823BDC4006F790C /* water.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = water.png; path = Images/water.png; sourceTree = "<group>"; };
 		C49590461823C145006F790C /* botMenu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = botMenu.png; path = Images/botMenu.png; sourceTree = "<group>"; };
+		C49590481823C8A3006F790C /* topMenu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = topMenu.png; path = Images/topMenu.png; sourceTree = "<group>"; };
 		C4A8D8B21817E2560043AA4B /* FileReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileReader.h; sourceTree = "<group>"; };
 		C4A8D8B31817E2560043AA4B /* FileReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileReader.m; sourceTree = "<group>"; };
 		C4A8D8B51817E5C40043AA4B /* hexCSV.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = hexCSV.csv; sourceTree = "<group>"; };
@@ -351,6 +353,7 @@
 		C456889C1817FD0C008A0CB8 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				C49590481823C8A3006F790C /* topMenu.png */,
 				C49590461823C145006F790C /* botMenu.png */,
 				C49590441823BDC4006F790C /* water.png */,
 				C409973F181EBBD800E60154 /* arrow.png */,
@@ -473,6 +476,7 @@
 				98B4D264180EFB7900537145 /* Main.storyboard in Resources */,
 				C4099749181EBBD800E60154 /* ore.png in Resources */,
 				81F128A4181AA2B90002832D /* edge.png in Resources */,
+				C49590491823C8A3006F790C /* topMenu.png in Resources */,
 				C4A8D8B91817E5C40043AA4B /* About-CSV.txt in Resources */,
 				C4099747181EBBD800E60154 /* grain.png in Resources */,
 				81F128AC181ACAFC0002832D /* vertex2.png in Resources */,

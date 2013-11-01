@@ -122,6 +122,45 @@
 			
 			NSLog(@"Porto encontrado");
 			
+			NSString * imageName;
+			
+			switch(vertex.port.resource){
+				case BRICK:
+					imageName=@"brick";
+					break;
+				case LUMBER:
+					imageName=@"lumber";
+					break;
+				case ORE:
+					imageName=@"ore";
+					break;
+				case GRAIN:
+					imageName=@"grain";
+					break;
+				case WOOL:
+					imageName=@"wool";
+					break;
+					
+			}
+			
+			SKSpriteNode * resourceImage = [SKSpriteNode spriteNodeWithImageNamed:[NSString stringWithFormat: @"%@", imageName]];
+			resourceImage.xScale*=0.05;
+			resourceImage.yScale*=0.05;
+			resourceImage.zPosition = 9;
+			
+			if(vertex.position.x<0 && vertex.position.y<0){
+				resourceImage.position = CGPointMake(-10, -10);
+			}else if(vertex.position.x<0 && vertex.position.y>0){
+				resourceImage.position = CGPointMake(-10, 10);
+			}else if(vertex.position.x>0 && vertex.position.y>0){
+				resourceImage.position = CGPointMake(10, 10);
+			}else if(vertex.position.x>0 && vertex.position.y<0){
+				resourceImage.position = CGPointMake(10, -10);
+			}
+			
+			[vertex addChild:resourceImage];
+			
+			
 			vertex.colorBlendFactor = 1;
 			vertex.color = [SKColor blackColor];
 			
@@ -604,10 +643,11 @@
 					
 				}else if(clicked.class == VertexNode.class && self.selection==0){
 					VertexNode * vertex = (VertexNode*)clicked;
+					
 					if(vertex.owner == self.game.me){
 						if(vertex.port.type == STANDARD){
 							[self buildPortTraderInterface];
-						}else if(vertex.port.type == RESOURCE){// && [self.game.currentPlayer numberOfResource:(Resource)vertex.port.resource]>=2){
+						}else if(vertex.port.type == RESOURCE && [self.game.currentPlayer numberOfResource:(NSInteger)vertex.port.resource]>=2){
 							[self buildPortTraderInterface];
 						}
 					}

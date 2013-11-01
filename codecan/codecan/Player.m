@@ -80,7 +80,7 @@
 	return hand;
 }
 
-- (NSInteger) numberOfResource:(PlayerRes) resource{
+- (NSInteger) numberOfResource:(NSInteger) resource{
 	
 	switch (resource) {
 		case BRICK:

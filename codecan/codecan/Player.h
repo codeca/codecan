@@ -40,6 +40,6 @@ typedef enum{
 -(NSString*) removeRandomResource;
 -(BOOL) didPlayerWin;
 -(NSArray*) mountPlayerHand;
-- (NSInteger) numberOfResource:(PlayerRes)resource;
+- (NSInteger) numberOfResource:(NSInteger)resource;
 
 @end

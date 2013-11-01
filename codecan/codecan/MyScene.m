@@ -254,16 +254,18 @@
 	
 	myPoints = [SKLabelNode labelNodeWithFontNamed:@"ChalkDuster"];
 	myPoints.fontSize = 15;
-	myPoints.text = @"Your Points:";
+	myPoints.text = @"Your Points: 0";
 	myPoints.fontColor = [SKColor blackColor];
 	//NSLog(@"size %f", self.size.width);
 	myPoints.position = CGPointMake(290, -15);
+	myPoints.name = @"points";
 	
 	dice = [SKLabelNode labelNodeWithFontNamed:@"ChalkDuster"];
 	dice.fontSize = 30;
 	dice.text = @"D";
 	dice.fontColor = [SKColor redColor];
 	dice.position = CGPointMake(300, 10);
+	dice.name = @"dice";
 
 	
 	[self.topMenu addChild:myPoints];
@@ -1036,6 +1038,10 @@
 -(void)update:(CFTimeInterval)currentTime {
     /* Called before each frame is rendered */
 	
+	SKLabelNode *aux = (SKLabelNode*)[self.topMenu childNodeWithName:@"points"];
+	aux.text = [NSString stringWithFormat:@"Your Points:%i", self.game.me.points];
+	
+	
 	if(self.game.me.points != self.debug){
 		self.debug = self.game.me.points;
 		
@@ -1065,10 +1071,18 @@
 			break;
 			
 		case RESOURCES:
+			
 			if(!self.game.diceWasRolled){
 				NSInteger diceValue = arc4random_uniform(6)+arc4random_uniform(6)+2;
 				NSLog(@"Dice = %i", diceValue);
 				
+				NSDictionary* diceDictionary = [NSDictionary dictionaryWithObjects:@[@"2",@"3",@"4",@"5",@"6",@"7",@"8",@"9",@"10",@"11",@"12"] forKeys:@[@2,@3,@4,@5,@6,@7,@8,@9,@10,@11,@12]];
+				
+				NSMutableString *diceNumber = [diceDictionary objectForKey:([NSNumber numberWithInt:diceValue])];
+				SKLabelNode *diceLabel = (SKLabelNode*)[self.topMenu childNodeWithName:@"dice"];
+				
+				diceLabel.text = diceNumber;
+												
 				[self.plug sendMessage:MSG_DICE data:[NSNumber numberWithInt:diceValue]];
 				
 				if(diceValue == 7){
@@ -1838,5 +1852,7 @@
 -(void) tempRes{
 	self.resourcesLabel.text =[NSString stringWithFormat:@"Lumber=%d Brick=%d Ore=%d Wool=%d Grain=%d",self.game.me.lumber,self.game.me.brick,self.game.me.ore,self.game.me.wool,self.game.me.grain] ;
 }
+
+
 
 @end

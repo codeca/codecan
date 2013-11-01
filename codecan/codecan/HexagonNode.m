@@ -85,6 +85,9 @@
 				case ORE:
 					vertex.owner.ore++;
 					break;
+				
+				default:
+					break;
 			}
 		}else{
 			switch (self.resource) {
@@ -103,6 +106,10 @@
 				case ORE:
 					vertex.owner.ore+=2;
 					break;
+					
+				default:
+					break;
+					
 			}
 			
 		}

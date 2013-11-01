@@ -35,7 +35,8 @@ typedef enum{
 
 
 @property(nonatomic, strong) NSMutableArray* cards;
-
+@property(nonatomic) NSInteger army;
+@property(nonatomic) bool largestArmy;
 
 -(NSString*) removeRandomResource;
 -(BOOL) didPlayerWin;

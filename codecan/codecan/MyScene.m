@@ -142,6 +142,9 @@
 					imageName=@"wool";
 					break;
 					
+				default:
+					break;
+					
 			}
 			
 			SKSpriteNode * resourceImage = [SKSpriteNode spriteNodeWithImageNamed:[NSString stringWithFormat: @"%@", imageName]];
@@ -573,6 +576,33 @@
 					[clicked removeFromParent];
 					self.game.table.thiefHasBeenMoved = NO;
 					self.game.phase = ARMYTURN;
+										
+					[self.plug sendMessage:MSG_CARD_USED data:@"army"];
+					
+					self.game.currentPlayer.army++;
+					
+					int armyCount=2;
+					int index=0;
+					for(Player* player in self.game.players){
+						if(player.largestArmy && player.army>armyCount){
+							armyCount = player.army;
+							index = [self.game.players indexOfObject:player];
+							break;
+						}
+					}
+					
+					
+					Player* aux;
+					for(Player* player in self.game.players){
+						if(player.army>armyCount){
+							armyCount = player.army;
+							aux= [self.game.players objectAtIndex:index];
+							aux.largestArmy = NO;
+							player.largestArmy=YES;
+							index = [self.game.players indexOfObject:player];
+						}
+					}
+					
 					
 				}else if(![clicked.name compare:@"roads"]){
 					[self.game.currentPlayer removeCardOfType:@"roads"];
@@ -831,6 +861,9 @@
 			}
 			
 			[self tempRes];
+			break;
+			
+		default:
 			break;
 	}
 	
@@ -1281,6 +1314,44 @@
 					[self.game.currentPlayer.cards addObject:[NSNumber numberWithInt:card]];
 			}
 			
+			
+			break;
+			
+		case MSG_CARD_USED:{
+			
+			NSString *card = data;
+			
+			if(![card compare:@"army"]){
+				self.game.currentPlayer.army ++;
+				
+				int armyCount=2;
+				int index=0;
+				for(Player* player in self.game.players){
+					if(player.largestArmy && player.army>armyCount){
+						armyCount = player.army;
+						index = [self.game.players indexOfObject:player];
+						break;
+					}
+				}
+				
+				
+				Player* aux;
+				for(Player* player in self.game.players){
+					if(player.army>armyCount){
+						armyCount = player.army;
+						aux= [self.game.players objectAtIndex:index];
+						aux.largestArmy = NO;
+						player.largestArmy=YES;
+						index = [self.game.players indexOfObject:player];
+					}
+				}
+				
+			}
+			
+			
+			break;
+		}
+		default:
 			
 			break;
 	}

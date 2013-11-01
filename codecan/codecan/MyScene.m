@@ -49,6 +49,10 @@
 		
         self.backgroundColor = [SKColor colorWithRed:0.15 green:0.15 blue:0.3 alpha:1.0];
 		
+		SKSpriteNode *backgroundImage = [SKSpriteNode spriteNodeWithImageNamed:@"water"];
+		backgroundImage.position=CGPointMake(self.size.width/2,self.size.height/2);
+		
+		
 		self.map = [[SKNode alloc] init];
 		self.map.position = CGPointMake(self.size.width/2, self.size.height/2+44);
 		
@@ -79,13 +83,15 @@
 		self.yourTurn.position = CGPointMake(650, 900);
 		self.yourTurn.fontSize = 20;
 		
-		
+		[self addChild:backgroundImage];
 		[self addChild:self.resourcesLabel];
         [self addChild:self.map];
 		[self addChild:self.menu];
 		[self addChild:self.tabs];
 		[self addChild:self.stealInterface];
 		[self addChild:self.topMenu];
+		
+		
 		
     }
 

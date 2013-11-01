@@ -886,7 +886,7 @@
 				self.victory = [SKSpriteNode spriteNodeWithImageNamed:@"victory"];
 				self.victory.zPosition = 10;
 				self.victory.size = CGSizeMake(600, 300);
-				self.position = CGPointMake(self.size.width/2, self.size.height/2);
+				self.victory.position = CGPointMake(self.size.width/2, self.size.height/2);
 				[self addChild:self.victory];
 			}
 			
@@ -898,7 +898,7 @@
 				self.victory = [SKSpriteNode spriteNodeWithImageNamed:@"defeat"];
 				self.victory.zPosition = 10;
 				self.victory.size = CGSizeMake(600, 300);
-				self.position = CGPointMake(self.size.width/2, self.size.height/2);
+				self.victory.position = CGPointMake(self.size.width/2, self.size.height/2);
 				[self addChild:self.victory];
 			}
 			

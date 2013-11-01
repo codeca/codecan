@@ -59,7 +59,6 @@
 
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
 	[self.scene removeObserver:self forKeyPath:@"endGame"];
-	[self.plug close];
 	[self dismissViewControllerAnimated:YES completion:nil];
 }
 

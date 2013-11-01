@@ -571,6 +571,8 @@
 				}else if(![clicked.name compare:@"army"]){
 					[self.game.currentPlayer removeCardOfType:@"army"];
 					[clicked removeFromParent];
+					self.game.table.thiefHasBeenMoved = NO;
+					self.game.phase = ARMYTURN;
 					
 				}else if(![clicked.name compare:@"roads"]){
 					[self.game.currentPlayer removeCardOfType:@"roads"];
@@ -667,6 +669,45 @@
 			case WAITTURN:
 
 				break;
+				
+			case ARMYTURN:
+				if(!self.game.table.thiefHasBeenMoved){
+					if(clicked.class == HexagonNode.class){
+						
+						HexagonNode * hex = (HexagonNode*) clicked;
+						
+						[self.game.table moveThiefToHexagon:hex];
+						self.thief.position = self.game.table.thief.position;
+						
+						
+						self.game.phase = WAITDISCARD;
+						self.game.table.thiefHasBeenMoved = NO;
+						
+					}else if(clicked.class == SKLabelNode.class){
+						SKLabelNode * label = (SKLabelNode*) clicked;
+						if(label.parent.class==HexagonNode.class){
+							[self.game.table moveThiefToHexagon:(HexagonNode*)label.parent];
+							self.thief.position = self.game.table.thief.position;
+							
+							self.game.phase = WAITDISCARD;
+							self.game.table.thiefHasBeenMoved = NO;
+						}
+					}
+					
+					
+					{
+						
+						NSNumber* hexTo = [NSNumber numberWithInt:[self.game.table.hexes indexOfObject:self.game.table.thief]];
+						
+						NSDictionary  * robberDictionary = [NSDictionary dictionaryWithObjects:@[@NO, hexTo] forKeys:@[@"discard", @"hexTo"]];
+						
+						[self.plug sendMessage:MSG_ROBBER data:robberDictionary];
+						
+					}
+				}
+
+				break;
+				
 		}
 		
 		

@@ -1039,7 +1039,7 @@
     /* Called before each frame is rendered */
 	
 	SKLabelNode *aux = (SKLabelNode*)[self.topMenu childNodeWithName:@"points"];
-	aux.text = [NSString stringWithFormat:@"Your Points:%i", self.game.me.points];
+	aux.text = [NSString stringWithFormat:@"Your Points:%i", [self.game.me returnPoints]];
 	
 	
 	if(self.game.me.points != self.debug){

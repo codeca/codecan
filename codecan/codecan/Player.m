@@ -129,4 +129,9 @@
 	
 }
 
+-(NSInteger) returnPoints{
+	
+	return self.points + self.cardPoints + 2*self.largestArmy + 2*self.largestRoad;
+}
+
 @end

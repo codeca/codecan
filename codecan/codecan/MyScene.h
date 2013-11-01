@@ -29,6 +29,11 @@ typedef enum{
 
 @interface MyScene : SKScene <PlugDelegate>
 
+
+@property (nonatomic) int debug;
+
+
+
 @property (nonatomic, strong) SKNode * map;
 @property (nonatomic, strong) SKNode *menu;
 @property (nonatomic, strong) SKNode *resourcesList;
@@ -36,6 +41,8 @@ typedef enum{
 @property (nonatomic, strong) SKNode *properties;
 @property (nonatomic, strong) SKNode *stealInterface;
 @property (nonatomic, strong) SKNode *topMenu;
+
+@property (nonatomic, strong) SKSpriteNode *victory;
 
 @property (nonatomic, strong) SKSpriteNode * thief;
 @property (nonatomic, strong) SKLabelNode * resourcesLabel;

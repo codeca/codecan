@@ -36,6 +36,7 @@
 		newScene.game.me.wool = 1000;
 		newScene.game.me.grain = 1000;
 		newScene.game.me.brick = 1000;
+		//newScene.game.me.points =6;
 	}
 	
 	return newScene;
@@ -758,7 +759,12 @@
 -(void)update:(CFTimeInterval)currentTime {
     /* Called before each frame is rendered */
 	
-	
+	if(self.game.me.points != self.debug){
+		self.debug = self.game.me.points;
+		
+		NSLog(@"debug----%i", self.debug);
+		
+	}
 	
 	if(self.game.currentPlayer == self.game.me && self.yourTurn.parent == nil){
 		[self addChild:self.yourTurn];
@@ -876,11 +882,23 @@
 			
 		case WINNER:
 			
+			if(self.victory.parent == nil){
+				self.victory = [SKSpriteNode spriteNodeWithImageNamed:@"victory"];
+				self.victory.zPosition = 10;
+				self.victory.size = CGSizeMake(600, 300);
+				self.position = CGPointMake(self.size.width/2, self.size.height/2);
+				[self addChild:self.victory];
+			}
 			
 			break;
 			
 		case LOSER:
 			
+			if(self.victory.parent == nil){
+				self.victory = [SKSpriteNode spriteNodeWithImageNamed:@"defeat"];
+				self.victory.zPosition = 10;
+				[self addChild:self.victory];
+			}
 			
 			break;
 		default:

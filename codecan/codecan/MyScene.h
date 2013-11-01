@@ -64,6 +64,8 @@ typedef enum{
 @property (nonatomic, strong) NSMutableArray* spritePoints;
 
 
+//
+@property (nonatomic) bool endGame;
 
 +(instancetype)sceneWithSize:(CGSize)size andGame:(Game *) game;
 -(void)broadcastResourcesChangeForPlayer: (Player*) player add:(NSArray*)addResources remove:(NSArray*)removeResources;

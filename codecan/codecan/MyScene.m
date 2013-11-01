@@ -942,10 +942,12 @@
 				break;
 				
 			case WINNER:
+				self.endGame = YES;
 				
 				break;
 				
 			case LOSER:
+				self.endGame = YES;
 				
 				break;
 				

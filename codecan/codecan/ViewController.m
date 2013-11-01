@@ -51,9 +51,17 @@
 		self.scene.plug = self.plug;
 		self.scene.plug.delegate = self.scene;
 		self.scene.scaleMode = SKSceneScaleModeAspectFill;
+		
+		[self.scene addObserver:self forKeyPath:@"endGame" options:NSKeyValueObservingOptionNew context:nil];
 		[skView presentScene:self.scene];
 	}
 }
+
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
+	[self.scene removeObserver:self forKeyPath:@"endGame"];
+	[self dismissViewControllerAnimated:YES completion:nil];
+}
+
 
 - (BOOL)shouldAutorotate
 {

@@ -7,6 +7,7 @@
 //
 
 #import "Port.h"
+#import "HexagonNode.h"
 
 @implementation Port
 

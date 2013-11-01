@@ -10,18 +10,20 @@
 #import <SpriteKit/SpriteKit.h>
 #import "VertexNode.h"
 
-typedef enum {
-	
-		BRICK = 1,
-		WOOL,
-		ORE,
-		GRAIN,
-		LUMBER,
-		DESERT
 
-} Resource;
 
 @interface HexagonNode : SKSpriteNode
+
+typedef enum {
+	
+	BRICK = 1,
+	WOOL,
+	ORE,
+	GRAIN,
+	LUMBER,
+	DESERT
+	
+} Resource;
 
 @property (nonatomic) Resource resource;
 @property (nonatomic) NSUInteger number;

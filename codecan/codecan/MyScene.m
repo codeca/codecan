@@ -450,6 +450,7 @@
 					
 				}
 				else if(![clicked.name compare:@"pass"]){
+					[self stopAnimationsInView:self.menu];
 					self.game.phase = EOT;
 					self.game.currentPlayer = [self nextPlayer];
 					
@@ -458,27 +459,39 @@
 					}
 					
 				}else if(![clicked.name compare:@"road"]){
-				
-					self.selection = ROADSEL;
-					[self stopAnimationsInView:self.menu];
-					[self selectItem:clicked];
+					if(self.selection != ROADSEL){
+						self.selection = ROADSEL;
+						[self stopAnimationsInView:self.menu];
+						[self selectItem:clicked];
+					}else{
+						self.selection = 0;
+						[self stopAnimationsInView:self.menu];
+					}
 					
 				}else if(![clicked.name compare:@"village"]){
-					
-					self.selection = VILLAGESEL;
-					[self stopAnimationsInView:self.menu];
-					[self selectItem:clicked];
+					if(self.selection!=VILLAGESEL){
+						self.selection = VILLAGESEL;
+						[self stopAnimationsInView:self.menu];
+						[self selectItem:clicked];
+					}else{
+						self.selection = 0;
+						[self stopAnimationsInView:self.menu];
+					}
 					
 				}else if(![clicked.name compare:@"city"]){
-					
-					self.selection = CITYSEL;
-					[self stopAnimationsInView:self.menu];
-					[self selectItem:clicked];
+					if(self.selection != CITYSEL){
+						self.selection = CITYSEL;
+						[self stopAnimationsInView:self.menu];
+						[self selectItem:clicked];
+					}else{
+						self.selection = 0;
+						[self stopAnimationsInView:self.menu];
+					}
 					
 				}else if(![clicked.name compare:@"card"]){
 					
 					[self stopAnimationsInView:self.menu];
-					
+					self.selection = 0;
 					if(self.game.currentPlayer.ore>0 && self.game.currentPlayer.grain>0 && self.game.currentPlayer.wool>0 && self.game.table.deck.deck.count>0){
 						
 						self.game.currentPlayer.ore--;
@@ -503,6 +516,8 @@
 					
 				}else if(![clicked.name compare:@"tradetab"]){
 					[self buildTradeInterface];
+					[self stopAnimationsInView:self.menu];
+					self.selection = 0;
 					
 				}else if(![clicked.name compare:@"buildtab"]){
 					[self buildBuildInterface];
@@ -587,6 +602,15 @@
 						self.game.currentPlayer.grain-=2;
 					}
 					
+				}else if(clicked.class == VertexNode.class && self.selection==0){
+					VertexNode * vertex = (VertexNode*)clicked;
+					if(vertex.owner == self.game.me){
+						if(vertex.port.type == STANDARD){
+							[self buildPortTraderInterface];
+						}else if(vertex.port.type == RESOURCE){// && [self.game.currentPlayer numberOfResource:(Resource)vertex.port.resource]>=2){
+							[self buildPortTraderInterface];
+						}
+					}
 				}
 				break;
 				

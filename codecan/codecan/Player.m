@@ -7,6 +7,7 @@
 //
 
 #import "Player.h"
+#import "HexagonNode.h"
 
 @implementation Player
 
@@ -77,6 +78,30 @@
 		[hand addObject:@"grain"];
 	
 	return hand;
+}
+
+- (NSInteger) numberOfResource:(PlayerRes) resource{
+	
+	switch (resource) {
+		case BRICK:
+			return self.brick;
+			break;
+		case LUMBER:
+			return self.lumber;
+			break;
+		case ORE:
+			return self.ore;
+			break;
+		case WOOL:
+			return self.wool;
+			break;
+		case GRAIN:
+			return self.grain;
+			break;
+		default:
+			break;
+	}
+	return 0;
 }
 
 @end

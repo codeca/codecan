@@ -9,6 +9,15 @@
 #import <Foundation/Foundation.h>
 #import <SpriteKit/SpriteKit.h>
 
+typedef enum{
+	PLAYERBRICK = 1,
+	PLAYERWOOL,
+	PLAYERORE,
+	PLAYERGRAIN,
+	PLAYERLUMBER,
+	PLAYERDESERT
+} PlayerRes;
+
 @interface Player : NSObject
 
 @property (nonatomic, strong) NSString* name;
@@ -31,5 +40,6 @@
 -(NSString*) removeRandomResource;
 -(BOOL) didPlayerWin;
 -(NSArray*) mountPlayerHand;
+- (NSInteger) numberOfResource:(PlayerRes)resource;
 
 @end

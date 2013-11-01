@@ -247,6 +247,26 @@
 		[self.topMenu addChild:color];
 	}
 	
+	SKLabelNode* myPoints;
+	SKLabelNode* dice;
+	
+	myPoints = [SKLabelNode labelNodeWithFontNamed:@"ChalkDuster"];
+	myPoints.fontSize = 15;
+	myPoints.text = @"Your Points:";
+	myPoints.fontColor = [SKColor blackColor];
+	//NSLog(@"size %f", self.size.width);
+	myPoints.position = CGPointMake(290, -15);
+	
+	dice = [SKLabelNode labelNodeWithFontNamed:@"ChalkDuster"];
+	dice.fontSize = 30;
+	dice.text = @"D";
+	dice.fontColor = [SKColor redColor];
+	dice.position = CGPointMake(300, 10);
+
+	
+	[self.topMenu addChild:myPoints];
+	[self.topMenu addChild:dice];
+	
 	
 }
 

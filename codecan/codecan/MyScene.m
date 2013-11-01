@@ -225,21 +225,24 @@
 		
 		res = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
 		res.fontSize = 15;
-		res.text = @"resources:";
+		res.text = @"resources: 0";
 		res.position = CGPointMake((i+counter-offset/2)*self.size.width/offset+75+30-40, 30);
 		res.fontColor = [SKColor blackColor];
+		res.name = [NSString stringWithFormat:@"resources%i",i];
 		
 		dev = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
 		dev.fontSize = 15;
 		dev.text = @"cards:";
 		dev.position = CGPointMake((i+counter-offset/2)*self.size.width/offset+55+30-40, 10);
 		dev.fontColor = [SKColor blackColor];
+		dev.name = [NSString stringWithFormat:@"cards%i",i];
 		
 		points = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
 		points.fontSize = 15;
 		points.text = @"points:";
 		points.position = CGPointMake((i+counter-offset/2)*self.size.width/offset+60+30-40, -10);
 		points.fontColor = [SKColor blackColor];
+		points.name = [NSString stringWithFormat:@"points%i",i];
 		
 		
 		[self.topMenu addChild:res];
@@ -1043,13 +1046,24 @@
 	SKLabelNode *aux = (SKLabelNode*)[self.topMenu childNodeWithName:@"points"];
 	aux.text = [NSString stringWithFormat:@"Your Points:%i", [self.game.me returnPoints]];
 	
-	
-	if(self.game.me.points != self.debug){
-		self.debug = self.game.me.points;
+	for (int i = 0; i < [self.game.players count]; i++) {
 		
-		NSLog(@"debug----%i", self.debug);
+		Player * player  = [self.game.players objectAtIndex:i];
 		
+		if (self.game.me != player) {
+		
+		aux = (SKLabelNode*)[self.topMenu childNodeWithName:[NSString stringWithFormat:@"resources%i",i]];
+		aux.text = [NSString stringWithFormat:@"resources: %i",(player.wool+player.ore+player.brick+player.lumber+player.grain)];
+		aux = (SKLabelNode*)[self.topMenu childNodeWithName:[NSString stringWithFormat:@"cards%i",i]];
+		aux.text = [NSString stringWithFormat:@"cards: %i",[player.cards count]];
+		aux = (SKLabelNode*)[self.topMenu childNodeWithName:[NSString stringWithFormat:@"points%i",i]];
+		aux.text = [NSString stringWithFormat:@"points: %i",player.points];
+		
+		}
 	}
+	
+	
+	
 	
 	if(self.game.currentPlayer == self.game.me && self.yourTurn.parent == nil){
 		[self addChild:self.yourTurn];

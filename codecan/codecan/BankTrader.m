@@ -267,6 +267,7 @@
 				[self.myScene broadcastResourcesChangeForPlayer:self.player add:self.player.mountPlayerHand remove:@[@"all"]];
 			}
 		}
+		[self.myScene updateResources];
 		[self updateView];
 		
 	}

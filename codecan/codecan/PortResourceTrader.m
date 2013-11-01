@@ -7,6 +7,7 @@
 //
 
 #import "PortResourceTrader.h"
+#import "MyScene.h"
 
 
 @implementation PortResourceTrader
@@ -160,6 +161,7 @@
 			
 		}
 		[self setDemandTo:self.selectionDemand];
+		[self.myScene updateResources];
 		if([self.player numberOfResource:self.resource]<2){
 			[self removeFromParent];
 		}

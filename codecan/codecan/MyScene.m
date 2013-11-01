@@ -532,7 +532,7 @@
 					
 					
 					self.game.phase = RUNNING;
-					
+					[self updateResources];
 					[self.stealInterface removeAllChildren];
 				}
 			}

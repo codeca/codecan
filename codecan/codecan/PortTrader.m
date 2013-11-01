@@ -8,6 +8,7 @@
 //
 
 #import "PortTrader.h"
+#import "MyScene.h"
 
 @interface PortTrader()
 
@@ -157,6 +158,7 @@
 				}
 			}
 		}
+		[self.myScene updateResources];
 		[self updateView];
 		
 	}
@@ -241,7 +243,8 @@
 -(void)portTraderForPlayer:(Player *)player andScene:(SKScene *)scene{
 	
 	self.player = player;
-	[scene addChild:self];
+	self.myScene = (MyScene*) scene;
+	[self.myScene addChild:self];
 	self.selectionOffer = BANKBLANK;
 	self.selectionDemand = BANKBLANK;
 	[self updateView];

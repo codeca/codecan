@@ -625,6 +625,42 @@
 				}else if(![clicked.name compare:@"plenty"]){
 					[self.game.currentPlayer removeCardOfType:@"plenty"];
 					[clicked removeFromParent];
+					
+					NSArray *resources =@[@"lumber", @"wool", @"grain", @"ore", @"brick"];
+					
+					int index1 = arc4random_uniform(5);
+					int index2 = arc4random_uniform(5);
+					
+					if(![(NSString*)resources[index1] compare: @"lumber"]){
+						self.game.currentPlayer.lumber++;
+					}else if(![(NSString*)resources[index1] compare: @"grain"]){
+						self.game.currentPlayer.grain++;
+					}else if(![(NSString*)resources[index1] compare: @"ore"]){
+						self.game.currentPlayer.ore++;
+					}else if(![(NSString*)resources[index1] compare: @"wool"]){
+						self.game.currentPlayer.wool++;
+					}else if(![(NSString*)resources[index1] compare: @"brick"]){
+						self.game.currentPlayer.brick++;
+					}
+					
+					
+					if(![(NSString*)resources[index2] compare: @"lumber"]){
+						self.game.currentPlayer.lumber++;
+					}else if(![(NSString*)resources[index2] compare: @"grain"]){
+						self.game.currentPlayer.grain++;
+					}else if(![(NSString*)resources[index2] compare: @"ore"]){
+						self.game.currentPlayer.ore++;
+					}else if(![(NSString*)resources[index2] compare: @"wool"]){
+						self.game.currentPlayer.wool++;
+					}else if(![(NSString*)resources[index2] compare: @"brick"]){
+						self.game.currentPlayer.brick++;
+					}
+					
+					
+					[self broadcastResourcesChangeForPlayer:self.game.currentPlayer add:@[resources[index1],resources[index2]] remove:@[]];
+					
+					
+					
 				}
 				
 				if(clicked.class == EdgeNode.class && self.selection==ROADSEL && self.game.currentPlayer.lumber>0 && self.game.currentPlayer.brick>0){

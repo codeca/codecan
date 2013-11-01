@@ -50,7 +50,7 @@
 	
 	//Precisa adicionar as cartas de desenvolvimento aqui para ver se tudo funciona
 	
-	if (self.points + self.cardPoints + 2*self.largestArmy < 10) {
+	if (self.points + self.cardPoints + 2*self.largestArmy + 2*self.largestRoad < 10) {
 		return 0;
 	}
 	

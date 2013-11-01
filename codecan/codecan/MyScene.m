@@ -372,6 +372,7 @@
 					
 					if (canConstruct) {
 						[edge receiveOwner: self.game.currentPlayer];
+						
 						if(self.game.players.lastObject == self.game.me && !self.game.endInitialization){
 							self.game.phase = INITIALIZATIONCITY;
 							self.game.endInitialization = YES;
@@ -634,6 +635,31 @@
 					if (edge.owner == self.game.currentPlayer) {
 						self.game.currentPlayer.lumber--;
 						self.game.currentPlayer.brick--;
+					}
+					
+					
+					
+					int roadsCount=4;
+					int index=0;
+					for(Player* player in self.game.players){
+						if(player.largestRoad && player.roads>roadsCount){
+							roadsCount = player.roads;
+							index = [self.game.players indexOfObject:player];
+							break;
+						}
+					}
+					
+					
+					Player* aux;
+					for(Player* player in self.game.players){
+						if(player.roads>roadsCount){
+							roadsCount = player.roads;
+							aux= [self.game.players objectAtIndex:index];
+							aux.largestRoad = NO;
+							player.largestRoad=YES;
+							index = [self.game.players indexOfObject:player];
+							NSLog(@"LargestRoad!!!");
+						}
 					}
 					
 					
@@ -1269,6 +1295,30 @@
 				[(EdgeNode*)[self.game.table.edges objectAtIndex:roadAtIndex] receiveOwner: self.game.currentPlayer];
 				
 				
+				
+				int roadsCount=4;
+				int index=0;
+				for(Player* player in self.game.players){
+					if(player.largestRoad && player.roads>roadsCount){
+						roadsCount = player.roads;
+						index = [self.game.players indexOfObject:player];
+						break;
+					}
+				}
+				
+				
+				Player* aux;
+				for(Player* player in self.game.players){
+					if(player.roads>roadsCount){
+						roadsCount = player.roads;
+						aux= [self.game.players objectAtIndex:index];
+						aux.largestRoad = NO;
+						player.largestRoad=YES;
+						index = [self.game.players indexOfObject:player];
+					}
+				}
+				
+				
 				if (self.game.phase == INITIALIZATIONWAIT) {
 					
 					if (self.game.currentPlayer != self.game.players.lastObject && self.game.currentPlayer.points == 1) {
@@ -1318,7 +1368,7 @@
 				if(city.owner == nil){
 					
 					[city becomeVillageFor:self.game.currentPlayer];
-					
+					self.game.currentPlayer.points++;
 					if (self.game.phase != INITIALIZATIONWAIT) {
 				
 						self.game.currentPlayer.lumber--;
@@ -1333,7 +1383,7 @@
 				else{
 					
 					[city becomeCity];
-					
+					self.game.currentPlayer.points++;
 					if (self.game.phase != INITIALIZATIONWAIT) {
 					
 						self.game.currentPlayer.ore-=3;

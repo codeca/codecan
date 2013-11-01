@@ -80,8 +80,9 @@
 		
 		self.yourTurn = [SKLabelNode labelNodeWithFontNamed:@"ChalkDuster"];
 		self.yourTurn.text = @"Your Turn!";
-		self.yourTurn.position = CGPointMake(650, 900);
-		self.yourTurn.fontSize = 20;
+		self.yourTurn.position = CGPointMake(700, 930);
+		self.yourTurn.fontSize = 15;
+		self.yourTurn.fontColor = [SKColor blackColor];
 		
 		[self addChild:backgroundImage];
 		[self addChild:self.resourcesLabel];
@@ -568,17 +569,18 @@
 				}else if(![clicked.name compare:@"handtab"]){
 					[self buildHandInteface];
 				}else if(![clicked.name compare:@"army"]){
-					
+					[self.game.currentPlayer removeCardOfType:@"army"];
+					[clicked removeFromParent];
 					
 				}else if(![clicked.name compare:@"roads"]){
-					
-					
+					[self.game.currentPlayer removeCardOfType:@"roads"];
+					[clicked removeFromParent];
 				}else if(![clicked.name compare:@"monopoly"]){
-					
-					
+					[self.game.currentPlayer removeCardOfType:@"monopoly"];
+					[clicked removeFromParent];
 				}else if(![clicked.name compare:@"plenty"]){
-					
-					
+					[self.game.currentPlayer removeCardOfType:@"plenty"];
+					[clicked removeFromParent];
 				}
 				
 				if(clicked.class == EdgeNode.class && self.selection==ROADSEL && self.game.currentPlayer.lumber>0 && self.game.currentPlayer.brick>0){

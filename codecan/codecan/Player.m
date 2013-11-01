@@ -104,4 +104,29 @@
 	return 0;
 }
 
+
+-(void)removeCardOfType:(NSString *)type{
+	
+	int remove;
+	
+	if(![type compare:@"army"]){
+		remove=0;
+	}else if(![type compare:@"roads"]){
+		remove=1;
+	}else if(![type compare:@"monopoly"]){
+		remove=2;
+	}else if(![type compare:@"plenty"]){
+		remove=3;
+	}
+	
+	for(int i=0; i<self.cards.count; i++){
+		if([(NSNumber*)self.cards[i] integerValue] == remove){
+			[self.cards removeObjectAtIndex:i];
+			return;
+		}
+	}
+	
+	
+}
+
 @end

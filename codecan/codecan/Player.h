@@ -42,4 +42,6 @@ typedef enum{
 -(NSArray*) mountPlayerHand;
 - (NSInteger) numberOfResource:(NSInteger)resource;
 
+-(void)removeCardOfType:(NSString*) type;
+
 @end

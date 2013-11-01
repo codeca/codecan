@@ -14,5 +14,5 @@
 @property (nonatomic) BankSelection resource;
 
 
--(void) buildInterfaceForResource:(BankSelection) resource andScene:(MyScene*) scene;
+-(void) buildInterfaceForPlayer: (Player*) player andResource:(BankSelection) resource andScene:(SKScene*) scene;
 @end

@@ -19,11 +19,12 @@ typedef enum{
 
 typedef enum{
 	BANKBLANK = 0,
-	BANKLUMBER,
 	BANKBRICK,
-	BANKORE,
 	BANKWOOL,
+	BANKORE,
 	BANKGRAIN,
+	BANKLUMBER,
+	
 	
 } BankSelection;
 

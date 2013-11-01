@@ -1475,7 +1475,7 @@
 		self.portResourceTrader.position = CGPointMake(self.size.width/2, self.size.height/2);
 	}
 	
-	[self.portResourceTrader buildInterfaceForResource:(BankSelection)resource andScene:self];
+	[self.portResourceTrader buildInterfaceForPlayer:self.game.currentPlayer andResource:(BankSelection) resource andScene:self];
 	
 	
 }

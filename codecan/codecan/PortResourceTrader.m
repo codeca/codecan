@@ -15,7 +15,7 @@
 	self = [super init];
 	
 	if(self){
-		
+		self.side = DEMANDSIDE;
 		[self.myOffer removeAllChildren];
 		
 		for(int i = 0; i < 2; i++){
@@ -149,10 +149,17 @@
 				}else if(self.selectionDemand == BANKLUMBER){
 					self.player.lumber++;
 				}
+				
+				self.grainQuantity.text = [NSString stringWithFormat:@"%d", self.player.grain];
+				self.brickQuantity.text = [NSString stringWithFormat:@"%d", self.player.brick];
+				self.oreQuantity.text = [NSString stringWithFormat:@"%d", self.player.ore];
+				self.lumberQuantity.text = [NSString stringWithFormat:@"%d", self.player.lumber];
+				self.woolQuantity.text = [NSString stringWithFormat:@"%d", self.player.wool];
+				
 			}
-			[self setDemandTo:self.selectionDemand];
+			
 		}
-		
+		[self setDemandTo:self.selectionDemand];
 		if([self.player numberOfResource:self.resource]<2){
 			[self removeFromParent];
 		}
@@ -162,12 +169,19 @@
 	
 }
 
--(void) buildInterfaceForResource:(BankSelection) resource andScene:(SKScene*) scene{
+-(void) buildInterfaceForPlayer: (Player*) player andResource:(BankSelection) resource andScene:(SKScene*) scene{
 	
+	self.player = player;
 	self.myScene = (MyScene*)scene;
 	self.resource = resource;
 	[scene addChild:self];
 	[self setOfferTo:self.resource];
+	
+	self.grainQuantity.text = [NSString stringWithFormat:@"%d", self.player.grain];
+	self.brickQuantity.text = [NSString stringWithFormat:@"%d", self.player.brick];
+	self.oreQuantity.text = [NSString stringWithFormat:@"%d", self.player.ore];
+	self.lumberQuantity.text = [NSString stringWithFormat:@"%d", self.player.lumber];
+	self.woolQuantity.text = [NSString stringWithFormat:@"%d", self.player.wool];
 }
 
 @end

@@ -622,6 +622,66 @@
 				}else if(![clicked.name compare:@"monopoly"]){
 					[self.game.currentPlayer removeCardOfType:@"monopoly"];
 					[clicked removeFromParent];
+					
+					NSArray *resources =@[@"lumber", @"wool", @"grain", @"ore", @"brick"];
+					
+					int index = arc4random_uniform(5);
+					
+					if(![(NSString*)resources[index] compare: @"lumber"]){
+						
+						for(Player * player in self.game.players){
+							if(player != self.game.me){
+								self.game.currentPlayer.lumber += player.lumber;
+								player.lumber = 0;
+							}
+						}
+						
+					}else if(![(NSString*)resources[index] compare: @"grain"]){
+						
+						for(Player * player in self.game.players){
+							if(player != self.game.me){
+								self.game.currentPlayer.grain += player.grain;
+								player.grain = 0;
+							}
+						}
+						
+					}else if(![(NSString*)resources[index] compare: @"ore"]){
+						
+						for(Player * player in self.game.players){
+							if(player != self.game.me){
+								self.game.currentPlayer.ore += player.ore;
+								player.ore = 0;
+							}
+						}
+						
+					}else if(![(NSString*)resources[index] compare: @"wool"]){
+						
+						for(Player * player in self.game.players){
+							if(player != self.game.me){
+								self.game.currentPlayer.wool += player.wool;
+								player.wool = 0;
+							}
+						}
+						
+					}else if(![(NSString*)resources[index] compare: @"brick"]){
+						
+						for(Player * player in self.game.players){
+							if(player != self.game.me){
+								self.game.currentPlayer.brick += player.brick;
+								player.brick = 0;
+							}
+						}
+						
+					}
+					
+					
+					for(Player * player in self.game.players){
+						
+						[self broadcastResourcesChangeForPlayer:player add:[player mountPlayerHand] remove:@[@"all"]];
+						
+					}
+					
+					
 				}else if(![clicked.name compare:@"plenty"]){
 					[self.game.currentPlayer removeCardOfType:@"plenty"];
 					[clicked removeFromParent];

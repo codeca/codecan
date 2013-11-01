@@ -258,30 +258,37 @@
 	buildTab.text = @"Build";
 	buildTab.fontSize = 20;
 	buildTab.name=@"buildtab";
-	buildTab.position = CGPointMake(-self.size.width/4, 0);
+	buildTab.position = CGPointMake(-self.size.width*2/5, 0);
 	
 	SKLabelNode * handTab = [SKLabelNode labelNodeWithFontNamed:@"ChalkDuster"];
 	handTab.text = @"Hand";
 	handTab.fontSize = 20;
 	handTab.name=@"handtab";
-	handTab.position = CGPointMake(0, 0);
+	handTab.position = CGPointMake(-self.size.width/5, 0);
 	
 	SKLabelNode * tradeTab = [SKLabelNode labelNodeWithFontNamed:@"ChalkDuster"];
 	tradeTab.text = @"Trade";
 	tradeTab.fontSize = 20;
 	tradeTab.name=@"tradetab";
-	tradeTab.position = CGPointMake(self.size.width/4, 0);
+	tradeTab.position = CGPointMake(self.size.width/5, 0);
+	
+	SKLabelNode * resourcesTab = [SKLabelNode labelNodeWithFontNamed:@"ChalkDuster"];
+	resourcesTab.text = @"Resources";
+	resourcesTab.fontSize = 20;
+	resourcesTab.name=@"resources";
+	resourcesTab.position = CGPointMake(self.size.width*2/5, 0);
 	
 	SKLabelNode *pass = [SKLabelNode labelNodeWithFontNamed:@"ChalkDuster"];
 	pass.text = @"End Turn";
 	pass.name = @"pass";
 	pass.fontSize = 30;
-	pass.position = CGPointMake(self.size.width*7/8, self.size.height*0.22);
+	pass.position = CGPointMake(0, 0);
 
-	[self addChild:pass];
+	[self.tabs addChild:pass];
 	[self.tabs addChild:buildTab];
 	[self.tabs addChild:handTab];
 	[self.tabs addChild:tradeTab];
+	[self.tabs addChild:resourcesTab];
 	
 }
 
@@ -571,6 +578,8 @@
 					[self buildPortTraderInterface];
 				}else if(![clicked.name compare:@"handtab"]){
 					[self buildHandInteface];
+				}else if(![clicked.name compare:@"resources"]){
+					[self buildResourceInteface];
 				}else if(![clicked.name compare:@"army"]){
 					[self.game.currentPlayer removeCardOfType:@"army"];
 					[clicked removeFromParent];
@@ -1060,6 +1069,63 @@
 	}
 		
 }
+
+-(void) buildResourceInteface{
+	[self.menu removeAllChildren];
+	
+	SKSpriteNode *downMenu = [SKSpriteNode spriteNodeWithImageNamed:@"botMenu"];
+	downMenu.size =CGSizeMake(self.size.width, self.size.height*0.2);
+	downMenu.position = CGPointMake(0, -self.size.height*0.015);
+	downMenu.zPosition = 2;
+	[self.menu addChild:downMenu];
+	
+	for(int i =1; i <= 5; i++){
+		
+		NSString * imageName;
+		NSString * quantityS;
+		
+		switch(i){
+			case BRICK:
+				imageName=@"brick";
+				quantityS = [NSString stringWithFormat:@"%d", self.game.currentPlayer.brick];
+				break;
+			case LUMBER:
+				imageName=@"lumber";
+				quantityS = [NSString stringWithFormat:@"%d", self.game.currentPlayer.lumber];
+				break;
+			case ORE:
+				imageName=@"ore";
+				quantityS = [NSString stringWithFormat:@"%d", self.game.currentPlayer.ore];
+				break;
+			case GRAIN:
+				imageName=@"grain";
+				quantityS = [NSString stringWithFormat:@"%d", self.game.currentPlayer.grain];
+				break;
+			case WOOL:
+				imageName=@"wool";
+				quantityS = [NSString stringWithFormat:@"%d", self.game.currentPlayer.wool];
+				break;
+				
+		}
+
+		
+		SKSpriteNode * resource = [SKSpriteNode spriteNodeWithImageNamed:imageName];
+		resource.position = CGPointMake(i*downMenu.size.width/6-downMenu.size.width/2, 0);
+		resource.size = CGSizeMake(resource.texture.size.width*0.1, resource.texture.size.height*0.1);
+		[downMenu addChild:resource];
+		
+		SKLabelNode * quantity = [SKLabelNode labelNodeWithFontNamed:@"ChalkDuster"];
+		quantity.text = quantityS;
+		quantity.fontSize = 20;
+		quantity.fontColor = [SKColor blackColor];
+		quantity.position = CGPointMake(resource.position.x, resource.position.y-40);
+		[downMenu addChild:quantity];
+	}
+
+	
+	
+}
+
 
 
 - (void) buildBankTraderInterface{

@@ -1686,7 +1686,6 @@
 						}
 					}
 					
-					self.game.currentPlayer.points++;
 					if (self.game.phase != INITIALIZATIONWAIT) {
 				
 						self.game.currentPlayer.lumber--;
@@ -1701,7 +1700,6 @@
 				else{
 					
 					[city becomeCity];
-					self.game.currentPlayer.points++;
 					if (self.game.phase != INITIALIZATIONWAIT) {
 					
 						self.game.currentPlayer.ore-=3;

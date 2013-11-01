@@ -657,6 +657,9 @@
 				}else if(![clicked.name compare:@"roads"]){
 					[self.game.currentPlayer removeCardOfType:@"roads"];
 					[clicked removeFromParent];
+					
+					self.game.phase = ROADS_CARD;
+					
 				}else if(![clicked.name compare:@"monopoly"]){
 					[self.game.currentPlayer removeCardOfType:@"monopoly"];
 					[clicked removeFromParent];
@@ -941,6 +944,84 @@
 				break;
 				
 			case LOSER:
+				
+				break;
+				
+			case ROADS_CARD:
+				
+				if(clicked.class == EdgeNode.class ){
+					
+					EdgeNode * edge = (EdgeNode *)clicked;
+					[edge receiveOwner:self.game.currentPlayer];
+					[self broadcastBuilding:-1 andRoad:[self.game.table.edges indexOfObject:edge]];
+					
+					if(edge.owner == self.game.currentPlayer)
+						self.game.phase = ROADS_CARD2;
+					
+					int roadsCount=4;
+					int index=0;
+					for(Player* player in self.game.players){
+						if(player.largestRoad && player.roads>roadsCount){
+							roadsCount = player.roads;
+							index = [self.game.players indexOfObject:player];
+							break;
+						}
+					}
+					
+					
+					Player* aux;
+					for(Player* player in self.game.players){
+						if(player.roads>roadsCount){
+							roadsCount = player.roads;
+							aux= [self.game.players objectAtIndex:index];
+							aux.largestRoad = NO;
+							player.largestRoad=YES;
+							index = [self.game.players indexOfObject:player];
+							NSLog(@"LargestRoad!!!");
+						}
+					}
+					
+					
+				}
+				break;
+				
+			case ROADS_CARD2:
+				if(clicked.class == EdgeNode.class ){
+					
+					
+					EdgeNode * edge = (EdgeNode *)clicked;
+					[edge receiveOwner:self.game.currentPlayer];
+					[self broadcastBuilding:-1 andRoad:[self.game.table.edges indexOfObject:edge]];
+					
+					if(edge.owner == self.game.currentPlayer)
+						self.game.phase = RUNNING;
+					
+					int roadsCount=4;
+					int index=0;
+					for(Player* player in self.game.players){
+						if(player.largestRoad && player.roads>roadsCount){
+							roadsCount = player.roads;
+							index = [self.game.players indexOfObject:player];
+							break;
+						}
+					}
+					
+					
+					Player* aux;
+					for(Player* player in self.game.players){
+						if(player.roads>roadsCount){
+							roadsCount = player.roads;
+							aux= [self.game.players objectAtIndex:index];
+							aux.largestRoad = NO;
+							player.largestRoad=YES;
+							index = [self.game.players indexOfObject:player];
+							NSLog(@"LargestRoad!!!");
+						}
+					}
+					
+					
+					
+				}
 				
 				break;
 		}

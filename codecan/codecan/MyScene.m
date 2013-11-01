@@ -18,6 +18,8 @@
 @property (nonatomic, strong)SKLabelNode *yourTurn;
 @property (nonatomic) BOOL thiefInterface;
 
+@property (nonatomic, weak) SKSpriteNode * resourcesMenu;
+
 @end
 
 @implementation MyScene
@@ -336,6 +338,22 @@
 
 }
 
+-(void) updateResources{
+	for(SKLabelNode *label in self.resourcesMenu.children){
+		if([label.name isEqualToString:@"brick"]){
+			label.text = [NSString stringWithFormat:@"%d", self.game.me.brick];
+		}else if([label.name isEqualToString:@"lumber"]){
+			label.text = [NSString stringWithFormat:@"%d", self.game.me.lumber];
+		}else if([label.name isEqualToString:@"ore"]){
+			label.text = [NSString stringWithFormat:@"%d", self.game.me.ore];
+		}else if([label.name isEqualToString:@"grain"]){
+			label.text = [NSString stringWithFormat:@"%d", self.game.me.grain];
+		}else if([label.name isEqualToString:@"wool"]){
+			label.text = [NSString stringWithFormat:@"%d", self.game.me.wool];
+		}
+		
+	}
+}
 
 //alterei aqui duas vezes
 
@@ -858,11 +876,11 @@
 				}else if(clicked.class == VertexNode.class && self.selection==0){
 					VertexNode * vertex = (VertexNode*)clicked;
 					
-					if(vertex.owner == self.game.me){
+					if(vertex.owner == self.game.currentPlayer){
 						if(vertex.port.type == STANDARD){
 							[self buildPortTraderInterface];
 						}else if(vertex.port.type == RESOURCE && [self.game.currentPlayer numberOfResource:(NSInteger)vertex.port.resource]>=2){
-							[self buildPortTraderInterface];
+							[self buildPortResourceTraderInterfaceForResource:(Selection)vertex.port.resource];
 						}
 					}
 				}
@@ -927,7 +945,7 @@
 				break;
 		}
 		
-		
+		[self updateResources];
 		
     }
 }
@@ -983,6 +1001,8 @@
 					if(hex!=self.game.table.thief)
 						[hex giveResourceForDices:diceValue];
 				}
+				
+				[self updateResources];
 				self.game.phase = RUNNING;
 				
 				
@@ -1270,12 +1290,14 @@
 
 -(void) buildResourceInteface{
 	[self.menu removeAllChildren];
-	
+
 	SKSpriteNode *downMenu = [SKSpriteNode spriteNodeWithImageNamed:@"botMenu"];
 	downMenu.size =CGSizeMake(self.size.width, self.size.height*0.2);
 	downMenu.position = CGPointMake(0, -self.size.height*0.015);
 	downMenu.zPosition = 2;
 	[self.menu addChild:downMenu];
+	
+	self.resourcesMenu = downMenu;
 	
 	for(int i =1; i <= 5; i++){
 		
@@ -1314,6 +1336,7 @@
 		
 		SKLabelNode * quantity = [SKLabelNode labelNodeWithFontNamed:@"ChalkDuster"];
 		quantity.text = quantityS;
+		quantity.name = imageName;
 		quantity.fontSize = 20;
 		quantity.fontColor = [SKColor blackColor];
 		quantity.position = CGPointMake(resource.position.x, resource.position.y-40);
@@ -1346,6 +1369,18 @@
 	}
 	
 	[self.portTrader portTraderForPlayer:self.game.currentPlayer andScene:self];
+	
+	
+}
+
+- (void) buildPortResourceTraderInterfaceForResource:(Selection) resource{
+	
+	if(!self.portResourceTrader){
+		self.portResourceTrader = [[PortResourceTrader alloc] init];
+		self.portResourceTrader.position = CGPointMake(self.size.width/2, self.size.height/2);
+	}
+	
+	[self.portResourceTrader buildInterfaceForResource:(BankSelection)resource andScene:self];
 	
 	
 }
@@ -1686,6 +1721,7 @@
 			
 			break;
 	}
+	[self updateResources];
 	
 	
 }

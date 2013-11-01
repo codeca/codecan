@@ -36,7 +36,7 @@
 		newScene.game.me.wool = 1000;
 		newScene.game.me.grain = 1000;
 		newScene.game.me.brick = 1000;
-		//newScene.game.me.points =6;
+		
 	}
 	
 	return newScene;
@@ -897,6 +897,8 @@
 			if(self.victory.parent == nil){
 				self.victory = [SKSpriteNode spriteNodeWithImageNamed:@"defeat"];
 				self.victory.zPosition = 10;
+				self.victory.size = CGSizeMake(600, 300);
+				self.position = CGPointMake(self.size.width/2, self.size.height/2);
 				[self addChild:self.victory];
 			}
 			

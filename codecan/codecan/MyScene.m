@@ -748,7 +748,15 @@
 
 				break;
 				
+			case WINNER:
+				
+				break;
+				
+			case LOSER:
+				
+				break;
 		}
+		
 		
 		
     }

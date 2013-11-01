@@ -11,6 +11,7 @@
 		0B03E0831817FA9000EBF10D /* ThiefNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B03E0821817FA9000EBF10D /* ThiefNode.m */; };
 		0BE9470D1816B52300379436 /* EdgeNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BE9470A1816B52300379436 /* EdgeNode.m */; };
 		0BE9470E1816B52300379436 /* VertexNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BE9470C1816B52300379436 /* VertexNode.m */; };
+		812ACCB41823D723007C848E /* PortResourceTrader.m in Sources */ = {isa = PBXBuildFile; fileRef = 812ACCB31823D723007C848E /* PortResourceTrader.m */; };
 		8159F071182115FD00D1570B /* PortTrader.m in Sources */ = {isa = PBXBuildFile; fileRef = 8159F070182115FD00D1570B /* PortTrader.m */; };
 		81E352DB18168FAA00FD7323 /* HexagonNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E352DA18168FAA00FD7323 /* HexagonNode.m */; };
 		81E352DE1816A3CD00FD7323 /* Table.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E352DD1816A3CD00FD7323 /* Table.m */; };
@@ -83,6 +84,8 @@
 		0BE9470A1816B52300379436 /* EdgeNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EdgeNode.m; sourceTree = "<group>"; };
 		0BE9470B1816B52300379436 /* VertexNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VertexNode.h; sourceTree = "<group>"; };
 		0BE9470C1816B52300379436 /* VertexNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VertexNode.m; sourceTree = "<group>"; };
+		812ACCB21823D723007C848E /* PortResourceTrader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PortResourceTrader.h; sourceTree = "<group>"; };
+		812ACCB31823D723007C848E /* PortResourceTrader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PortResourceTrader.m; sourceTree = "<group>"; };
 		8159F06F182115FD00D1570B /* PortTrader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PortTrader.h; sourceTree = "<group>"; };
 		8159F070182115FD00D1570B /* PortTrader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PortTrader.m; sourceTree = "<group>"; };
 		81E352D918168FAA00FD7323 /* HexagonNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HexagonNode.h; sourceTree = "<group>"; };
@@ -287,6 +290,8 @@
 				832A1584181CB56200B6FB77 /* BankTrader.m */,
 				8159F06F182115FD00D1570B /* PortTrader.h */,
 				8159F070182115FD00D1570B /* PortTrader.m */,
+				812ACCB21823D723007C848E /* PortResourceTrader.h */,
+				812ACCB31823D723007C848E /* PortResourceTrader.m */,
 				C4059D5918212C3A00A4FE37 /* ThiefDiscardScreen.h */,
 				C4059D5A18212C3A00A4FE37 /* ThiefDiscardScreen.m */,
 			);
@@ -520,6 +525,7 @@
 				98B4D25D180EFB7900537145 /* main.m in Sources */,
 				81E352DB18168FAA00FD7323 /* HexagonNode.m in Sources */,
 				C4059D5E18216F1F00A4FE37 /* DevelopmentCards.m in Sources */,
+				812ACCB41823D723007C848E /* PortResourceTrader.m in Sources */,
 				81E352E718184D1700FD7323 /* Player.m in Sources */,
 				0BE9470E1816B52300379436 /* VertexNode.m in Sources */,
 			);

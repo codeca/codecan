@@ -779,34 +779,28 @@
 -(void)buildTradeInterface{
 	[self.menu removeAllChildren];
 	
-	SKSpriteNode *downMenu = [[SKSpriteNode alloc] initWithColor:[SKColor brownColor] size:CGSizeMake(self.size.width, self.size.height*0.2)];
-	downMenu.position = CGPointMake(0, 0);
+	SKSpriteNode *downMenu = [SKSpriteNode spriteNodeWithImageNamed:@"botMenu"];
+	downMenu.size =CGSizeMake(self.size.width, self.size.height*0.2);
+	downMenu.position = CGPointMake(0, -self.size.height*0.015);
+	downMenu.zPosition = 2;
 	[self.menu addChild:downMenu];
-	
-	float offset = -20;
-	
+		
 	SKLabelNode *bankLabel = [SKLabelNode labelNodeWithFontNamed:@"ChalkDuster"];
 	bankLabel.text = @"Bank Trade";
-	bankLabel.position = CGPointMake(-downMenu.size.width/2 + 5, -40+offset);
+	bankLabel.position = CGPointMake(-downMenu.size.width/4 , -15);
 	bankLabel.name = @"bank";
 	bankLabel.fontSize = 20;
-	bankLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeLeft;
+	bankLabel.zPosition = 3;
+	bankLabel.fontColor = [SKColor blackColor];
 	[self.menu addChild:bankLabel];
-	
-	SKLabelNode *portLabel = [SKLabelNode labelNodeWithFontNamed:@"ChalkDuster"];
-	portLabel.text = @"Port Trade";
-	portLabel.position = CGPointMake(-downMenu.size.width/2+ 5, 0+offset);
-	portLabel.name = @"port";
-	portLabel.fontSize = 20;
-	portLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeLeft;
-	[self.menu addChild:portLabel];
 	
 	SKLabelNode *friendLabel = [SKLabelNode labelNodeWithFontNamed:@"ChalkDuster"];
 	friendLabel.text = @"Friends Trade";
-	friendLabel.position = CGPointMake(-downMenu.size.width/2 + 5, 40+ offset);
+	friendLabel.position = CGPointMake(downMenu.size.width/4, -15);
 	friendLabel.name = @"friend";
 	friendLabel.fontSize = 20;
-	friendLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeLeft;
+	friendLabel.zPosition = 3;
+	friendLabel.fontColor = [SKColor blackColor];
 	[self.menu addChild:friendLabel];
 	
 }
@@ -816,37 +810,47 @@
 	
 	[self.menu removeAllChildren];
 	
-	SKSpriteNode *downMenu = [[SKSpriteNode alloc] initWithColor:[SKColor brownColor] size:CGSizeMake(self.size.width, self.size.height*0.2)];
-	downMenu.position = CGPointMake(0, 0);
+	SKSpriteNode *downMenu = [SKSpriteNode spriteNodeWithImageNamed:@"botMenu"];
+	downMenu.size =CGSizeMake(self.size.width, self.size.height*0.2);
+	downMenu.position = CGPointMake(0, -self.size.height*0.015);
+	downMenu.zPosition = 2;
 	[self.menu addChild:downMenu];
 	
 	
 	SKLabelNode *roadLabel = [SKLabelNode labelNodeWithFontNamed:@"ChalkDuster"];
 	roadLabel.text = @"Road";
-	roadLabel.position = CGPointMake(-downMenu.size.width*3/10, 0);
+	roadLabel.position = CGPointMake(-downMenu.size.width*3/10, -15);
 	roadLabel.name = @"road";
 	roadLabel.fontSize = 30;
+	roadLabel.zPosition = 3;
+	roadLabel.fontColor = [SKColor blackColor];
 	[self.menu addChild:roadLabel];
 	
 	SKLabelNode *villageLabel = [SKLabelNode labelNodeWithFontNamed:@"ChalkDuster"];
 	villageLabel.text = @"Village";
-	villageLabel.position = CGPointMake(-downMenu.size.width*1/10, 0);
+	villageLabel.position = CGPointMake(-downMenu.size.width*1/10, -15);
 	villageLabel.name = @"village";
 	villageLabel.fontSize = 30;
+	villageLabel.zPosition = 3;
+	villageLabel.fontColor = [SKColor blackColor];
 	[self.menu addChild:villageLabel];
 	
 	SKLabelNode *cityLabel = [SKLabelNode labelNodeWithFontNamed:@"ChalkDuster"];
 	cityLabel.text = @"City";
-	cityLabel.position = CGPointMake(downMenu.size.width*1/10, 0);
+	cityLabel.position = CGPointMake(downMenu.size.width*1/10, -15);
 	cityLabel.name = @"city";
 	cityLabel.fontSize = 30;
+	cityLabel.zPosition = 3;
+	cityLabel.fontColor = [SKColor blackColor];
 	[self.menu addChild:cityLabel];
 	
 	SKLabelNode *cardLabel = [SKLabelNode labelNodeWithFontNamed:@"ChalkDuster"];
 	cardLabel.text = @"Card";
-	cardLabel.position = CGPointMake(downMenu.size.width*3/10, 0);
+	cardLabel.position = CGPointMake(downMenu.size.width*3/10, -15);
 	cardLabel.name = @"card";
 	cardLabel.fontSize = 30;
+	cardLabel.zPosition = 3;
+	cardLabel.fontColor = [SKColor blackColor];
 	[self.menu addChild:cardLabel];
 	
 }
@@ -855,8 +859,10 @@
 -(void) buildHandInteface{
 	[self.menu removeAllChildren];
 	
-	SKSpriteNode *downMenu = [[SKSpriteNode alloc] initWithColor:[SKColor brownColor] size:CGSizeMake(self.size.width, self.size.height*0.2)];
-	downMenu.position = CGPointMake(0, 0);
+	SKSpriteNode *downMenu = [SKSpriteNode spriteNodeWithImageNamed:@"botMenu"];
+	downMenu.size =CGSizeMake(self.size.width, self.size.height*0.2);
+	downMenu.position = CGPointMake(0, -self.size.height*0.015);
+	downMenu.zPosition = 2;
 	[self.menu addChild:downMenu];
 	
 	NSInteger offset = self.game.me.cards.count;
@@ -888,12 +894,14 @@
 		}
 		
 		label.fontSize=20;
+		label.fontColor = [SKColor blackColor];
 		
 		if(offset%2)
 			label.position = CGPointMake(counterx*downMenu.size.width/offset+15,0);
 		else
 			label.position = CGPointMake((counterx+0.5)*downMenu.size.width/offset,0);
 		counterx++;
+		
 		[downMenu addChild:label];
 	}
 		

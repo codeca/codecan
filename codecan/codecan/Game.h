@@ -23,6 +23,8 @@ typedef enum{
 	EOT,
 	WAITTURN,
 	ARMYTURN,
+	WINNER,
+	LOSER
 } Phase;
 
 @interface Game : NSObject

@@ -827,7 +827,8 @@
 			[self tempRes];
 			if ([self.game.currentPlayer didPlayerWin]) {
 				
-				//Condicao de vitoria aqui
+				[self.plug sendMessage:MSG_WINNER data:@[]];
+				self.game.phase = WINNER;
 				
 			}
 			
@@ -863,6 +864,16 @@
 			[self tempRes];
 			break;
 			
+			
+		case WINNER:
+			
+			
+			break;
+			
+		case LOSER:
+			
+			
+			break;
 		default:
 			break;
 	}
@@ -1351,6 +1362,12 @@
 			
 			break;
 		}
+			
+		case MSG_WINNER:
+			
+			self.game.phase = LOSER;
+			
+			break;
 		default:
 			
 			break;

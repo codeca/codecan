@@ -53,6 +53,8 @@
 		_vertexes = [[NSMutableArray alloc] init];
 		_edges = [[NSMutableArray alloc] init];
 		self.zPosition = 1;
+		self.xScale = 0.78;
+		self.yScale = 0.78;
 		
 		
 	}

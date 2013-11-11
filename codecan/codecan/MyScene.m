@@ -58,7 +58,7 @@
 		
 		
 		self.map = [[SKNode alloc] init];
-		self.map.position = CGPointMake(self.size.width/2, self.size.height/2+44);
+		self.map.position = CGPointMake(self.size.width/2, self.size.height/2+55);
 		
 		self.menu = [[SKNode alloc] init];
 		self. menu.position = CGPointMake(self.size.width/2, self.size.height*0.1);

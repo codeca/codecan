@@ -8,6 +8,8 @@
 
 #import "Table.h"
 
+@class Port;
+
 @implementation Table
 
 -(id)init{
@@ -310,11 +312,14 @@
 	self.hexes = [[NSMutableArray alloc] init];
 	self.vertexes = [[NSMutableArray alloc] init];
 	self.edges = [[NSMutableArray alloc] init];
+	self.deck = [[DevelopmentCards alloc] init];
 	
 	if(self){
 		
 		NSArray * resources = [table objectForKey:@"resources"];
 		NSArray	* numbers = [table objectForKey:@"numbers"];
+		NSArray * portTypes = [table objectForKey:@"portTypes"];
+		NSArray * portResources = [table objectForKey:@"portResources"];
 		
 		// Declaracao dos HEX
 		for(int i=0; i<19; i++){
@@ -354,8 +359,14 @@
 		
 		//Declaracao dos Vertex
 		for(int i=0; i<54; i++){
+			
 			VertexNode * newVertex = [[VertexNode alloc] init];
 			newVertex.name = [[NSString alloc] initWithFormat:@"vertex%d",i];
+			
+			newVertex.port = [[Port alloc]init];
+			newVertex.port.type = [[portTypes objectAtIndex:i] integerValue];
+			newVertex.port.resource = [[portResources objectAtIndex:i] integerValue];
+			
 			[self.vertexes addObject:newVertex];
 			
 		}
@@ -421,6 +432,7 @@
 		}
 		
 		for(VertexNode *vertex in self.vertexes){
+			
 			for(EdgeNode *edge in vertex.edges){
 				[edge.vertexes addObject:vertex];
 			}
@@ -437,82 +449,17 @@
 			}
 			
 		}
- 		
- 		//Inicializa os portos e os randomiza
- 		
- 		NSMutableArray* AuxPorts = [[NSMutableArray alloc]init];
- 		
- 		for (int aux = 0; aux < 4; aux++) {
- 			
- 			[AuxPorts addObject:[[Port alloc ]initWithType: STANDARD withResource: 0]];
- 		}
- 		
- 		[AuxPorts addObject:[[Port alloc ]initWithType: RESOURCE withResource: LUMBER]];
- 		[AuxPorts addObject:[[Port alloc ]initWithType: RESOURCE withResource: BRICK]];
- 		[AuxPorts addObject:[[Port alloc ]initWithType: RESOURCE withResource: WOOL]];
- 		[AuxPorts addObject:[[Port alloc ]initWithType: RESOURCE withResource: ORE]];
- 		[AuxPorts addObject:[[Port alloc ]initWithType: RESOURCE withResource: GRAIN]];
- 		
- 		NSMutableArray* Ports = [[NSMutableArray alloc]init];
- 		
- 		while ([AuxPorts count]>0)  {
- 			
- 			int index = arc4random_uniform([AuxPorts count]);
- 			
- 			[Ports addObject:[AuxPorts objectAtIndex:index]];
- 		
- 			[AuxPorts removeObjectAtIndex:index];
+		
+		//cards
+		
+		NSArray * cards = [table objectForKey:@"deck"];
+		self.deck.deck = [[NSMutableArray alloc] init];
+		
+		for(NSNumber * card in cards){
 			
- 		}
- 		
- 		//Coloca portos nos vertices
- 		
- 		VertexNode* aux;
- 		
- 		aux = [self.vertexes objectAtIndex:0];
- 		aux.port = [Ports objectAtIndex:0];
- 		aux = [self.vertexes objectAtIndex:1];
- 		aux.port = [Ports objectAtIndex:0];
- 		
- 		aux = [self.vertexes objectAtIndex:3];
- 		aux.port = [Ports objectAtIndex:1];
- 		aux = [self.vertexes objectAtIndex:4];
- 		aux.port = [Ports objectAtIndex:1];
- 		
- 		aux = [self.vertexes objectAtIndex:14];
- 		aux.port = [Ports objectAtIndex:2];
- 		aux = [self.vertexes objectAtIndex:15];
- 		aux.port = [Ports objectAtIndex:2];
- 		
- 		aux = [self.vertexes objectAtIndex:26];
- 		aux.port = [Ports objectAtIndex:3];
- 		aux = [self.vertexes objectAtIndex:37];
- 		aux.port = [Ports objectAtIndex:3];
- 		
- 		aux = [self.vertexes objectAtIndex:45];
- 		aux.port = [Ports objectAtIndex:4];
- 		aux = [self.vertexes objectAtIndex:46];
- 		aux.port = [Ports objectAtIndex:4];
- 		
- 		aux = [self.vertexes objectAtIndex:50];
- 		aux.port = [Ports objectAtIndex:5];
- 		aux = [self.vertexes objectAtIndex:51];
- 		aux.port = [Ports objectAtIndex:5];
- 		
- 		aux = [self.vertexes objectAtIndex:47];
- 		aux.port = [Ports objectAtIndex:6];
- 		aux = [self.vertexes objectAtIndex:48];
- 		aux.port = [Ports objectAtIndex:6];
- 		
- 		aux = [self.vertexes objectAtIndex:28];
- 		aux.port = [Ports objectAtIndex:7];
- 		aux = [self.vertexes objectAtIndex:38];
- 		aux.port = [Ports objectAtIndex:7];
- 		
- 		aux = [self.vertexes objectAtIndex:7];
- 		aux.port = [Ports objectAtIndex:8];
- 		aux = [self.vertexes objectAtIndex:17];
- 		aux.port = [Ports objectAtIndex:8];
+			[self.deck.deck addObject:card];
+			
+		}
 		
 	}
 	
@@ -524,14 +471,15 @@
 
 
 
--(void) moveThiefToHexagon:(HexagonNode *)hex{
+-(BOOL) moveThiefToHexagon:(HexagonNode *)hex{
 	
 	if (hex !=self.thief) {
 		self.thief = hex;
 		self.thiefHasBeenMoved = YES;
 		NSLog(@"thief moveu para:%f %f", self.thief.position.x, self.thief.position.y);
+		return YES;
 	}
-	
+	return NO;
 }
 
 @end

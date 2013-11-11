@@ -26,7 +26,8 @@ typedef enum{
 	WINNER,
 	LOSER,
 	ROADS_CARD,
-	ROADS_CARD2
+	ROADS_CARD2,
+	WAITING_ANSWER
 } Phase;
 
 @interface Game : NSObject

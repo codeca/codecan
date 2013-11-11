@@ -8,11 +8,27 @@
 
 #import "ViewController.h"
 
+@interface ViewController()
+
+@property (nonatomic, strong) AVAudioPlayer* mPlayer;
+
+@end
+
 @implementation ViewController
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+	
+	NSString * backgroundPath = [[NSBundle mainBundle] pathForResource:@"backgroundmusic" ofType:@"mp3"];
+	
+	NSURL * pathURL = [[NSURL alloc] initFileURLWithPath:backgroundPath];
+	
+	AVAudioPlayer * newPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL: pathURL error: nil];
+	self.mPlayer = newPlayer;
+	self.mPlayer.delegate = self;
+	self.mPlayer.volume = 0.5;
+	[self.mPlayer play];
 	
 	self.plug.delegate = self;
 	self.game = [[Game alloc] initWithPlayers:self.players Id:self.myId];
@@ -24,6 +40,10 @@
 		
 		NSMutableArray * numbers = [[NSMutableArray alloc] init];
 		
+		NSMutableArray * portTypes = [[NSMutableArray alloc]init];
+		
+		NSMutableArray * portResources = [[NSMutableArray alloc]init];
+		
 		NSDictionary * data;
 		
 		for(HexagonNode * hex in self.game.table.hexes){
@@ -31,15 +51,22 @@
 			[numbers addObject:[NSNumber numberWithInt:hex.number]];
 		}
 		
-		data = [NSDictionary dictionaryWithObjects:@[resources, numbers, self.game.table.deck.deck] forKeys:@[@"resources",@"numbers",@"deck"]];
+		for (VertexNode* vertex in self.game.table.vertexes) {
+			
+			[portTypes addObject:[NSNumber numberWithInt:vertex.port.type]];
+			[portResources addObject:[NSNumber numberWithInt:vertex.port.resource]];
+			
+		}
+		
+		data = [NSDictionary dictionaryWithObjects:@[resources, numbers, self.game.table.deck.deck, portTypes, portResources] forKeys:@[@"resources",@"numbers",@"deck", @"portTypes", @"portResources"]];
 		
 		[self.plug sendMessage:MSG_TABLEREADY data:data];
 	}
 	
 	// Configure the view.
     SKView * skView = (SKView *)self.view;
-    skView.showsFPS = YES;
-    skView.showsNodeCount = YES;
+    //skView.showsFPS = YES;
+    //skView.showsNodeCount = YES;
     
     
    
@@ -93,8 +120,7 @@
 		
 		NSDictionary * received = data;
 		
-		self.game.table = [[Table alloc] initWithTable:data];
-		self.game.table.deck.deck = [received objectForKey:@"deck"];
+		self.game.table = [[Table alloc] initWithTable:received];
 		self.scene = [MyScene sceneWithSize:self.view.bounds.size andGame:self.game];
 		self.scene.plug = self.plug;
 		self.scene.plug.delegate = self.scene;
@@ -110,5 +136,11 @@
 -(void)plugHasConnected:(Plug *)plug{
 
 }
+
+- (void) audioPlayerDidFinishPlaying: (AVAudioPlayer *) player
+                        successfully: (BOOL) completed {
+    [self.mPlayer play];
+}
+
 
 @end

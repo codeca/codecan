@@ -8,6 +8,7 @@
 
 #import <SpriteKit/SpriteKit.h>
 #import "Player.h"
+#import "ManaCrystalAtlas.h"
 
 
 @class EdgeNode;

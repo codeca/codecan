@@ -8,11 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import <SpriteKit/SpriteKit.h>
+#import <AVFoundation/AVFoundation.h>
 #import "Game.h"
 #import "Plug.h"
 #import "MyScene.h"
 
-@interface ViewController : UIViewController <PlugDelegate>
+
+@interface ViewController : UIViewController <PlugDelegate, AVAudioPlayerDelegate>
 
 @property (nonatomic, strong) Game * game;
 @property (nonatomic, strong) Plug * plug;

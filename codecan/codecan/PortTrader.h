@@ -16,5 +16,7 @@
 
 -(void) portTraderForPlayer:(Player*) player andScene:(SKScene*) scene;
 -(void) addResourceToOffer:(BankSelection) resource;
+-(NSInteger) totalOfOfferForResource:(BankSelection) resource;
+
 
 @end

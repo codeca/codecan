@@ -17,6 +17,7 @@
 
 @property (nonatomic, strong)SKLabelNode *yourTurn;
 @property (nonatomic) BOOL thiefInterface;
+@property (nonatomic) NSInteger playersAnswers;
 
 @property (nonatomic, weak) SKSpriteNode * resourcesMenu;
 
@@ -32,7 +33,7 @@
 	[newScene buildTabs];
 	[newScene buildTopMenu];
 	
-	if(![newScene.game.me.name compare:@"debug1234"]){
+	if([newScene.game.me.name isEqual:@"debug1234"]){
 		newScene.game.me.ore = 1000;
 		newScene.game.me.lumber = 1000;
 		newScene.game.me.wool = 1000;
@@ -87,6 +88,11 @@
 		self.yourTurn.fontSize = 15;
 		self.yourTurn.fontColor = [SKColor blackColor];
 		
+		self.helpButton = [SKSpriteNode spriteNodeWithImageNamed:@"helpicon"];
+		self.helpButton.name = @"help";
+		self.helpButton.position = CGPointMake(self.size.width/14, self.menu.position.y+self.size.height/7);
+	
+		
 		[self addChild:backgroundImage];
 		[self addChild:self.resourcesLabel];
         [self addChild:self.map];
@@ -94,6 +100,8 @@
 		[self addChild:self.tabs];
 		[self addChild:self.stealInterface];
 		[self addChild:self.topMenu];
+		[self addChild:self.yourTurn];
+		[self addChild:self.helpButton];
 		
 		
 		
@@ -153,7 +161,7 @@
 			SKSpriteNode * resourceImage = [SKSpriteNode spriteNodeWithImageNamed:[NSString stringWithFormat: @"%@", imageName]];
 			resourceImage.xScale*=0.05;
 			resourceImage.yScale*=0.05;
-			resourceImage.zPosition = 9;
+			resourceImage.zPosition = 5;
 			
 			if(vertex.position.x<0 && vertex.position.y<0){
 				resourceImage.position = CGPointMake(-10, -10);
@@ -180,7 +188,8 @@
 		[self.map addChild:edge];
 	}
 	
-	self.thief = [SKSpriteNode spriteNodeWithColor:[SKColor blackColor] size:CGSizeMake(40, 40)];
+	self.thief = [SKSpriteNode spriteNodeWithImageNamed:@"thief"];
+	self.thief.size = CGSizeMake(50, 70);
 	self.thief.position = self.game.table.thief.position;
 	self.thief.zPosition = 5;
 	[self.map addChild:self.thief];
@@ -482,27 +491,31 @@
 						
 						HexagonNode * hex = (HexagonNode*) clicked;
 						
-						[self.game.table moveThiefToHexagon:hex];
-						self.thief.position = self.game.table.thief.position;
+						if([self.game.table moveThiefToHexagon:hex]){
+							self.thief.position = self.game.table.thief.position;
 						
+							NSNumber* hexTo = [NSNumber numberWithInt:[self.game.table.hexes indexOfObject:self.game.table.thief]];
+						
+							NSDictionary  * robberDictionary = [NSDictionary dictionaryWithObjects:@[@YES, hexTo] forKeys:@[@"discard", @"hexTo"]];
+						
+							[self.plug sendMessage:MSG_ROBBER data:robberDictionary];
+						}
 					}else if(clicked.class == SKLabelNode.class){
 						SKLabelNode * label = (SKLabelNode*) clicked;
 						if(label.parent.class==HexagonNode.class){
-							[self.game.table moveThiefToHexagon:(HexagonNode*)label.parent];
-							self.thief.position = self.game.table.thief.position;
+							
+							if([self.game.table moveThiefToHexagon:(HexagonNode*)label.parent]){
+								self.thief.position = self.game.table.thief.position;
+							
+								NSNumber* hexTo = [NSNumber numberWithInt:[self.game.table.hexes indexOfObject:self.game.table.thief]];
+							
+								NSDictionary  * robberDictionary = [NSDictionary dictionaryWithObjects:@[@YES, hexTo] forKeys:@[@"discard", @"hexTo"]];
+							
+								[self.plug sendMessage:MSG_ROBBER data:robberDictionary];
+							}
 						}
 					}
 					
-				
-					{
-						
-					NSNumber* hexTo = [NSNumber numberWithInt:[self.game.table.hexes indexOfObject:self.game.table.thief]];
-					
-					NSDictionary  * robberDictionary = [NSDictionary dictionaryWithObjects:@[@YES, hexTo] forKeys:@[@"discard", @"hexTo"]];
-					
-					[self.plug sendMessage:MSG_ROBBER data:robberDictionary];
-						
-					}
 				}
 				break;
 				
@@ -522,15 +535,15 @@
 					
 					[self broadcastResourcesChangeForPlayer:robber add:@[robbedResource] remove:@[]];
 					
-					if(![robbedResource compare:@"lumber"])
+					if([robbedResource isEqual:@"lumber"])
 						robber.lumber++;
-					else if(![robbedResource compare:@"ore"])
+					else if([robbedResource isEqual:@"ore"])
 						robber.ore++;
-					else if(![robbedResource compare:@"grain"])
+					else if([robbedResource isEqual:@"grain"])
 						robber.grain++;
-					else if(![robbedResource compare:@"wool"])
+					else if([robbedResource isEqual:@"wool"])
 						robber.wool++;
-					else if(![robbedResource compare:@"brick"])
+					else if([robbedResource isEqual:@"brick"])
 						robber.brick++;
 					
 					
@@ -546,7 +559,7 @@
 				if(clicked.name == nil){
 					
 				}
-				else if(![clicked.name compare:@"pass"]){
+				else if([clicked.name isEqual:@"pass"]){
 					[self stopAnimationsInView:self.menu];
 					self.game.phase = EOT;
 					self.game.currentPlayer = [self nextPlayer];
@@ -555,7 +568,7 @@
 						self.game.phase = RESOURCES;
 					}
 					
-				}else if(![clicked.name compare:@"road"]){
+				}else if([clicked.name isEqual:@"road"]){
 					if(self.selection != ROADSEL){
 						self.selection = ROADSEL;
 						[self stopAnimationsInView:self.menu];
@@ -565,7 +578,7 @@
 						[self stopAnimationsInView:self.menu];
 					}
 					
-				}else if(![clicked.name compare:@"village"]){
+				}else if([clicked.name isEqual:@"village"]){
 					if(self.selection!=VILLAGESEL){
 						self.selection = VILLAGESEL;
 						[self stopAnimationsInView:self.menu];
@@ -575,7 +588,7 @@
 						[self stopAnimationsInView:self.menu];
 					}
 					
-				}else if(![clicked.name compare:@"city"]){
+				}else if([clicked.name isEqual:@"city"]){
 					if(self.selection != CITYSEL){
 						self.selection = CITYSEL;
 						[self stopAnimationsInView:self.menu];
@@ -585,12 +598,13 @@
 						[self stopAnimationsInView:self.menu];
 					}
 					
-				}else if(![clicked.name compare:@"card"]){
+				}else if([clicked.name isEqual:@"card"]){
 					
 					[self stopAnimationsInView:self.menu];
 					self.selection = 0;
 					if(self.game.currentPlayer.ore>0 && self.game.currentPlayer.grain>0 && self.game.currentPlayer.wool>0 && self.game.table.deck.deck.count>0){
 						
+						[clicked runAction:[SKAction sequence:@[[SKAction fadeOutWithDuration:0.3], [SKAction fadeInWithDuration:0.3]]]];
 						self.game.currentPlayer.ore--;
 						self.game.currentPlayer.grain--;
 						self.game.currentPlayer.wool--;
@@ -611,23 +625,25 @@
 					}
 					
 					
-				}else if(![clicked.name compare:@"tradetab"]){
+				}else if([clicked.name isEqual:@"tradetab"]){
 					[self buildTradeInterface];
 					[self stopAnimationsInView:self.menu];
 					self.selection = 0;
 					
-				}else if(![clicked.name compare:@"buildtab"]){
+				}else if([clicked.name isEqual:@"buildtab"]){
 					[self buildBuildInterface];
 					
-				}else if(![clicked.name compare:@"bank"]){
+				}else if([clicked.name isEqual:@"bank"]){
 					[self buildBankTraderInterface];
-				}else if(![clicked.name compare:@"port"]){
+				}else if([clicked.name isEqual:@"port"]){
 					[self buildPortTraderInterface];
-				}else if(![clicked.name compare:@"handtab"]){
+				}else if([clicked.name isEqual:@"handtab"]){
 					[self buildHandInteface];
-				}else if(![clicked.name compare:@"resources"]){
+				}else if([clicked.name isEqual:@"resources"]){
 					[self buildResourceInteface];
-				}else if(![clicked.name compare:@"army"]){
+				}else if([clicked.name isEqual:@"friend"]){
+					[self buildPlayerTraderInterface];
+				}else if([clicked.name isEqual:@"army"]){
 					[self.game.currentPlayer removeCardOfType:@"army"];
 					[clicked removeFromParent];
 					self.game.table.thiefHasBeenMoved = NO;
@@ -660,13 +676,13 @@
 					}
 					
 					
-				}else if(![clicked.name compare:@"roads"]){
+				}else if([clicked.name isEqual:@"roads"]){
 					[self.game.currentPlayer removeCardOfType:@"roads"];
 					[clicked removeFromParent];
 					
 					self.game.phase = ROADS_CARD;
 					
-				}else if(![clicked.name compare:@"monopoly"]){
+				}else if([clicked.name isEqual:@"monopoly"]){
 					[self.game.currentPlayer removeCardOfType:@"monopoly"];
 					[clicked removeFromParent];
 					
@@ -674,7 +690,7 @@
 					
 					int index = arc4random_uniform(5);
 					
-					if(![(NSString*)resources[index] compare: @"lumber"]){
+					if([(NSString*)resources[index] isEqual: @"lumber"]){
 						
 						for(Player * player in self.game.players){
 							if(player != self.game.me){
@@ -683,7 +699,7 @@
 							}
 						}
 						
-					}else if(![(NSString*)resources[index] compare: @"grain"]){
+					}else if([(NSString*)resources[index] isEqual: @"grain"]){
 						
 						for(Player * player in self.game.players){
 							if(player != self.game.me){
@@ -692,7 +708,7 @@
 							}
 						}
 						
-					}else if(![(NSString*)resources[index] compare: @"ore"]){
+					}else if([(NSString*)resources[index] isEqual: @"ore"]){
 						
 						for(Player * player in self.game.players){
 							if(player != self.game.me){
@@ -701,7 +717,7 @@
 							}
 						}
 						
-					}else if(![(NSString*)resources[index] compare: @"wool"]){
+					}else if([(NSString*)resources[index] isEqual: @"wool"]){
 						
 						for(Player * player in self.game.players){
 							if(player != self.game.me){
@@ -710,7 +726,7 @@
 							}
 						}
 						
-					}else if(![(NSString*)resources[index] compare: @"brick"]){
+					}else if([(NSString*)resources[index] isEqual: @"brick"]){
 						
 						for(Player * player in self.game.players){
 							if(player != self.game.me){
@@ -729,7 +745,7 @@
 					}
 					
 					
-				}else if(![clicked.name compare:@"plenty"]){
+				}else if([clicked.name isEqual:@"plenty"]){
 					[self.game.currentPlayer removeCardOfType:@"plenty"];
 					[clicked removeFromParent];
 					
@@ -738,28 +754,28 @@
 					int index1 = arc4random_uniform(5);
 					int index2 = arc4random_uniform(5);
 					
-					if(![(NSString*)resources[index1] compare: @"lumber"]){
+					if([(NSString*)resources[index1] isEqual: @"lumber"]){
 						self.game.currentPlayer.lumber++;
-					}else if(![(NSString*)resources[index1] compare: @"grain"]){
+					}else if([(NSString*)resources[index1] isEqual: @"grain"]){
 						self.game.currentPlayer.grain++;
-					}else if(![(NSString*)resources[index1] compare: @"ore"]){
+					}else if([(NSString*)resources[index1] isEqual: @"ore"]){
 						self.game.currentPlayer.ore++;
-					}else if(![(NSString*)resources[index1] compare: @"wool"]){
+					}else if([(NSString*)resources[index1] isEqual: @"wool"]){
 						self.game.currentPlayer.wool++;
-					}else if(![(NSString*)resources[index1] compare: @"brick"]){
+					}else if([(NSString*)resources[index1] isEqual: @"brick"]){
 						self.game.currentPlayer.brick++;
 					}
 					
 					
-					if(![(NSString*)resources[index2] compare: @"lumber"]){
+					if([(NSString*)resources[index2] isEqual: @"lumber"]){
 						self.game.currentPlayer.lumber++;
-					}else if(![(NSString*)resources[index2] compare: @"grain"]){
+					}else if([(NSString*)resources[index2] isEqual: @"grain"]){
 						self.game.currentPlayer.grain++;
-					}else if(![(NSString*)resources[index2] compare: @"ore"]){
+					}else if([(NSString*)resources[index2] isEqual: @"ore"]){
 						self.game.currentPlayer.ore++;
-					}else if(![(NSString*)resources[index2] compare: @"wool"]){
+					}else if([(NSString*)resources[index2] isEqual: @"wool"]){
 						self.game.currentPlayer.wool++;
-					}else if(![(NSString*)resources[index2] compare: @"brick"]){
+					}else if([(NSString*)resources[index2] isEqual: @"brick"]){
 						self.game.currentPlayer.brick++;
 					}
 					
@@ -882,7 +898,7 @@
 						self.game.currentPlayer.grain-=2;
 					}
 					
-				}else if(clicked.class == VertexNode.class && self.selection==0){
+				}else if(clicked.class == VertexNode.class && self.selection!=CITYSEL){
 					VertexNode * vertex = (VertexNode*)clicked;
 					
 					if(vertex.owner == self.game.currentPlayer){
@@ -1032,6 +1048,16 @@
 				}
 				
 				break;
+				default:
+				break;
+		}
+		
+		if([clicked.name isEqualToString:@"help"]){
+			[self buildHelpScreen];
+		}else if([clicked.name isEqual:@"handtab"]){
+			[self buildHandInteface];
+		}else if([clicked.name isEqual:@"resources"]){
+			[self buildResourceInteface];
 		}
 		
 		[self updateResources];
@@ -1063,14 +1089,16 @@
 		}
 	}
 	
-	
-	
-	
-	if(self.game.currentPlayer == self.game.me && self.yourTurn.parent == nil){
-		[self addChild:self.yourTurn];
+	if(self.game.currentPlayer == self.game.me && self.yourTurn.hidden == YES){ //self.yourTurn.parent == nil
+		//[self addChild:self.yourTurn];
+		self.yourTurn.hidden = NO;
+		SKAction * moveAndScale = [SKAction group:@[[SKAction playSoundFileNamed:@"yourturnwarning.mp3" waitForCompletion:YES]]];
+		[self.yourTurn runAction:moveAndScale];
+									   
 	}
 	else  if(self.game.currentPlayer != self.game.me){
-		[self.yourTurn removeFromParent];
+		//[self.yourTurn removeFromParent];
+		self.yourTurn.hidden = YES;
 	}
 	
 	
@@ -1099,6 +1127,8 @@
 				SKLabelNode *diceLabel = (SKLabelNode*)[self.topMenu childNodeWithName:@"dice"];
 				
 				diceLabel.text = diceNumber;
+				
+				[diceLabel runAction:[SKAction sequence:@[[SKAction scaleBy:2 duration:0.2], [SKAction scaleBy:0.5 duration:0.2]]]];
 												
 				[self.plug sendMessage:MSG_DICE data:[NSNumber numberWithInt:diceValue]];
 				
@@ -1228,6 +1258,14 @@
 	NSDictionary *data = [NSDictionary dictionaryWithObjects:@[roadNumber, buildingNumber] forKeys:@[@"road", @"city"]];
 	
 	[self.plug sendMessage:MSG_BUILD data:data];
+}
+
+- (void) buildHelpScreen{
+	if(!self.helpScreen){
+		self.helpScreen = [[HelpScreen alloc] init];
+	}
+	
+	[self addChild:self.helpScreen];
 }
 
 
@@ -1473,6 +1511,18 @@
 	
 }
 
+- (void) buildPlayerTraderInterface{
+	
+	if(!self.playerTrader){
+		self.playerTrader = [[PlayerTrader alloc] init];
+		self.playerTrader.position = CGPointMake(self.size.width/2, self.size.height/2);
+	}
+	self.playersAnswers = 0;
+	[self.playerTrader playerTraderForPlayer:self.game.currentPlayer andScene:self];
+	
+	
+}
+
 - (void) buildPortTraderInterface{
 	
 	if(!self.portTrader){
@@ -1514,7 +1564,60 @@
 	
 }
 
+- (void) buildShowOfferForOffer:(NSDictionary*) data{
+	
+	if(!self.showOfferScreen){
+		self.showOfferScreen = [[ShowOfferScreen alloc] init];
+		self.showOfferScreen.position = CGPointMake(self.size.width/2, self.size.height/2);
+	}
+	
+	[self.showOfferScreen showOfferScreenForData:data andScene:self andPlayer:self.game.me];
+	
+}
 
+-(void) updateResourcesForPLayer:(Player*) player add:(NSArray*)added andRemove:(NSArray*) removed{
+	
+	for(NSString* resource in removed){
+		if([resource isEqual:@"wool"]){
+			player.wool--;
+		}else if([resource isEqual:@"grain"]){
+			player.grain--;
+		}else if([resource isEqual:@"brick"]){
+			player.brick--;
+		}else if([resource isEqual:@"ore"]){
+			player.ore--;
+		}else if([resource isEqual:@"lumber"]){
+			player.lumber--;
+		}else if([resource isEqual:@"all"]){
+			player.lumber = 0;
+			player.wool = 0;
+			player.brick = 0;
+			player.grain = 0;
+			player.ore = 0;
+		}
+		
+	}
+	
+	for(NSString* resource in added){
+		if([resource isEqual:@"wool"]){
+			player.wool++;
+		}else if([resource isEqual:@"grain"]){
+			player.grain++;
+		}else if([resource isEqual:@"brick"]){
+			player.brick++;
+		}else if([resource isEqual:@"ore"]){
+			player.ore++;
+		}else if([resource isEqual:@"lumber"]){
+			player.lumber++;
+		}
+	}
+}
+
+- (void) waitForAnswer{
+	
+	self.game.phase = WAITING_ANSWER;
+	
+}
 
 
 -(Player *) nextPlayer{
@@ -1546,16 +1649,20 @@
 			}
 			break;
 			
-		case MSG_DICE:
+		case MSG_DICE:{
 			
 			for(HexagonNode * hex in self.game.table.hexes){
 				if(hex!=self.game.table.thief)
 					[hex giveResourceForDices:[data integerValue]];
 			}
 			
+			SKLabelNode *diceLabel = (SKLabelNode*)[self.topMenu childNodeWithName:@"dice"];
+			
+			diceLabel.text = [NSString stringWithFormat:@"%d", [data integerValue]];
+			
 			break;
 			
-			
+		}
 		case MSG_ROBBER:
 			{
 				
@@ -1731,17 +1838,17 @@
 			
 			
 			for(NSString* resource in removed){
-				if(![resource compare:@"wool"]){
+				if([resource isEqual:@"wool"]){
 					changed.wool--;
-				}else if(![resource compare:@"grain"]){
+				}else if([resource isEqual:@"grain"]){
 					changed.grain--;
-				}else if(![resource compare:@"brick"]){
+				}else if([resource isEqual:@"brick"]){
 					changed.brick--;
-				}else if(![resource compare:@"ore"]){
+				}else if([resource isEqual:@"ore"]){
 					changed.ore--;
-				}else if(![resource compare:@"lumber"]){
+				}else if([resource isEqual:@"lumber"]){
 					changed.lumber--;
-				}else if(![resource compare:@"all"]){
+				}else if([resource isEqual:@"all"]){
 					changed.lumber = 0;
 					changed.wool = 0;
 					changed.brick = 0;
@@ -1752,15 +1859,15 @@
 			}
 			
 			for(NSString* resource in added){
-				if(![resource compare:@"wool"]){
+				if([resource isEqual:@"wool"]){
 					changed.wool++;
-				}else if(![resource compare:@"grain"]){
+				}else if([resource isEqual:@"grain"]){
 					changed.grain++;
-				}else if(![resource compare:@"brick"]){
+				}else if([resource isEqual:@"brick"]){
 					changed.brick++;
-				}else if(![resource compare:@"ore"]){
+				}else if([resource isEqual:@"ore"]){
 					changed.ore++;
-				}else if(![resource compare:@"lumber"]){
+				}else if([resource isEqual:@"lumber"]){
 					changed.lumber++;
 				}
 				
@@ -1792,7 +1899,7 @@
 			
 			NSString *card = data;
 			
-			if(![card compare:@"army"]){
+			if([card isEqual:@"army"]){
 				self.game.currentPlayer.army ++;
 				
 				int armyCount=2;
@@ -1826,6 +1933,38 @@
 		case MSG_WINNER:
 			
 			self.game.phase = LOSER;
+			
+			break;
+			
+		case MSG_OFFER:
+			
+			if([self isTradePossibleForPlayer:self.game.me withDemand:[(NSDictionary*)data objectForKey:@"demand"]])
+				[self buildShowOfferForOffer:(NSDictionary*) data];
+			else{
+				NSDictionary * responseData = [NSDictionary dictionaryWithObject:@NO forKey:@"answer"];
+				[self.plug sendMessage:MSG_RESPONSE_OFFER data:responseData];
+			}
+			
+			break;
+		case MSG_RESPONSE_OFFER:
+			if([[data objectForKey:@"answer"] boolValue]){
+				
+				if(self.game.phase == WAITING_ANSWER){
+					self.game.phase = RUNNING;
+					
+					Player * player = self.game.players[[[data objectForKey:@"player"] integerValue]];
+					
+					[self.playerTrader performTradeBetweenMeAndPlayer:player];
+					[self.playerTrader dismissForResult:YES];
+				}
+				
+			}else{
+				self.playersAnswers++;
+				if(self.playersAnswers == self.game.players.count-1){
+					self.game.phase = RUNNING;
+					[self.playerTrader dismissForResult:NO];
+				}
+			}
 			
 			break;
 		default:
@@ -1869,6 +2008,20 @@
 	self.resourcesLabel.text =[NSString stringWithFormat:@"Lumber=%d Brick=%d Ore=%d Wool=%d Grain=%d",self.game.me.lumber,self.game.me.brick,self.game.me.ore,self.game.me.wool,self.game.me.grain] ;
 }
 
-
+-(BOOL)isTradePossibleForPlayer: (Player*)player withDemand: (NSDictionary*) resources{
+	
+	int wool = [[resources valueForKey:@"wool"] integerValue];
+	int lumber =[[resources valueForKey:@"lumber"] integerValue];
+	int grain =[[resources valueForKey:@"grain"] integerValue];
+	int ore =[[resources valueForKey:@"ore"] integerValue];
+	int brick =[[resources valueForKey:@"brick"] integerValue];
+	
+		
+	
+	if(self.game.me.lumber >= lumber && self.game.me.wool >= wool && self.game.me.grain >= grain && self.game.me.ore >= ore && self.game.me.brick >= brick)
+		return YES;
+	
+	return NO;
+}
 
 @end

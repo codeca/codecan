@@ -34,7 +34,7 @@
 		[self addChild:self.fader];
 		
 		SKLabelNode * title = [SKLabelNode labelNodeWithFontNamed:@"ChalkDuster"];
-		title.text = @"PERDEU PLAYBOY!";
+		title.text = @"You got robbed!";
 		title.fontSize = 50;
 		title.fontColor = [SKColor blackColor];
 		title.position = CGPointMake(0, 300);

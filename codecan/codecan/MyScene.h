@@ -18,6 +18,9 @@
 #import "ThiefDiscardScreen.h"
 #import "DevelopmentCards.h"
 #import "PortResourceTrader.h"
+#import "HelpScreen.h"
+#import "PlayerTrader.h"
+#import "ShowOfferScreen.h"
 
 typedef enum{
 	
@@ -49,9 +52,15 @@ typedef enum{
 @property (nonatomic, strong) SKLabelNode * resourcesLabel;
 @property (nonatomic, strong) BankTrader * bankTrader;
 @property (nonatomic, strong) PortTrader * portTrader;
-@property (nonatomic,strong) PortResourceTrader * portResourceTrader;
-@property (nonatomic,strong)ThiefDiscardScreen * thiefScreen;
+@property (nonatomic,strong)  PortResourceTrader * portResourceTrader;
+@property (nonatomic,strong)  ThiefDiscardScreen * thiefScreen;
+@property (nonatomic, strong) PlayerTrader * playerTrader;
+@property (nonatomic, strong) ShowOfferScreen * showOfferScreen;
+@property (nonatomic, strong) HelpScreen * helpScreen;
+@property (nonatomic, strong) SKSpriteNode * helpButton;
+
 @property (nonatomic, strong) Plug * plug;
+
 @property (nonatomic) NSInteger playersDiscardedForThief;
 
 @property (nonatomic, strong) Game * game;
@@ -70,4 +79,6 @@ typedef enum{
 +(instancetype)sceneWithSize:(CGSize)size andGame:(Game *) game;
 -(void)broadcastResourcesChangeForPlayer: (Player*) player add:(NSArray*)addResources remove:(NSArray*)removeResources;
 -(void) updateResources;
+-(void) waitForAnswer;
+-(void) updateResourcesForPLayer:(Player*) player add:(NSArray*)added andRemove:(NSArray*) removed;
 @end

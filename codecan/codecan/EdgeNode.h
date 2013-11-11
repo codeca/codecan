@@ -9,6 +9,7 @@
 #import <SpriteKit/SpriteKit.h>
 #import "Player.h"
 #import "VertexNode.h"
+#import "ManaLinkAtlas.h"
 
 @interface EdgeNode : SKSpriteNode
 

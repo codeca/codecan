@@ -27,6 +27,10 @@ typedef enum {
 @property (nonatomic, weak) ViewController * nextView;
 @property (nonatomic, strong) NSMutableArray * players;
 
+@property (nonatomic, strong) AVAudioPlayer * mPlayer;
+@property (nonatomic, strong) NSDictionary	* serverData;
+
+
 @end
 
 @implementation StartViewController
@@ -34,36 +38,76 @@ typedef enum {
 -(void) viewDidLoad{
 	[super viewDidLoad];
 	
-	self.plug = [[Plug alloc] init];
-	self.plug.delegate = self;
+	NSString * backgroundPath = [[NSBundle mainBundle] pathForResource:@"opening" ofType:@"mp3"];
+	
+	NSURL * pathURL = [[NSURL alloc] initFileURLWithPath:backgroundPath];
+	
+	AVAudioPlayer * newPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL: pathURL error: nil];
+	self.mPlayer = newPlayer;
+	self.mPlayer.delegate = self;
+	self.mPlayer.volume = 1.0;
+	[self.mPlayer play];
+	
+	
 	self.name.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"name"];
-	self.myId = [[NSUUID UUID] UUIDString];
+	
+	
+}
+- (IBAction)debug2Players:(id)sender {
+	
+	[self resetPlug];
+	
+	self.serverData = [NSDictionary dictionaryWithObjects:@[@1, @0, self.name.text, self.myId] forKeys:@[@"want2", @"want1", @"name", @"id"]];
+	
+	self.progressText.text = @"Connecting";
+	
+	self.waiting = WAITING_3;
 	
 }
 
 - (IBAction)debug1Player:(id)sender {
 	
-	NSDictionary *serverData = [NSDictionary dictionaryWithObjects:@[@0, @0, @1, self.name.text, self.myId] forKeys:@[@"want3", @"want4",@"want1", @"name", @"id"]];
+	[self resetPlug];
+	
+	self.serverData = [NSDictionary dictionaryWithObjects:@[@0, @0, @1, self.name.text, self.myId] forKeys:@[@"want3", @"want4",@"want1", @"name", @"id"]];
 	
 	self.waiting = WAITING_DEBUG;
-	[self.plug sendMessage:MSG_MATCH data:serverData];
+	
+	if(self.plug.readyState == PLUGSTATE_CLOSED){
+		Player * me = [[Player alloc] init];
+		me.name = self.name.text;
+		me.ID = @"1234";
+		self.myId = me.ID;
+		self.players = [[NSMutableArray alloc] init];
+		[self.players addObject:me];
+		[self performSegueWithIdentifier:@"GoToGame" sender:self];
+	}
 	
 }
 
 - (IBAction)startWith4Players:(id)sender {
-	NSDictionary *serverData = [NSDictionary dictionaryWithObjects:@[@0, @1, self.name.text, self.myId] forKeys:@[@"want3", @"want4", @"name", @"id"]];
+	
+	[self resetPlug];
+	
+	self.serverData = [NSDictionary dictionaryWithObjects:@[@0, @1, self.name.text, self.myId] forKeys:@[@"want3", @"want4", @"name", @"id"]];
+	
+	self.progressText.text = @"Connecting";
 	
 	self.waiting = WAITING_4;
-	[self.plug sendMessage:MSG_MATCH data:serverData];
 	
 
 }
 
 
 - (IBAction)startWith3Players:(id)sender {
-	NSDictionary *serverData = [NSDictionary dictionaryWithObjects:@[@1, @0, self.name.text, self.myId] forKeys:@[@"want3", @"want4", @"name", @"id"]];
+	
+	[self resetPlug];
+	
+	self.serverData = [NSDictionary dictionaryWithObjects:@[@1, @0, self.name.text, self.myId] forKeys:@[@"want3", @"want4", @"name", @"id"]];
+	
+	self.progressText.text = @"Connecting";
+	
 	self.waiting = WAITING_3;
-	[self.plug sendMessage:MSG_MATCH data:serverData];
 	
 }
 
@@ -105,6 +149,8 @@ typedef enum {
 -(void)viewWillDisappear:(BOOL)animated{
 	[[NSUserDefaults standardUserDefaults] setObject:self.name.text forKey:@"name"];
 	[[NSUserDefaults standardUserDefaults] synchronize];
+	[self.mPlayer stop];
+	self.mPlayer = nil;
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
@@ -122,6 +168,11 @@ typedef enum {
 
 - (void)plugHasConnected:(Plug *)plug {
 	NSLog(@"connected");
+	
+	self.progressText.text = @"Connected";
+	
+	
+	[self.plug sendMessage:MSG_MATCH data:self.serverData];
 
 
 }
@@ -130,6 +181,19 @@ typedef enum {
 	NSLog(@"closed %hhd", error);
 	
 
+}
+
+- (void) audioPlayerDidFinishPlaying: (AVAudioPlayer *) player
+                        successfully: (BOOL) completed {
+    [self.mPlayer play];
+}
+
+
+-(void) resetPlug{
+	//sobrescreve o plug anterior e reinicia a conexão
+	self.plug = [[Plug alloc] init];
+	self.plug.delegate = self;
+	self.myId = [[NSUUID UUID] UUIDString];
 }
 
 @end

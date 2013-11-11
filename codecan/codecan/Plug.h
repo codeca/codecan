@@ -24,7 +24,9 @@ typedef enum {
 	MSG_HAND_CHANGED,
 	MSG_CARD_BUILD,
 	MSG_CARD_USED,
-	MSG_WINNER
+	MSG_WINNER,
+	MSG_OFFER,
+	MSG_RESPONSE_OFFER
 } PlugMsgType;
 
 @class Plug;

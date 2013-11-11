@@ -195,6 +195,7 @@
 				break;
 			default:
 				currentResource.texture = nil;
+				self.offer[i] = [NSNumber numberWithInt:0];
 				break;
 		}
 		currentResource.size = CGSizeMake(currentResource.texture.size.width*0.1, currentResource.texture.size.height*0.1);
@@ -245,7 +246,7 @@
 	self.player = player;
 	self.myScene = (MyScene*) scene;
 	[self.myScene addChild:self];
-	self.selectionOffer = BANKBLANK;
+	self.offer = [[NSMutableArray alloc] init];
 	self.selectionDemand = BANKBLANK;
 	[self updateView];
 	

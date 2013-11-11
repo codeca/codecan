@@ -7,9 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AVFoundation/AVFoundation.h>
 #import "Plug.h"
 
 
-@interface StartViewController : UIViewController<PlugDelegate>
+@interface StartViewController : UIViewController<PlugDelegate, AVAudioPlayerDelegate>
+
+
 
 @end

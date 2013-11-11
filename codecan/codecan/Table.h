@@ -28,7 +28,7 @@
 @property (nonatomic, strong) DevelopmentCards* deck;
 
 
--(void) moveThiefToHexagon: (HexagonNode*) hex;
+-(BOOL) moveThiefToHexagon: (HexagonNode*) hex;
 
 -(id) initWithTable:(NSDictionary*) table;
 

@@ -76,6 +76,7 @@
 		
 		SKLabelNode * offerLabel = [SKLabelNode labelNodeWithFontNamed:@"ChalkDuster"];
 		offerLabel.text = @"Offer";
+		offerLabel.name = @"offerlabel";
 		offerLabel.fontColor = [SKColor blackColor];
 		offerLabel.fontSize = 30;
 		offerLabel.position = CGPointMake(self.myOffer.position.x, self.arrow.position.y+30);
@@ -83,6 +84,7 @@
 		
 		SKLabelNode * demandLabel = [SKLabelNode labelNodeWithFontNamed:@"ChalkDuster"];
 		demandLabel.text = @"Demand";
+		offerLabel.name = @"demandlabel";
 		demandLabel.fontColor = [SKColor blackColor];
 		demandLabel.fontSize = 30;
 		demandLabel.position = CGPointMake(self.myDemand.position.x, self.arrow.position.y+30);
@@ -130,25 +132,25 @@
 		[self.options addChild:self.woolQuantity];
 		
 		self.brickQuantity = [SKLabelNode labelNodeWithFontNamed:@"ChalkDuster"];
-		self.brickQuantity.name = @"woolquantity";
+		self.brickQuantity.name = @"brickquantity";
 		self.brickQuantity.fontColor = [SKColor blackColor];
 		self.brickQuantity.position = CGPointMake(0, -40);
 		[self.options addChild:self.brickQuantity];
 		
 		self.lumberQuantity = [SKLabelNode labelNodeWithFontNamed:@"ChalkDuster"];
-		self.lumberQuantity.name = @"woolquantity";
+		self.lumberQuantity.name = @"lumberquantity";
 		self.lumberQuantity.fontColor = [SKColor blackColor];
 		self.lumberQuantity.position = CGPointMake(-self.options.size.width*2/6, -40);
 		[self.options addChild:self.lumberQuantity];
 		
 		self.oreQuantity = [SKLabelNode labelNodeWithFontNamed:@"ChalkDuster"];
-		self.oreQuantity.name = @"woolquantity";
+		self.oreQuantity.name = @"orequantity";
 		self.oreQuantity.fontColor = [SKColor blackColor];
 		self.oreQuantity.position = CGPointMake(-self.options.size.width/6, -40);
 		[self.options addChild:self.oreQuantity];
 		
 		self.grainQuantity = [SKLabelNode labelNodeWithFontNamed:@"ChalkDuster"];
-		self.grainQuantity.name = @"woolquantity";
+		self.grainQuantity.name = @"grainquantity";
 		self.grainQuantity.fontColor = [SKColor blackColor];
 		self.grainQuantity.position = CGPointMake(self.options.size.width/6, -40);
 		[self.options addChild:self.grainQuantity];

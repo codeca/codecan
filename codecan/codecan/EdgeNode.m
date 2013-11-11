@@ -42,8 +42,26 @@
 	
 	if(valid){
 		self.owner = player;
-		self.color = self.owner.color;
-		self.colorBlendFactor= 1.0;
+		//self.color = self.owner.color;
+		//self.colorBlendFactor= 1.0;
+		
+		SKSpriteNode * manaLink = [SKSpriteNode spriteNodeWithTexture:[ManaLinkAtlas sharedInstance].textures[0]];
+		manaLink.color = self.owner.color;
+		manaLink.colorBlendFactor = 1.0;
+		manaLink.xScale = 0.5;
+		manaLink.position = CGPointMake(-30, 0);
+		
+		
+		
+		[self addChild:manaLink];
+		
+		[manaLink runAction:[SKAction repeatActionForever:
+							[SKAction animateWithTextures:[ManaLinkAtlas sharedInstance].textures
+											 timePerFrame:0.05f
+												   resize:NO
+												  restore:YES]] withKey:@"link"];
+		
+		[self runAction:[SKAction playSoundFileNamed:@"buildingsound.mp3" waitForCompletion:YES]];
 		self.owner.roads++;
 	}
 }

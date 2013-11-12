@@ -255,7 +255,7 @@
 			
 			NSMutableArray* AuxPorts = [[NSMutableArray alloc]init];
 			
-			for (int aux = 0; aux < 4; aux++) {
+			for (int aux = 0; aux < 7; aux++) {
 				
 				[AuxPorts addObject:[[Port alloc ]initWithType: STANDARD withResource: 0]];
 			}
@@ -282,51 +282,65 @@
 			
 			VertexNode* aux;
 			
-			aux = [self.vertexes objectAtIndex:0];
+			aux = [self.vertexes objectAtIndex:55];
 			aux.port = [Ports objectAtIndex:0];
-			aux = [self.vertexes objectAtIndex:1];
+			aux = [self.vertexes objectAtIndex:56];
 			aux.port = [Ports objectAtIndex:0];
 			
-			aux = [self.vertexes objectAtIndex:3];
+			aux = [self.vertexes objectAtIndex:58];
 			aux.port = [Ports objectAtIndex:1];
-			aux = [self.vertexes objectAtIndex:4];
+			aux = [self.vertexes objectAtIndex:59];
 			aux.port = [Ports objectAtIndex:1];
 			
-			aux = [self.vertexes objectAtIndex:14];
+			aux = [self.vertexes objectAtIndex:62];
 			aux.port = [Ports objectAtIndex:2];
-			aux = [self.vertexes objectAtIndex:15];
+			aux = [self.vertexes objectAtIndex:63];
 			aux.port = [Ports objectAtIndex:2];
 			
-			aux = [self.vertexes objectAtIndex:26];
+			aux = [self.vertexes objectAtIndex:65];
 			aux.port = [Ports objectAtIndex:3];
-			aux = [self.vertexes objectAtIndex:37];
+			aux = [self.vertexes objectAtIndex:66];
 			aux.port = [Ports objectAtIndex:3];
 			
-			aux = [self.vertexes objectAtIndex:45];
+			aux = [self.vertexes objectAtIndex:68];
 			aux.port = [Ports objectAtIndex:4];
-			aux = [self.vertexes objectAtIndex:46];
+			aux = [self.vertexes objectAtIndex:69];
 			aux.port = [Ports objectAtIndex:4];
 			
-			aux = [self.vertexes objectAtIndex:50];
+			aux = [self.vertexes objectAtIndex:72];
 			aux.port = [Ports objectAtIndex:5];
-			aux = [self.vertexes objectAtIndex:51];
+			aux = [self.vertexes objectAtIndex:73];
 			aux.port = [Ports objectAtIndex:5];
 			
-			aux = [self.vertexes objectAtIndex:47];
+			aux = [self.vertexes objectAtIndex:75];
 			aux.port = [Ports objectAtIndex:6];
-			aux = [self.vertexes objectAtIndex:48];
+			aux = [self.vertexes objectAtIndex:76];
 			aux.port = [Ports objectAtIndex:6];
 			
-			aux = [self.vertexes objectAtIndex:28];
+			aux = [self.vertexes objectAtIndex:78];
 			aux.port = [Ports objectAtIndex:7];
-			aux = [self.vertexes objectAtIndex:38];
+			aux = [self.vertexes objectAtIndex:79];
 			aux.port = [Ports objectAtIndex:7];
 			
-			aux = [self.vertexes objectAtIndex:7];
+			aux = [self.vertexes objectAtIndex:82];
 			aux.port = [Ports objectAtIndex:8];
-			aux = [self.vertexes objectAtIndex:17];
+			aux = [self.vertexes objectAtIndex:83];
 			aux.port = [Ports objectAtIndex:8];
 			
+			aux = [self.vertexes objectAtIndex:86];
+			aux.port = [Ports objectAtIndex:9];
+			aux = [self.vertexes objectAtIndex:87];
+			aux.port = [Ports objectAtIndex:9];
+			
+			aux = [self.vertexes objectAtIndex:89];
+			aux.port = [Ports objectAtIndex:10];
+			aux = [self.vertexes objectAtIndex:90];
+			aux.port = [Ports objectAtIndex:10];
+			
+			aux = [self.vertexes objectAtIndex:93];
+			aux.port = [Ports objectAtIndex:11];
+			aux = [self.vertexes objectAtIndex:94];
+			aux.port = [Ports objectAtIndex:11];
 		
 	}
 	

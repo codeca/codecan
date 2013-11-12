@@ -889,7 +889,7 @@
 				}else if(clicked.class == VertexNode.class && self.selection==CITYSEL && self.game.currentPlayer.ore>2 && self.game
 						 .currentPlayer.grain>1){
 					VertexNode * vertex = (VertexNode*) clicked;
-					
+				
 					if (vertex.owner == self.game.me && vertex.type == VILLAGE) {
 						
 						[vertex becomeCity];

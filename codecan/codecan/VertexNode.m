@@ -18,6 +18,7 @@
 	if(self){
 		_edges = [[NSMutableArray alloc] init];
 		self.zPosition = 3;
+		self.name = @"vertex";
 	}
 	return self;
 }
@@ -33,13 +34,15 @@
 		//self.texture = [SKTexture textureWithImageNamed:@"villageHouseH"];
 		//self.texture = [ManaCrystalAtlas sharedInstance].textures[0];
 		
-		SKSpriteNode * crystal = [SKSpriteNode spriteNodeWithTexture:[ManaCrystalAtlas sharedInstance].textures[0]];
+		VertexNode * crystal = (VertexNode*)[VertexNode spriteNodeWithTexture:[ManaCrystalAtlas sharedInstance].textures[0]];
 		crystal.color = self.owner.color;
 		crystal.colorBlendFactor = 1.0;
 		crystal.xScale = 0.8;
 		crystal.yScale = 0.8;
+		crystal.name = @"vertex";
+		crystal.type = VILLAGE;
 		
-		crystal.position = CGPointMake(-5, 55);
+		crystal.position = CGPointMake(-5, 40);
 		
 		[self addChild:crystal];
 		

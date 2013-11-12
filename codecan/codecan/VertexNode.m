@@ -36,6 +36,8 @@
 		SKSpriteNode * crystal = [SKSpriteNode spriteNodeWithTexture:[ManaCrystalAtlas sharedInstance].textures[0]];
 		crystal.color = self.owner.color;
 		crystal.colorBlendFactor = 1.0;
+		crystal.xScale = 0.8;
+		crystal.yScale = 0.8;
 		
 		crystal.position = CGPointMake(-5, 55);
 		

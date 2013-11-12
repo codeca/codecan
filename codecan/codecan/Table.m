@@ -353,8 +353,16 @@
 		NSArray * portTypes = [table objectForKey:@"portTypes"];
 		NSArray * portResources = [table objectForKey:@"portResources"];
 		
+		HexagonNode * node = [[HexagonNode alloc] initWithResource:[[resources lastObject] integerValue]];
+		
+		float r1 = node.size.width-1;
+		float r2_2 = 2*r1;
+		float r2_1 = 1.5*(node.size.height)-1;
+		float r3_1 = 3*r1;
+		float r3_2 = sqrt(pow(node.size.height*3/4,2) + pow(node.size.width*5/2,2))-3;
+		
 		// Declaracao dos HEX
-		for(int i=0; i<19; i++){
+		for(int i=0; i<37; i++){
 			
 			//inicializa os HEx e os coloca na posicao que serao mostrados.
 			
@@ -370,11 +378,19 @@
 			if(i<1)
 				aux.position = CGPointMake(0, 0);
 			if(i>=1 && i<7)
-				aux.position = CGPointMake(0+133*cos((i-1)*M_PI/3), 0+133*sin((i-1)*M_PI/3));
-			if(i>=7 && !(i%2))
-				aux.position = CGPointMake(0+230*cos((i-7)*M_PI/6), 0+230*sin((i-7)*M_PI/6));
-			else if(i>=7)
-				aux.position = CGPointMake(0+266*cos((i-7)*M_PI/6), 0+266*sin((i-7)*M_PI/6));
+				aux.position = CGPointMake(0+r1*cos((i-1)*M_PI/3), 0+r1*sin((i-1)*M_PI/3));
+			if(i>=7 && i<19 && !(i%2))
+				aux.position = CGPointMake(0+r2_1*cos((i-7)*M_PI/6), 0+r2_1*sin((i-7)*M_PI/6));
+			else if(i>=7 && i<19)
+				aux.position = CGPointMake(0+r2_2*cos((i-7)*M_PI/6), 0+r2_2*sin((i-7)*M_PI/6));
+			
+			if(i>=19 && !(i%3-1)){
+				aux.position = CGPointMake(0+r3_1*cos((i-19)*M_PI/9), 0+r3_1*sin((i-19)*M_PI/9));
+			}else if(i>=19 && !(i%3-2)){
+				aux.position = CGPointMake(0+r3_2*cos((i-20)*M_PI/9+0.33347), 0+r3_2*sin((i-20)*M_PI/9+0.33347));
+			}else if(i>=19){
+				aux.position = CGPointMake(0+r3_2*cos((i-18)*M_PI/9-0.33347), 0+r3_2*sin((i-18)*M_PI/9-0.33347));
+			}
 			
 			//Coloca uma skin nos Hex
 			//Mudar esse codigo para colocar as tiles certas depois!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -390,7 +406,7 @@
 		
 		
 		//Declaracao dos Vertex
-		for(int i=0; i<54; i++){
+		for(int i=0; i<96; i++){
 			
 			VertexNode * newVertex = [[VertexNode alloc] init];
 			newVertex.name = [[NSString alloc] initWithFormat:@"vertex%d",i];
@@ -404,7 +420,7 @@
 		}
 		
 		//Declaracao dos Edges
-		for(int i=0; i<72; i++){
+		for(int i=0; i<132; i++){
 			EdgeNode * newEdge = [[EdgeNode alloc] init];
 			newEdge.name = [[NSString alloc] initWithFormat:@"edge%d",i];
 			[self.edges addObject:newEdge];
@@ -474,9 +490,9 @@
 			
 			for(int i = 0 ; i < 6 ; i++){
 				// verificar esse cast
-				((VertexNode *)[hex.vertexes objectAtIndex:i]).position =CGPointMake(hex.position.x+77*cos(M_PI/6+i*M_PI/3), hex.position.y+77*sin(M_PI/6+i*M_PI/3));
+				((VertexNode *)[hex.vertexes objectAtIndex:i]).position =CGPointMake(hex.position.x+hex.size.height/2*cos(M_PI/6+i*M_PI/3), hex.position.y+hex.size.height/2*sin(M_PI/6+i*M_PI/3));
 				
-				((EdgeNode *)[hex.edges objectAtIndex:i]).position =CGPointMake(hex.position.x+77*pow(3, 0.5)/2*cos(i*M_PI/3), hex.position.y+77*pow(3, 0.5)/2*sin(i*M_PI/3));
+				((EdgeNode *)[hex.edges objectAtIndex:i]).position =CGPointMake(hex.position.x+hex.size.height/2*pow(3, 0.5)/2*cos(i*M_PI/3), hex.position.y+hex.size.height/2*pow(3, 0.5)/2*sin(i*M_PI/3));
 				((EdgeNode *)[hex.edges objectAtIndex:i]).zRotation = i*M_PI/3;
 			}
 			

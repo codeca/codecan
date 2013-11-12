@@ -19,6 +19,7 @@
 		8193EBF7183287640086B992 /* Sphere.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 8193EBF6183287640086B992 /* Sphere.atlas */; };
 		81A73C9B182C111800C4514F /* ShowOfferScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 81A73C9A182C111800C4514F /* ShowOfferScreen.m */; };
 		81AA90A1182BE59E00033B30 /* PlayerTrader.m in Sources */ = {isa = PBXBuildFile; fileRef = 81AA90A0182BE59E00033B30 /* PlayerTrader.m */; };
+		81AD40F51832A5A400921747 /* logo (1).png in Resources */ = {isa = PBXBuildFile; fileRef = 81AD40F41832A5A400921747 /* logo (1).png */; };
 		81E352DB18168FAA00FD7323 /* HexagonNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E352DA18168FAA00FD7323 /* HexagonNode.m */; };
 		81E352DE1816A3CD00FD7323 /* Table.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E352DD1816A3CD00FD7323 /* Table.m */; };
 		81E352E718184D1700FD7323 /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E352E618184D1700FD7323 /* Player.m */; };
@@ -117,6 +118,7 @@
 		81A73C9A182C111800C4514F /* ShowOfferScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowOfferScreen.m; sourceTree = "<group>"; };
 		81AA909F182BE59E00033B30 /* PlayerTrader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerTrader.h; sourceTree = "<group>"; };
 		81AA90A0182BE59E00033B30 /* PlayerTrader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerTrader.m; sourceTree = "<group>"; };
+		81AD40F41832A5A400921747 /* logo (1).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo (1).png"; sourceTree = "<group>"; };
 		81E352D918168FAA00FD7323 /* HexagonNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HexagonNode.h; sourceTree = "<group>"; };
 		81E352DA18168FAA00FD7323 /* HexagonNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HexagonNode.m; sourceTree = "<group>"; };
 		81E352DC1816A3CD00FD7323 /* Table.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Table.h; sourceTree = "<group>"; };
@@ -436,6 +438,7 @@
 		C456889C1817FD0C008A0CB8 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				81AD40F41832A5A400921747 /* logo (1).png */,
 				83CF9EE3182755C200B1803D /* villageHouseH.png */,
 				83CF9EE1182755B400B1803D /* cityH.png */,
 				83CF9EDF1827530800B1803D /* helpicon.png */,
@@ -577,6 +580,7 @@
 				C495904D1823FFCE006F790C /* victory.png in Resources */,
 				98B4D26E180EFB7900537145 /* Images.xcassets in Resources */,
 				98B4D264180EFB7900537145 /* Main.storyboard in Resources */,
+				81AD40F51832A5A400921747 /* logo (1).png in Resources */,
 				C4099749181EBBD800E60154 /* ore.png in Resources */,
 				C495904C1823FFCE006F790C /* defeat.png in Resources */,
 				81F128A4181AA2B90002832D /* edge.png in Resources */,
@@ -762,8 +766,6 @@
 		98B4D285180EFB7A00537145 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "codecan/codecan-Prefix.pch";
 				INFOPLIST_FILE = "codecan/codecan-Info.plist";
@@ -776,8 +778,6 @@
 		98B4D286180EFB7A00537145 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "codecan/codecan-Prefix.pch";
 				INFOPLIST_FILE = "codecan/codecan-Info.plist";

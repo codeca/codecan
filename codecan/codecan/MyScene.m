@@ -886,10 +886,17 @@
 						self.game.currentPlayer.wool--;
 						
 					}
-				}else if(clicked.class == VertexNode.class && self.selection==CITYSEL && self.game.currentPlayer.ore>2 && self.game
+				}else if((clicked.class == VertexNode.class || clicked.parent.class == VertexNode.class) && self.selection==CITYSEL && self.game.currentPlayer.ore>2 && self.game
 						 .currentPlayer.grain>1){
-					VertexNode * vertex = (VertexNode*) clicked;
+					
+					VertexNode * vertex;
+					
+					if(clicked.class == VertexNode.class)
+						vertex = (VertexNode*) clicked;
+					else
+						vertex = (VertexNode*) clicked.parent;
 				
+					
 					if (vertex.owner == self.game.me && vertex.type == VILLAGE) {
 						
 						[vertex becomeCity];

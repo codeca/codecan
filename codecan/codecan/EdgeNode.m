@@ -48,8 +48,8 @@
 		SKSpriteNode * manaLink = [SKSpriteNode spriteNodeWithTexture:[ManaLinkAtlas sharedInstance].textures[0]];
 		manaLink.color = self.owner.color;
 		manaLink.colorBlendFactor = 1.0;
-		manaLink.xScale = 0.5;
-		manaLink.position = CGPointMake(-30, 0);
+		manaLink.yScale = 0.78;
+		manaLink.position = CGPointMake(-5, -15);
 		
 		
 		

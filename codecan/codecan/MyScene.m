@@ -1285,6 +1285,8 @@
 	for(VertexNode* vertex in self.game.table.thief.vertexes){
 		if(vertex.owner==nil || vertex.owner == self.game.me )
 			continue;
+		if([vertex.owner mountPlayerHand].count == 0)
+			continue;
 		
 		int index =[self.game.players indexOfObject:vertex.owner];
 		

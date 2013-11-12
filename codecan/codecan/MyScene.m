@@ -1280,7 +1280,7 @@
 	
 	SKSpriteNode *background = [[SKSpriteNode alloc] initWithColor:[SKColor brownColor] size:CGSizeMake(400, 400)];
 	
-	int counter=100;
+	int counter=200;
 	int verifier[4] = {0,0,0,0};
 	for(VertexNode* vertex in self.game.table.thief.vertexes){
 		if(vertex.owner==nil || vertex.owner == self.game.me )

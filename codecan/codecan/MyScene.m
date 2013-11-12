@@ -1280,7 +1280,7 @@
 	
 	SKSpriteNode *background = [[SKSpriteNode alloc] initWithColor:[SKColor brownColor] size:CGSizeMake(400, 400)];
 	
-	int counter=200;
+	int counter=90;
 	int verifier[4] = {0,0,0,0};
 	for(VertexNode* vertex in self.game.table.thief.vertexes){
 		if(vertex.owner==nil || vertex.owner == self.game.me )
@@ -1301,7 +1301,7 @@
 		label.name = [NSString stringWithFormat:@"%i",index];
 		label.text = vertex.owner.name;
 		label.position = CGPointMake(0, counter);
-		counter +=100;
+		counter -=100;
 		
 		[background addChild:label];
 	}

@@ -41,7 +41,7 @@
 		crystal.colorBlendFactor = 1.0;
 		//crystal.xScale = 0.8;
 		//crystal.yScale = 0.8;
-		crystal.name = @"vertex";
+		crystal.name = @"crystal";
 		
 		crystal.position = CGPointMake(-5, 50);
 		
@@ -72,9 +72,22 @@
 	self.type = CITY;
 	self.owner.points++;
 	
-	self.texture = [SKTexture textureWithImageNamed:@"cityH"];
-	self.size = self.texture.size;
-	self.xScale = 0.75;
+	SKSpriteNode * sphere = (SKSpriteNode*)[self childNodeWithName:@"crystal"];
+	[sphere removeAllActions];
+	sphere.texture = nil;
+	
+	sphere.texture = [ManaSphereAtlas sharedInstance].textures[0];
+	
+	[sphere runAction:[SKAction repeatActionForever:
+						[SKAction animateWithTextures:[ManaSphereAtlas sharedInstance].textures
+										 timePerFrame:0.1f
+											   resize:NO
+											  restore:YES]] withKey:@"sphere"];
+	
+	sphere.xScale = 0.3;
+	sphere.yScale = 0.3;
+	sphere.position = CGPointMake(0, -10);
+	
 	[self runAction:[SKAction playSoundFileNamed:@"buildingsound.mp3" waitForCompletion:YES]];
 	//self.yScale = 0.02;
 	

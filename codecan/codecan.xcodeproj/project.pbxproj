@@ -15,6 +15,8 @@
 		813A9B761827F07B00A110E3 /* backgroundmusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 813A9B751827F07B00A110E3 /* backgroundmusic.mp3 */; };
 		813A9B781827F53A00A110E3 /* opening.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 813A9B771827F53A00A110E3 /* opening.mp3 */; };
 		8159F071182115FD00D1570B /* PortTrader.m in Sources */ = {isa = PBXBuildFile; fileRef = 8159F070182115FD00D1570B /* PortTrader.m */; };
+		8193EBF5183286AC0086B992 /* ManaSphereAtlas.m in Sources */ = {isa = PBXBuildFile; fileRef = 8193EBF4183286AC0086B992 /* ManaSphereAtlas.m */; };
+		8193EBF7183287640086B992 /* Sphere.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 8193EBF6183287640086B992 /* Sphere.atlas */; };
 		81A73C9B182C111800C4514F /* ShowOfferScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 81A73C9A182C111800C4514F /* ShowOfferScreen.m */; };
 		81AA90A1182BE59E00033B30 /* PlayerTrader.m in Sources */ = {isa = PBXBuildFile; fileRef = 81AA90A0182BE59E00033B30 /* PlayerTrader.m */; };
 		81E352DB18168FAA00FD7323 /* HexagonNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E352DA18168FAA00FD7323 /* HexagonNode.m */; };
@@ -108,6 +110,9 @@
 		813A9B771827F53A00A110E3 /* opening.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = opening.mp3; path = Soundtrack/opening.mp3; sourceTree = "<group>"; };
 		8159F06F182115FD00D1570B /* PortTrader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PortTrader.h; sourceTree = "<group>"; };
 		8159F070182115FD00D1570B /* PortTrader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PortTrader.m; sourceTree = "<group>"; };
+		8193EBF3183286AC0086B992 /* ManaSphereAtlas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManaSphereAtlas.h; sourceTree = "<group>"; };
+		8193EBF4183286AC0086B992 /* ManaSphereAtlas.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManaSphereAtlas.m; sourceTree = "<group>"; };
+		8193EBF6183287640086B992 /* Sphere.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = Sphere.atlas; path = resourcesPNG/Sphere.atlas; sourceTree = "<group>"; };
 		81A73C99182C111800C4514F /* ShowOfferScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowOfferScreen.h; sourceTree = "<group>"; };
 		81A73C9A182C111800C4514F /* ShowOfferScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowOfferScreen.m; sourceTree = "<group>"; };
 		81AA909F182BE59E00033B30 /* PlayerTrader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerTrader.h; sourceTree = "<group>"; };
@@ -243,6 +248,8 @@
 				8366367C182ED83100AA4531 /* ManaCrystalAtlas.m */,
 				8312076B182FEA8B00C95EED /* ManaLinkAtlas.h */,
 				8312076C182FEA8B00C95EED /* ManaLinkAtlas.m */,
+				8193EBF3183286AC0086B992 /* ManaSphereAtlas.h */,
+				8193EBF4183286AC0086B992 /* ManaSphereAtlas.m */,
 			);
 			name = AtlasSingletons;
 			sourceTree = "<group>";
@@ -451,6 +458,7 @@
 				81F128A7181AC9680002832D /* villageHouse.png */,
 				81F128A3181AA2B90002832D /* edge.png */,
 				81F128AB181ACAFC0002832D /* vertex2.png */,
+				8193EBF6183287640086B992 /* Sphere.atlas */,
 				83663682182EE3E800AA4531 /* Link.atlas */,
 				83663680182EE3C000AA4531 /* Crystal.atlas */,
 			);
@@ -557,6 +565,7 @@
 				81F1289E181AA06E0002832D /* 5.png in Resources */,
 				C4099745181EBBD800E60154 /* arrow.png in Resources */,
 				81F128A8181AC9680002832D /* Flag.png in Resources */,
+				8193EBF7183287640086B992 /* Sphere.atlas in Resources */,
 				83CF9EEB1827DA8000B1803D /* buildingsound.mp3 in Resources */,
 				C4099746181EBBD800E60154 /* brick.png in Resources */,
 				C4A8D8B81817E5C40043AA4B /* hexCSV.csv in Resources */,
@@ -623,6 +632,7 @@
 				81E352DB18168FAA00FD7323 /* HexagonNode.m in Sources */,
 				C4059D5E18216F1F00A4FE37 /* DevelopmentCards.m in Sources */,
 				81AA90A1182BE59E00033B30 /* PlayerTrader.m in Sources */,
+				8193EBF5183286AC0086B992 /* ManaSphereAtlas.m in Sources */,
 				812ACCB41823D723007C848E /* PortResourceTrader.m in Sources */,
 				81E352E718184D1700FD7323 /* Player.m in Sources */,
 				0BE9470E1816B52300379436 /* VertexNode.m in Sources */,

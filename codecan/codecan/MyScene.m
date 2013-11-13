@@ -265,6 +265,7 @@
 		
 		SKNode * frame = [SKNode node];
 		frame.position = CGPointMake((i+counter-offset/2)*self.size.width/offset+100, 0);
+		frame.name = [NSString stringWithFormat:@"frame%i",i];
 		
 		[frame addChild:res];
 		[frame addChild:dev];
@@ -1111,12 +1112,14 @@
 		Player * player  = [self.game.players objectAtIndex:i];
 		
 		if (self.game.me != player) {
+			
+			SKNode * frame = [self.topMenu childNodeWithName:[NSString stringWithFormat:@"frame%i",i]];
 		
-		aux = (SKLabelNode*)[self.topMenu childNodeWithName:[NSString stringWithFormat:@"resources%i",i]];
+		aux = (SKLabelNode*)[frame childNodeWithName:[NSString stringWithFormat:@"resources%i",i]];
 		aux.text = [NSString stringWithFormat:@"resources: %i",(player.wool+player.ore+player.brick+player.lumber+player.grain)];
-		aux = (SKLabelNode*)[self.topMenu childNodeWithName:[NSString stringWithFormat:@"cards%i",i]];
+		aux = (SKLabelNode*)[frame childNodeWithName:[NSString stringWithFormat:@"cards%i",i]];
 		aux.text = [NSString stringWithFormat:@"cards: %i",[player.cards count]];
-		aux = (SKLabelNode*)[self.topMenu childNodeWithName:[NSString stringWithFormat:@"points%i",i]];
+		aux = (SKLabelNode*)[frame childNodeWithName:[NSString stringWithFormat:@"points%i",i]];
 		aux.text = [NSString stringWithFormat:@"points: %i",player.points];
 		
 		}

@@ -25,8 +25,8 @@
 		self.fader.name = @"fader";
 		[self addChild:self.fader];
 		
-		//self.background = [SKSpriteNode spriteNodeWithColor:[SKColor grayColor] size:CGSizeMake(self.fader.size.width*0.85, self.fader.size.height*0.85)];
-		//[self addChild:self.background];
+		self.background = [SKSpriteNode spriteNodeWithColor:[SKColor grayColor] size:CGSizeMake(self.fader.size.width*0.85, self.fader.size.height*0.85)];
+		[self addChild:self.background];
 		
 		self.position = CGPointMake(self.fader.size.width/2, self.fader.size.height/2);
 		
@@ -34,7 +34,7 @@
 		//self.data.size = self.background.size;
 		//[self.background addChild:self.data];
 		
-		[self addChild:self.data];
+		[self.background addChild:self.data];
 		
 		self.lands = [[NSMutableArray alloc] init];
 		
@@ -49,13 +49,13 @@
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
 	
 	for (UITouch *touch in touches) {
-        CGPoint location = [touch locationInNode:self];
+        //CGPoint location = [touch locationInNode:self];
         
-		SKNode* clicked = [self nodeAtPoint:location];
+		//SKNode* clicked = [self nodeAtPoint:location];
 		
-		if([clicked.name isEqualToString:@"fader"]){
-			[self removeFromParent];
-		}
+		//if([clicked.name isEqualToString:@"fader"]){
+		[self removeFromParent];
+		//}
 		
 	}
 }

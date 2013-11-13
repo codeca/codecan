@@ -245,7 +245,7 @@
 		res = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
 		res.fontSize = 15;
 		res.text = @"resources: 0";
-		res.position = CGPointMake(65, 30);
+		res.position = CGPointMake(70, 30);
 		res.fontColor = [SKColor blackColor];
 		res.name = [NSString stringWithFormat:@"resources%i",i];
 		
@@ -264,7 +264,7 @@
 		points.name = [NSString stringWithFormat:@"points%i",i];
 		
 		SKNode * frame = [SKNode node];
-		frame.position = CGPointMake((i+counter-offset/2)*self.size.width/offset, 0);
+		frame.position = CGPointMake((i+counter-offset/2)*self.size.width/offset+100, 0);
 		
 		[frame addChild:res];
 		[frame addChild:dev];

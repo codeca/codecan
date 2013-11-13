@@ -128,9 +128,7 @@
 			vertex.colorBlendFactor = 1;
 			vertex.color = [SKColor purpleColor];
 			
-		}
-		
-		else if (vertex.port.type == RESOURCE){
+		}else if (vertex.port.type == RESOURCE){
 			
 			//NSLog(@"Porto encontrado");
 			
@@ -158,26 +156,7 @@
 					
 			}
 			
-			SKSpriteNode * resourceImage = [SKSpriteNode spriteNodeWithImageNamed:[NSString stringWithFormat: @"%@", imageName]];
-			resourceImage.xScale*=0.05;
-			resourceImage.yScale*=0.05;
-			resourceImage.zPosition = 5;
-			
-			if(vertex.position.x<0 && vertex.position.y<0){
-				resourceImage.position = CGPointMake(-10, -10);
-			}else if(vertex.position.x<0 && vertex.position.y>0){
-				resourceImage.position = CGPointMake(-10, 10);
-			}else if(vertex.position.x>0 && vertex.position.y>0){
-				resourceImage.position = CGPointMake(10, 10);
-			}else if(vertex.position.x>0 && vertex.position.y<0){
-				resourceImage.position = CGPointMake(10, -10);
-			}
-			
-			[vertex addChild:resourceImage];
-			
-			
-			vertex.colorBlendFactor = 1;
-			vertex.color = [SKColor blackColor];
+			vertex.texture = [SKTexture textureWithImageNamed:imageName];
 			
 		}
 		
@@ -222,7 +201,7 @@
 			continue;
 		}
 			
-		
+		/*
 		color = [[SKSpriteNode alloc] initWithColor:player.color size:CGSizeMake(40, 40)];
 		color.position = CGPointMake((i+counter-offset/2)*self.size.width/offset-40, 20);
 		
@@ -252,13 +231,54 @@
 		points.position = CGPointMake((i+counter-offset/2)*self.size.width/offset+60+30-40, -10);
 		points.fontColor = [SKColor blackColor];
 		points.name = [NSString stringWithFormat:@"points%i",i];
+		*/
 		
+		color = [[SKSpriteNode alloc] initWithColor:player.color size:CGSizeMake(40, 40)];
+		color.position = CGPointMake(-40, 20);
 		
+		name = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
+		name.fontSize = 15;
+		name.text = player.name;
+		name.position = CGPointMake(-40, -15);
+		name.fontColor = [SKColor blackColor];
+		
+		res = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
+		res.fontSize = 15;
+		res.text = @"resources: 0";
+		res.position = CGPointMake(65, 30);
+		res.fontColor = [SKColor blackColor];
+		res.name = [NSString stringWithFormat:@"resources%i",i];
+		
+		dev = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
+		dev.fontSize = 15;
+		dev.text = @"cards:";
+		dev.position = CGPointMake(45, 10);
+		dev.fontColor = [SKColor blackColor];
+		dev.name = [NSString stringWithFormat:@"cards%i",i];
+		
+		points = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
+		points.fontSize = 15;
+		points.text = @"points:";
+		points.position = CGPointMake(50, -10);
+		points.fontColor = [SKColor blackColor];
+		points.name = [NSString stringWithFormat:@"points%i",i];
+		
+		SKNode * frame = [SKNode node];
+		frame.position = CGPointMake((i+counter-offset/2)*self.size.width/offset, 0);
+		
+		[frame addChild:res];
+		[frame addChild:dev];
+		[frame addChild:points];
+		[frame addChild:name];
+		[frame addChild:color];
+		[self.topMenu addChild:frame];
+		/*
 		[self.topMenu addChild:res];
 		[self.topMenu addChild:dev];
 		[self.topMenu addChild:points];
 		[self.topMenu addChild:name];
 		[self.topMenu addChild:color];
+		 */
 	}
 	
 	SKLabelNode* myPoints;
@@ -905,8 +925,14 @@
 						self.game.currentPlayer.grain-=2;
 					}
 					
-				}else if(clicked.class == VertexNode.class && self.selection!=CITYSEL){
-					VertexNode * vertex = (VertexNode*)clicked;
+				}else if((clicked.class == VertexNode.class || clicked.parent.class == VertexNode.class) && self.selection!=CITYSEL){
+					
+					VertexNode * vertex;
+					
+					if(clicked.class == VertexNode.class)
+						vertex = (VertexNode*) clicked;
+					else
+						vertex = (VertexNode*) clicked.parent;
 					
 					if(vertex.owner == self.game.currentPlayer){
 						if(vertex.port.type == STANDARD){
@@ -1358,7 +1384,7 @@
 	
 	
 	SKLabelNode *roadLabel = [SKLabelNode labelNodeWithFontNamed:@"ChalkDuster"];
-	roadLabel.text = @"Road";
+	roadLabel.text = @"Link";
 	roadLabel.position = CGPointMake(-downMenu.size.width*3/10, -15);
 	roadLabel.name = @"road";
 	roadLabel.fontSize = 30;
@@ -1367,7 +1393,7 @@
 	[self.menu addChild:roadLabel];
 	
 	SKLabelNode *villageLabel = [SKLabelNode labelNodeWithFontNamed:@"ChalkDuster"];
-	villageLabel.text = @"Village";
+	villageLabel.text = @"Crystal";
 	villageLabel.position = CGPointMake(-downMenu.size.width*1/10, -15);
 	villageLabel.name = @"village";
 	villageLabel.fontSize = 30;
@@ -1376,7 +1402,7 @@
 	[self.menu addChild:villageLabel];
 	
 	SKLabelNode *cityLabel = [SKLabelNode labelNodeWithFontNamed:@"ChalkDuster"];
-	cityLabel.text = @"City";
+	cityLabel.text = @"Sphere";
 	cityLabel.position = CGPointMake(downMenu.size.width*1/10, -15);
 	cityLabel.name = @"city";
 	cityLabel.fontSize = 30;
@@ -1385,7 +1411,7 @@
 	[self.menu addChild:cityLabel];
 	
 	SKLabelNode *cardLabel = [SKLabelNode labelNodeWithFontNamed:@"ChalkDuster"];
-	cardLabel.text = @"Card";
+	cardLabel.text = @"Magic";
 	cardLabel.position = CGPointMake(downMenu.size.width*3/10, -15);
 	cardLabel.name = @"card";
 	cardLabel.fontSize = 30;
@@ -1412,19 +1438,19 @@
 		SKLabelNode *label = [SKLabelNode labelNodeWithFontNamed:@"ChalkDuster"];
 		switch ([card integerValue]){
 			case ARMY:
-				label.text=@"army";
+				label.text=@"Minions";
 				label.name=@"army";
 				break;
 			case ROADS:
-				label.text=@"Roads";
+				label.text=@"Links";
 				label.name=@"roads";
 				break;
 			case MONOPOLY:
-				label.text=@"Monopoly";
+				label.text=@"Mana Domination";
 				label.name=@"monopoly";
 				break;
 			case YEAR_OF_PLENTY:
-				label.text=@"Year Of Plenty";
+				label.text=@"Overcharge";
 				label.name=@"plenty";
 				break;
 			case SCORE:

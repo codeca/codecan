@@ -25,14 +25,16 @@
 		self.fader.name = @"fader";
 		[self addChild:self.fader];
 		
-		self.background = [SKSpriteNode spriteNodeWithColor:[SKColor grayColor] size:CGSizeMake(self.fader.size.width*0.85, self.fader.size.height*0.85)];
-		[self addChild:self.background];
+		//self.background = [SKSpriteNode spriteNodeWithColor:[SKColor grayColor] size:CGSizeMake(self.fader.size.width*0.85, self.fader.size.height*0.85)];
+		//[self addChild:self.background];
 		
 		self.position = CGPointMake(self.fader.size.width/2, self.fader.size.height/2);
 		
 		self.data = [SKSpriteNode spriteNodeWithImageNamed:@"Help"];
-		self.data.size = self.background.size;
-		[self.background addChild:self.data];
+		//self.data.size = self.background.size;
+		//[self.background addChild:self.data];
+		
+		[self addChild:self.data];
 		
 		self.lands = [[NSMutableArray alloc] init];
 		

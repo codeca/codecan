@@ -776,32 +776,32 @@
 					int index2 = arc4random_uniform(5);
 					
 					if([(NSString*)resources[index1] isEqual: @"lumber"]){
-						self.game.currentPlayer.lumber++;
+						self.game.currentPlayer.lumber+=2;
 					}else if([(NSString*)resources[index1] isEqual: @"grain"]){
-						self.game.currentPlayer.grain++;
+						self.game.currentPlayer.grain+=2;
 					}else if([(NSString*)resources[index1] isEqual: @"ore"]){
-						self.game.currentPlayer.ore++;
+						self.game.currentPlayer.ore+=2;
 					}else if([(NSString*)resources[index1] isEqual: @"wool"]){
-						self.game.currentPlayer.wool++;
+						self.game.currentPlayer.wool+=2;
 					}else if([(NSString*)resources[index1] isEqual: @"brick"]){
-						self.game.currentPlayer.brick++;
+						self.game.currentPlayer.brick+=2;
 					}
 					
 					
 					if([(NSString*)resources[index2] isEqual: @"lumber"]){
-						self.game.currentPlayer.lumber++;
+						self.game.currentPlayer.lumber+=2;
 					}else if([(NSString*)resources[index2] isEqual: @"grain"]){
-						self.game.currentPlayer.grain++;
+						self.game.currentPlayer.grain+=2;
 					}else if([(NSString*)resources[index2] isEqual: @"ore"]){
-						self.game.currentPlayer.ore++;
+						self.game.currentPlayer.ore+=2;
 					}else if([(NSString*)resources[index2] isEqual: @"wool"]){
-						self.game.currentPlayer.wool++;
+						self.game.currentPlayer.wool+=2;
 					}else if([(NSString*)resources[index2] isEqual: @"brick"]){
-						self.game.currentPlayer.brick++;
+						self.game.currentPlayer.brick+=2;
 					}
 					
 					
-					[self broadcastResourcesChangeForPlayer:self.game.currentPlayer add:@[resources[index1],resources[index2]] remove:@[]];
+					[self broadcastResourcesChangeForPlayer:self.game.currentPlayer add:@[resources[index1],resources[index2], resources[index1],resources[index2]] remove:@[]];
 					
 					
 					

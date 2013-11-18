@@ -53,7 +53,7 @@
 	}
 	
 	for(int i=0;i<resources.count;i++){
-		[resources exchangeObjectAtIndex:i withObjectAtIndex:arc4random_uniform(19)];
+		[resources exchangeObjectAtIndex:i withObjectAtIndex:arc4random_uniform(37)];
 	}
 	
 	

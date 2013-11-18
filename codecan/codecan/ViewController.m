@@ -46,9 +46,15 @@
 		
 		NSDictionary * data;
 		
+		self.game.table.thief = nil;
+		
 		for(HexagonNode * hex in self.game.table.hexes){
 			[resources addObject: [NSNumber numberWithInt:hex.resource]];
 			[numbers addObject:[NSNumber numberWithInt:hex.number]];
+			
+			if(hex.resource == DESERT && self.game.table.thief == nil){
+				self.game.table.thief = hex;
+			}
 		}
 		
 		for (VertexNode* vertex in self.game.table.vertexes) {

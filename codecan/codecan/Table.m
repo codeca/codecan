@@ -23,21 +23,23 @@
 	self.edges = [[NSMutableArray alloc] init];
 	
 	NSMutableArray * resources = [[NSMutableArray alloc] init];
-	NSArray *numbers = @[@5, @2, @6, @3, @8, @10, @9, @12, @11, @4, @8, @10, @9, @4, @5, @6, @3, @11,@5, @2, @6, @3, @8, @10, @9, @12, @11, @4, @8, @10, @9, @4, @5, @6, @3, @11];
+	NSArray *numbers = @[@4, @2, @3, @11, @9, @10, @12, @8, @5, @11, @9, @6, @5, @4, @3, @10, @8, @5, @2, @6, @3, @10, @9, @12, @11, @8, @4, @10, @9, @4, @5, @6, @3, @11];
 	
 	for(Resource i =1 ; i<7; i++){
 		switch (i) {
 			case DESERT:
 				[resources addObject:[NSNumber numberWithInt:DESERT]];
+				[resources addObject:[NSNumber numberWithInt:DESERT]];
+				[resources addObject:[NSNumber numberWithInt:DESERT]];
 				break;
 			case WOOL:
-				[resources addObjectsFromArray:[NSArray arrayWithObjects:[NSNumber numberWithInt:WOOL], [NSNumber numberWithInt:WOOL], [NSNumber numberWithInt:WOOL],[NSNumber numberWithInt:WOOL],[NSNumber numberWithInt:WOOL],[NSNumber numberWithInt:WOOL],[NSNumber numberWithInt:WOOL],[NSNumber numberWithInt:WOOL],nil]];
+				[resources addObjectsFromArray:[NSArray arrayWithObjects:[NSNumber numberWithInt:WOOL], [NSNumber numberWithInt:WOOL], [NSNumber numberWithInt:WOOL],[NSNumber numberWithInt:WOOL],[NSNumber numberWithInt:WOOL],[NSNumber numberWithInt:WOOL],[NSNumber numberWithInt:WOOL],nil]];
 				break;
 			case BRICK:
 				[resources addObjectsFromArray:[NSArray arrayWithObjects:[NSNumber numberWithInt:BRICK], [NSNumber numberWithInt:BRICK], [NSNumber numberWithInt:BRICK],[NSNumber numberWithInt:BRICK],[NSNumber numberWithInt:BRICK],[NSNumber numberWithInt:BRICK],nil]];
 				break;
 			case GRAIN:
-				[resources addObjectsFromArray:[NSArray arrayWithObjects:[NSNumber numberWithInt:GRAIN], [NSNumber numberWithInt:GRAIN], [NSNumber numberWithInt:GRAIN],[NSNumber numberWithInt:GRAIN],[NSNumber numberWithInt:GRAIN],[NSNumber numberWithInt:GRAIN],[NSNumber numberWithInt:GRAIN],[NSNumber numberWithInt:GRAIN],nil]];
+				[resources addObjectsFromArray:[NSArray arrayWithObjects:[NSNumber numberWithInt:GRAIN], [NSNumber numberWithInt:GRAIN], [NSNumber numberWithInt:GRAIN],[NSNumber numberWithInt:GRAIN],[NSNumber numberWithInt:GRAIN],[NSNumber numberWithInt:GRAIN],[NSNumber numberWithInt:GRAIN],nil]];
 				break;
 			case ORE:
 				[resources addObjectsFromArray:[NSArray arrayWithObjects:[NSNumber numberWithInt:ORE], [NSNumber numberWithInt:ORE], [NSNumber numberWithInt:ORE],[NSNumber numberWithInt:ORE],[NSNumber numberWithInt:ORE],[NSNumber numberWithInt:ORE],nil]];
@@ -542,6 +544,14 @@
 		return YES;
 	}
 	return NO;
+}
+
+-(void) initializeMinesForPlayers: (NSInteger) players{
+	if(players <= 3){
+		self.mines = [NSArray arrayWithObjects:self.hexes[10],self.hexes[14],self.hexes[18], nil];
+	}else{
+		self.mines = [NSArray arrayWithObjects:self.hexes[9],self.hexes[12],self.hexes[15],self.hexes[18], nil];
+	}
 }
 
 @end

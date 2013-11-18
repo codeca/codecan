@@ -25,11 +25,17 @@
 @property (nonatomic, weak) HexagonNode * thief;
 @property (nonatomic, getter = hasThiefMoved) BOOL thiefHasBeenMoved;
 
+
+// mines----
+@property (nonatomic, strong) NSArray* mines;
+
 @property (nonatomic, strong) DevelopmentCards* deck;
 
 
 -(BOOL) moveThiefToHexagon: (HexagonNode*) hex;
 
 -(id) initWithTable:(NSDictionary*) table;
+
+-(void)initializeMinesForPlayers: (NSInteger) players;
 
 @end

@@ -121,6 +121,7 @@
 		NSDictionary * received = data;
 		
 		self.game.table = [[Table alloc] initWithTable:received];
+		[self.game.table initializeMinesForPlayers:self.game.players.count];
 		self.scene = [MyScene sceneWithSize:self.view.bounds.size andGame:self.game];
 		self.scene.plug = self.plug;
 		self.scene.plug.delegate = self.scene;

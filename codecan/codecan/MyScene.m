@@ -61,7 +61,7 @@
 		self.map.position = CGPointMake(self.size.width/2, self.size.height/2+55);
 		
 		self.menu = [[SKNode alloc] init];
-		self. menu.position = CGPointMake(self.size.width/2, self.size.height*0.1);
+		self.menu.position = CGPointMake(self.size.width/2, self.size.height*0.1);
 				
 		self.tabs = [[SKNode alloc] init];
 		self.tabs.position = CGPointMake(self.size.width/2, self.menu.position.y+self.size.height/11);
@@ -91,7 +91,7 @@
 		self.helpButton = [SKSpriteNode spriteNodeWithImageNamed:@"helpicon"];
 		self.helpButton.name = @"help";
 		self.helpButton.position = CGPointMake(self.size.width/14, self.menu.position.y+self.size.height/7);
-	
+		
 		
 		[self addChild:backgroundImage];
 		[self addChild:self.resourcesLabel];
@@ -172,6 +172,16 @@
 	self.thief.position = self.game.table.thief.position;
 	self.thief.zPosition = 5;
 	[self.map addChild:self.thief];
+	
+	
+	
+	//mines image
+	SKSpriteNode* mine;
+	for(HexagonNode* hex in self.game.table.mines){
+		mine = [[SKSpriteNode alloc] initWithColor:[SKColor yellowColor] size: CGSizeMake(30, 30)];
+		mine.position = CGPointMake(0, -30);
+		[hex addChild:mine];
+	}
 }
 
 -(void) buildTopMenu{

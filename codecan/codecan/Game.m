@@ -46,6 +46,7 @@
 	self.turn = 1;
 	if(self.currentPlayer == self.me){
 		self.table = [[Table alloc] init];
+		[self.table initializeMinesForPlayers:self.players.count];
 	}
 	if(self.currentPlayer == self.me){
 		self.phase = INITIALIZATIONCITY;

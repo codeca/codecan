@@ -108,7 +108,7 @@
 		int counter = 0;
 		
 		
-		for(int i = 19;i<37;i++){
+		for(int i = 36;i>=19;i--){
 			if([(HexagonNode *)[self.hexes objectAtIndex:i] resource] != DESERT){
 				((HexagonNode *)[self.hexes objectAtIndex:i]).number = [(NSNumber*)[numbers objectAtIndex:counter] integerValue];
 				counter++;
@@ -124,7 +124,7 @@
 			[(HexagonNode *)[self.hexes objectAtIndex:i] addChild:numberLabel];
 		}
 		
-		for(int i = 7;i<19;i++){
+		for(int i = 18;i>=7;i--){
 			if([(HexagonNode *)[self.hexes objectAtIndex:i] resource] != DESERT){
 				((HexagonNode *)[self.hexes objectAtIndex:i]).number = [(NSNumber*)[numbers objectAtIndex:counter] integerValue];
 				counter++;
@@ -140,7 +140,7 @@
 			[(HexagonNode *)[self.hexes objectAtIndex:i] addChild:numberLabel];
 		}
 		
-		for(int i=1; i<7 ; i++){
+		for(int i=6; i>=1 ; i--){
 			if([(HexagonNode *)[self.hexes objectAtIndex:i] resource] != DESERT){
 				((HexagonNode *)[self.hexes objectAtIndex:i]).number = [(NSNumber*)[numbers objectAtIndex:counter] integerValue];
 				counter++;
@@ -382,6 +382,8 @@
 		float r3_2 = sqrt(pow(node.size.height*3/4,2) + pow(node.size.width*5/2,2))-3;
 		
 		// Declaracao dos HEX
+		self.thief = nil;
+		
 		for(int i=0; i<37; i++){
 			
 			//inicializa os HEx e os coloca na posicao que serao mostrados.
@@ -389,7 +391,7 @@
 			HexagonNode *aux = [[HexagonNode alloc] initWithResource:[[resources objectAtIndex:i] integerValue]];
 			aux.number = [numbers[i] integerValue];
 			
-			if([numbers[i] integerValue] == 7){
+			if([numbers[i] integerValue] == 7 && self.thief == nil){
 				self.thief = aux;
 			}
 			

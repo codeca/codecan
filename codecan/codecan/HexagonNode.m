@@ -17,6 +17,7 @@
 		_vertexes = [[NSMutableArray alloc] init];
 		_edges = [[NSMutableArray alloc] init];
 		self.zPosition = 1;
+		self.mine = NO;
 		
 		
 	}

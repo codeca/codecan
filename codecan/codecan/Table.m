@@ -120,6 +120,7 @@
 			SKLabelNode * numberLabel = [SKLabelNode labelNodeWithFontNamed:@"ChalkDuster"];
 			numberLabel.fontSize = 30;
 			numberLabel.text = [[NSString alloc] initWithFormat:@"%d", ((HexagonNode *)[self.hexes objectAtIndex:i]).number];
+			numberLabel.name = @"number";
 			[(HexagonNode *)[self.hexes objectAtIndex:i] addChild:numberLabel];
 		}
 		
@@ -135,6 +136,7 @@
 			SKLabelNode * numberLabel = [SKLabelNode labelNodeWithFontNamed:@"ChalkDuster"];
 			numberLabel.fontSize = 30;
 			numberLabel.text = [[NSString alloc] initWithFormat:@"%d", ((HexagonNode *)[self.hexes objectAtIndex:i]).number];
+			numberLabel.name = @"number";
 			[(HexagonNode *)[self.hexes objectAtIndex:i] addChild:numberLabel];
 		}
 		
@@ -150,6 +152,7 @@
 			SKLabelNode * numberLabel = [SKLabelNode labelNodeWithFontNamed:@"ChalkDuster"];
 			numberLabel.fontSize = 30;
 			numberLabel.text = [[NSString alloc] initWithFormat:@"%d", ((HexagonNode *)[self.hexes objectAtIndex:i]).number];
+			numberLabel.name = @"number";
 			[(HexagonNode *)[self.hexes objectAtIndex:i] addChild:numberLabel];
 		}
 		
@@ -163,6 +166,7 @@
 		SKLabelNode * numberLabel = [SKLabelNode labelNodeWithFontNamed:@"ChalkDuster"];
 		numberLabel.fontSize = 30;
 		numberLabel.text = [[NSString alloc] initWithFormat:@"%d", ((HexagonNode *)[self.hexes objectAtIndex:0]).number];
+		numberLabel.name = @"number";
 		[(HexagonNode *)[self.hexes objectAtIndex:0] addChild:numberLabel];
 			
 		
@@ -552,6 +556,41 @@
 	}else{
 		self.mines = [NSArray arrayWithObjects:self.hexes[9],self.hexes[12],self.hexes[15],self.hexes[18], nil];
 	}
+	
+	for(HexagonNode * mine in self.mines){
+		mine.mine = YES;
+	}
+	
+	for(int i=0; i<self.hexes.count; i++){
+		HexagonNode * aux =self.hexes[i];
+		
+		if(aux.mine && aux.resource == DESERT){
+			NSInteger index = 0;
+			
+			for(HexagonNode * notDesert in self.hexes){
+				if(notDesert.resource != DESERT){
+					index = [self.hexes indexOfObject:notDesert];
+					aux.resource = notDesert.resource;
+					notDesert.resource = DESERT;
+					aux.texture = notDesert.texture;
+					notDesert.texture = [SKTexture textureWithImageNamed:@"6"];
+					aux.number = notDesert.number;
+					notDesert.number = 7;
+					((SKLabelNode*)[aux childNodeWithName:@"number"]).text = ((SKLabelNode*)[notDesert childNodeWithName:@"number"]).text;
+					((SKLabelNode*)[notDesert childNodeWithName:@"number"]).text = @"7";
+					break;
+				}
+					
+			}
+			
+			
+			
+		}
+		
+		
+		
+	}
+	
 }
 
 @end

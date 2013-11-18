@@ -30,6 +30,7 @@ typedef enum {
 @property (nonatomic) NSUInteger diceValue;
 @property (nonatomic, strong) NSMutableArray * vertexes;
 @property (nonatomic, strong) NSMutableArray * edges;
+@property (nonatomic) BOOL mine;
 
 -(void)giveResourceForDices: (NSInteger)dicesValue;
 -(HexagonNode *) initWithResource:(Resource) resource;

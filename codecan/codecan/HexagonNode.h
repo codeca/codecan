@@ -11,7 +11,7 @@
 #import "VertexNode.h"
 
 
-
+@class Game;
 @interface HexagonNode : SKSpriteNode
 
 typedef enum {
@@ -31,8 +31,11 @@ typedef enum {
 @property (nonatomic, strong) NSMutableArray * vertexes;
 @property (nonatomic, strong) NSMutableArray * edges;
 @property (nonatomic) BOOL mine;
+@property (nonatomic, weak) Player* mineOwner;
 
 -(void)giveResourceForDices: (NSInteger)dicesValue;
 -(HexagonNode *) initWithResource:(Resource) resource;
+
+-(void) verifyMineOwnerForGame: (Game*) game;
 
 @end

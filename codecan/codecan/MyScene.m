@@ -427,6 +427,10 @@
 					if (canConstruct) {
 						[vertex becomeVillageFor: self.game.currentPlayer];
 						
+						for(HexagonNode * hex in self.game.table.mines){
+							[hex verifyMineOwnerForGame:self.game];
+						}
+						
 						self.game.phase = INITIALIZATIONROAD;
 						self.game.cityCreated = vertex;
 						
@@ -884,6 +888,10 @@
 						[vertex becomeVillageFor:self.game.currentPlayer];
 						[vertex verifyNearRoads];
 						
+						for(HexagonNode * hex in self.game.table.mines){
+							[hex verifyMineOwnerForGame:self.game];
+						}
+						
 						int roadsCount=4;
 						int index=0;
 						for(Player* player in self.game.players){
@@ -931,6 +939,11 @@
 					if (vertex.owner == self.game.me && vertex.type == VILLAGE) {
 						
 						[vertex becomeCity];
+						
+						for(HexagonNode * hex in self.game.table.mines){
+							[hex verifyMineOwnerForGame:self.game];
+						}
+						
 						[self broadcastBuilding:[self.game.table.vertexes indexOfObject:vertex] andRoad:-1];
 						self.game.currentPlayer.ore-=3;
 						self.game.currentPlayer.grain-=2;
@@ -1862,6 +1875,10 @@
 						
 					}
 				}
+			}
+			
+			for(HexagonNode * hex in self.game.table.mines){
+				[hex verifyMineOwnerForGame:self.game];
 			}
 			
 			break;

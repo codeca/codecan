@@ -29,6 +29,7 @@ typedef enum{
 @property (nonatomic)NSInteger ore;
 @property (nonatomic)NSInteger grain;
 @property (nonatomic)NSInteger lumber;
+@property (nonatomic)NSInteger crystal;
 
 @property(nonatomic) NSInteger points;
 @property(nonatomic) NSInteger cardPoints;

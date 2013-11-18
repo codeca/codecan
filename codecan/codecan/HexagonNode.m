@@ -7,7 +7,7 @@
 //
 
 #import "HexagonNode.h"
-
+#import "Game.h"
 @implementation HexagonNode
 
 -(id)init{
@@ -119,7 +119,53 @@
 		
 	}
 	
+	[self giveCristalToOwner];
+	
 }
 
+-(void) verifyMineOwnerForGame: (Game*) game{
+	
+	Player* aux = nil;
+	NSInteger ownerPoints = 0;
+	
+	if(self.mineOwner != nil){
+		for(VertexNode * vertex in self.vertexes){
+			if(vertex.type == VILLAGE && vertex.owner == self.mineOwner){
+				ownerPoints++;
+			}else if(vertex.type == CITY && vertex.owner == self.mineOwner){
+				ownerPoints+=2;
+			}
+		}
+	}
+	
+	for(Player* player in game.players){
+		NSInteger points = 0;
+		for(VertexNode * vertex in self.vertexes){
+			if(vertex.type == VILLAGE && vertex.owner == player){
+				points++;
+			}else if(vertex.type == CITY && vertex.owner == player){
+				points+=2;
+			}
+		}
+		
+		if(points > ownerPoints){
+			aux = player;
+		}
+		
+		if(points>1 && self.mineOwner == nil){
+			self.mineOwner = player;
+			break;
+		}
+		
+	}
+	
+	if(aux!=nil){
+		self.mineOwner = aux;
+	}
+}
+
+-(void) giveCristalToOwner{
+	self.mineOwner.crystal++;
+}
 
 @end

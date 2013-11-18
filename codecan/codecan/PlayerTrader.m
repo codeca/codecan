@@ -39,6 +39,12 @@
 		self.clearButton.position = CGPointMake(self.back.size.width/4, 0);
 		[self.back addChild:self.clearButton];
 		
+		SKLabelNode * offerLabel = (SKLabelNode*)[self.back childNodeWithName:@"offerlabel"];
+		offerLabel.position = CGPointMake(0, offerLabel.position.y);
+		
+		SKLabelNode * demandLabel = (SKLabelNode*)[self.back childNodeWithName:@"demandlabel"];
+		demandLabel.position = CGPointMake(0, self.myDemand.position.y+self.myDemand.size.height/2);
+		
 		self.blockScreen = self.fader.copy;
 		self.blockScreen.name = @"block";
 		self.blockScreen.zPosition = 20;

@@ -84,7 +84,7 @@
 		
 		SKLabelNode * demandLabel = [SKLabelNode labelNodeWithFontNamed:@"ChalkDuster"];
 		demandLabel.text = @"Demand";
-		offerLabel.name = @"demandlabel";
+		demandLabel.name = @"demandlabel";
 		demandLabel.fontColor = [SKColor blackColor];
 		demandLabel.fontSize = 30;
 		demandLabel.position = CGPointMake(self.myDemand.position.x, self.arrow.position.y+30);

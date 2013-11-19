@@ -148,19 +148,19 @@
 			}
 		}
 		
-		if(points > ownerPoints){
+		if(points > ownerPoints && points>1){
 			aux = player;
 		}
-		
-		if(points>1 && self.mineOwner == nil){
-			self.mineOwner = player;
-			break;
-		}
+	
 		
 	}
 	
 	if(aux!=nil){
 		self.mineOwner = aux;
+		SKSpriteNode * mine = (SKSpriteNode*)[self childNodeWithName:@"mine"];
+		mine.color = self.mineOwner.color;
+		mine.colorBlendFactor = 1;
+		
 	}
 }
 

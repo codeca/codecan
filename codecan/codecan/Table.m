@@ -603,6 +603,11 @@
 		//mine.position = CGPointMake(0, -30);
 		mine.name = @"mine";
 		[hex addChild:mine];
+		
+		SKLabelNode* number = (SKLabelNode*) [hex childNodeWithName:@"number"];
+		number.fontColor = [SKColor blackColor];
+		number.zPosition = 3;
+		
 	}
 	
 }

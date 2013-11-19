@@ -168,7 +168,7 @@
 	}
 	
 	self.thief = [SKSpriteNode spriteNodeWithImageNamed:@"thief"];
-	self.thief.size = CGSizeMake(50, 70);
+	self.thief.size = CGSizeMake(50, 50);
 	self.thief.position = self.game.table.thief.position;
 	self.thief.zPosition = 5;
 	[self.map addChild:self.thief];

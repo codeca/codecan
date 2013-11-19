@@ -28,7 +28,7 @@
 	self.mPlayer = newPlayer;
 	self.mPlayer.delegate = self;
 	self.mPlayer.volume = 0.5;
-	//[self.mPlayer play];
+	[self.mPlayer play];
 	
 	self.plug.delegate = self;
 	self.game = [[Game alloc] initWithPlayers:self.players Id:self.myId];

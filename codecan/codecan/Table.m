@@ -595,8 +595,12 @@
 	//mines image
 	SKSpriteNode* mine;
 	for(HexagonNode* hex in self.mines){
-		mine = [[SKSpriteNode alloc] initWithColor:[SKColor yellowColor] size: CGSizeMake(30, 30)];
-		mine.position = CGPointMake(0, -30);
+		mine = [SKSpriteNode spriteNodeWithImageNamed:@"mine"];
+		mine.color = [SKColor grayColor];
+		mine.colorBlendFactor = 1;
+		mine.xScale = 0.25;
+		mine.yScale = 0.25;
+		//mine.position = CGPointMake(0, -30);
 		mine.name = @"mine";
 		[hex addChild:mine];
 	}

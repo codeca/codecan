@@ -20,6 +20,8 @@
 		81A73C9B182C111800C4514F /* ShowOfferScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 81A73C9A182C111800C4514F /* ShowOfferScreen.m */; };
 		81AA90A1182BE59E00033B30 /* PlayerTrader.m in Sources */ = {isa = PBXBuildFile; fileRef = 81AA90A0182BE59E00033B30 /* PlayerTrader.m */; };
 		81AB1815183B9E9F00A0B596 /* crystal.png in Resources */ = {isa = PBXBuildFile; fileRef = 81AB1814183B9E9F00A0B596 /* crystal.png */; };
+		81AB1817183BB80500A0B596 /* mine.png in Resources */ = {isa = PBXBuildFile; fileRef = 81AB1816183BB80500A0B596 /* mine.png */; };
+		81AB1819183BBB3700A0B596 /* bg_bank.png in Resources */ = {isa = PBXBuildFile; fileRef = 81AB1818183BBB3700A0B596 /* bg_bank.png */; };
 		81AD40F51832A5A400921747 /* logo (1).png in Resources */ = {isa = PBXBuildFile; fileRef = 81AD40F41832A5A400921747 /* logo (1).png */; };
 		81E352DB18168FAA00FD7323 /* HexagonNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E352DA18168FAA00FD7323 /* HexagonNode.m */; };
 		81E352DE1816A3CD00FD7323 /* Table.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E352DD1816A3CD00FD7323 /* Table.m */; };
@@ -120,6 +122,8 @@
 		81AA909F182BE59E00033B30 /* PlayerTrader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerTrader.h; sourceTree = "<group>"; };
 		81AA90A0182BE59E00033B30 /* PlayerTrader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerTrader.m; sourceTree = "<group>"; };
 		81AB1814183B9E9F00A0B596 /* crystal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = crystal.png; path = Images/crystal.png; sourceTree = "<group>"; };
+		81AB1816183BB80500A0B596 /* mine.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = mine.png; path = Images/mine.png; sourceTree = "<group>"; };
+		81AB1818183BBB3700A0B596 /* bg_bank.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bg_bank.png; path = Images/bg_bank.png; sourceTree = "<group>"; };
 		81AD40F41832A5A400921747 /* logo (1).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo (1).png"; sourceTree = "<group>"; };
 		81E352D918168FAA00FD7323 /* HexagonNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HexagonNode.h; sourceTree = "<group>"; };
 		81E352DA18168FAA00FD7323 /* HexagonNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HexagonNode.m; sourceTree = "<group>"; };
@@ -157,7 +161,7 @@
 		83CF9EE1182755B400B1803D /* cityH.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = cityH.png; path = Images/cityH.png; sourceTree = "<group>"; };
 		83CF9EE3182755C200B1803D /* villageHouseH.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = villageHouseH.png; path = Images/villageHouseH.png; sourceTree = "<group>"; };
 		83CF9EEA1827DA8000B1803D /* buildingsound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = buildingsound.mp3; path = Soundtrack/buildingsound.mp3; sourceTree = "<group>"; };
-		98B4D24B180EFB7900537145 /* codecan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = codecan.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		98B4D24B180EFB7900537145 /* Onogoro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Onogoro.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		98B4D24E180EFB7900537145 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		98B4D250180EFB7900537145 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		98B4D252180EFB7900537145 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -282,7 +286,7 @@
 		98B4D24C180EFB7900537145 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				98B4D24B180EFB7900537145 /* codecan.app */,
+				98B4D24B180EFB7900537145 /* Onogoro.app */,
 				98B4D273180EFB7A00537145 /* codecanTests.xctest */,
 			);
 			name = Products;
@@ -440,6 +444,8 @@
 		C456889C1817FD0C008A0CB8 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				81AB1818183BBB3700A0B596 /* bg_bank.png */,
+				81AB1816183BB80500A0B596 /* mine.png */,
 				81AB1814183B9E9F00A0B596 /* crystal.png */,
 				81AD40F41832A5A400921747 /* logo (1).png */,
 				83CF9EE3182755C200B1803D /* villageHouseH.png */,
@@ -498,7 +504,7 @@
 			);
 			name = codecan;
 			productName = codecan;
-			productReference = 98B4D24B180EFB7900537145 /* codecan.app */;
+			productReference = 98B4D24B180EFB7900537145 /* Onogoro.app */;
 			productType = "com.apple.product-type.application";
 		};
 		98B4D272180EFB7A00537145 /* codecanTests */ = {
@@ -559,6 +565,7 @@
 			files = (
 				8366361A182ED58500AA4531 /* 2.png in Resources */,
 				C409974A181EBBD800E60154 /* wool.png in Resources */,
+				81AB1819183BBB3700A0B596 /* bg_bank.png in Resources */,
 				813A9B781827F53A00A110E3 /* opening.mp3 in Resources */,
 				C4099748181EBBD800E60154 /* lumber.png in Resources */,
 				81F1289F181AA06E0002832D /* 3.png in Resources */,
@@ -571,6 +578,7 @@
 				81F1289E181AA06E0002832D /* 5.png in Resources */,
 				C4099745181EBBD800E60154 /* arrow.png in Resources */,
 				81F128A8181AC9680002832D /* Flag.png in Resources */,
+				81AB1817183BB80500A0B596 /* mine.png in Resources */,
 				8193EBF7183287640086B992 /* Sphere.atlas in Resources */,
 				83CF9EEB1827DA8000B1803D /* buildingsound.mp3 in Resources */,
 				C4099746181EBBD800E60154 /* brick.png in Resources */,
@@ -773,7 +781,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "codecan/codecan-Prefix.pch";
 				INFOPLIST_FILE = "codecan/codecan-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Onogoro;
 				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
 				WRAPPER_EXTENSION = app;
 			};
@@ -785,7 +793,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "codecan/codecan-Prefix.pch";
 				INFOPLIST_FILE = "codecan/codecan-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Onogoro;
 				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
 				WRAPPER_EXTENSION = app;
 			};

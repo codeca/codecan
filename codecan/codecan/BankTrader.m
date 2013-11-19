@@ -36,11 +36,12 @@
 		self.fader.name = @"fader";
 		[self addChild:self.fader];
 		
-		self.back = [SKSpriteNode spriteNodeWithColor:[SKColor grayColor] size:CGSizeMake(550, 500)];
+		self.back = [SKSpriteNode spriteNodeWithImageNamed:@"bg_bank"];
 		[self addChild:self.back];
 		
-		self.myOffer = [SKSpriteNode spriteNodeWithColor:[SKColor whiteColor] size:CGSizeMake(self.back.size.width/3, self.back.size.height/4)];
-		self.myOffer.position = CGPointMake(-self.back.size.width*2/7, self.back.size.height/6);
+		self.myOffer = [SKSpriteNode spriteNodeWithColor:[SKColor grayColor] size:CGSizeMake(self.back.size.width/3, self.back.size.height/4)];
+		self.myOffer.position = CGPointMake(-self.back.size.width*2/7, self.back.size.height/6-30);
+		self.myOffer.alpha = 0.7;
 		self.myOffer.name = @"myoffer";
 		[self addChild:self.myOffer];
 		
@@ -54,8 +55,9 @@
 			}
 		}
 		
-		self.myDemand = [SKSpriteNode spriteNodeWithColor:[SKColor whiteColor] size:CGSizeMake(self.back.size.width/3, self.back.size.height/4)];
-		self.myDemand.position = CGPointMake(self.back.size.width*2/7, self.back.size.height/6);
+		self.myDemand = [SKSpriteNode spriteNodeWithColor:[SKColor grayColor] size:CGSizeMake(self.back.size.width/3, self.back.size.height/4)];
+		self.myDemand.position = CGPointMake(self.back.size.width*2/7, self.back.size.height/6-30);
+		self.myDemand.alpha = 0.7;
 		self.myDemand.name = @"mydemand";
 		[self addChild:self.myDemand];
 		
@@ -63,8 +65,9 @@
 		offerN.name = @"mydemand";
 		[self.myDemand addChild:offerN];
 		
-		self.options = [SKSpriteNode spriteNodeWithColor:[SKColor whiteColor] size:CGSizeMake(self.back.size.width*4/5, self.back.size.height/4)];
-		self.options.position = CGPointMake(0, -self.back.size.height/6);
+		self.options = [SKSpriteNode spriteNodeWithColor:[SKColor grayColor] size:CGSizeMake(self.back.size.width*4/5, self.back.size.height/4)];
+		self.options.position = CGPointMake(0, -self.back.size.height/6-30);
+		self.options.alpha = 0.7;
 		self.options.name = @"options";
 		[self addChild:self.options];
 		

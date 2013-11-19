@@ -25,18 +25,18 @@
 	
 		[self.myOffer removeAllChildren];
 		
-		self.myOffer.position =CGPointMake(0, self.back.size.height/4);
+		self.myOffer.position =CGPointMake(0, self.back.size.height/4-33);
 		self.myOffer.size = CGSizeMake(self.back.size.width*0.8, self.options.size.height);
 		
 		self.myDemand.position = CGPointMake(0, -self.back.size.height/4);
 		self.myDemand.size = self.myOffer.size;
 		
-		self.tradeButton.position = CGPointMake(-self.back.size.width/4, 0);
+		self.tradeButton.position = CGPointMake(-self.back.size.width/4, -30);
 		
 		self.clearButton = self.tradeButton.copy;
 		self.clearButton.name = @"clear";
 		self.clearButton.text = @"Clear";
-		self.clearButton.position = CGPointMake(self.back.size.width/4, 0);
+		self.clearButton.position = CGPointMake(self.back.size.width/4, -30);
 		[self.back addChild:self.clearButton];
 		
 		SKLabelNode * offerLabel = (SKLabelNode*)[self.back childNodeWithName:@"offerlabel"];

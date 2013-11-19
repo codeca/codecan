@@ -19,6 +19,7 @@
 		8193EBF7183287640086B992 /* Sphere.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 8193EBF6183287640086B992 /* Sphere.atlas */; };
 		81A73C9B182C111800C4514F /* ShowOfferScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 81A73C9A182C111800C4514F /* ShowOfferScreen.m */; };
 		81AA90A1182BE59E00033B30 /* PlayerTrader.m in Sources */ = {isa = PBXBuildFile; fileRef = 81AA90A0182BE59E00033B30 /* PlayerTrader.m */; };
+		81AB1815183B9E9F00A0B596 /* crystal.png in Resources */ = {isa = PBXBuildFile; fileRef = 81AB1814183B9E9F00A0B596 /* crystal.png */; };
 		81AD40F51832A5A400921747 /* logo (1).png in Resources */ = {isa = PBXBuildFile; fileRef = 81AD40F41832A5A400921747 /* logo (1).png */; };
 		81E352DB18168FAA00FD7323 /* HexagonNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E352DA18168FAA00FD7323 /* HexagonNode.m */; };
 		81E352DE1816A3CD00FD7323 /* Table.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E352DD1816A3CD00FD7323 /* Table.m */; };
@@ -118,6 +119,7 @@
 		81A73C9A182C111800C4514F /* ShowOfferScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowOfferScreen.m; sourceTree = "<group>"; };
 		81AA909F182BE59E00033B30 /* PlayerTrader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerTrader.h; sourceTree = "<group>"; };
 		81AA90A0182BE59E00033B30 /* PlayerTrader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerTrader.m; sourceTree = "<group>"; };
+		81AB1814183B9E9F00A0B596 /* crystal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = crystal.png; path = Images/crystal.png; sourceTree = "<group>"; };
 		81AD40F41832A5A400921747 /* logo (1).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo (1).png"; sourceTree = "<group>"; };
 		81E352D918168FAA00FD7323 /* HexagonNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HexagonNode.h; sourceTree = "<group>"; };
 		81E352DA18168FAA00FD7323 /* HexagonNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HexagonNode.m; sourceTree = "<group>"; };
@@ -438,6 +440,7 @@
 		C456889C1817FD0C008A0CB8 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				81AB1814183B9E9F00A0B596 /* crystal.png */,
 				81AD40F41832A5A400921747 /* logo (1).png */,
 				83CF9EE3182755C200B1803D /* villageHouseH.png */,
 				83CF9EE1182755B400B1803D /* cityH.png */,
@@ -580,6 +583,7 @@
 				C495904D1823FFCE006F790C /* victory.png in Resources */,
 				98B4D26E180EFB7900537145 /* Images.xcassets in Resources */,
 				98B4D264180EFB7900537145 /* Main.storyboard in Resources */,
+				81AB1815183B9E9F00A0B596 /* crystal.png in Resources */,
 				81AD40F51832A5A400921747 /* logo (1).png in Resources */,
 				C4099749181EBBD800E60154 /* ore.png in Resources */,
 				C495904C1823FFCE006F790C /* defeat.png in Resources */,

@@ -584,8 +584,7 @@
 				}
 					
 			}
-			
-			NSLog([NSString stringWithFormat:@"trocou hex:%d pelo:%d", i, index]);
+		
 			
 		}
 		

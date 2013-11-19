@@ -174,7 +174,7 @@
 	[self.map addChild:self.thief];
 	
 	
-	
+
 	//mines image
 	SKSpriteNode* mine;
 	for(HexagonNode* hex in self.game.table.mines){

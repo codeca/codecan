@@ -172,16 +172,7 @@
 	self.thief.position = self.game.table.thief.position;
 	self.thief.zPosition = 5;
 	[self.map addChild:self.thief];
-	
-	
-	
-	//mines image
-	SKSpriteNode* mine;
-	for(HexagonNode* hex in self.game.table.mines){
-		mine = [[SKSpriteNode alloc] initWithColor:[SKColor yellowColor] size: CGSizeMake(30, 30)];
-		mine.position = CGPointMake(0, -30);
-		[hex addChild:mine];
-	}
+
 }
 
 -(void) buildTopMenu{

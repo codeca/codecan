@@ -40,7 +40,7 @@
 		title.position = CGPointMake(0, 300);
 		[self addChild:title];
 		
-		self.background = [SKSpriteNode spriteNodeWithColor:[SKColor grayColor] size:CGSizeMake(550, 500)];
+		self.background = [SKSpriteNode spriteNodeWithImageNamed:@"bg_bank"];
 		[self addChild:self.background];
 		
 		

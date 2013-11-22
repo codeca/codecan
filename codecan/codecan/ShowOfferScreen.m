@@ -36,7 +36,7 @@
 		self.fader.name = @"fader";
 		[self addChild:self.fader];
 		
-		self.back = [SKSpriteNode spriteNodeWithColor:[SKColor grayColor] size:CGSizeMake(550, 500)];
+		self.back = [SKSpriteNode spriteNodeWithImageNamed:@"bg_bank"];
 		[self addChild:self.back];
 		
 		self.theOffer = [SKSpriteNode spriteNodeWithColor:[SKColor whiteColor] size:CGSizeMake(self.back.size.width*0.8, self.back.size.height/4)];

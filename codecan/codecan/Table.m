@@ -418,6 +418,7 @@
 			//Mudar esse codigo para colocar as tiles certas depois!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 			SKLabelNode * numberLabel = [SKLabelNode labelNodeWithFontNamed:@"ChalkDuster"];
 			numberLabel.fontSize = 30;
+			numberLabel.name = @"number";
 			numberLabel.text = [[NSString alloc] initWithFormat:@"%d", aux.number];
 			[aux addChild:numberLabel];
 			

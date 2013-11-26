@@ -92,6 +92,7 @@
 		self.helpButton.name = @"help";
 		self.helpButton.position = CGPointMake(self.size.width/14, self.menu.position.y+self.size.height/7);
 		
+		self.toast = [[ToastText alloc] init];
 		
 		[self addChild:backgroundImage];
 		[self addChild:self.resourcesLabel];
@@ -111,7 +112,7 @@
     return self;
 }
 
-
+#pragma mark - Build main interface
 
 - (void) buildMap{
 
@@ -1115,6 +1116,7 @@
 
 
 #pragma mark - time based events
+
 -(void)update:(CFTimeInterval)currentTime {
     /* Called before each frame is rendered */
 	
@@ -1154,7 +1156,9 @@
 	
 	switch (self.game.phase){
 		case INITIALIZATIONCITY:
-			
+			if(!self.toast.busy){
+				[[self.toast toastWithSentences:@[@"Build a crystal over", @"an hexagon intersection."] duration:SHORT_DURATION andSound:HORN] show:self];
+			}
 			break;
 			
 		case INITIALIZATIONROAD:
@@ -1321,7 +1325,7 @@
 
 -(void)buildStealInterface{
 	
-	SKSpriteNode *background = [[SKSpriteNode alloc] initWithColor:[SKColor brownColor] size:CGSizeMake(400, 400)];
+	SKSpriteNode *background = [SKSpriteNode spriteNodeWithImageNamed:@"bg_bank"];
 	
 	int counter=90;
 	int verifier[4] = {0,0,0,0};
@@ -1624,6 +1628,7 @@
 	}
 	
 	[self.showOfferScreen showOfferScreenForData:data andScene:self andPlayer:self.game.me];
+	[self buildResourceInteface];
 	
 }
 

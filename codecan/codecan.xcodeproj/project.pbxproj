@@ -22,6 +22,7 @@
 		81AB1815183B9E9F00A0B596 /* crystal.png in Resources */ = {isa = PBXBuildFile; fileRef = 81AB1814183B9E9F00A0B596 /* crystal.png */; };
 		81AB1817183BB80500A0B596 /* mine.png in Resources */ = {isa = PBXBuildFile; fileRef = 81AB1816183BB80500A0B596 /* mine.png */; };
 		81AB1819183BBB3700A0B596 /* bg_bank.png in Resources */ = {isa = PBXBuildFile; fileRef = 81AB1818183BBB3700A0B596 /* bg_bank.png */; };
+		81AB181C1844B49500A0B596 /* ToastText.m in Sources */ = {isa = PBXBuildFile; fileRef = 81AB181B1844B49500A0B596 /* ToastText.m */; };
 		81AD40F51832A5A400921747 /* logo (1).png in Resources */ = {isa = PBXBuildFile; fileRef = 81AD40F41832A5A400921747 /* logo (1).png */; };
 		81E352DB18168FAA00FD7323 /* HexagonNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E352DA18168FAA00FD7323 /* HexagonNode.m */; };
 		81E352DE1816A3CD00FD7323 /* Table.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E352DD1816A3CD00FD7323 /* Table.m */; };
@@ -125,6 +126,8 @@
 		81AB1814183B9E9F00A0B596 /* crystal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = crystal.png; path = Images/crystal.png; sourceTree = "<group>"; };
 		81AB1816183BB80500A0B596 /* mine.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = mine.png; path = Images/mine.png; sourceTree = "<group>"; };
 		81AB1818183BBB3700A0B596 /* bg_bank.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bg_bank.png; path = Images/bg_bank.png; sourceTree = "<group>"; };
+		81AB181A1844B49500A0B596 /* ToastText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToastText.h; sourceTree = "<group>"; };
+		81AB181B1844B49500A0B596 /* ToastText.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToastText.m; sourceTree = "<group>"; };
 		81AD40F41832A5A400921747 /* logo (1).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo (1).png"; sourceTree = "<group>"; };
 		81E352D918168FAA00FD7323 /* HexagonNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HexagonNode.h; sourceTree = "<group>"; };
 		81E352DA18168FAA00FD7323 /* HexagonNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HexagonNode.m; sourceTree = "<group>"; };
@@ -382,6 +385,8 @@
 				81AA90A0182BE59E00033B30 /* PlayerTrader.m */,
 				81A73C99182C111800C4514F /* ShowOfferScreen.h */,
 				81A73C9A182C111800C4514F /* ShowOfferScreen.m */,
+				81AB181A1844B49500A0B596 /* ToastText.h */,
+				81AB181B1844B49500A0B596 /* ToastText.m */,
 			);
 			name = Nodes;
 			sourceTree = "<group>";
@@ -643,6 +648,7 @@
 				0BE9470D1816B52300379436 /* EdgeNode.m in Sources */,
 				98B4D267180EFB7900537145 /* ViewController.m in Sources */,
 				C4059D5B18212C3A00A4FE37 /* ThiefDiscardScreen.m in Sources */,
+				81AB181C1844B49500A0B596 /* ToastText.m in Sources */,
 				0B03E0801817FA3300EBF10D /* Port.m in Sources */,
 				98B4D261180EFB7900537145 /* AppDelegate.m in Sources */,
 				C4A8D8B41817E2560043AA4B /* FileReader.m in Sources */,

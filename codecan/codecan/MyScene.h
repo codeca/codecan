@@ -21,6 +21,7 @@
 #import "HelpScreen.h"
 #import "PlayerTrader.h"
 #import "ShowOfferScreen.h"
+#import "ToastText.h"
 
 typedef enum{
 	
@@ -72,6 +73,9 @@ typedef enum{
 @property (nonatomic, strong) NSMutableArray* spriteDevelopment;
 @property (nonatomic, strong) NSMutableArray* spritePoints;
 
+// Toast
+
+@property (nonatomic, strong) ToastText * toast;
 
 //
 @property (nonatomic) bool endGame;

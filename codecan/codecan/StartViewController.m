@@ -29,11 +29,16 @@ typedef enum {
 
 @property (nonatomic, strong) AVAudioPlayer * mPlayer;
 @property (nonatomic, strong) NSDictionary	* serverData;
-
+@property (nonatomic) BOOL tutorialMode;
+@property (weak, nonatomic) IBOutlet UISwitch *tutorialSwitch;
 
 @end
 
 @implementation StartViewController
+
+- (IBAction)tutorialSwitchChanged:(id)sender {
+	
+}
 
 -(void) viewDidLoad{
 	[super viewDidLoad];

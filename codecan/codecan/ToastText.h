@@ -34,7 +34,7 @@ typedef enum{
 
 @property (nonatomic) BOOL busy;
 
-- (ToastText *) toastWithSentences:(NSArray *) sentences duration:(NSInteger) duration andSound:(NSInteger *)sound;
+- (ToastText *) toastWithSentences:(NSArray *) sentences duration:(NSInteger) duration andSound:(NSInteger)sound;
 -(void) show:(SKScene*)scene;
 
 @end

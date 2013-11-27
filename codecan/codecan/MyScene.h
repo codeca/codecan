@@ -77,6 +77,9 @@ typedef enum{
 
 @property (nonatomic, strong) ToastText * toast;
 
+//Tutorial mode
+
+@property (nonatomic) BOOL tutorialMode;
 //
 @property (nonatomic) bool endGame;
 
@@ -85,4 +88,5 @@ typedef enum{
 -(void) updateResources;
 -(void) waitForAnswer;
 -(void) updateResourcesForPLayer:(Player*) player add:(NSArray*)added andRemove:(NSArray*) removed;
+-(void) createTutorial;
 @end

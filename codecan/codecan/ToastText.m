@@ -29,18 +29,18 @@
 		self.busy = NO;
 		
 		self.back = [SKSpriteNode spriteNodeWithColor:[SKColor grayColor] size:CGSizeMake(10,10)];
-		self.back.alpha = 0.95;
+		self.back.alpha = 0.8;
 		
 		self.sentences = [[NSMutableArray alloc] init];
 		
-		[self.fader addChild:self.back];
+		[self addChild:self.back];
 	}
 	
 	return self;
 	
 }
 
-- (ToastText *) toastWithSentences:(NSArray *) sentences duration:(NSInteger) duration andSound:(NSInteger *)sound{
+- (ToastText *) toastWithSentences:(NSArray *) sentences duration:(NSInteger) duration andSound:(NSInteger)sound{
 
 	[self.back removeAllChildren];
 	
@@ -59,7 +59,7 @@
 		showUp.fontSize = 35;
 		showUp.fontColor = [SKColor colorWithRed:256 green:256 blue:0 alpha:1];
 		showUp.text = sentence;
-		showUp.position = CGPointMake(0, (-index+1)*self.back.size.height/(sentences.count+1)-self.back.size.height/(sentences.count+1));
+		showUp.position = CGPointMake(0, self.back.size.height/2 - (index+1)*40);
 		[frame addChild:showUp];
 	}
 	

@@ -36,8 +36,8 @@ typedef enum {
 
 @implementation StartViewController
 
-- (IBAction)tutorialSwitchChanged:(id)sender {
-	
+- (IBAction)tutorialSwitchChanged:(UISwitch*)sender {
+	self.tutorialMode = sender.on;
 }
 
 -(void) viewDidLoad{
@@ -55,6 +55,7 @@ typedef enum {
 	
 	
 	self.name.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"name"];
+	[self.tutorialSwitch setOn:[[[NSUserDefaults standardUserDefaults] objectForKey:@"tutorial"] boolValue]];
 	
 	
 }
@@ -153,6 +154,7 @@ typedef enum {
 
 -(void)viewWillDisappear:(BOOL)animated{
 	[[NSUserDefaults standardUserDefaults] setObject:self.name.text forKey:@"name"];
+	[[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:self.tutorialSwitch.on] forKey:@"tutorial"];
 	[[NSUserDefaults standardUserDefaults] synchronize];
 	[self.mPlayer stop];
 	self.mPlayer = nil;
@@ -166,6 +168,7 @@ typedef enum {
 		destination.players = self.players;
 		destination.myId = self.myId;
 		destination.plug = self.plug;
+		destination.tutorialMode = self.tutorialSwitch.on;
 		
 	}
 	

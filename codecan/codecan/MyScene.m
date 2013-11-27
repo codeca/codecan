@@ -18,6 +18,7 @@
 @property (nonatomic, strong)SKLabelNode *yourTurn;
 @property (nonatomic) BOOL thiefInterface;
 @property (nonatomic) NSInteger playersAnswers;
+@property (nonatomic, strong) NSMutableDictionary * tutorialDictionary;
 
 @property (nonatomic, weak) SKSpriteNode * resourcesMenu;
 
@@ -55,8 +56,7 @@
 		
 		SKSpriteNode *backgroundImage = [SKSpriteNode spriteNodeWithImageNamed:@"water"];
 		backgroundImage.position=CGPointMake(self.size.width/2,self.size.height/2);
-		
-		
+			
 		self.map = [[SKNode alloc] init];
 		self.map.position = CGPointMake(self.size.width/2, self.size.height/2+55);
 		
@@ -110,6 +110,10 @@
 
 	
     return self;
+}
+
+-(void) createTutorial{
+	self.tutorialDictionary = [NSMutableDictionary dictionaryWithObjects:@[@YES, @YES, @YES, @YES] forKeys:@[@"firstcrystal", @"firstlink", @"secondcrystal", @"secondlink"]];
 }
 
 #pragma mark - Build main interface
@@ -1156,13 +1160,23 @@
 	
 	switch (self.game.phase){
 		case INITIALIZATIONCITY:
-			if(!self.toast.busy){
+			if(!self.toast.busy && self.tutorialMode && [[self.tutorialDictionary objectForKey:@"firstcrystal"] boolValue]){
 				[[self.toast toastWithSentences:@[@"Build a crystal over", @"an hexagon intersection."] duration:SHORT_DURATION andSound:HORN] show:self];
+				[self.tutorialDictionary setObject:@NO forKey:@"firstcrystal"];
+			}else if(!self.toast.busy && self.tutorialMode && self.game.me.points == 1 && [[self.tutorialDictionary objectForKey:@"secondcrystal"] boolValue]){
+				[[self.toast toastWithSentences:@[@"Build a crystal over", @"an hexagon intersection.", @"It cannot be placed", @"near another crystal."] duration:SHORT_DURATION andSound:HORN] show:self];
+				[self.tutorialDictionary setObject:@NO forKey:@"secondcrystal"];
 			}
 			break;
 			
 		case INITIALIZATIONROAD:
-			
+			if(!self.toast.busy && self.tutorialMode && [[self.tutorialDictionary objectForKey:@"firstlink"] boolValue]){
+				[[self.toast toastWithSentences:@[@"Build a link over", @"an hexagon edge.", @"It must be adjacent to a crystal."] duration:SHORT_DURATION andSound:HORN] show:self];
+				[self.tutorialDictionary setObject:@NO forKey:@"firstlink"];
+			}else if(!self.toast.busy && self.tutorialMode && self.game.me.points == 2 &&[[self.tutorialDictionary objectForKey:@"secondlink"] boolValue]){
+				[[self.toast toastWithSentences:@[@"Build a link over", @"an hexagon edge.", @"It must be adjacent to", @"the second crystal."] duration:SHORT_DURATION andSound:HORN] show:self];
+				[self.tutorialDictionary setObject:@NO forKey:@"secondlink"];
+			}
 			break;
 			
 		case INITIALIZATIONWAIT:

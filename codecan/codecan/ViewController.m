@@ -84,6 +84,8 @@
 		self.scene.plug = self.plug;
 		self.scene.plug.delegate = self.scene;
 		self.scene.scaleMode = SKSceneScaleModeAspectFill;
+		self.scene.tutorialMode = self.tutorialMode;
+		[self.scene createTutorial];
 		
 		[self.scene addObserver:self forKeyPath:@"endGame" options:NSKeyValueObservingOptionNew context:nil];
 		[skView presentScene:self.scene];
@@ -132,6 +134,8 @@
 		self.scene.plug = self.plug;
 		self.scene.plug.delegate = self.scene;
 		self.scene.scaleMode = SKSceneScaleModeAspectFill;
+		self.scene.tutorialMode = self.tutorialMode;
+		[self.scene createTutorial];
 		[(SKView*)self.view presentScene:self.scene];
 	}
 	

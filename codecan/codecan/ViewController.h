@@ -22,5 +22,6 @@
 @property (nonatomic, strong) NSString * myId;
 @property (nonatomic, strong) MyScene * scene;
 @property (nonatomic) NSInteger tableReceived;
+@property (nonatomic) BOOL tutorialMode;
 
 @end

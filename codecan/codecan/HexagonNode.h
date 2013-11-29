@@ -23,6 +23,7 @@ typedef enum {
 	LUMBER,
 	DESERT
 	
+	
 } Resource;
 
 @property (nonatomic) Resource resource;

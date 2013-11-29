@@ -207,38 +207,6 @@
 			continue;
 		}
 			
-		/*
-		color = [[SKSpriteNode alloc] initWithColor:player.color size:CGSizeMake(40, 40)];
-		color.position = CGPointMake((i+counter-offset/2)*self.size.width/offset-40, 20);
-		
-		name = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
-		name.fontSize = 15;
-		name.text = player.name;
-		name.position = CGPointMake((i+counter-offset/2)*self.size.width/offset-40, -15);
-		name.fontColor = [SKColor blackColor];
-		
-		res = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
-		res.fontSize = 15;
-		res.text = @"resources: 0";
-		res.position = CGPointMake((i+counter-offset/2)*self.size.width/offset+75+30-40, 30);
-		res.fontColor = [SKColor blackColor];
-		res.name = [NSString stringWithFormat:@"resources%i",i];
-		
-		dev = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
-		dev.fontSize = 15;
-		dev.text = @"cards:";
-		dev.position = CGPointMake((i+counter-offset/2)*self.size.width/offset+55+30-40, 10);
-		dev.fontColor = [SKColor blackColor];
-		dev.name = [NSString stringWithFormat:@"cards%i",i];
-		
-		points = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
-		points.fontSize = 15;
-		points.text = @"points:";
-		points.position = CGPointMake((i+counter-offset/2)*self.size.width/offset+60+30-40, -10);
-		points.fontColor = [SKColor blackColor];
-		points.name = [NSString stringWithFormat:@"points%i",i];
-		*/
-		
 		color = [[SKSpriteNode alloc] initWithColor:player.color size:CGSizeMake(40, 40)];
 		color.position = CGPointMake(-40, 20);
 		
@@ -279,13 +247,6 @@
 		[frame addChild:name];
 		[frame addChild:color];
 		[self.topMenu addChild:frame];
-		/*
-		[self.topMenu addChild:res];
-		[self.topMenu addChild:dev];
-		[self.topMenu addChild:points];
-		[self.topMenu addChild:name];
-		[self.topMenu addChild:color];
-		 */
 	}
 	
 	SKLabelNode* myPoints;
@@ -309,7 +270,6 @@
 	
 	[self.topMenu addChild:myPoints];
 	[self.topMenu addChild:dice];
-	
 	
 }
 
@@ -391,6 +351,8 @@
 			label.text = [NSString stringWithFormat:@"%d", self.game.me.grain];
 		}else if([label.name isEqualToString:@"wool"]){
 			label.text = [NSString stringWithFormat:@"%d", self.game.me.wool];
+		}else if([label.name isEqualToString:@"crystal"]){
+			label.text = [NSString stringWithFormat:@"%d", self.game.me.crystal];
 		}
 		
 	}
@@ -1397,12 +1359,21 @@
 	
 	SKLabelNode *friendLabel = [SKLabelNode labelNodeWithFontNamed:@"ChalkDuster"];
 	friendLabel.text = @"Friends Trade";
-	friendLabel.position = CGPointMake(downMenu.size.width/4, -15);
+	friendLabel.position = CGPointMake(0, -15);
 	friendLabel.name = @"friend";
 	friendLabel.fontSize = 20;
 	friendLabel.zPosition = 3;
 	friendLabel.fontColor = [SKColor blackColor];
 	[self.menu addChild:friendLabel];
+	
+	SKLabelNode *crystalLabel = [SKLabelNode labelNodeWithFontNamed:@"ChalkDuster"];
+	crystalLabel.text = @"Crystal Trade";
+	crystalLabel.position = CGPointMake(downMenu.size.width/4, -15);
+	crystalLabel.name = @"crystal";
+	crystalLabel.fontSize = 20;
+	crystalLabel.zPosition = 3;
+	crystalLabel.fontColor = [SKColor blackColor];
+	[self.menu addChild:crystalLabel];
 	
 }
 
@@ -1519,7 +1490,7 @@
 	
 	self.resourcesMenu = downMenu;
 	
-	for(int i =1; i <= 5; i++){
+	for(int i =1; i <= 6; i++){
 		
 		NSString * imageName;
 		NSString * quantityS;
@@ -1545,12 +1516,16 @@
 				imageName=@"wool";
 				quantityS = [NSString stringWithFormat:@"%d", self.game.currentPlayer.wool];
 				break;
+			case 6:
+				imageName=@"crystal";
+				quantityS = [NSString stringWithFormat:@"%d", self.game.currentPlayer.crystal];
+				break;
 				
 		}
 
 		
 		SKSpriteNode * resource = [SKSpriteNode spriteNodeWithImageNamed:imageName];
-		resource.position = CGPointMake(i*downMenu.size.width/6-downMenu.size.width/2, 0);
+		resource.position = CGPointMake(i*downMenu.size.width/7-downMenu.size.width/2, 0);
 		resource.size = CGSizeMake(resource.texture.size.width*0.1, resource.texture.size.height*0.1);
 		[downMenu addChild:resource];
 		

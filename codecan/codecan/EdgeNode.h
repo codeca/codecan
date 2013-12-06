@@ -19,7 +19,7 @@
 @property(nonatomic, weak) Player* owner;
 
 
--(void)receiveOwner: (Player*) player;
+-(BOOL)receiveOwner: (Player*) player;
 -(void)breakRoad;
 
 

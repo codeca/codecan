@@ -789,7 +789,7 @@
 					
 					EdgeNode * edge = (EdgeNode *)clicked;
 					[edge receiveOwner:self.game.currentPlayer];
-					[self broadcastBuilding:-1 andRoad:[self.game.table.edges indexOfObject:edge]];
+					[self broadcastBuilding:-1 andRoad:[self.game.table.edges indexOfObject:edge] withCost:YES];
 					
 					if (edge.owner == self.game.currentPlayer) {
 						self.game.currentPlayer.lumber--;
@@ -882,7 +882,7 @@
 						}
 						
 						
-						[self broadcastBuilding:[self.game.table.vertexes indexOfObject:vertex] andRoad:-1];
+						[self broadcastBuilding:[self.game.table.vertexes indexOfObject:vertex] andRoad:-1 withCost:YES];
 						self.game.currentPlayer.lumber--;
 						self.game.currentPlayer.brick--;
 						self.game.currentPlayer.grain--;
@@ -908,7 +908,7 @@
 							[hex verifyMineOwnerForGame:self.game];
 						}
 						
-						[self broadcastBuilding:[self.game.table.vertexes indexOfObject:vertex] andRoad:-1];
+						[self broadcastBuilding:[self.game.table.vertexes indexOfObject:vertex] andRoad:-1 withCost:YES];
 						self.game.currentPlayer.ore-=3;
 						self.game.currentPlayer.grain-=2;
 					}
@@ -998,7 +998,7 @@
 					
 					EdgeNode * edge = (EdgeNode *)clicked;
 					[edge receiveOwner:self.game.currentPlayer];
-					[self broadcastBuilding:-1 andRoad:[self.game.table.edges indexOfObject:edge]];
+					[self broadcastBuilding:-1 andRoad:[self.game.table.edges indexOfObject:edge] withCost:NO];
 					
 					if(edge.owner == self.game.currentPlayer)
 						self.game.phase = ROADS_CARD2;
@@ -1036,7 +1036,7 @@
 					
 					EdgeNode * edge = (EdgeNode *)clicked;
 					[edge receiveOwner:self.game.currentPlayer];
-					[self broadcastBuilding:-1 andRoad:[self.game.table.edges indexOfObject:edge]];
+					[self broadcastBuilding:-1 andRoad:[self.game.table.edges indexOfObject:edge] withCost:NO];
 					
 					if(edge.owner == self.game.currentPlayer)
 						self.game.phase = RUNNING;
@@ -1285,13 +1285,13 @@
 	
 }
 
--(void) broadcastBuilding:(NSInteger) building andRoad:(NSInteger) road{
+-(void) broadcastBuilding:(NSInteger) building andRoad:(NSInteger) road withCost:(BOOL) cost{
 	
 	NSNumber *roadNumber = [NSNumber numberWithInt:road];
 	
 	NSNumber *buildingNumber = [NSNumber numberWithInt:building];
 	
-	NSDictionary *data = [NSDictionary dictionaryWithObjects:@[roadNumber, buildingNumber] forKeys:@[@"road", @"city"]];
+	NSDictionary *data = [NSDictionary dictionaryWithObjects:@[roadNumber, buildingNumber, [NSNumber numberWithBool:cost]] forKeys:@[@"road", @"city", @"cost"]];
 	
 	[self.plug sendMessage:MSG_BUILD data:data];
 }
@@ -1740,10 +1740,12 @@
 			NSDictionary* build = data;
 			NSInteger roadAtIndex = [(NSNumber*)[build objectForKey:@"road"] integerValue];
 			NSInteger cityAtIndex = [(NSNumber*)[build objectForKey:@"city"] integerValue];
-
+			BOOL withCost = [(NSNumber*)[build objectForKey:@"cost"] boolValue];
+			
+			
 			if(roadAtIndex>=0){
 				
-				[(EdgeNode*)[self.game.table.edges objectAtIndex:roadAtIndex] receiveOwner: self.game.currentPlayer];
+				BOOL valid =[(EdgeNode*)[self.game.table.edges objectAtIndex:roadAtIndex] receiveOwner: self.game.currentPlayer];
 				
 				
 				
@@ -1804,7 +1806,7 @@
 					
 				}
 				
-				else {
+				else if(valid && withCost){
 					
 					self.game.currentPlayer.brick--;
 					self.game.currentPlayer.lumber--;
@@ -1845,7 +1847,7 @@
 						}
 					}
 					
-					if (self.game.phase != INITIALIZATIONWAIT) {
+					if (self.game.phase != INITIALIZATIONWAIT && withCost) {
 				
 						self.game.currentPlayer.lumber--;
 						self.game.currentPlayer.brick--;
@@ -1859,7 +1861,7 @@
 				else{
 					
 					[city becomeCity];
-					if (self.game.phase != INITIALIZATIONWAIT) {
+					if (self.game.phase != INITIALIZATIONWAIT && withCost) {
 					
 						self.game.currentPlayer.ore-=3;
 						self.game.currentPlayer.grain-=2;

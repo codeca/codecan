@@ -22,7 +22,7 @@
 }
 
 
--(void)receiveOwner:(Player *)player{
+-(BOOL)receiveOwner:(Player *)player{
 	
 	BOOL valid = NO;
 	
@@ -64,7 +64,11 @@
 		
 		[self runAction:[SKAction playSoundFileNamed:@"buildingsound.mp3" waitForCompletion:YES]];
 		self.owner.roads++;
+		
+		return YES;
 	}
+	
+	return NO;
 }
 
 -(void)breakRoad{

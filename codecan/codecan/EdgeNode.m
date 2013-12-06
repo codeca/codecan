@@ -46,6 +46,7 @@
 		//self.colorBlendFactor= 1.0;
 		
 		SKSpriteNode * manaLink = [SKSpriteNode spriteNodeWithTexture:[ManaLinkAtlas sharedInstance].textures[0]];
+		manaLink.name = @"link";
 		manaLink.color = self.owner.color;
 		manaLink.colorBlendFactor = 1.0;
 		manaLink.yScale = 0.78;
@@ -67,12 +68,15 @@
 }
 
 -(void)breakRoad{
-	self.owner.roads--;
-	self.owner = nil;
-	[self removeAllActions];
-	[self setTexture:[SKTexture textureWithImageNamed:@"edge"]];
-	self.color = [SKColor whiteColor];
-	self.colorBlendFactor = 1;
+	SKSpriteNode* link = (SKSpriteNode*)[self childNodeWithName:@"link"];
 	
+	
+	if(link){
+		self.owner.roads--;
+		self.owner = nil;
+		[link removeAllActions];
+		[link setTexture:nil];
+		[link removeFromParent];
+	}
 }
 @end

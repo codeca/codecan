@@ -86,10 +86,10 @@
 		self.scene.scaleMode = SKSceneScaleModeAspectFill;
 		self.scene.tutorialMode = self.tutorialMode;
 		[self.scene createTutorial];
-		
-		[self.scene addObserver:self forKeyPath:@"endGame" options:NSKeyValueObservingOptionNew context:nil];
 		[skView presentScene:self.scene];
 	}
+	
+	[self.scene addObserver:self forKeyPath:@"endGame" options:NSKeyValueObservingOptionNew context:nil];
 }
 
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{

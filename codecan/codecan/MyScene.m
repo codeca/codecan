@@ -675,6 +675,8 @@
 					[self.game.currentPlayer removeCardOfType:@"roads"];
 					[clicked removeFromParent];
 					
+					[self.plug sendMessage:MSG_CARD_USED data:[NSDictionary dictionaryWithObject:@([self.game.players indexOfObject:self.game.currentPlayer]) forKey:@"player"]];
+					
 					self.game.phase = ROADS_CARD;
 					
 				}else if([clicked.name isEqual:@"monopoly"]){
@@ -738,7 +740,7 @@
 						[self broadcastResourcesChangeForPlayer:player add:[player mountPlayerHand] remove:@[@"all"]];
 						
 					}
-					
+					[self.plug sendMessage:MSG_CARD_USED data:[NSDictionary dictionaryWithObject:@([self.game.players indexOfObject:self.game.currentPlayer]) forKey:@"player"]];
 					
 				}else if([clicked.name isEqual:@"plenty"]){
 					[self.game.currentPlayer removeCardOfType:@"plenty"];
@@ -774,7 +776,9 @@
 						self.game.currentPlayer.brick+=2;
 					}
 					
+					[self.plug sendMessage:MSG_CARD_USED data:[NSDictionary dictionaryWithObject:@([self.game.players indexOfObject:self.game.currentPlayer]) forKey:@"player"]];
 					
+
 					[self broadcastResourcesChangeForPlayer:self.game.currentPlayer add:@[resources[index1],resources[index2], resources[index1],resources[index2]] remove:@[]];
 					
 					

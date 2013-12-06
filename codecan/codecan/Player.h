@@ -44,7 +44,10 @@ typedef enum{
 -(NSString*) removeRandomResource;
 -(BOOL) didPlayerWin;
 -(NSArray*) mountPlayerHand;
-- (NSInteger) numberOfResource:(NSInteger)resource;
+-(NSInteger) numberOfResource:(NSInteger)resource;
 -(void)removeCardOfType:(NSString*) type;
 -(NSInteger)returnPoints;
+
+-(void) increasePoints;
+
 @end

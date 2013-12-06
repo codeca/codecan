@@ -29,7 +29,7 @@
 	
 	if(self.owner==nil){
 		self.owner = player;
-		self.owner.points++;
+		[self.owner increasePoints];
 		self.type =  VILLAGE;
 		//self.color = self.owner.color;
 		//self.colorBlendFactor = 1.0;
@@ -70,7 +70,7 @@
 -(void)becomeCity{
 	
 	self.type = CITY;
-	self.owner.points++;
+	[self.owner increasePoints];
 	
 	SKSpriteNode * sphere = (SKSpriteNode*)[self childNodeWithName:@"crystal"];
 	[sphere removeAllActions];

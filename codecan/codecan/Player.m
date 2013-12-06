@@ -50,7 +50,7 @@
 	
 	//Precisa adicionar as cartas de desenvolvimento aqui para ver se tudo funciona
 	
-	if (_points + self.cardPoints + 2*self.largestArmy + 2*self.largestRoad < 10) {
+	if ([self returnPoints]< 10) {
 		return 0;
 	}
 	
@@ -138,5 +138,11 @@
 	
 	return _points + 2*self.largestArmy +2*self.largestRoad;
 }
+
+-(void)increasePoints{
+	_points++;
+	
+}
+
 
 @end

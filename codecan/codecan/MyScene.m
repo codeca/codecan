@@ -641,8 +641,10 @@
 					[clicked removeFromParent];
 					self.game.table.thiefHasBeenMoved = NO;
 					self.game.phase = ARMYTURN;
-										
-					[self.plug sendMessage:MSG_CARD_USED data:@"army"];
+					
+					NSDictionary * data = [NSDictionary dictionaryWithObjects:@[@"army", @([self.game.players indexOfObject:self.game.currentPlayer])] forKeys:@[@"type", @"player"]];
+					
+					[self.plug sendMessage:MSG_CARD_USED data:data];
 					
 					self.game.currentPlayer.army++;
 					
@@ -1947,7 +1949,12 @@
 			
 		case MSG_CARD_USED:{
 			
-			NSString *card = data;
+			Player * player = [self.game.players objectAtIndex:[[data objectForKey:@"player"] integerValue]];
+			NSString *card = [data objectForKey:@"type"];
+			
+			if(player != self.game.me){
+				[player.cards removeLastObject];
+			}
 			
 			if([card isEqual:@"army"]){
 				self.game.currentPlayer.army ++;

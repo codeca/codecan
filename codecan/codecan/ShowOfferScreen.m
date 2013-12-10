@@ -131,21 +131,21 @@
 		self.declineButton.position = CGPointMake(self.back.size.width/4, -10);
 		[self addChild:self.declineButton];
 		
-		SKLabelNode * offerLabel = [SKLabelNode labelNodeWithFontNamed:@"ChalkDuster"];
-		offerLabel.name = @"offerlabel";
-		offerLabel.fontSize = 30;
-		offerLabel.fontColor = [SKColor blackColor];
-		offerLabel.text = @"Offer";
-		offerLabel.position = CGPointMake(0, self.theOffer.position.y+self.theOffer.size.height/2);
-		[self addChild:offerLabel];
+		self.offerLabel = [SKLabelNode labelNodeWithFontNamed:@"ChalkDuster"];
+		self.offerLabel.name = @"offerlabel";
+		self.offerLabel.fontSize = 30;
+		self.offerLabel.fontColor = [SKColor blackColor];
+		self.offerLabel.text = @"Offer";
+		self.offerLabel.position = CGPointMake(0, self.theOffer.position.y+self.theOffer.size.height/2);
+		[self addChild:self.offerLabel];
 		
-		SKLabelNode * demandLabel = [SKLabelNode labelNodeWithFontNamed:@"ChalkDuster"];
-		demandLabel.name = @"demandlabel";
-		demandLabel.fontSize = 30;
-		demandLabel.fontColor = [SKColor blackColor];
-		demandLabel.text = @"Demand";
-		demandLabel.position = CGPointMake(0, self.theDemand.position.y+self.theDemand.size.height/2);
-		[self addChild:demandLabel];
+		self.demandLabel = [SKLabelNode labelNodeWithFontNamed:@"ChalkDuster"];
+		self.demandLabel.name = @"demandlabel";
+		self.demandLabel.fontSize = 30;
+		self.demandLabel.fontColor = [SKColor blackColor];
+		self.demandLabel.text = @"Demand";
+		self.demandLabel.position = CGPointMake(0, self.theDemand.position.y+self.theDemand.size.height/2);
+		[self addChild:self.demandLabel];
 		
 		for(SKSpriteNode * resources in self.theOffer.children){
 			if(resources.class != SKSpriteNode.class)
@@ -201,6 +201,9 @@
 
 	self.myScene = scene;
 	self.player = player;
+	
+	self.offerLabel.text = [NSString stringWithFormat:@"%@\'s offer", player.name];
+	self.demandLabel.text = [NSString stringWithFormat:@"%@\'s demand", player.name];
 	
 	NSDictionary * offer = [data objectForKey:@"offer"];
 	NSDictionary * demand = [data objectForKey:@"demand"];

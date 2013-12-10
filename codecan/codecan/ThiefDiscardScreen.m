@@ -191,32 +191,32 @@
 	if(index>=0){
 		SKSpriteNode* child = self.selections.children[index];
 		
-		if(child.texture == nil){
+		//if(child.texture == nil){
 		
 			switch (selection) {
 				case DISBRICK:
-					child.texture = [SKTexture textureWithImageNamed:@"brick"];
+					[child addChild: [SKSpriteNode spriteNodeWithImageNamed:@"brick"]];
 					break;
 				case DISLUMBER:
-					child.texture = [SKTexture textureWithImageNamed:@"lumber"];
+					[child addChild: [SKSpriteNode spriteNodeWithImageNamed:@"lumber"]];
 					break;
 				case DISORE:
-					child.texture = [SKTexture textureWithImageNamed:@"ore"];
+					[child addChild: [SKSpriteNode spriteNodeWithImageNamed:@"ore"]];
 					break;
 				case DISGRAIN:
-					child.texture = [SKTexture textureWithImageNamed:@"grain"];
+					[child addChild: [SKSpriteNode spriteNodeWithImageNamed:@"grain"]];
 					break;
 				case DISWOOL:
-					child.texture = [SKTexture textureWithImageNamed:@"wool"];
+					[child addChild: [SKSpriteNode spriteNodeWithImageNamed:@"wool"]];
 					break;
 					
 				default:
 					break;
 			}
-			child.size = child.texture.size;
-			child.yScale = 0.1;
-			child.xScale = 0.1;
-		}
+			//child.size = child.texture.size;
+			//child.yScale = 0.1;
+			//child.xScale = 0.1;
+		//}
 	}
 		
 	
@@ -240,7 +240,10 @@
 	[self.selections removeAllChildren];
 	
 	for(int i = 0; i < self.discard; i++){
-		SKSpriteNode * offerN = [SKSpriteNode spriteNodeWithColor:[SKColor greenColor] size:CGSizeMake(50, 50)];
+		//SKSpriteNode * offerN = [SKSpriteNode spriteNodeWithColor:[SKColor greenColor] size:CGSizeMake(50, 50)];
+		SKSpriteNode * offerN = [SKSpriteNode spriteNodeWithImageNamed:@"round_frame"];
+		offerN.xScale = 0.07*4/self.discard;
+		offerN.yScale = 0.07*4/self.discard;
 		offerN.position = CGPointMake((i+1)*self.selections.size.width/(self.discard+1)-self.selections.size.width/2, 0);
 		[self.selections addChild:offerN];
 	}

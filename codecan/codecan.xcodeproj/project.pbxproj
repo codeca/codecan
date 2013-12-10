@@ -24,6 +24,8 @@
 		81AB1819183BBB3700A0B596 /* bg_bank.png in Resources */ = {isa = PBXBuildFile; fileRef = 81AB1818183BBB3700A0B596 /* bg_bank.png */; };
 		81AB181C1844B49500A0B596 /* ToastText.m in Sources */ = {isa = PBXBuildFile; fileRef = 81AB181B1844B49500A0B596 /* ToastText.m */; };
 		81AD40F51832A5A400921747 /* logo (1).png in Resources */ = {isa = PBXBuildFile; fileRef = 81AD40F41832A5A400921747 /* logo (1).png */; };
+		81AF029718572A2E0065491A /* round_frame.png in Resources */ = {isa = PBXBuildFile; fileRef = 81AF029618572A2E0065491A /* round_frame.png */; };
+		81AF029D18574BA70065491A /* CrystalTrader.m in Sources */ = {isa = PBXBuildFile; fileRef = 81AF029C18574BA70065491A /* CrystalTrader.m */; };
 		81E352DB18168FAA00FD7323 /* HexagonNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E352DA18168FAA00FD7323 /* HexagonNode.m */; };
 		81E352DE1816A3CD00FD7323 /* Table.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E352DD1816A3CD00FD7323 /* Table.m */; };
 		81E352E718184D1700FD7323 /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E352E618184D1700FD7323 /* Player.m */; };
@@ -129,6 +131,9 @@
 		81AB181A1844B49500A0B596 /* ToastText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToastText.h; sourceTree = "<group>"; };
 		81AB181B1844B49500A0B596 /* ToastText.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToastText.m; sourceTree = "<group>"; };
 		81AD40F41832A5A400921747 /* logo (1).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo (1).png"; sourceTree = "<group>"; };
+		81AF029618572A2E0065491A /* round_frame.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = round_frame.png; path = Images/round_frame.png; sourceTree = "<group>"; };
+		81AF029B18574BA70065491A /* CrystalTrader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CrystalTrader.h; sourceTree = "<group>"; };
+		81AF029C18574BA70065491A /* CrystalTrader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CrystalTrader.m; sourceTree = "<group>"; };
 		81E352D918168FAA00FD7323 /* HexagonNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HexagonNode.h; sourceTree = "<group>"; };
 		81E352DA18168FAA00FD7323 /* HexagonNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HexagonNode.m; sourceTree = "<group>"; };
 		81E352DC1816A3CD00FD7323 /* Table.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Table.h; sourceTree = "<group>"; };
@@ -387,6 +392,8 @@
 				81A73C9A182C111800C4514F /* ShowOfferScreen.m */,
 				81AB181A1844B49500A0B596 /* ToastText.h */,
 				81AB181B1844B49500A0B596 /* ToastText.m */,
+				81AF029B18574BA70065491A /* CrystalTrader.h */,
+				81AF029C18574BA70065491A /* CrystalTrader.m */,
 			);
 			name = Nodes;
 			sourceTree = "<group>";
@@ -451,6 +458,7 @@
 		C456889C1817FD0C008A0CB8 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				81AF029618572A2E0065491A /* round_frame.png */,
 				81AB1818183BBB3700A0B596 /* bg_bank.png */,
 				C4200BB9183BCB8800D7C4A0 /* splash_screen.png */,
 				81AB1816183BB80500A0B596 /* mine.png */,
@@ -581,6 +589,7 @@
 				83CF9EE4182755C200B1803D /* villageHouseH.png in Resources */,
 				81F1289C181AA06E0002832D /* 6.png in Resources */,
 				8366361B182ED58500AA4531 /* 4.png in Resources */,
+				81AF029718572A2E0065491A /* round_frame.png in Resources */,
 				83522B27182909DE0009C4D7 /* yourturnwarning.mp3 in Resources */,
 				C4200BBA183BCB8800D7C4A0 /* splash_screen.png in Resources */,
 				83663681182EE3C000AA4531 /* Crystal.atlas in Resources */,
@@ -660,6 +669,7 @@
 				81AA90A1182BE59E00033B30 /* PlayerTrader.m in Sources */,
 				8193EBF5183286AC0086B992 /* ManaSphereAtlas.m in Sources */,
 				812ACCB41823D723007C848E /* PortResourceTrader.m in Sources */,
+				81AF029D18574BA70065491A /* CrystalTrader.m in Sources */,
 				81E352E718184D1700FD7323 /* Player.m in Sources */,
 				0BE9470E1816B52300379436 /* VertexNode.m in Sources */,
 			);

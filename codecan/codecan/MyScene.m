@@ -1540,7 +1540,7 @@
 		quantity.name = imageName;
 		quantity.fontSize = 20;
 		quantity.fontColor = [SKColor blackColor];
-		quantity.position = CGPointMake(resource.position.x, resource.position.y-40);
+		quantity.position = CGPointMake(resource.position.x, resource.position.y-resource.size.height*3/4);
 		[downMenu addChild:quantity];
 	}
 
@@ -1559,7 +1559,6 @@
 	
 	[self.bankTrader bankTraderForPlayer:self.game.currentPlayer andScene:self];
 	
-	
 }
 
 - (void) buildPlayerTraderInterface{
@@ -1571,7 +1570,6 @@
 	self.playersAnswers = 0;
 	[self.playerTrader playerTraderForPlayer:self.game.currentPlayer andScene:self];
 	
-	
 }
 
 - (void) buildPortTraderInterface{
@@ -1582,7 +1580,6 @@
 	}
 	
 	[self.portTrader portTraderForPlayer:self.game.currentPlayer andScene:self];
-	
 	
 }
 

@@ -168,7 +168,7 @@
 				[self addResourceToDemand:BANKBRICK];
 			}
 		}else if([clicked.name isEqualToString:@"trade"]){
-			if([self resourcesInDemand]>0 && [self resourcesInOffer]>0){
+			if([self resourcesInDemand]>0 && [self resourcesInOffer]>0 && [self validOffer]){
 				
 				SKLabelNode * label = (SKLabelNode*)[self.blockScreen childNodeWithName:@"waitinglabel"];
 				label.text = @"Waiting answer";
@@ -190,6 +190,33 @@
 	}
 
 	
+}
+
+- (BOOL) validOffer{
+
+	BOOL valid = NO;
+	
+	if([self totalOfOfferForResource:BANKLUMBER] > [self totalDemandForResource:BANKLUMBER]){
+		valid = YES;
+	}
+	
+	if([self totalOfOfferForResource:BANKBRICK] > [self totalDemandForResource:BANKBRICK]){
+		valid = YES;
+	}
+	
+	if([self totalOfOfferForResource:BANKORE] > [self totalDemandForResource:BANKORE]){
+		valid = YES;
+	}
+	
+	if([self totalOfOfferForResource:BANKWOOL] > [self totalDemandForResource:BANKWOOL]){
+		valid = YES;
+	}
+	
+	if([self totalOfOfferForResource:BANKGRAIN] > [self totalDemandForResource:BANKGRAIN]){
+		valid = YES;
+	}
+	
+	return valid;
 }
 
 -(void) updateView{
@@ -249,6 +276,12 @@
 -(NSInteger) totalOfOfferForResource:(BankSelection) resource{
 	
 	return [[self.offerdic objectForKey:self.resources[resource-1]] integerValue];
+	
+}
+
+-(NSInteger) totalDemandForResource:(BankSelection) resource{
+
+	return [[self.demand objectForKey:self.resources[resource-1]] integerValue];
 	
 }
 

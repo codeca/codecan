@@ -349,6 +349,7 @@
 	NSLog(@"SET DEMAND CALLED");
 	SKSpriteNode * child = [[self.myDemand children] objectAtIndex:0];
 	child.texture = nil;
+	self.selectionDemand = selection;
 	if(child.texture == nil){
 		if(selection == BANKBRICK){
 			child.texture = [SKTexture textureWithImageNamed:@"brick"];

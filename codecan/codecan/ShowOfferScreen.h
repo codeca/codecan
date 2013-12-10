@@ -27,6 +27,9 @@
 @property (nonatomic, strong) SKLabelNode * oreQuantity;
 @property (nonatomic, strong) SKLabelNode * grainQuantity;
 @property (nonatomic, strong) SKLabelNode * woolQuantity;
+@property (nonatomic, strong) SKLabelNode * offerLabel;
+@property (nonatomic, strong) SKLabelNode * demandLabel;
+
 
 @property (nonatomic, strong) SKLabelNode * acceptButton;
 @property (nonatomic, strong) SKLabelNode * declineButton;

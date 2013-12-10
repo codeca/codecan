@@ -40,6 +40,9 @@
 		}
 	
 		self.arrow.position = CGPointMake(self.myDemand.position.x, self.arrow.position.y);
+		
+		self.crystalQuantityLabel = [SKLabelNode labelNodeWithFontNamed:@"ChalkDuster"];
+		
 	}
 	return self;
 }

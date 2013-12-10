@@ -10,4 +10,6 @@
 
 @interface CrystalTrader : BankTrader
 
+@property (nonatomic, strong) SKLabelNode * crystalQuantityLabel;
+
 @end
